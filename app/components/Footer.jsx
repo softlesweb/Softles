@@ -103,7 +103,7 @@ export default function Footer() {
                         <Image src={"/InstagramIcon.png"} alt="Instagram" width={0} height={0} sizes="(max-width: 768px) 40vw, (max-width: 1024px) 50vw, 33vw" className="object-cover overflow-hidden w-7 h-7 hover:scale-110 transition"/>
                     </Link>
                 </div>
-                <p className="text-[#52525B] text-xs text-center md:text-right">
+                <p className="text-[#a4a4b3] text-xs text-center md:text-right">
                     &copy; {new Date().getFullYear()} SoftLes - Web Design Company. All Rights Reserved.
                 </p>
             </div>
