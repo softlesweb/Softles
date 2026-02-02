@@ -1,9 +1,8 @@
 "use client";
 import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
-import { Divy } from '@/public/Divy.jpg';
 
-const clientLogos = ["/logo_1.png", "/logo_2.png", "/logo_3.png", "/logo_4.png", "/logo_5.png", "/logo_6.png", "/logo_7.png", "/logo_8.png"];
+const clientLogos = ["/logo_1.png", "/logo_2.png", "/logo_3.png", "/logo_4.png", "/logo_5.png", "/logo_6.png", "/logo_7.png", "/logo_8.png", "/logo_9.png"];
 
 export default function Hero() {
     const blobRef = useRef(null);
@@ -140,9 +139,9 @@ export default function Hero() {
                         </div>
                     </div>
                                 {/* Scroll prompt */}
-            <div className="flex flex-col items-center z-20">
-                <span className="text-[#BCC1CA] text-sm animate-bounce">↓ Scroll to explore our services</span>
-            </div>
+                    <div className="flex flex-col items-center z-20">
+                        <span className="text-[#BCC1CA] text-sm animate-bounce">↓ Scroll to explore our services</span>
+                    </div>
                 </div>
             </div>
             {/* Decorative Background Elements */}
