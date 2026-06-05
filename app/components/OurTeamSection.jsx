@@ -15,6 +15,7 @@ const Swiper = dynamic(
 
 const team = [
   {
+    image: "/Shakti_Singh.jpeg",
     name: "Shakti Singh",
     role: "Strategy Lead",
     bio: "Drives vision and strategic clarity, connecting market insight, execution, and leadership to long-term, sustainable business growth.",
@@ -24,6 +25,7 @@ const team = [
     accent: "#DC4242",
   },
   {
+    image: "/Shahad_Hassan.jpeg",
     name: "Shahad Hassan",
     role: "FullStack Developer",
     bio: "Engineers robust, scalable applications with a focus on performance, security, and maintainable architecture across frontend and backend systems.",
@@ -33,6 +35,7 @@ const team = [
     accent: "#00D1A0",
   },
   {
+    image: "/Neeraj_Kumar.jpeg",
     name: "Neeraj Kumar",
     role: "Shopify Developer",
     bio: "Builds and optimizes high-converting Shopify stores with a strong emphasis on performance, scalability, and seamless customer journeys.",
@@ -42,6 +45,7 @@ const team = [
     accent: "#FFC857",
   },
   {
+    image: "/Manish_Rana.png",
     name: "Manish Rana",
     role: "UX/UI Expert",
     bio: "Shapes intuitive user experiences and scalable design systems that balance aesthetics, usability, and conversion across digital products.",
@@ -51,6 +55,7 @@ const team = [
     accent: "#5A6BFF",
   },
   {
+    image: "/Divy.jpg",
     name: "Divyansh Veermanya",
     role: "Product Lead",
     bio: "Owns product vision and execution by translating business goals and user insights into clear roadmaps, priorities, and shipped outcomes.",
@@ -126,14 +131,20 @@ export default function OurTeamSection() {
         <div className="relative mb-6">
           <div className="flex items-center gap-4 max-w-[280px] sm:max-w-auto">
             {/* Avatar */}
-            <div className={`relative h-10 w-10 md:h-16 md:w-16 overflow-hidden rounded-2xl bg-gradient-to-br ${member.tone} ring-2 ring-[#242836] ring-offset-2 ring-offset-[#0F1118]`}>
+            <div className={`relative h-20 w-20 overflow-hidden rounded-2xl bg-gradient-to-br ${member.tone} ring-2 ring-[#242836] ring-offset-2 ring-offset-[#0F1118]`}>
               <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-lg font-bold text-[#F5F6FA]">
-                  {member.name
-                    .split(" ")
-                    .map((n) => n[0])
-                    .join("")}
-                </span>
+                {
+                  member.image ? (
+                    <Image src={member.image} alt={member.name} width={80} height={80} className="rounded-2xl object-cover" />
+                  ) : (
+                    <span className="text-lg font-bold text-[#F5F6FA]">
+                      {member.name
+                        .split(" ")
+                        .map((n) => n[0])
+                        .join("")}
+                    </span>
+                  )
+                }
               </div>
               <div
                 className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
@@ -143,7 +154,7 @@ export default function OurTeamSection() {
 
             {/* Name & Role */}
             <div className="flex-1 min-w-0 max-w-[200px] sm:max-w-auto">
-              <h4 className="text-xl font-bold text-[#F5F6FA] truncate">
+              <h4 className="text-xl font-bold text-[#F5F6FA] ">
                 {member.name}
               </h4>
               <p className="text-sm font-semibold tracking-tighter md:tracking-widest text-gray-400 uppercase">
