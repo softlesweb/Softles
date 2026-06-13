@@ -40,31 +40,31 @@ const tags = [
 
 export default function ShopifyProjects() {
   return (
-    // Base weight bg-[#0D0F12] and strict desktop constraints maintained
-    <section className="py-12 sm:py-16 lg:py-28 bg-[#0D0F12] border-t border-[#2a2e40]" id="projects">
+    <section className="softles-section-primary" id="projects">
       <div className="service-page-container">
         
         {/* Section Header */}
-        <div className="mb-12 lg:mb-16">
-          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-[#181B23] border border-[#2a2e40] mb-4">
-            <span className="text-[11px] font-semibold uppercase tracking-widest text-[#BCC1CA]/80">
+        <div className="mb-10">
+          <div className="softles-eyebrow mb-2">
+            <span className="softles-eyebrow-line" />
+            <span className="softles-eyebrow-text">
               Featured Work
             </span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-4">
+          <h2 className="service-section-heading text-[#FFFFFF]">
             Brunswick Fur Food
           </h2>
-          <p className="text-[#BCC1CA]/80 max-w-3xl text-sm sm:text-base leading-relaxed">
+          <p className="softles-section-copy max-w-3xl">
             A real Shopify build for Melbourne&apos;s favourite fresh dog food brand — from trial packs to fortnightly subscriptions, delivered with a premium, mobile-first experience.
           </p>
         </div>
 
         {/* Unified Main Card Layout */}
-        <div className="bg-[#14161F] border border-[#2a2e40]/70 rounded-xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.2)]">
+        <div className="softles-card overflow-hidden shadow-2xl">
           <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr]">
             
             {/* Image Container */}
-            <div className="relative min-h-[280px] sm:min-h-[360px] lg:min-h-full bg-[#0D0F12] border-b lg:border-b-0 lg:border-r border-[#2a2e40]/70">
+            <div className="relative min-h-[280px] sm:min-h-[360px] lg:min-h-full bg-[#191C26] border-b lg:border-b-0 lg:border-r border-[#2a2e40]/70">
               <Image
                 src="/brunswickfurfood.png"
                 alt="Brunswick Fur Food Shopify storefront homepage"
@@ -74,7 +74,7 @@ export default function ShopifyProjects() {
                 priority
               />
               <div className="absolute top-4 left-4 sm:top-6 sm:left-6">
-                <span className="inline-flex items-center border border-[#2a2e40] bg-[#0D0F12]/90 backdrop-blur-md px-3 py-1 rounded text-[10px] font-bold uppercase tracking-wider text-[#F5F6FA]/90">
+                <span className="inline-flex items-center border border-[#2a2e40] bg-[#191C26]/90 backdrop-blur-md px-3 py-1 rounded text-[10px] font-bold uppercase tracking-wider text-[#F5F6FA]/90">
                   Pet Food / DTC
                 </span>
               </div>
@@ -107,7 +107,7 @@ export default function ShopifyProjects() {
                 {stats.map((stat) => (
                   <div
                     key={stat.label}
-                    className="rounded-lg border border-[#2a2e40]/60 bg-[#0D0F12]/60 px-4 py-3"
+                    className="rounded-lg border border-[#2a2e40]/60 bg-[#191C26]/70 px-4 py-3"
                   >
                     <div className="text-xl font-extrabold text-white tracking-tight">{stat.value}</div>
                     <div className="text-[11px] text-[#BCC1CA]/60 mt-1.5 font-medium leading-tight uppercase tracking-wider">{stat.label}</div>
@@ -132,7 +132,7 @@ export default function ShopifyProjects() {
                 href="https://www.brunswickfurfood.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3.5 bg-[#DC4242] hover:bg-[#c23535] text-white font-bold rounded-lg transition-colors duration-300 text-sm uppercase tracking-wider shadow-md shadow-[#DC4242]/10"
+                className="softles-primary-button w-full sm:w-auto"
               >
                 <span>Visit live store</span>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="shrink-0">
@@ -145,7 +145,7 @@ export default function ShopifyProjects() {
           </div>
 
           {/* Symmetrical Challenges Grid */}
-          <div className="border-t border-[#2a2e40]/70 p-6 sm:p-8 lg:p-10 xl:p-12 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 bg-[#0E1017]">
+          <div className="border-t border-[#2a2e40]/70 p-6 sm:p-8 lg:p-10 xl:p-12 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 bg-[#181B23]">
             <div>
               <h4 className="text-white font-bold text-base sm:text-lg tracking-tight mb-3">The Challenge</h4>
               <p className="text-[#BCC1CA]/75 text-sm leading-relaxed mb-4">
@@ -177,9 +177,9 @@ export default function ShopifyProjects() {
                   className="
                     group 
                     relative 
-                    rounded-xl 
+                    rounded-2xl 
                     p-6 
-                    bg-[#14161F] 
+                    bg-[#191C26] 
                     border border-[#2a2e40]/70 
                     hover:border-[#DC4242]/50 
                     hover:shadow-[0_12px_30px_rgba(220,66,66,0.06)] 

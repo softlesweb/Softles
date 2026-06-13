@@ -5,22 +5,23 @@ export default function WordPressCTA() {
     // Unified dark base weight background with global structural padding metrics
     <section
       id="cta"
-      className="py-12 sm:py-16 lg:py-28 bg-[#0D0F12] border-t border-b border-[#2a2e40]"
+      className="softles-section-secondary"
     >
       <div className="service-page-container">
         {/* Main Box - Clean layout geometry matching Shopify CTA structural cards */}
-        <div className="relative overflow-hidden bg-[#14161F] border border-[#2a2e40]/70 rounded-xl p-8 sm:p-12 lg:p-20 text-center shadow-[0_12px_40px_rgba(0,0,0,0.3)]">
+        <div className="relative overflow-hidden softles-card p-8 sm:p-12 lg:p-20 text-center shadow-2xl">
           
           <div className="relative z-10">
             {/* Header Tag */}
-            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-[#0D0F12] border border-[#2a2e40] mb-6">
-              <span className="text-[11px] font-semibold uppercase tracking-widest text-[#BCC1CA]/80">
+            <div className="softles-eyebrow justify-center mb-2">
+              <span className="softles-eyebrow-line" />
+              <span className="softles-eyebrow-text">
                 Let&apos;s Build Together
               </span>
             </div>
 
             {/* Heading with explicit tracking, font weights & WordPress theme variables */}
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-4 leading-tight">
+            <h2 className="service-section-heading text-[#FFFFFF] mb-4">
               Let&apos;s Build a Better<br className="hidden sm:block" />{" "}
               <span className="text-[#DC4242]">WordPress Experience</span>
             </h2>
@@ -35,7 +36,7 @@ export default function WordPressCTA() {
               {/* Primary Call Action */}
               <a
                 href="/#book-call"
-                className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3.5 bg-[#DC4242] hover:bg-[#c23535] text-white font-bold rounded-lg transition-colors duration-300 text-sm uppercase tracking-wider shadow-md shadow-[#DC4242]/10 group"
+                className="softles-primary-button w-full sm:w-auto group"
               >
                 <svg
                   width="14"
@@ -59,7 +60,7 @@ export default function WordPressCTA() {
               {/* Secondary Mail Action */}
               <a
                 href="mailto:info@softles.in"
-                className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3.5 bg-[#0D0F12] border border-[#2a2e40] text-[#BCC1CA]/90 hover:text-white hover:border-[#DC4242]/50 transition-colors duration-300 text-sm font-bold uppercase tracking-wider rounded-lg"
+                className="softles-secondary-button w-full sm:w-auto"
               >
                 <span>Contact Us</span>
                 <svg

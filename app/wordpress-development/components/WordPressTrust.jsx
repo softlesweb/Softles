@@ -28,23 +28,21 @@ export default function WordPressTrust() {
   ];
 
   return (
-    // Clean global background weight matching your engineering theme system
-    <section className="py-12 sm:py-16 lg:py-20 bg-[#0D0F12] border-t border-b border-[#2a2e40]">
+    <section className="softles-section-secondary">
       <div className="service-page-container">
         
         {/* Header - Kept identical typography structure layout */}
-        <div className="mb-12 lg:mb-16">
-          <div className="flex items-center gap-2 mb-4">
-            <span className="block w-7 h-0.5 bg-[#FFFFFF]" />
-            <span className="text-xs font-semibold uppercase tracking-widest text-[#BCC1CA]">
+        <div className="mb-10">
+          <div className="softles-eyebrow mb-2">
+            <span className="softles-eyebrow-line" />
+            <span className="softles-eyebrow-text">
               Platform Advantages
             </span>
-            <span className="block w-7 h-0.5 bg-[#FFFFFF]" />
           </div>
           <h2 className="service-section-heading mb-3">
             Why Businesses Choose WordPress
           </h2>
-          <p className="text-[#BCC1CA]/80 max-w-2xl text-sm sm:text-base leading-relaxed">
+          <p className="softles-section-copy">
             WordPress powers over 43% of the web for good reason — it&apos;s flexible,
             scalable, and built for long-term growth.
           </p>
@@ -54,13 +52,13 @@ export default function WordPressTrust() {
         <div className="flex flex-col lg:flex-row gap-6 items-stretch">
           
           {/* Side Performance Card Module */}
-          <div className="w-full lg:w-[30%] bg-[#14161F] border border-[#2a2e40]/70 rounded-xl p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden group">
+          <div className="w-full lg:w-[30%] softles-card p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden group">
             <div className="absolute top-0 right-0 p-3 opacity-[0.03] text-white pointer-events-none">
               <SiWordpress className="w-40 h-40" />
             </div>
             <div>
-              <div className="text-[10px] font-mono text-[#DC4242] uppercase tracking-widest mb-2 font-bold">
-                // Platform Metrics
+              <div className="text-xs text-[#DC4242] uppercase tracking-[0.2em] mb-2 font-bold">
+                {"// Platform Metrics"}
               </div>
               <h3 className="text-[#FFFFFF] font-bold text-xl mb-4 tracking-tight">
                 Open Source Power
@@ -69,7 +67,7 @@ export default function WordPressTrust() {
                 Engineered for complete digital ownership. Unrestricted customization with zero platform transaction tax loops.
               </p>
             </div>
-            <div className="pt-4 border-t border-[#2a2e40]/40 flex items-center justify-between text-[11px] text-[#BCC1CA]/40 font-mono">
+            <div className="pt-4 border-t border-[#2a2e40]/40 flex items-center justify-between text-[11px] text-[#BCC1CA]/60">
               <span>GLOBAL DEPLOYMENT</span>
               <span className="text-white font-bold">43.0% +</span>
             </div>
@@ -80,15 +78,15 @@ export default function WordPressTrust() {
             {advantages.map((item, idx) => (
               <div
                 key={idx}
-                className="group bg-[#14161F] border border-[#2a2e40]/70 rounded-xl p-5 sm:p-6 transition-all duration-300 hover:border-[#DC4242]/30"
+                className="group softles-card p-5 sm:p-6"
               >
                 {/* Horizontal item structure to differentiate UI layout */}
                 <div className="flex gap-4 items-start">
-                  <div className="w-10 h-10 bg-[rgba(220,66,66,0.1)] border border-[rgba(220,66,66,0.25)] rounded-lg flex items-center justify-center text-xl text-white transition-all duration-300 group-hover:bg-[#DC4242] group-hover:text-white shrink-0">
+                  <div className="w-10 h-10 bg-[rgba(220,66,66,0.08)] border border-[rgba(220,66,66,0.25)] rounded-xl flex items-center justify-center text-xl text-white transition-all duration-300 group-hover:bg-[#DC4242]/10 group-hover:text-[#DC4242] shrink-0">
                     {item.icon}
                   </div>
                   <div>
-                    <h3 className="text-[#FFFFFF] font-semibold text-base mb-1.5 group-hover:text-[#DC4242] transition-colors duration-300">
+                    <h3 className="text-[#FFFFFF] font-bold text-base mb-1.5 group-hover:text-[#DC4242] transition-colors duration-300">
                       {item.title}
                     </h3>
                     <p className="text-[#BCC1CA]/70 text-sm leading-relaxed">

@@ -51,20 +51,19 @@ const projects = [
 
 export default function WordPressProjects() {
   return (
-    <section className="py-12 sm:py-16 lg:py-28 bg-[#191C26]" id="projects">
+    <section className="softles-section-secondary" id="projects">
       <div className="service-page-container">
         <div className="mb-8 sm:mb-10">
-          <div className="flex items-center gap-2 mb-4">
-            <span className="block w-7 h-0.5 bg-[#FFFFFF]" />
-            <span className="text-xs font-semibold uppercase tracking-widest text-[#BCC1CA]">
+          <div className="softles-eyebrow mb-2">
+            <span className="softles-eyebrow-line" />
+            <span className="softles-eyebrow-text">
               Featured Work
             </span>
-            <span className="block w-7 h-0.5 bg-[#FFFFFF]" />
           </div>
           <h2 className="service-section-heading mb-3">
             WordPress Projects We&apos;re Proud Of
           </h2>
-          <p className="text-[#BCC1CA]/80 max-w-2xl text-sm sm:text-base leading-relaxed">
+          <p className="softles-section-copy">
             Real WordPress builds for law, consulting, education, and regional media.
           </p>
         </div>

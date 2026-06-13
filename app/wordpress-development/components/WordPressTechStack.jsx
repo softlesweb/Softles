@@ -24,23 +24,21 @@ export default function WordPressTechStack() {
   ];
 
   return (
-    // Clean solid dark layout wrapper matching systemic style instructions
-    <section className="py-12 sm:py-16 lg:py-28 bg-[#0D0F12] border-t border-b border-[#2a2e40]">
+    <section className="softles-section-secondary">
       <div className="service-page-container">
         
         {/* Header - Strictly matching original fonts, weights and line markers */}
         <div className="text-center mb-12 lg:mb-16">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <span className="block w-7 h-0.5 bg-[#FFFFFF]" />
-            <span className="text-xs font-semibold uppercase tracking-widest text-[#BCC1CA]">
+          <div className="softles-eyebrow justify-center mb-2">
+            <span className="softles-eyebrow-line" />
+            <span className="softles-eyebrow-text">
               Technology Stack
             </span>
-            <span className="block w-7 h-0.5 bg-[#FFFFFF]" />
           </div>
           <h2 className="service-section-heading mb-3">
             Tools & Technologies
           </h2>
-          <p className="text-[#BCC1CA]/80 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
+          <p className="softles-section-copy mx-auto">
             We use battle-tested, best-in-class technologies to build WordPress
             solutions that are fast, secure, and future-proof.
           </p>
@@ -54,18 +52,14 @@ export default function WordPressTechStack() {
               className="
                 group
                 relative
-                bg-[#14161F]
-                border border-[#2a2e40]/70
-                rounded-xl
+                softles-card
                 p-6
                 overflow-hidden
-                transition-all duration-300 ease-out
-                hover:border-[#DC4242]/30
               "
             >
               
               {/* Dev Terminal Layout Metadata Marker */}
-              <div className="absolute top-2.5 right-3 font-mono text-[9px] text-[#BCC1CA]/20 uppercase tracking-widest group-hover:text-[#DC4242]/40 transition-colors duration-300">
+              <div className="absolute top-2.5 right-3 text-[9px] text-[#BCC1CA]/30 uppercase tracking-widest group-hover:text-[#DC4242]/50 transition-colors duration-300">
                 [dep_0{idx + 1}]
               </div>
 
@@ -77,11 +71,11 @@ export default function WordPressTechStack() {
                   className="
                     w-14 h-14
                     mb-4
-                    rounded-lg
+                    rounded-xl
                     flex
                     items-center
                     justify-center
-                    bg-[#0D0F12]
+                    bg-[#191C26]
                     border border-[#2a2e40]
                     text-2xl
                     text-white
@@ -97,7 +91,7 @@ export default function WordPressTechStack() {
                 {/* Typography Block - Retaining original exact hierarchy parameters */}
                 <h4
                   className="
-                    font-semibold
+                    font-bold
                     text-[#FFFFFF]
                     text-sm
                     mb-1

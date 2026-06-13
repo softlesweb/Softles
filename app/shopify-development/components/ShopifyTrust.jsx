@@ -27,21 +27,21 @@ export default function ShopifyTrust() {
   ];
 
   return (
-    // Kept your precise desktop padding parameters (py-12 sm:py-16 lg:py-28) & background consistency
-    <section className="py-12 sm:py-16 lg:py-28 bg-[#0D0F12] border-t border-b border-[#2a2e40]" id="why-shopify">
+    <section className="softles-section-secondary" id="why-shopify">
       <div className="service-page-container">
         
         {/* Section Header */}
-        <div className="text-center mb-12 lg:mb-16">
-          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-[#181B23] border border-[#2a2e40] mb-4">
-            <span className="text-[11px] font-semibold uppercase tracking-widest text-[#BCC1CA]/80">
+        <div className="text-center mb-10">
+          <div className="softles-eyebrow justify-center mb-2">
+            <span className="softles-eyebrow-line" />
+            <span className="softles-eyebrow-text">
               Platform Advantages
             </span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-4">
+          <h2 className="service-section-heading text-[#FFFFFF]">
             Why Leading Brands Choose Shopify
           </h2>
-          <p className="text-[#BCC1CA]/80 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
+          <p className="softles-section-copy mx-auto">
             Shopify powers over 4.6 million stores worldwide. It&apos;s the platform built to convert browsers into buyers — and to scale without friction.
           </p>
         </div>
@@ -55,17 +55,10 @@ export default function ShopifyTrust() {
               className="
                 group 
                 relative 
-                rounded-xl 
+                softles-card 
                 p-6 
                 flex 
                 flex-col 
-                bg-[#14161F] 
-                border 
-                border-[#2a2e40]/70 
-                hover:border-[#DC4242]/50 
-                hover:shadow-[0_12px_30px_rgba(220,66,66,0.06)] 
-                transition-all 
-                duration-300
               "
             >
               {/* Minimal Clean Icon Container */}
@@ -77,7 +70,7 @@ export default function ShopifyTrust() {
                   items-center 
                   justify-center 
                   mb-5 
-                  bg-[#0D0F12] 
+                  bg-[#191C26] 
                   border 
                   border-[#2a2e40] 
                   group-hover:bg-[#DC4242]/10 
@@ -90,12 +83,12 @@ export default function ShopifyTrust() {
               </div>
 
               {/* Title with matching transitions */}
-              <h3 className="font-bold text-base text-white tracking-tight mb-2.5 group-hover:text-[#DC4242] transition-colors duration-300">
+              <h3 className="font-bold text-xl text-white mb-3 leading-tight group-hover:text-[#DC4242] transition-colors duration-300">
                 {item.title}
               </h3>
 
               {/* Description */}
-              <p className="text-[#BCC1CA]/70 text-xs sm:text-sm leading-relaxed">
+              <p className="text-[#BCC1CA] text-sm leading-relaxed">
                 {item.desc}
               </p>
             </div>

@@ -58,21 +58,21 @@ export default function ShopifyServices() {
   ];
 
   return (
-    <section className="py-12 sm:py-16 lg:py-20 border-t border-[#2a2e40] bg-[#0D0F12]" id="services">
+    <section className="softles-section-primary" id="services">
       <div className="service-page-container">
         
         {/* Section Header */}
-        <div className="mb-12 lg:mb-16 max-w-3xl">
-          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-[#181B23] border border-[#2a2e40] mb-4">
-            {/* font-mono removed, standard typography implemented */}
-            <span className="text-[11px] font-semibold uppercase tracking-widest text-[#BCC1CA]/80">
+        <div className="mb-10 max-w-3xl">
+          <div className="softles-eyebrow mb-2">
+            <span className="softles-eyebrow-line" />
+            <span className="softles-eyebrow-text">
               Capabilities
             </span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-4">
+          <h2 className="service-section-heading text-[#FFFFFF]">
             Shopify Development Services
           </h2>
-          <p className="text-[#BCC1CA]/80 text-sm sm:text-base leading-relaxed">
+          <p className="softles-section-copy">
             End-to-end Shopify solutions — from brand-new stores and Shopify Plus builds to headless architectures and full ecosystem automation.
           </p>
         </div>
@@ -83,7 +83,7 @@ export default function ShopifyServices() {
             <div
               key={idx}
               // Hover effects ko sabhi cards ke liye perfectly identical aur uniform kar diya hai
-              className={`group relative rounded-xl p-6 flex flex-col justify-between border transition-all duration-300 bg-[#14161F] border-[#2a2e40]/70 hover:border-[#DC4242]/50 hover:shadow-[0_12px_30px_rgba(220,66,66,0.06)] ${
+              className={`group relative softles-card p-6 flex flex-col justify-between ${
                 service.featured ? "shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]" : ""
               }`}
             >
@@ -94,7 +94,7 @@ export default function ShopifyServices() {
                     className={`w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-300 ${
                       service.featured
                         ? "bg-[#DC4242]/10 border border-[#DC4242]/30"
-                        : "bg-[#0D0F12] border border-[#2a2e40] group-hover:bg-[#DC4242]/10 group-hover:border-[#DC4242]/30"
+                        : "bg-[#191C26] border border-[#2a2e40] group-hover:bg-[#DC4242]/10 group-hover:border-[#DC4242]/30"
                     }`}
                   >
                     {service.icon}
@@ -108,12 +108,12 @@ export default function ShopifyServices() {
                 </div>
 
                 {/* Title */}
-                <h3 className="font-bold text-base text-white tracking-tight mb-2.5 group-hover:text-[#DC4242] transition-colors duration-300">
+                <h3 className="font-bold text-xl text-white mb-3 leading-tight group-hover:text-[#DC4242] transition-colors duration-300">
                   {service.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-[#BCC1CA]/70 text-xs sm:text-sm leading-relaxed mb-6">
+                <p className="text-[#BCC1CA] text-sm leading-relaxed mb-6">
                   {service.desc}
                 </p>
               </div>
@@ -125,7 +125,7 @@ export default function ShopifyServices() {
                     <li
                       key={i}
                       // Removed font-mono for unified brand style look
-                      className="flex items-center gap-2.5 text-xs sm:text-sm text-[#BCC1CA]/80 font-medium"
+                    className="flex items-center gap-2.5 text-sm text-[#F3F4F6] font-medium"
                     >
                       <Check className="w-3.5 h-3.5 shrink-0 text-[#DC4242]" />
                       <span className="truncate">{bullet}</span>

@@ -53,23 +53,21 @@ export default function WordPressServices() {
   ];
 
   return (
-    // Clean global background wrapper with proper structural padding
-    <section className="py-12 sm:py-16 lg:py-20 border-t border-[#2a2e40] bg-[#0D0F12]">
+    <section className="softles-section-primary">
       <div className="service-page-container">
         
         {/* Header - Keeping the original exact line elements and text styling */}
-        <div className="mb-12 lg:mb-16">
-          <div className="flex items-center gap-2 mb-4">
-            <span className="block w-7 h-0.5 bg-[#FFFFFF]" />
-            <span className="text-xs font-semibold uppercase tracking-widest text-[#BCC1CA]">
+        <div className="mb-10">
+          <div className="softles-eyebrow mb-2">
+            <span className="softles-eyebrow-line" />
+            <span className="softles-eyebrow-text">
               What We Build
             </span>
-            <span className="block w-7 h-0.5 bg-[#FFFFFF]" />
           </div>
           <h2 className="service-section-heading mb-3">
             WordPress Services
           </h2>
-          <p className="text-[#BCC1CA]/80 max-w-2xl text-sm sm:text-base leading-relaxed">
+          <p className="softles-section-copy">
             End-to-end WordPress development tailored to your business — from
             brand-new builds to complex WooCommerce ecosystems.
           </p>
@@ -80,20 +78,20 @@ export default function WordPressServices() {
           {services.map((service, idx) => (
             <div
               key={idx}
-              className="group relative bg-[#14161F] border border-[#2a2e40]/70 rounded-xl p-5 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.2)] hover:border-[#DC4242]/30 transition-all duration-300"
+              className="group relative softles-card p-5 sm:p-8"
             >
               {/* Icon Container with subtle system transitions */}
-              <div className="w-12 h-12 rounded-lg bg-[rgba(220,66,66,0.1)] border border-[rgba(220,66,66,0.25)] flex items-center justify-center mb-5 text-xl text-white group-hover:bg-[#DC4242] transition-all duration-300">
+              <div className="w-12 h-12 rounded-xl bg-[rgba(220,66,66,0.08)] border border-[rgba(220,66,66,0.25)] flex items-center justify-center mb-5 text-xl text-white group-hover:bg-[#DC4242]/10 group-hover:text-[#DC4242] transition-all duration-300">
                 {service.icon}
               </div>
 
               {/* Title - Keeping the original typography hierarchy intact */}
-              <h3 className="font-bold text-base mb-2 text-[#FFFFFF] group-hover:text-[#DC4242] transition-colors duration-300">
+              <h3 className="font-bold text-xl mb-3 leading-tight text-[#FFFFFF] group-hover:text-[#DC4242] transition-colors duration-300">
                 {service.title}
               </h3>
 
               {/* Description Body */}
-              <p className="text-[#BCC1CA]/70 text-sm leading-relaxed mb-5">
+              <p className="text-[#BCC1CA] text-sm leading-relaxed mb-5">
                 {service.desc}
               </p>
 

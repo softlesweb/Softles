@@ -22,21 +22,21 @@ export default function ShopifyTechStack() {
   ];
 
   return (
-    // Maintained exact desktop padding parameters (py-12 sm:py-16 lg:py-28) & background consistency
-    <section className="py-12 sm:py-16 lg:py-28 bg-[#0D0F12] border-t border-[#2a2e40]" id="tech-stack">
+    <section className="softles-section-secondary" id="tech-stack">
       <div className="service-page-container">
         
         {/* Section Header */}
-        <div className="text-center mb-12 lg:mb-16">
-          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-[#181B23] border border-[#2a2e40] mb-4">
-            <span className="text-[11px] font-semibold uppercase tracking-widest text-[#BCC1CA]/80">
+        <div className="text-center mb-10">
+          <div className="softles-eyebrow justify-center mb-2">
+            <span className="softles-eyebrow-line" />
+            <span className="softles-eyebrow-text">
               Technology Stack
             </span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-4">
+          <h2 className="service-section-heading text-[#FFFFFF]">
             Tools & Technologies
           </h2>
-          <p className="text-[#BCC1CA]/80 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
+          <p className="softles-section-copy mx-auto">
             Best-in-class Shopify technologies to build stores that are fast, flexible, and ready for whatever the market demands.
           </p>
         </div>
@@ -50,19 +50,13 @@ export default function ShopifyTechStack() {
               className="
                 group
                 relative
-                rounded-xl
+                softles-card
                 p-6
                 text-center
                 flex
                 flex-col
                 items-center
                 justify-center
-                bg-[#14161F]
-                border border-[#2a2e40]/70
-                hover:border-[#DC4242]/50
-                hover:shadow-[0_12px_30px_rgba(220,66,66,0.06)]
-                transition-all
-                duration-300
               "
             >
               <div className="relative z-10 w-full flex flex-col items-center">
@@ -76,7 +70,7 @@ export default function ShopifyTechStack() {
                     items-center
                     justify-center
                     rounded-lg
-                    bg-[#0D0F12]
+                    bg-[#191C26]
                     border border-[#2a2e40]
                     group-hover:bg-[#DC4242]/10
                     group-hover:border-[#DC4242]/30
@@ -88,7 +82,7 @@ export default function ShopifyTechStack() {
                 </div>
 
                 {/* Title */}
-                <h4 className="font-bold text-base text-white tracking-tight mb-1 group-hover:text-[#DC4242] transition-colors duration-300">
+                <h4 className="font-bold text-base text-white mb-1 group-hover:text-[#DC4242] transition-colors duration-300">
                   {tech.name}
                 </h4>
 

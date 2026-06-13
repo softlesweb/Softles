@@ -33,7 +33,7 @@ function ProjectImage({ project }) {
 function ProjectSlide({ project, isActive }) {
   return (
     <article
-      className={`bg-[#181B23] border rounded-2xl overflow-hidden transition-all duration-500 ${
+      className={`bg-gradient-to-br from-[#23263a] to-[#181B23] border rounded-2xl overflow-hidden transition-all duration-500 ${
         isActive ? "border-[rgba(220,66,66,0.4)] shadow-[0_20px_60px_rgba(0,0,0,0.3)]" : "border-[#2a2e40]"
       }`}
     >
@@ -80,7 +80,7 @@ function ProjectSlide({ project, isActive }) {
               href={project.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-5 py-2.5 bg-[#DC4242] text-white font-bold rounded-full hover:bg-[#ff4d50] transition-all text-sm"
+              className="softles-primary-button w-full sm:w-auto"
             >
               {project.linkLabel || "Visit live website"}
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -125,7 +125,7 @@ export default function WordPressProjectShowcase({ projects }) {
             type="button"
             aria-label="Previous project"
             onClick={() => swiperRef.current?.slidePrev()}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-[#343844] bg-[#131623] text-[#F5F6FA] hover:border-[#DC4242] transition-all"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-[#343844] bg-[#191C26] text-[#F5F6FA] hover:border-[#DC4242] transition-all"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -135,7 +135,7 @@ export default function WordPressProjectShowcase({ projects }) {
             type="button"
             aria-label="Next project"
             onClick={() => swiperRef.current?.slideNext()}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-[#343844] bg-[#131623] text-[#F5F6FA] hover:border-[#DC4242] transition-all"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-[#343844] bg-[#191C26] text-[#F5F6FA] hover:border-[#DC4242] transition-all"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

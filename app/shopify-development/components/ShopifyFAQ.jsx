@@ -33,21 +33,21 @@ export default function ShopifyFAQ() {
   const [openIdx, setOpenIdx] = useState(0);
 
   return (
-    // Base weight background and explicit desktop constraints maintained
-    <section className="py-12 sm:py-16 lg:py-28 bg-[#0D0F12] border-t border-[#2a2e40]" id="faq">
+    <section className="softles-section-primary" id="faq">
       <div className="service-page-container">
         
         {/* Section Header */}
-        <div className="text-center mb-12 lg:mb-16">
-          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-[#181B23] border border-[#2a2e40] mb-4">
-            <span className="text-[11px] font-semibold uppercase tracking-widest text-[#BCC1CA]/80">
+        <div className="text-center mb-10">
+          <div className="softles-eyebrow justify-center mb-2">
+            <span className="softles-eyebrow-line" />
+            <span className="softles-eyebrow-text">
               Common Questions
             </span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-4">
+          <h2 className="service-section-heading text-[#FFFFFF]">
             Frequently Asked Questions
           </h2>
-          <p className="text-[#BCC1CA]/80 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
+          <p className="softles-section-copy mx-auto">
             Everything you need to know before starting your Shopify project with us.
           </p>
         </div>
@@ -63,7 +63,7 @@ export default function ShopifyFAQ() {
                 className={`
                   rounded-xl 
                   overflow-hidden 
-                  bg-[#14161F] 
+                  bg-gradient-to-br from-[#23263a] to-[#181B23] 
                   border 
                   transition-all 
                   duration-300
@@ -80,7 +80,7 @@ export default function ShopifyFAQ() {
                   </h4>
                   
                   {/* Precision Chevron Icon instead of hardcoded raw string plus code */}
-                  <span className="shrink-0 flex items-center justify-center w-6 h-6 rounded bg-[#0D0F12] border border-[#2a2e40] text-[#BCC1CA]/60 group-hover:text-[#DC4242] transition-colors">
+                  <span className="shrink-0 flex items-center justify-center w-6 h-6 rounded bg-[#191C26] border border-[#2a2e40] text-[#BCC1CA]/60 group-hover:text-[#DC4242] transition-colors">
                     <svg
                       width="12"
                       height="12"
@@ -108,7 +108,7 @@ export default function ShopifyFAQ() {
                   `}
                 >
                   <div className="overflow-hidden">
-                    <div className="px-5 sm:px-8 py-5 bg-[#0D0F12]/40 text-[#BCC1CA]/80 text-xs sm:text-sm leading-relaxed tracking-wide">
+                    <div className="px-5 sm:px-8 py-5 bg-[#191C26]/60 text-[#BCC1CA]/80 text-sm leading-relaxed">
                       {faq.a}
                     </div>
                   </div>

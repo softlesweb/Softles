@@ -30,23 +30,21 @@ export default function WordPressProcess() {
   ];
 
   return (
-    // Pure dark weight system background to match layout rules
-    <section className="py-12 sm:py-16 lg:py-28 bg-[#0D0F12] border-t border-b border-[#2a2e40]">
+    <section className="softles-section-primary">
       <div className="service-page-container">
         
         {/* Header - Keeping identical line markers and font typography hierarchies */}
         <div className="text-center mb-12 lg:mb-20">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <span className="block w-7 h-0.5 bg-[#FFFFFF]" />
-            <span className="text-xs font-semibold uppercase tracking-widest text-[#BCC1CA]">
+          <div className="softles-eyebrow justify-center mb-2">
+            <span className="softles-eyebrow-line" />
+            <span className="softles-eyebrow-text">
               How We Work
             </span>
-            <span className="block w-7 h-0.5 bg-[#FFFFFF]" />
           </div>
           <h2 className="service-section-heading mb-3">
             Our Development Process
           </h2>
-          <p className="text-[#BCC1CA]/80 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
+          <p className="softles-section-copy mx-auto">
             A structured, transparent process that keeps projects on time and on
             budget — every time.
           </p>
@@ -61,11 +59,11 @@ export default function WordPressProcess() {
           {steps.map((step, idx) => (
             <div
               key={idx}
-              className="group relative flex flex-col md:flex-row items-start gap-4 md:gap-8 bg-[#14161F] border border-[#2a2e40]/70 rounded-xl p-5 sm:p-6 lg:p-8 transition-all duration-300 hover:border-[#DC4242]/30"
+              className="group relative flex flex-col md:flex-row items-start gap-4 md:gap-8 softles-card p-5 sm:p-6 lg:p-8"
             >
               {/* Symmetrical Left Column - Process Step Tracking Node */}
               <div className="flex items-center gap-4 shrink-0 z-10">
-                <div className="w-20 h-10 rounded-lg bg-[#0D0F12] border border-[#2a2e40] flex items-center justify-center text-xs font-mono font-bold tracking-widest text-[#BCC1CA] group-hover:border-[#DC4242] group-hover:text-[#DC4242] transition-colors duration-300">
+                <div className="w-20 h-10 rounded-xl bg-[#191C26] border border-[#2a2e40] flex items-center justify-center text-xs font-bold tracking-widest text-[#BCC1CA] group-hover:border-[#DC4242] group-hover:text-[#DC4242] transition-colors duration-300">
                   STEP// {step.num}
                 </div>
               </div>
@@ -81,8 +79,8 @@ export default function WordPressProcess() {
               </div>
 
               {/* Step Flow System Meta Tag */}
-              <div className="absolute right-4 top-4 hidden sm:block text-[9px] font-mono text-[#BCC1CA]/30 uppercase tracking-widest">
-                Stage_0{idx + 1} // Active
+              <div className="absolute right-4 top-4 hidden sm:block text-[9px] text-[#BCC1CA]/40 uppercase tracking-widest">
+                {`Stage_0${idx + 1} // Active`}
               </div>
 
             </div>

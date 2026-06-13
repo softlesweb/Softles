@@ -8,7 +8,7 @@ export default function ProcessSteps({ steps }) {
         {steps.map((step, idx) => (
           <div key={step.num ?? idx} className="flex gap-4 sm:gap-5 group">
             <div className="flex flex-col items-center">
-              <div className="w-10 h-10 shrink-0 rounded-lg bg-[#0D0F12] border border-[#2a2e40] flex items-center justify-center group-hover:bg-[#DC4242]/10 group-hover:border-[#DC4242]/30 transition-all duration-300">
+              <div className="w-10 h-10 shrink-0 rounded-xl bg-[#191C26] border border-[#2a2e40] flex items-center justify-center group-hover:bg-[#DC4242]/10 group-hover:border-[#DC4242]/30 transition-all duration-300">
                 <span className="font-bold text-[#BCC1CA]/80 text-xs sm:text-sm group-hover:text-[#DC4242] transition-colors">
                   {step.num}
                 </span>
@@ -19,7 +19,7 @@ export default function ProcessSteps({ steps }) {
             </div>
 
             <div className="flex-1 pb-8">
-              <div className="bg-[#14161F] border border-[#2a2e40]/70 rounded-xl p-5 transition-all duration-300 hover:border-[#DC4242]/50 hover:shadow-[0_12px_30px_rgba(220,66,66,0.06)]">
+              <div className="softles-card p-5">
                 <h3 className="font-bold text-white text-base mb-2 transition-colors duration-300">
                   {step.title}
                 </h3>
@@ -44,8 +44,8 @@ export default function ProcessSteps({ steps }) {
               {/* Number Container aligned with the grid language */}
               <div
                 className="
-                  w-10 h-10 rounded-lg 
-                  bg-[#0D0F12] 
+                  w-10 h-10 rounded-xl 
+                  bg-[#191C26] 
                   border border-[#2a2e40]
                   flex items-center justify-center
                   mb-6 relative z-10
@@ -68,15 +68,10 @@ export default function ProcessSteps({ steps }) {
               {/* Card - Symmetrical hover response with prior sections */}
               <div
                 className="
-                  bg-[#14161F]
-                  border border-[#2a2e40]/70
-                  rounded-xl
+                  softles-card
                   p-5
                   w-full
                   flex-1
-                  transition-all duration-300
-                  hover:border-[#DC4242]/50
-                  hover:shadow-[0_12px_30px_rgba(220,66,66,0.06)]
                 "
               >
                 <h3

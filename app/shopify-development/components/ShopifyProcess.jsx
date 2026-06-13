@@ -32,21 +32,21 @@ export default function ShopifyProcess() {
   ];
 
   return (
-    // Background `#0D0F12` aur explicit desktop paddings maintained
-    <section className="py-12 sm:py-16 lg:py-28 bg-[#0D0F12] border-t border-[#2a2e40]" id="process">
+    <section className="softles-section-primary" id="process">
       <div className="service-page-container">
         
         {/* Section Header */}
-        <div className="text-center mb-12 lg:mb-20">
-          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-[#181B23] border border-[#2a2e40] mb-4">
-            <span className="text-[11px] font-semibold uppercase tracking-widest text-[#BCC1CA]/80">
+        <div className="text-center mb-12">
+          <div className="softles-eyebrow justify-center mb-2">
+            <span className="softles-eyebrow-line" />
+            <span className="softles-eyebrow-text">
               How We Work
             </span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-4">
+          <h2 className="service-section-heading text-[#FFFFFF]">
             Our Shopify Development Process
           </h2>
-          <p className="text-[#BCC1CA]/80 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
+          <p className="softles-section-copy mx-auto">
             A structured workflow that delivers on time, on budget, and above expectations — every time.
           </p>
         </div>

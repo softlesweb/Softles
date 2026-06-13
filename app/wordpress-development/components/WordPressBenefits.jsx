@@ -40,23 +40,22 @@ export default function WordPressBenefits() {
   ];
 
   return (
-    // Base structural layout wrapper matching the exact system theme padding
-    <section className="py-12 sm:py-16 lg:py-28 bg-[#0D0F12] border-t border-b border-[#2a2e40]">
+    <section className="softles-section-primary">
       <div className="service-page-container">
         
         {/* Full Width Top Row Content Block (Different from Shopify Column Setup) */}
         <div className="flex flex-col lg:flex-row justify-between items-start gap-6 mb-12 lg:mb-16">
           <div className="max-w-2xl">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="block w-7 h-0.5 bg-[#FFFFFF]" />
-              <span className="text-xs font-semibold uppercase tracking-widest text-[#BCC1CA]">
+            <div className="softles-eyebrow mb-2">
+              <span className="softles-eyebrow-line" />
+              <span className="softles-eyebrow-text">
                 Why SoftLes
               </span>
             </div>
             <h2 className="service-section-heading mb-3">
               Why Work With SoftLes
             </h2>
-            <p className="text-[#BCC1CA]/80 text-sm sm:text-base leading-relaxed">
+            <p className="softles-section-copy">
               We&apos;re not just developers — we&apos;re a strategic partner committed to
               your long-term business success.
             </p>
@@ -66,7 +65,7 @@ export default function WordPressBenefits() {
           <div className="shrink-0 pt-2 w-full sm:w-auto">
             <a
               href="/#book-call"
-              className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3.5 bg-[#DC4242] hover:bg-[#c23535] text-white font-bold rounded-lg transition-all duration-300 text-sm uppercase tracking-wider shadow-md shadow-[#DC4242]/10 group"
+              className="softles-primary-button w-full sm:w-auto group"
             >
               <span>Start a Project</span>
               <svg
@@ -95,11 +94,7 @@ export default function WordPressBenefits() {
                 group
                 flex flex-col gap-3
                 p-6 sm:p-7
-                rounded-xl
-                border border-[#2a2e40]/70
-                bg-[#14161F]
-                transition-all duration-300 ease-out
-                hover:border-[#DC4242]/30
+                softles-card
               "
             >
               {/* Technical Indicator Header Tag */}
@@ -107,18 +102,18 @@ export default function WordPressBenefits() {
                 <div className="text-xl text-white group-hover:text-[#DC4242] transition-colors duration-300">
                   {benefit.icon}
                 </div>
-                <div className="font-mono text-[10px] text-[#BCC1CA]/30 uppercase tracking-widest">
-                  // Core_0{idx + 1}
+                <div className="text-[10px] text-[#BCC1CA]/40 uppercase tracking-widest">
+                  {`// Core_0${idx + 1}`}
                 </div>
               </div>
 
               {/* Title Element - Intact Original Typography parameters */}
-              <h4 className="text-[#FFFFFF] font-semibold text-sm group-hover:text-[#DC4242] transition-colors duration-300">
+              <h4 className="text-[#FFFFFF] font-bold text-base group-hover:text-[#DC4242] transition-colors duration-300">
                 {benefit.title}
               </h4>
 
               {/* Description Body */}
-              <p className="text-[#BCC1CA]/70 text-sm leading-relaxed">
+              <p className="text-[#BCC1CA] text-sm leading-relaxed">
                 {benefit.desc}
               </p>
 

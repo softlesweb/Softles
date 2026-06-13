@@ -38,29 +38,29 @@ export default function ShopifyBenefits() {
   ];
 
   return (
-    // Clean bg-[#0D0F12] and consistent desktop padding (py-12 sm:py-16 lg:py-28)
-    <section className="py-12 sm:py-16 lg:py-28 bg-[#0D0F12] border-t border-[#2a2e40]" id="why-softles">
+    <section className="softles-section-secondary" id="why-softles">
       <div className="service-page-container">
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
           
           {/* Left Text Block */}
           <div className="flex-1 lg:sticky lg:top-24">
-            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-[#181B23] border border-[#2a2e40] mb-4">
-              <span className="text-[11px] font-semibold uppercase tracking-widest text-[#BCC1CA]/80">
+            <div className="softles-eyebrow mb-2">
+              <span className="softles-eyebrow-line" />
+              <span className="softles-eyebrow-text">
                 Why SoftLes
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-4">
+            <h2 className="service-section-heading text-[#FFFFFF]">
               Why Partner With SoftLes
             </h2>
-            <p className="text-[#BCC1CA]/80 mb-8 max-w-md text-sm sm:text-base leading-relaxed">
+            <p className="softles-section-copy mb-8 max-w-md">
               We bring commercial thinking to every Shopify engagement. Your store&apos;s revenue metrics are our KPIs — not just the number of tickets closed.
             </p>
             
             {/* Unified Button Style */}
             <a
               href="/#book-call"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#DC4242] hover:bg-[#c23535] text-white font-bold rounded-lg transition-colors duration-300 text-sm uppercase tracking-wider shadow-md shadow-[#DC4242]/10 group"
+              className="softles-primary-button group"
             >
               <span>Start a Project</span>
               <svg
@@ -89,14 +89,7 @@ export default function ShopifyBenefits() {
                   group
                   flex flex-col
                   p-6
-                  rounded-xl
-                  border
-                  bg-[#14161F]
-                  border-[#2a2e40]/70
-                  hover:border-[#DC4242]/50
-                  hover:shadow-[0_12px_30px_rgba(220,66,66,0.06)]
-                  transition-all
-                  duration-300
+                  softles-card
                 "
               >
                 {/* Clean Custom Icon Box */}
@@ -105,7 +98,7 @@ export default function ShopifyBenefits() {
                     w-10 h-10
                     rounded-lg
                     flex items-center justify-center
-                    bg-[#0D0F12]
+                    bg-[#191C26]
                     border border-[#2a2e40]
                     group-hover:bg-[#DC4242]/10
                     group-hover:border-[#DC4242]/30
@@ -118,12 +111,12 @@ export default function ShopifyBenefits() {
                 </div>
 
                 {/* Title */}
-                <h4 className="font-bold text-base text-white tracking-tight mb-2 group-hover:text-[#DC4242] transition-colors duration-300">
+                <h4 className="font-bold text-xl text-white mb-3 leading-tight group-hover:text-[#DC4242] transition-colors duration-300">
                   {benefit.title}
                 </h4>
 
                 {/* Description */}
-                <p className="text-[#BCC1CA]/70 text-xs sm:text-sm leading-relaxed">
+                <p className="text-[#BCC1CA] text-sm leading-relaxed">
                   {benefit.desc}
                 </p>
               </div>

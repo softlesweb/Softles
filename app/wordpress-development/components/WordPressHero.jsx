@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
-import Image from "next/image"; // Next.js Image tag import kiya hai optimized rendering ke liye
+import Image from "next/image";
 
 export default function WordPressHero() {
   const [showTooltip, setShowTooltip] = useState(false);
@@ -30,29 +30,24 @@ export default function WordPressHero() {
   }, []);
 
   return (
-    <section className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 w-full min-h-[85vh] flex items-center justify-center overflow-hidden bg-[#0D0F12]">
+    <section className="relative min-h-screen lg:min-h-[92vh] w-full flex items-center justify-center pt-20 overflow-hidden bg-gradient-to-br from-[#191C26] via-[#23263a] to-[#111319]">
       
       {/* ─── STRUCTURAL BACKGROUND LAYER ─── */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <div 
-          className="absolute inset-0 opacity-[0.03] lg:opacity-[0.04]" 
-          style={{
-            backgroundImage: `linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)`,
-            backgroundSize: '40px 40px',
-          }}
-        />
+        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-[#191C26]/40 to-[#DC4242]/10" />
       </div>
 
       {/* Ambient Tracking Glow */}
       <div
         ref={blobRef}
-        className="pointer-events-none fixed z-0 opacity-10 hidden lg:block"
+        className="pointer-events-none fixed z-0 hidden lg:block"
         style={{
           width: 300,
           height: 300,
           borderRadius: "50%",
-          background: "radial-gradient(circle, #DC4242 0%, transparent 70%)",
+          background: "radial-gradient(circle at 60% 40%, #DC4242 0%, #191C26 100%)",
           filter: "blur(80px)",
+          opacity: 0.35,
           left: "50vw",
           top: "50vh",
           transform: "translate(-50%, -50%)",
@@ -61,30 +56,28 @@ export default function WordPressHero() {
       />
 
       {/* ─── MAIN CONTENT CONTAINER ─── */}
-      <div className="service-page-container flex flex-col items-center justify-center w-full h-full z-10">
-        <div className="flex flex-col-reverse lg:flex-row items-center justify-center w-full gap-12 lg:gap-16">
+      <div className="service-page-container flex flex-col items-center justify-center w-full h-full z-10 lg:my-10">
+        <div className="flex flex-col-reverse lg:flex-row items-center justify-center w-full gap-10 lg:gap-20">
           
           {/* Left Content Column */}
           <div className="flex-1 flex flex-col items-center lg:items-start justify-center max-w-2xl text-center lg:text-left">
             
             {/* Sync Badge */}
-            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-[#181B23] border border-[#2a2e40] mb-6">
-              <span className="flex h-1.5 w-1.5 relative">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#DC4242] opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#DC4242]"></span>
-              </span>
-              <span className="text-[11px] font-semibold uppercase tracking-widest text-[#BCC1CA]/80">
+            <div className="softles-eyebrow mb-2 md:mb-6">
+              <span className="softles-eyebrow-line" />
+              <span className="text-base text-[#BCC1CA] font-normal">
                 Enterprise WordPress Architects
               </span>
             </div>
 
             {/* Title */}
-            <h1 className="font-extrabold tracking-tight text-white leading-[1.1] text-3xl sm:text-5xl lg:text-[54px] mb-4">
+            <h1 className="relative font-extrabold text-3xl sm:text-[56px] md:text-[64px] leading-[1.05] tracking-[-0.03em] text-[#F5F6FA]">
               Build High-Performing<br className="hidden sm:block" />
               WordPress Sites That <span className="text-[#DC4242]">Scale</span>
+              <span className="ml-1 text-[#DC4242]">.</span>
             </h1>
 
-            <p className="text-[#BCC1CA]/80 text-sm sm:text-base lg:text-lg leading-relaxed font-normal mb-8 max-w-xl">
+            <p className="text-[#BCC1CA] mt-4 mb-5 md:mb-12 max-w-xl text-base lg:text-lg leading-relaxed font-normal">
               We engineer secure, blazing-fast custom WordPress frameworks and headless configurations designed to maximize engagement and eliminate technical limits.
             </p>
 
@@ -93,7 +86,7 @@ export default function WordPressHero() {
               <div className="relative w-full sm:w-auto">
                 <a
                   href="/#book-call"
-                  className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3.5 bg-[#DC4242] hover:bg-[#c23535] text-white font-bold rounded-lg transition-colors duration-300 text-sm uppercase tracking-wider shadow-md shadow-[#DC4242]/10 group"
+                  className="softles-primary-button w-full sm:w-auto group"
                   onMouseEnter={() => setShowTooltip(true)}
                   onMouseLeave={() => setShowTooltip(false)}
                 >
@@ -103,7 +96,7 @@ export default function WordPressHero() {
               </div>
               
               {showTooltip && (
-                <div className="absolute left-1/2 lg:left-0 -bottom-10 -translate-x-1/2 lg:translate-x-0 bg-[#14161F] border border-[#2a2e40] text-[#BCC1CA]/80 text-[11px] font-medium px-2.5 py-1.5 rounded shadow-xl z-20 tracking-wide hidden sm:block">
+                <div className="absolute left-1/2 lg:left-0 -bottom-10 -translate-x-1/2 lg:translate-x-0 bg-[#23263a] text-white text-xs px-3 py-2 rounded shadow-lg z-20 whitespace-nowrap hidden sm:block">
                   ✨ 30-minute free strategy session
                 </div>
               )}
@@ -112,19 +105,15 @@ export default function WordPressHero() {
 
           {/* Right Column: Premium Illustration/Image Frame */}
           <div className="flex-1 flex items-center justify-center w-full max-w-md lg:max-w-xl">
-            <div className="w-full bg-[#14161F] border border-[#2a2e40]/70 rounded-xl p-2 shadow-[0_12px_40px_rgba(0,0,0,0.4)] aspect-[4/3] relative overflow-hidden group transition-all duration-300 hover:border-[#DC4242]/30">
+            <div className="w-full softles-card p-2 shadow-2xl aspect-[4/3] relative overflow-hidden group">
               
               {/* Inner Decorative Tech Lines on Corners */}
               <div className="absolute top-3 left-3 w-3 h-3 border-t-2 border-l-2 border-[#2a2e40] group-hover:border-[#DC4242]/40 transition-colors" />
               <div className="absolute bottom-3 right-3 w-3 h-3 border-b-2 border-r-2 border-[#2a2e40] group-hover:border-[#DC4242]/40 transition-colors" />
               
               {/* Main Illustration Wrapper */}
-              <div className="w-full h-full relative rounded-lg overflow-hidden bg-[#0D0F12]/60 flex items-center justify-center">
+              <div className="w-full h-full relative rounded-xl overflow-hidden bg-[#191C26]/60 flex items-center justify-center">
                 
-                {/* 
-                  [Developer Note]: Yahan aap apna custom high-end vector svg file path 
-                  src me input kar sakte hain (e.g., src="/images/wp-architecture-illustration.svg")
-                */}
                 <Image 
                   src="/wordpress-hero.png"
                   alt="WordPress Enterprise Architecture Illustration Graphic"
@@ -134,7 +123,7 @@ export default function WordPressHero() {
                 />
 
                 {/* Subtle overlay gradient to blend image nicely with dark layout theme */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#14161F]/40 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#23263a]/40 via-transparent to-transparent pointer-events-none" />
               </div>
 
             </div>
