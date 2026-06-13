@@ -2,85 +2,120 @@
 
 import { useState } from "react";
 
-export default function WordPressFAQ() {
+export default function ShopifyFAQ() {
   const faqs = [
     {
-      q: "Why should I choose WordPress for my business website?",
-      a: "WordPress is the world's most widely used CMS, powering over 43% of all websites. It offers unmatched flexibility, a huge ecosystem of plugins and integrations, strong SEO capabilities, and the ability to scale from a simple blog to a complex enterprise platform — all with a content management interface your team can actually learn to use without developer assistance.",
+      q: "Why should I choose Shopify for my ecommerce business?",
+      a: "Shopify is the world's leading ecommerce platform with over 4.6 million active stores. It combines a fully managed, hosted infrastructure — no server maintenance — with an extensive app ecosystem, native payment processing via Shop Pay, and a clear scalability path to Shopify Plus. For brands wanting to launch fast, iterate often, and grow without accumulating technical debt, Shopify is the most commercially sensible choice available today.",
     },
     {
-      q: "Can you redesign my existing WordPress website without losing content?",
-      a: "Absolutely. We handle complete WordPress redesigns regularly and have a proven migration process that preserves all your existing content, SEO rankings, and URL structure. We build and test the new design in a staging environment first, then execute a clean switchover with zero downtime.",
+      q: "Do you build Shopify Plus stores?",
+      a: "Yes. We have hands-on production experience with the complete Shopify Plus feature set — Shopify Scripts, Launchpad, Flow, B2B Commerce, Shopify Markets, multi-storefronts, and the Plus Admin API. Whether you're an existing Plus merchant looking for a partner, or a scaling brand preparing to move up, we can help you make full use of the platform's capabilities.",
     },
     {
-      q: "Do you develop custom WordPress plugins?",
-      a: "Yes. When existing plugins don't meet your exact requirements — or when you need specific business logic, custom workflows, or API integrations — we build fully custom plugins from scratch. All plugins are coded to WordPress standards, thoroughly documented, and come with handover training so your team understands what was built.",
+      q: "Can you redesign my existing Shopify store without losing data or rankings?",
+      a: "Absolutely. We rebuild and redesign Shopify stores regularly. Our process develops the new theme in a staging environment while your live store keeps trading. We preserve your URL structure for SEO, migrate all customisations, and execute a zero-downtime switchover with a same-day rollback plan ready as a precaution.",
     },
     {
-      q: "Do you provide ongoing WordPress maintenance and support?",
-      a: "We offer flexible ongoing maintenance retainers that cover core WordPress and plugin updates, daily backups, uptime monitoring, security hardening, and a set number of monthly development hours for small feature additions or content updates. Our clients treat us as their outsourced WordPress team.",
+      q: "Do you develop custom Shopify apps?",
+      a: "Yes — both public (App Store) and private apps. When existing Shopify apps don't meet your exact requirements, we architect and build a custom solution. Common use cases include loyalty programs, custom subscription management portals, B2B pricing logic, and ERP or WMS integrations.",
     },
     {
-      q: "Can WordPress handle large-scale websites with high traffic?",
-      a: "Yes, when built correctly. WordPress scales exceptionally well with the right architecture — managed hosting like WP Engine or Kinsta, a properly configured CDN (Cloudflare), object caching (Redis or Memcached), and optimized database queries. We've built and maintain WordPress platforms handling millions of monthly page views without issue.",
+      q: "Can you migrate my store from WooCommerce or Magento to Shopify?",
+      a: "Yes. We handle full platform migrations to Shopify, including product data, customer records, order history, SEO redirects, and all third-party integrations. We build and fully validate the new Shopify store in parallel before executing a staged cutover to minimise risk.",
+    },
+    {
+      q: "Do you provide ongoing support after launch?",
+      a: "Yes. We offer monthly retainer plans covering ongoing development hours, theme and app updates, performance monitoring, security reviews, and priority support SLAs. Many of our clients treat SoftLes as their outsourced Shopify development team — a long-term technical partner rather than a one-off agency project.",
     },
   ];
 
   const [openIdx, setOpenIdx] = useState(0);
 
   return (
-    <section className="py-12 sm:py-16 lg:py-28 bg-[#191C26]">
+    // Base weight background and explicit desktop constraints maintained
+    <section className="py-12 sm:py-16 lg:py-28 bg-[#0D0F12] border-t border-[#2a2e40]" id="faq">
       <div className="service-page-container">
-        {/* Header */}
+        
+        {/* Section Header */}
         <div className="text-center mb-12 lg:mb-16">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <span className="block w-7 h-0.5 bg-[#FFFFFF]" />
-            <span className="text-xs font-semibold uppercase tracking-widest text-[#BCC1CA]">
+          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-[#181B23] border border-[#2a2e40] mb-4">
+            <span className="text-[11px] font-semibold uppercase tracking-widest text-[#BCC1CA]/80">
               Common Questions
             </span>
-            <span className="block w-7 h-0.5 bg-[#FFFFFF]" />
           </div>
-          <h2 className="service-section-heading mb-3">
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-4">
             Frequently Asked Questions
           </h2>
           <p className="text-[#BCC1CA]/80 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
-            Everything you need to know before getting started with your WordPress
-            project.
+            Everything you need to know before starting your Shopify project with us.
           </p>
         </div>
 
-        {/* FAQ Items */}
-        <div className="max-w-3xl mx-auto space-y-3">
-          {faqs.map((faq, idx) => (
-            <div
-              key={idx}
-              className="bg-[#181B23] border border-[#2a2e40] rounded-2xl overflow-hidden"
-            >
-              {/* Question */}
-              <button
-                onClick={() => setOpenIdx(openIdx === idx ? -1 : idx)}
-                className="w-full px-4 sm:px-8 py-4 sm:py-5 flex items-center justify-between gap-3 hover:bg-[#1a1e2a] transition-colors duration-300"
+        {/* Accordion Stack Container */}
+        <div className="max-w-3xl mx-auto space-y-4">
+          {faqs.map((faq, idx) => {
+            const isOpen = openIdx === idx;
+            return (
+              <div
+                key={idx}
+                // Symmetrical interaction model matching previous structural cards
+                className={`
+                  rounded-xl 
+                  overflow-hidden 
+                  bg-[#14161F] 
+                  border 
+                  transition-all 
+                  duration-300
+                  ${isOpen ? "border-[#DC4242]/40 shadow-[0_12px_30px_rgba(220,66,66,0.04)]" : "border-[#2a2e40]/70 hover:border-[#DC4242]/30"}
+                `}
               >
-                <h4 className="font-semibold text-[#FFFFFF] text-left text-sm sm:text-base pr-2">
-                  {faq.q}
-                </h4>
-                <span
-                  className={`text-xl font-bold text-[#BCC1CA] transition-transform duration-300 flex-shrink-0 ml-4 ${
-                    openIdx === idx ? "rotate-45" : ""
-                  }`}
+                {/* Accordion Trigger */}
+                <button
+                  onClick={() => setOpenIdx(isOpen ? -1 : idx)}
+                  className="w-full px-5 sm:px-8 py-5 flex items-center justify-between gap-4 text-left group transition-colors"
                 >
-                  +
-                </span>
-              </button>
+                  <h4 className={`font-bold text-sm sm:text-base tracking-tight transition-colors duration-300 ${isOpen ? "text-[#DC4242]" : "text-white group-hover:text-[#DC4242]"}`}>
+                    {faq.q}
+                  </h4>
+                  
+                  {/* Precision Chevron Icon instead of hardcoded raw string plus code */}
+                  <span className="shrink-0 flex items-center justify-center w-6 h-6 rounded bg-[#0D0F12] border border-[#2a2e40] text-[#BCC1CA]/60 group-hover:text-[#DC4242] transition-colors">
+                    <svg
+                      width="12"
+                      height="12"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className={`transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+                    >
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </span>
+                </button>
 
-              {/* Answer */}
-              {openIdx === idx && (
-                <div className="px-4 sm:px-8 py-4 sm:py-5 bg-[#12131c] border-t border-[#2a2e40] text-[#BCC1CA]/80 text-sm leading-relaxed">
-                  {faq.a}
+                {/* Accordion Content Panel */}
+                <div
+                  className={`
+                    grid 
+                    transition-all 
+                    duration-300 
+                    ease-in-out
+                    ${isOpen ? "grid-rows-[1fr] opacity-100 border-t border-[#2a2e40]/40" : "grid-rows-[0fr] opacity-0"}
+                  `}
+                >
+                  <div className="overflow-hidden">
+                    <div className="px-5 sm:px-8 py-5 bg-[#0D0F12]/40 text-[#BCC1CA]/80 text-xs sm:text-sm leading-relaxed tracking-wide">
+                      {faq.a}
+                    </div>
+                  </div>
                 </div>
-              )}
-            </div>
-          ))}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -11,28 +11,29 @@ import { RiStarSFill } from "react-icons/ri";
 
 export default function ShopifyTechStack() {
   const techs = [
-    { icon: <SiShopify />, name: "Shopify", desc: "Core Platform" },
-    { icon: <RiStarSFill />, name: "Shopify Plus", desc: "Enterprise Commerce" },
-    { icon: <FiDroplet />, name: "Liquid", desc: "Template Language" },
-    { icon: <FiCpu />, name: "Hydrogen", desc: "Headless Framework" },
-    { icon: <SiReact />, name: "React", desc: "Storefront UI" },
-    { icon: <SiNextdotjs />, name: "Next.js", desc: "Commerce Framework" },
-    { icon: <SiGraphql />, name: "GraphQL", desc: "Storefront API" },
-    { icon: <FiMail />, name: "Klaviyo", desc: "Email Automation" },
+    { icon: <SiShopify className="w-5 h-5 text-zinc-400 group-hover:text-[#DC4242] transition-colors duration-300" />, name: "Shopify", desc: "Core Platform" },
+    { icon: <RiStarSFill className="w-5 h-5 text-zinc-400 group-hover:text-[#DC4242] transition-colors duration-300" />, name: "Shopify Plus", desc: "Enterprise Commerce" },
+    { icon: <FiDroplet className="w-5 h-5 text-zinc-400 group-hover:text-[#DC4242] transition-colors duration-300" />, name: "Liquid", desc: "Template Language" },
+    { icon: <FiCpu className="w-5 h-5 text-zinc-400 group-hover:text-[#DC4242] transition-colors duration-300" />, name: "Hydrogen", desc: "Headless Framework" },
+    { icon: <SiReact className="w-5 h-5 text-zinc-400 group-hover:text-[#DC4242] transition-colors duration-300" />, name: "React", desc: "Storefront UI" },
+    { icon: <SiNextdotjs className="w-5 h-5 text-zinc-400 group-hover:text-[#DC4242] transition-colors duration-300" />, name: "Next.js", desc: "Commerce Framework" },
+    { icon: <SiGraphql className="w-5 h-5 text-zinc-400 group-hover:text-[#DC4242] transition-colors duration-300" />, name: "GraphQL", desc: "Storefront API" },
+    { icon: <FiMail className="w-5 h-5 text-zinc-400 group-hover:text-[#DC4242] transition-colors duration-300" />, name: "Klaviyo", desc: "Email Automation" },
   ];
 
   return (
-    <section className="py-12 sm:py-16 lg:py-28 bg-[#12131c] border-t border-b border-[#2a2e40]">
+    // Maintained exact desktop padding parameters (py-12 sm:py-16 lg:py-28) & background consistency
+    <section className="py-12 sm:py-16 lg:py-28 bg-[#0D0F12] border-t border-[#2a2e40]" id="tech-stack">
       <div className="service-page-container">
+        
+        {/* Section Header */}
         <div className="text-center mb-12 lg:mb-16">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <span className="block w-7 h-0.5 bg-[#FFFFFF]" />
-            <span className="text-xs font-semibold uppercase tracking-widest text-[#BCC1CA]">
+          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-[#181B23] border border-[#2a2e40] mb-4">
+            <span className="text-[11px] font-semibold uppercase tracking-widest text-[#BCC1CA]/80">
               Technology Stack
             </span>
-            <span className="block w-7 h-0.5 bg-[#FFFFFF]" />
           </div>
-          <h2 className="service-section-heading mb-3">
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-4">
             Tools & Technologies
           </h2>
           <p className="text-[#BCC1CA]/80 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
@@ -40,106 +41,63 @@ export default function ShopifyTechStack() {
           </p>
         </div>
 
+        {/* Uniform Grid Layout */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {techs.map((tech, idx) => (
             <div
               key={idx}
+              // Symmetrical hover and styles with previous sections (No fake radial glows)
               className="
                 group
                 relative
-                overflow-hidden
-
-                bg-[#181B23]
-                border border-[#2a2e40]
-                rounded-2xl
-                p-7
+                rounded-xl
+                p-6
                 text-center
-
-                transition-all duration-300 ease-out
-
-                hover:-translate-y-2
-                hover:border-[rgba(220,66,66,0.5)]
-                hover:bg-[#1a1e2a]
-                hover:shadow-[0_15px_40px_rgba(220,66,66,0.12)]
+                flex
+                flex-col
+                items-center
+                justify-center
+                bg-[#14161F]
+                border border-[#2a2e40]/70
+                hover:border-[#DC4242]/50
+                hover:shadow-[0_12px_30px_rgba(220,66,66,0.06)]
+                transition-all
+                duration-300
               "
             >
+              <div className="relative z-10 w-full flex flex-col items-center">
 
-              {/* Glow */}
-              <div
-                className="
-                  absolute inset-0
-                  bg-[radial-gradient(circle_at_top,rgba(220,66,66,0.15),transparent_60%)]
-                  opacity-0
-                  transition-opacity duration-300
-                  group-hover:opacity-100
-                "
-              />
-
-              <div className="relative z-10">
-
-                {/* Icon Box */}
+                {/* Unified Icon Box Shape */}
                 <div
                   className="
-                    w-14 h-14
-                    mx-auto
+                    w-10 h-10
                     mb-4
-
                     flex
                     items-center
                     justify-center
-
-                    rounded-xl
-
-                    bg-[rgba(220,66,66,0.08)]
-                    border border-[rgba(220,66,66,0.25)]
-
-                    text-3xl
-                    text-white
-
-                    transition-all duration-300
-
-                    group-hover:scale-110
-                    group-hover:bg-[rgba(220,66,66,0.15)]
-                    group-hover:border-[rgba(220,66,66,0.5)]
-                    group-hover:text-[#DC4242]
-                    group-hover:rotate-3
+                    rounded-lg
+                    bg-[#0D0F12]
+                    border border-[#2a2e40]
+                    group-hover:bg-[#DC4242]/10
+                    group-hover:border-[#DC4242]/30
+                    transition-all
+                    duration-300
                   "
                 >
                   {tech.icon}
                 </div>
 
-
-                <h4
-                  className="
-                    font-semibold
-                    text-[#FFFFFF]
-                    text-sm
-                    mb-1
-
-                    transition-colors duration-300
-
-                    group-hover:text-[#DC4242]
-                  "
-                >
+                {/* Title */}
+                <h4 className="font-bold text-base text-white tracking-tight mb-1 group-hover:text-[#DC4242] transition-colors duration-300">
                   {tech.name}
                 </h4>
 
-
-                <p
-                  className="
-                    text-[#BCC1CA]/60
-                    text-xs
-
-                    transition-colors duration-300
-
-                    group-hover:text-[#FFFFFF]/80
-                  "
-                >
+                {/* Description */}
+                <p className="text-[#BCC1CA]/60 text-xs tracking-wide">
                   {tech.desc}
                 </p>
 
               </div>
-
             </div>
           ))}
         </div>

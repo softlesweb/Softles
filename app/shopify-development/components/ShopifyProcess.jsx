@@ -32,17 +32,18 @@ export default function ShopifyProcess() {
   ];
 
   return (
-    <section className="py-12 sm:py-16 lg:py-28 bg-[#191C26]" id="process">
+    // Background `#0D0F12` aur explicit desktop paddings maintained
+    <section className="py-12 sm:py-16 lg:py-28 bg-[#0D0F12] border-t border-[#2a2e40]" id="process">
       <div className="service-page-container">
-        <div className="text-center mb-10 sm:mb-16 lg:mb-20">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <span className="block w-7 h-0.5 bg-[#FFFFFF]" />
-            <span className="text-xs font-semibold uppercase tracking-widest text-[#BCC1CA]">
+        
+        {/* Section Header */}
+        <div className="text-center mb-12 lg:mb-20">
+          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-[#181B23] border border-[#2a2e40] mb-4">
+            <span className="text-[11px] font-semibold uppercase tracking-widest text-[#BCC1CA]/80">
               How We Work
             </span>
-            <span className="block w-7 h-0.5 bg-[#FFFFFF]" />
           </div>
-          <h2 className="service-section-heading mb-3">
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-4">
             Our Shopify Development Process
           </h2>
           <p className="text-[#BCC1CA]/80 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">

@@ -40,29 +40,35 @@ export default function WordPressBenefits() {
   ];
 
   return (
-    <section className="py-12 sm:py-16 lg:py-28 bg-[#12131c] border-t border-b border-[#2a2e40]">
+    // Base structural layout wrapper matching the exact system theme padding
+    <section className="py-12 sm:py-16 lg:py-28 bg-[#0D0F12] border-t border-b border-[#2a2e40]">
       <div className="service-page-container">
-        <div className="flex flex-col lg:flex-row gap-8 sm:gap-12 lg:gap-20">
-          {/* Left Content */}
-          <div className="flex-1">
+        
+        {/* Full Width Top Row Content Block (Different from Shopify Column Setup) */}
+        <div className="flex flex-col lg:flex-row justify-between items-start gap-6 mb-12 lg:mb-16">
+          <div className="max-w-2xl">
             <div className="flex items-center gap-2 mb-4">
               <span className="block w-7 h-0.5 bg-[#FFFFFF]" />
               <span className="text-xs font-semibold uppercase tracking-widest text-[#BCC1CA]">
                 Why SoftLes
               </span>
             </div>
-            <h2 className="service-section-heading mb-4">
+            <h2 className="service-section-heading mb-3">
               Why Work With SoftLes
             </h2>
-            <p className="text-[#BCC1CA]/80 mb-6 sm:mb-8 max-w-md text-sm sm:text-base leading-relaxed">
+            <p className="text-[#BCC1CA]/80 text-sm sm:text-base leading-relaxed">
               We&apos;re not just developers — we&apos;re a strategic partner committed to
               your long-term business success.
             </p>
+          </div>
+          
+          {/* Action Button - Converted to strict system rounded corners geometry */}
+          <div className="shrink-0 pt-2 w-full sm:w-auto">
             <a
               href="/#book-call"
-              className="inline-flex items-center gap-2 px-6 md:px-8 py-2 md:py-4 bg-[#DC4242] text-white font-bold rounded-full hover:bg-[#ff4d50] transition-all duration-300 text-base whitespace-nowrap shadow-[inset_0_0_0_2px_transparent] group"
+              className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3.5 bg-[#DC4242] hover:bg-[#c23535] text-white font-bold rounded-lg transition-all duration-300 text-sm uppercase tracking-wider shadow-md shadow-[#DC4242]/10 group"
             >
-              Start a Project
+              <span>Start a Project</span>
               <svg
                 width="14"
                 height="14"
@@ -72,85 +78,54 @@ export default function WordPressBenefits() {
                 strokeWidth="2.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="transition-transform group-hover:translate-x-1"
+                className="transition-transform group-hover:translate-x-0.5 shrink-0"
               >
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
             </a>
           </div>
+        </div>
 
-          {/* Right Benefits Grid */}
-          <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6">
-            {benefits.map((benefit, idx) => (
-              <div
-                key={idx}
-                className="
-                  group
-                  flex flex-col gap-3
-                  p-5
-                  rounded-xl
-                  border border-transparent
-                  bg-[#181B23]/40
-
-                  transition-all duration-300 ease-out
-
-                  hover:-translate-y-1
-                  hover:bg-[#181B23]
-                  hover:border-[#2a2e40]
-                  hover:shadow-[0_10px_30px_rgba(0,0,0,0.25)]
-                "
-              >
-
-                <div
-                  className="
-                    w-fit
-                    text-2xl
-                    text-white
-
-                    transition-all duration-300
-
-                    group-hover:scale-110
-                    group-hover:-translate-y-1
-                    group-hover:text-[#DC4242]
-                  "
-                >
+        {/* 3-Column Balanced System Matrix Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {benefits.map((benefit, idx) => (
+            <div
+              key={idx}
+              className="
+                group
+                flex flex-col gap-3
+                p-6 sm:p-7
+                rounded-xl
+                border border-[#2a2e40]/70
+                bg-[#14161F]
+                transition-all duration-300 ease-out
+                hover:border-[#DC4242]/30
+              "
+            >
+              {/* Technical Indicator Header Tag */}
+              <div className="flex justify-between items-center mb-1">
+                <div className="text-xl text-white group-hover:text-[#DC4242] transition-colors duration-300">
                   {benefit.icon}
                 </div>
-
-
-                <h4
-                  className="
-                    text-[#FFFFFF]
-                    font-semibold
-                    text-sm
-
-                    transition-colors duration-300
-
-                    group-hover:text-[#DC4242]
-                  "
-                >
-                  {benefit.title}
-                </h4>
-
-
-                <p
-                  className="
-                    text-[#BCC1CA]/70
-                    text-sm
-                    leading-relaxed
-
-                    transition-colors duration-300
-
-                    group-hover:text-[#FFFFFF]/80
-                  "
-                >
-                  {benefit.desc}
-                </p>
-
+                <div className="font-mono text-[10px] text-[#BCC1CA]/30 uppercase tracking-widest">
+                  // Core_0{idx + 1}
+                </div>
               </div>
-            ))}
-          </div>
+
+              {/* Title Element - Intact Original Typography parameters */}
+              <h4 className="text-[#FFFFFF] font-semibold text-sm group-hover:text-[#DC4242] transition-colors duration-300">
+                {benefit.title}
+              </h4>
+
+              {/* Description Body */}
+              <p className="text-[#BCC1CA]/70 text-sm leading-relaxed">
+                {benefit.desc}
+              </p>
+
+            </div>
+          ))}
         </div>
+
       </div>
     </section>
   );

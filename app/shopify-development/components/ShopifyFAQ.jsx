@@ -33,17 +33,18 @@ export default function ShopifyFAQ() {
   const [openIdx, setOpenIdx] = useState(0);
 
   return (
-    <section className="py-12 sm:py-16 lg:py-28 bg-[#191C26]" id="faq">
+    // Base weight background and explicit desktop constraints maintained
+    <section className="py-12 sm:py-16 lg:py-28 bg-[#0D0F12] border-t border-[#2a2e40]" id="faq">
       <div className="service-page-container">
+        
+        {/* Section Header */}
         <div className="text-center mb-12 lg:mb-16">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <span className="block w-7 h-0.5 bg-[#FFFFFF]" />
-            <span className="text-xs font-semibold uppercase tracking-widest text-[#BCC1CA]">
+          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-[#181B23] border border-[#2a2e40] mb-4">
+            <span className="text-[11px] font-semibold uppercase tracking-widest text-[#BCC1CA]/80">
               Common Questions
             </span>
-            <span className="block w-7 h-0.5 bg-[#FFFFFF]" />
           </div>
-          <h2 className="service-section-heading mb-3">
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-4">
             Frequently Asked Questions
           </h2>
           <p className="text-[#BCC1CA]/80 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
@@ -51,35 +52,70 @@ export default function ShopifyFAQ() {
           </p>
         </div>
 
-        <div className="max-w-3xl mx-auto space-y-3">
-          {faqs.map((faq, idx) => (
-            <div
-              key={idx}
-              className="bg-[#181B23] border border-[#2a2e40] rounded-2xl overflow-hidden"
-            >
-              <button
-                onClick={() => setOpenIdx(openIdx === idx ? -1 : idx)}
-                className="w-full px-4 sm:px-8 py-4 sm:py-5 flex items-center justify-between gap-3 hover:bg-[#1a1e2a] transition-colors duration-300"
+        {/* Accordion Stack Container */}
+        <div className="max-w-3xl mx-auto space-y-4">
+          {faqs.map((faq, idx) => {
+            const isOpen = openIdx === idx;
+            return (
+              <div
+                key={idx}
+                // Symmetrical interaction model matching previous structural cards
+                className={`
+                  rounded-xl 
+                  overflow-hidden 
+                  bg-[#14161F] 
+                  border 
+                  transition-all 
+                  duration-300
+                  ${isOpen ? "border-[#DC4242]/40 shadow-[0_12px_30px_rgba(220,66,66,0.04)]" : "border-[#2a2e40]/70 hover:border-[#DC4242]/30"}
+                `}
               >
-                <h4 className="font-semibold text-[#FFFFFF] text-left text-sm sm:text-base pr-2">
-                  {faq.q}
-                </h4>
-                <span
-                  className={`text-xl font-bold text-[#BCC1CA] transition-transform duration-300 flex-shrink-0 ml-4 ${
-                    openIdx === idx ? "rotate-45" : ""
-                  }`}
+                {/* Accordion Trigger */}
+                <button
+                  onClick={() => setOpenIdx(isOpen ? -1 : idx)}
+                  className="w-full px-5 sm:px-8 py-5 flex items-center justify-between gap-4 text-left group transition-colors"
                 >
-                  +
-                </span>
-              </button>
+                  <h4 className={`font-bold text-sm sm:text-base tracking-tight transition-colors duration-300 ${isOpen ? "text-[#DC4242]" : "text-white group-hover:text-[#DC4242]"}`}>
+                    {faq.q}
+                  </h4>
+                  
+                  {/* Precision Chevron Icon instead of hardcoded raw string plus code */}
+                  <span className="shrink-0 flex items-center justify-center w-6 h-6 rounded bg-[#0D0F12] border border-[#2a2e40] text-[#BCC1CA]/60 group-hover:text-[#DC4242] transition-colors">
+                    <svg
+                      width="12"
+                      height="12"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className={`transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+                    >
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </span>
+                </button>
 
-              {openIdx === idx && (
-                <div className="px-4 sm:px-8 py-4 sm:py-5 bg-[#12131c] border-t border-[#2a2e40] text-[#BCC1CA]/80 text-sm leading-relaxed">
-                  {faq.a}
+                {/* Accordion Content Panel */}
+                <div
+                  className={`
+                    grid 
+                    transition-all 
+                    duration-300 
+                    ease-in-out
+                    ${isOpen ? "grid-rows-[1fr] opacity-100 border-t border-[#2a2e40]/40" : "grid-rows-[0fr] opacity-0"}
+                  `}
+                >
+                  <div className="overflow-hidden">
+                    <div className="px-5 sm:px-8 py-5 bg-[#0D0F12]/40 text-[#BCC1CA]/80 text-xs sm:text-sm leading-relaxed tracking-wide">
+                      {faq.a}
+                    </div>
+                  </div>
                 </div>
-              )}
-            </div>
-          ))}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

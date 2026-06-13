@@ -6,21 +6,21 @@ export default function ProcessSteps({ steps }) {
       {/* Mobile & tablet: vertical timeline */}
       <div className="flex flex-col gap-0 lg:hidden">
         {steps.map((step, idx) => (
-          <div key={step.num ?? idx} className="flex gap-4 sm:gap-5">
+          <div key={step.num ?? idx} className="flex gap-4 sm:gap-5 group">
             <div className="flex flex-col items-center">
-              <div className="w-12 h-12 sm:w-14 sm:h-14 shrink-0 rounded-full bg-[#181B23] border-2 border-[#2a2e40] flex items-center justify-center group-hover:border-[#DC4242] transition-all duration-300">
-                <span className="font-bold text-[#BCC1CA]/70 text-xs sm:text-sm">
+              <div className="w-10 h-10 shrink-0 rounded-lg bg-[#0D0F12] border border-[#2a2e40] flex items-center justify-center group-hover:bg-[#DC4242]/10 group-hover:border-[#DC4242]/30 transition-all duration-300">
+                <span className="font-bold text-[#BCC1CA]/80 text-xs sm:text-sm group-hover:text-[#DC4242] transition-colors">
                   {step.num}
                 </span>
               </div>
               {idx < steps.length - 1 && (
-                <div className="w-0.5 flex-1 min-h-[24px] bg-gradient-to-b from-[#2a2e40] to-transparent my-2" />
+                <div className="w-px flex-1 min-h-[32px] bg-[#2a2e40]/60 my-2" />
               )}
             </div>
 
-            <div className="flex-1 pb-8 sm:pb-10">
-              <div className="bg-[#181B23] border border-[#2a2e40] rounded-2xl p-5 sm:p-6 group-hover:border-[#3a4052] group-hover:bg-[#1a1e2a] transition-all duration-300">
-                <h3 className="font-semibold text-[#FFFFFF] text-sm sm:text-base mb-2">
+            <div className="flex-1 pb-8">
+              <div className="bg-[#14161F] border border-[#2a2e40]/70 rounded-xl p-5 transition-all duration-300 hover:border-[#DC4242]/50 hover:shadow-[0_12px_30px_rgba(220,66,66,0.06)]">
+                <h3 className="font-bold text-white text-base mb-2 transition-colors duration-300">
                   {step.title}
                 </h3>
                 <p className="text-[#BCC1CA]/70 text-xs sm:text-sm leading-relaxed">
@@ -34,85 +34,70 @@ export default function ProcessSteps({ steps }) {
 
       {/* Desktop: horizontal timeline */}
       <div className="relative hidden lg:flex gap-0">
-        <div className="absolute top-7 left-[calc(10%+9px)] right-[calc(10%+9px)] h-0.5 bg-gradient-to-r from-transparent via-[#2a2e40] to-transparent z-0" />
+        {/* Continuous Solid Structural Guide Line */}
+        <div className="absolute top-5 left-[10%] right-[10%] h-px bg-[#2a2e40]/50 z-0" />
 
-        <div className="flex w-full gap-0 relative z-10">
+        <div className="flex w-full gap-4 relative z-10">
           {steps.map((step, idx) => (
-            <div key={step.num ?? idx} className="flex-1 flex flex-col items-center text-center px-3 group">
-            
-            {/* Number Circle */}
-            <div
-              className="
-                w-14 h-14 rounded-full 
-                bg-[#181B23] 
-                border-2 border-[#2a2e40]
-                flex items-center justify-center
-                mb-6 relative z-10
-                transition-all duration-300 ease-out
-                group-hover:border-[#DC4242]
-                group-hover:bg-[rgba(220,66,66,0.12)]
-                group-hover:scale-110
-                group-hover:shadow-[0_0_25px_rgba(220,66,66,0.35)]
-              "
-            >
-              <span
+            <div key={step.num ?? idx} className="flex-1 flex flex-col items-center text-center group">
+              
+              {/* Number Container aligned with the grid language */}
+              <div
                 className="
-                  font-bold text-[#BCC1CA]/70 text-sm
+                  w-10 h-10 rounded-lg 
+                  bg-[#0D0F12] 
+                  border border-[#2a2e40]
+                  flex items-center justify-center
+                  mb-6 relative z-10
                   transition-all duration-300
-                  group-hover:text-[#DC4242]
-                  group-hover:scale-110
+                  group-hover:border-[#DC4242]/30
+                  group-hover:bg-[#DC4242]/10
                 "
               >
-                {step.num}
-              </span>
-            </div>
+                <span
+                  className="
+                    font-bold text-[#BCC1CA]/80 text-sm
+                    transition-colors duration-300
+                    group-hover:text-[#DC4242]
+                  "
+                >
+                  {step.num}
+                </span>
+              </div>
 
-
-            {/* Card */}
-            <div
-              className="
-                bg-[#181B23]
-                border border-[#2a2e40]
-                rounded-2xl
-                p-6
-                w-full
-                transition-all duration-300 ease-out
-
-                group-hover:-translate-y-2
-                group-hover:border-[#DC4242]/50
-                group-hover:bg-[#1a1e2a]
-                group-hover:shadow-[0_15px_40px_rgba(0,0,0,0.35)]
-              "
-            >
-
-              <h3
+              {/* Card - Symmetrical hover response with prior sections */}
+              <div
                 className="
-                  font-semibold 
-                  text-[#FFFFFF]
-                  text-sm
-                  mb-2
-                  transition-colors duration-300
-                  group-hover:text-[#DC4242]
+                  bg-[#14161F]
+                  border border-[#2a2e40]/70
+                  rounded-xl
+                  p-5
+                  w-full
+                  flex-1
+                  transition-all duration-300
+                  hover:border-[#DC4242]/50
+                  hover:shadow-[0_12px_30px_rgba(220,66,66,0.06)]
                 "
               >
-                {step.title}
-              </h3>
+                <h3
+                  className="
+                    font-bold 
+                    text-white
+                    text-base
+                    mb-2.5
+                    transition-colors duration-300
+                    group-hover:text-[#DC4242]
+                  "
+                >
+                  {step.title}
+                </h3>
 
-              <p
-                className="
-                  text-[#BCC1CA]/70
-                  text-xs
-                  leading-relaxed
-                  transition-colors duration-300
-                  group-hover:text-[#FFFFFF]
-                "
-              >
-                {step.desc}
-              </p>
+                <p className="text-[#BCC1CA]/70 text-xs sm:text-sm leading-relaxed">
+                  {step.desc}
+                </p>
+              </div>
 
             </div>
-
-          </div>
           ))}
         </div>
       </div>

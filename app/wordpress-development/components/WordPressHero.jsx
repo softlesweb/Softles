@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { ArrowRight } from "lucide-react";
+import Image from "next/image"; // Next.js Image tag import kiya hai optimized rendering ke liye
 
 export default function WordPressHero() {
   const [showTooltip, setShowTooltip] = useState(false);
@@ -28,84 +30,118 @@ export default function WordPressHero() {
   }, []);
 
   return (
-    <section className="relative pt-24 pb-12 w-full sm:h-[calc(100vh-60px)] flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#191C26] via-[#23263a] to-[#111319]">
+    <section className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 w-full min-h-[85vh] flex items-center justify-center overflow-hidden bg-[#0D0F12]">
+      
+      {/* ─── STRUCTURAL BACKGROUND LAYER ─── */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <div 
+          className="absolute inset-0 opacity-[0.03] lg:opacity-[0.04]" 
+          style={{
+            backgroundImage: `linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)`,
+            backgroundSize: '40px 40px',
+          }}
+        />
+      </div>
+
+      {/* Ambient Tracking Glow */}
       <div
         ref={blobRef}
-        className="pointer-events-none fixed z-0"
+        className="pointer-events-none fixed z-0 opacity-10 hidden lg:block"
         style={{
           width: 300,
           height: 300,
           borderRadius: "50%",
-          background: "radial-gradient(circle at 60% 40%, #DC4242 0%, #191C26 100%)",
+          background: "radial-gradient(circle, #DC4242 0%, transparent 70%)",
           filter: "blur(80px)",
-          opacity: 0.35,
           left: "50vw",
           top: "50vh",
           transform: "translate(-50%, -50%)",
-          transition: "opacity 0.3s",
         }}
         aria-hidden="true"
       />
 
+      {/* ─── MAIN CONTENT CONTAINER ─── */}
       <div className="service-page-container flex flex-col items-center justify-center w-full h-full z-10">
-        <div className="relative flex flex-col-reverse lg:flex-row items-center justify-center w-full h-full gap-8 lg:gap-10">
+        <div className="flex flex-col-reverse lg:flex-row items-center justify-center w-full gap-12 lg:gap-16">
+          
+          {/* Left Content Column */}
           <div className="flex-1 flex flex-col items-center lg:items-start justify-center max-w-2xl text-center lg:text-left">
-            <div className="flex flex-col sm:flex-row items-center mb-3 md:mb-6 gap-2 sm:gap-0">
-              <span className="hidden sm:block w-12 h-0.5 bg-[#F5F6FA] sm:mr-4 shrink-0" />
-              <span className="text-xs sm:text-base text-[#BCC1CA] font-normal">WordPress Development Experts</span>
+            
+            {/* Sync Badge */}
+            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-[#181B23] border border-[#2a2e40] mb-6">
+              <span className="flex h-1.5 w-1.5 relative">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#DC4242] opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#DC4242]"></span>
+              </span>
+              <span className="text-[11px] font-semibold uppercase tracking-widest text-[#BCC1CA]/80">
+                Enterprise WordPress Architects
+              </span>
             </div>
 
-            <h1 className="font-extrabold md:mb-2 leading-[1.1] sm:leading-tight tracking-tight text-3xl sm:text-[56px] text-[#F5F6FA]">
-              Custom WordPress<br className="hidden sm:block" />
-              Solutions Built for <span className="text-[#DC4242]">Growth</span>
+            {/* Title */}
+            <h1 className="font-extrabold tracking-tight text-white leading-[1.1] text-3xl sm:text-5xl lg:text-[54px] mb-4">
+              Build High-Performing<br className="hidden sm:block" />
+              WordPress Sites That <span className="text-[#DC4242]">Scale</span>
             </h1>
 
-            <p className="text-[#BCC1CA] mt-4 mb-5 md:mb-12 max-w-xl block text-base lg:text-lg leading-relaxed" style={{ maxWidth: "40ch", lineHeight: 1.5 }}>
-              Create scalable, secure, and high-performing WordPress websites tailored to your business goals. From custom themes and WooCommerce stores to headless architectures.
+            <p className="text-[#BCC1CA]/80 text-sm sm:text-base lg:text-lg leading-relaxed font-normal mb-8 max-w-xl">
+              We engineer secure, blazing-fast custom WordPress frameworks and headless configurations designed to maximize engagement and eliminate technical limits.
             </p>
 
-            <div className="flex justify-center lg:justify-start w-full max-w-sm sm:max-w-md relative">
-              <a
-                href="/#book-call"
-                className="flex items-center justify-center text-center text-xs sm:text-base md:text-lg group relative shadow-[inset_0_0_0_2px_#616467] text-[#DC4242] px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 rounded-full uppercase font-bold bg-transparent hover:bg-[#616467] transition duration-300"
-                onMouseEnter={() => setShowTooltip(true)}
-                onMouseLeave={() => setShowTooltip(false)}
-              >
-                <span>Book a Free Discovery Call</span>
-                <span className="hidden sm:inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none ml-2">
-                  <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" className="text-[#DC4242]"><path d="M5 12h14M15 8l4 4-4 4"/></svg>
-                </span>
-              </a>
+            {/* Action Button */}
+            <div className="flex flex-col items-center lg:items-start w-full relative">
+              <div className="relative w-full sm:w-auto">
+                <a
+                  href="/#book-call"
+                  className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3.5 bg-[#DC4242] hover:bg-[#c23535] text-white font-bold rounded-lg transition-colors duration-300 text-sm uppercase tracking-wider shadow-md shadow-[#DC4242]/10 group"
+                  onMouseEnter={() => setShowTooltip(true)}
+                  onMouseLeave={() => setShowTooltip(false)}
+                >
+                  <span>Book Free Discovery Call</span>
+                  <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1 shrink-0" />
+                </a>
+              </div>
+              
               {showTooltip && (
-                <span className="absolute left-1/2 -bottom-10 -translate-x-1/2 bg-[#23263a] text-white text-xs px-3 py-2 rounded shadow-lg z-20 whitespace-nowrap">
-                  30-minute free strategy session
-                </span>
+                <div className="absolute left-1/2 lg:left-0 -bottom-10 -translate-x-1/2 lg:translate-x-0 bg-[#14161F] border border-[#2a2e40] text-[#BCC1CA]/80 text-[11px] font-medium px-2.5 py-1.5 rounded shadow-xl z-20 tracking-wide hidden sm:block">
+                  ✨ 30-minute free strategy session
+                </div>
               )}
             </div>
           </div>
 
-          <div className="flex-1 flex items-center justify-center w-full max-w-md lg:max-w-lg xl:max-w-xl lg:mt-0 relative">
-            <div className="relative w-full max-w-[340px] sm:max-w-[400px] lg:max-w-[440px] aspect-[1/.85] bg-[#181B23] border border-[#2a2e40] rounded-2xl overflow-hidden flex items-center justify-center p-5 sm:p-8">
-              <div className="absolute inset-0" style={{ background: "radial-gradient(circle at 70% 30%, rgba(220,66,66,0.15) 0%, transparent 60%)" }} />
-              <div className="relative z-10 text-center">
-                <div className="w-20 h-20 bg-[rgba(220,66,66,0.15)] border-2 border-[rgba(220,66,66,0.4)] rounded-full flex items-center justify-center mx-auto mb-5">
-                  <div className="text-3xl font-bold text-[#DC4242]">W</div>
-                </div>
-                <div className="flex flex-wrap gap-2 justify-center max-w-xs">
-                  {["Custom Themes", "WooCommerce", "Headless WP", "Plugin Dev", "REST API", "Next.js", "PHP", "Speed ⚡"].map((tag, i) => (
-                    <span key={i} className="px-3 py-2 bg-[#23263a]/40 border border-[#2a2e40] rounded-full text-xs text-[#F3F4F6]/70 font-medium">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+          {/* Right Column: Premium Illustration/Image Frame */}
+          <div className="flex-1 flex items-center justify-center w-full max-w-md lg:max-w-xl">
+            <div className="w-full bg-[#14161F] border border-[#2a2e40]/70 rounded-xl p-2 shadow-[0_12px_40px_rgba(0,0,0,0.4)] aspect-[4/3] relative overflow-hidden group transition-all duration-300 hover:border-[#DC4242]/30">
+              
+              {/* Inner Decorative Tech Lines on Corners */}
+              <div className="absolute top-3 left-3 w-3 h-3 border-t-2 border-l-2 border-[#2a2e40] group-hover:border-[#DC4242]/40 transition-colors" />
+              <div className="absolute bottom-3 right-3 w-3 h-3 border-b-2 border-r-2 border-[#2a2e40] group-hover:border-[#DC4242]/40 transition-colors" />
+              
+              {/* Main Illustration Wrapper */}
+              <div className="w-full h-full relative rounded-lg overflow-hidden bg-[#0D0F12]/60 flex items-center justify-center">
+                
+                {/* 
+                  [Developer Note]: Yahan aap apna custom high-end vector svg file path 
+                  src me input kar sakte hain (e.g., src="/images/wp-architecture-illustration.svg")
+                */}
+                <Image 
+                  src="/wordpress-hero.png"
+                  alt="WordPress Enterprise Architecture Illustration Graphic"
+                  fill
+                  className="object-contain p-6 opacity-80 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-700 ease-out"
+                  priority
+                />
+
+                {/* Subtle overlay gradient to blend image nicely with dark layout theme */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#14161F]/40 via-transparent to-transparent pointer-events-none" />
               </div>
+
             </div>
           </div>
+
         </div>
       </div>
-
-      <div className="absolute top-0 left-0 w-72 h-72 bg-[#DC4242]/20 rounded-full blur-3xl -z-10" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#DC4242]/10 rounded-full blur-3xl -z-10" />
     </section>
   );
 }

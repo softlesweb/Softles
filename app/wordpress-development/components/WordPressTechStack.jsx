@@ -24,9 +24,11 @@ export default function WordPressTechStack() {
   ];
 
   return (
-    <section className="py-12 sm:py-16 lg:py-28 bg-[#12131c] border-t border-b border-[#2a2e40]">
+    // Clean solid dark layout wrapper matching systemic style instructions
+    <section className="py-12 sm:py-16 lg:py-28 bg-[#0D0F12] border-t border-b border-[#2a2e40]">
       <div className="service-page-container">
-        {/* Header */}
+        
+        {/* Header - Strictly matching original fonts, weights and line markers */}
         <div className="text-center mb-12 lg:mb-16">
           <div className="flex items-center justify-center gap-2 mb-4">
             <span className="block w-7 h-0.5 bg-[#FFFFFF]" />
@@ -44,7 +46,7 @@ export default function WordPressTechStack() {
           </p>
         </div>
 
-        {/* Grid */}
+        {/* 4-Column Dev Console Grid System (Different structure layout from Shopify) */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {techs.map((tech, idx) => (
             <div
@@ -52,91 +54,65 @@ export default function WordPressTechStack() {
               className="
                 group
                 relative
-                bg-[#181B23]
-                border border-[#2a2e40]
-                rounded-2xl
-                p-7
-                text-center
+                bg-[#14161F]
+                border border-[#2a2e40]/70
+                rounded-xl
+                p-6
                 overflow-hidden
-
                 transition-all duration-300 ease-out
-
-                hover:-translate-y-2
-                hover:border-[rgba(220,66,66,0.5)]
-                hover:bg-[#1a1e2a]
-                hover:shadow-[0_15px_40px_rgba(220,66,66,0.12)]
+                hover:border-[#DC4242]/30
               "
             >
+              
+              {/* Dev Terminal Layout Metadata Marker */}
+              <div className="absolute top-2.5 right-3 font-mono text-[9px] text-[#BCC1CA]/20 uppercase tracking-widest group-hover:text-[#DC4242]/40 transition-colors duration-300">
+                [dep_0{idx + 1}]
+              </div>
 
-              {/* Glow Effect */}
-              <div
-                className="
-                  absolute
-                  inset-0
-                  bg-[radial-gradient(circle_at_top,rgba(220,66,66,0.15),transparent_60%)]
-                  opacity-0
-                  transition-opacity
-                  duration-300
-                  group-hover:opacity-100
-                "
-              />
+              {/* Core Content Layout Alignment */}
+              <div className="relative z-10 flex flex-col items-center text-center">
 
-
-              {/* Content */}
-              <div className="relative z-10">
-
+                {/* Technical Metric Icon Box */}
                 <div
                   className="
                     w-14 h-14
-                    mx-auto
                     mb-4
-                    rounded-xl
-
+                    rounded-lg
                     flex
                     items-center
                     justify-center
-
-                    bg-[rgba(220,66,66,0.08)]
-                    border border-[rgba(220,66,66,0.2)]
-
-                    text-3xl
+                    bg-[#0D0F12]
+                    border border-[#2a2e40]
+                    text-2xl
                     text-white
-
                     transition-all duration-300
-
-                    group-hover:scale-110
-                    group-hover:bg-[rgba(220,66,66,0.15)]
-                    group-hover:border-[rgba(220,66,66,0.5)]
+                    group-hover:bg-[#DC4242]/10
+                    group-hover:border-[#DC4242]/30
                     group-hover:text-[#DC4242]
                   "
                 >
                   {tech.icon}
                 </div>
 
-
+                {/* Typography Block - Retaining original exact hierarchy parameters */}
                 <h4
                   className="
                     font-semibold
                     text-[#FFFFFF]
                     text-sm
                     mb-1
-
                     transition-colors duration-300
-
                     group-hover:text-[#DC4242]
                   "
                 >
                   {tech.name}
                 </h4>
 
-
                 <p
                   className="
                     text-[#BCC1CA]/60
                     text-xs
-
                     transition-colors duration-300
-
                     group-hover:text-[#FFFFFF]/80
                   "
                 >
@@ -148,6 +124,7 @@ export default function WordPressTechStack() {
             </div>
           ))}
         </div>
+
       </div>
     </section>
   );

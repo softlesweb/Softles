@@ -6,59 +6,63 @@ import { RiShakeHandsLine } from "react-icons/ri";
 export default function ShopifyBenefits() {
   const benefits = [
     {
-      icon: <FiTarget />,
+      icon: <FiTarget className="w-5 h-5 text-zinc-400 group-hover:text-[#DC4242] transition-colors duration-300" />,
       title: "Conversion Focused",
       desc: "Every design and development decision is informed by CRO best practices and your specific customer journey data.",
     },
     {
-      icon: <FiStar />,
+      icon: <FiStar className="w-5 h-5 text-zinc-400 group-hover:text-[#DC4242] transition-colors duration-300" />,
       title: "Shopify Plus Experience",
       desc: "Hands-on experience with Scripts, Flow, Launchpad, B2B Commerce, Markets, and multi-storefront architecture.",
     },
     {
-      icon: <FiZap />,
+      icon: <FiZap className="w-5 h-5 text-zinc-400 group-hover:text-[#DC4242] transition-colors duration-300" />,
       title: "Performance Optimization",
       desc: "Sub-2s page loads and strong Core Web Vitals scores as a baseline on every project — not optional extras.",
     },
     {
-      icon: <FiLayers />,
+      icon: <FiLayers className="w-5 h-5 text-zinc-400 group-hover:text-[#DC4242] transition-colors duration-300" />,
       title: "Scalable Architecture",
       desc: "Systems designed to grow from launch to 100k daily orders without expensive platform migrations or rebuilds.",
     },
     {
-      icon: <FiCode />,
+      icon: <FiCode className="w-5 h-5 text-zinc-400 group-hover:text-[#DC4242] transition-colors duration-300" />,
       title: "Clean Dev Standards",
       desc: "Documented, maintainable Liquid and React code that any developer can confidently continue after our engagement ends.",
     },
     {
-      icon: <RiShakeHandsLine />,
+      icon: <RiShakeHandsLine className="w-5 h-5 text-zinc-400 group-hover:text-[#DC4242] transition-colors duration-300" />,
       title: "Long-Term Support",
       desc: "We don't disappear after launch. Flexible retainers provide ongoing development, security patches, and growth support.",
     },
   ];
 
   return (
-    <section className="py-12 sm:py-16 lg:py-28 bg-[#12131c] border-t border-b border-[#2a2e40]">
+    // Clean bg-[#0D0F12] and consistent desktop padding (py-12 sm:py-16 lg:py-28)
+    <section className="py-12 sm:py-16 lg:py-28 bg-[#0D0F12] border-t border-[#2a2e40]" id="why-softles">
       <div className="service-page-container">
-        <div className="flex flex-col lg:flex-row gap-8 sm:gap-12 lg:gap-20">
-          <div className="flex-1">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="block w-7 h-0.5 bg-[#FFFFFF]" />
-              <span className="text-xs font-semibold uppercase tracking-widest text-[#BCC1CA]">
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
+          
+          {/* Left Text Block */}
+          <div className="flex-1 lg:sticky lg:top-24">
+            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-[#181B23] border border-[#2a2e40] mb-4">
+              <span className="text-[11px] font-semibold uppercase tracking-widest text-[#BCC1CA]/80">
                 Why SoftLes
               </span>
             </div>
-            <h2 className="service-section-heading mb-4">
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-4">
               Why Partner With SoftLes
             </h2>
-            <p className="text-[#BCC1CA]/80 mb-6 sm:mb-8 max-w-md text-sm sm:text-base leading-relaxed">
+            <p className="text-[#BCC1CA]/80 mb-8 max-w-md text-sm sm:text-base leading-relaxed">
               We bring commercial thinking to every Shopify engagement. Your store&apos;s revenue metrics are our KPIs — not just the number of tickets closed.
             </p>
+            
+            {/* Unified Button Style */}
             <a
               href="/#book-call"
-              className="inline-flex items-center gap-2 px-6 md:px-8 py-2 md:py-4 bg-[#DC4242] text-white font-bold rounded-full hover:bg-[#ff4d50] transition-all duration-300 text-base whitespace-nowrap shadow-[inset_0_0_0_2px_transparent] group"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#DC4242] hover:bg-[#c23535] text-white font-bold rounded-lg transition-colors duration-300 text-sm uppercase tracking-wider shadow-md shadow-[#DC4242]/10 group"
             >
-              Start a Project
+              <span>Start a Project</span>
               <svg
                 width="14"
                 height="14"
@@ -68,90 +72,64 @@ export default function ShopifyBenefits() {
                 strokeWidth="2.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="transition-transform group-hover:translate-x-1"
+                className="transition-transform group-hover:translate-x-1 shrink-0"
               >
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
             </a>
           </div>
 
-          <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Right Cards Grid */}
+          <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
             {benefits.map((benefit, idx) => (
               <div
                 key={idx}
+                // Matching cards language from previous components
                 className="
                   group
-                  flex flex-col gap-3
-                  p-5
+                  flex flex-col
+                  p-6
                   rounded-xl
-                  border border-transparent
-
-                  bg-[#181B23]/40
-
-                  transition-all duration-300 ease-out
-
-                  hover:-translate-y-1
-                  hover:bg-[#181B23]
-                  hover:border-[#2a2e40]
-                  hover:shadow-[0_10px_30px_rgba(0,0,0,0.25)]
+                  border
+                  bg-[#14161F]
+                  border-[#2a2e40]/70
+                  hover:border-[#DC4242]/50
+                  hover:shadow-[0_12px_30px_rgba(220,66,66,0.06)]
+                  transition-all
+                  duration-300
                 "
               >
-
+                {/* Clean Custom Icon Box */}
                 <div
                   className="
                     w-10 h-10
                     rounded-lg
                     flex items-center justify-center
-                    text-2xl
-                    text-white
-
-                    bg-[rgba(220,66,66,0.08)]
-                    border border-[rgba(220,66,66,0.15)]
-
-                    transition-all duration-300
-
-                    group-hover:scale-110
-                    group-hover:bg-[rgba(220,66,66,0.15)]
-                    group-hover:border-[rgba(220,66,66,0.4)]
-                    group-hover:text-[#DC4242]
+                    bg-[#0D0F12]
+                    border border-[#2a2e40]
+                    group-hover:bg-[#DC4242]/10
+                    group-hover:border-[#DC4242]/30
+                    mb-4
+                    transition-all
+                    duration-300
                   "
                 >
                   {benefit.icon}
                 </div>
 
-
-                <h4
-                  className="
-                    text-[#FFFFFF]
-                    font-semibold
-                    text-sm
-
-                    transition-colors duration-300
-
-                    group-hover:text-[#DC4242]
-                  "
-                >
+                {/* Title */}
+                <h4 className="font-bold text-base text-white tracking-tight mb-2 group-hover:text-[#DC4242] transition-colors duration-300">
                   {benefit.title}
                 </h4>
 
-
-                <p
-                  className="
-                    text-[#BCC1CA]/70
-                    text-sm
-                    leading-relaxed
-
-                    transition-colors duration-300
-
-                    group-hover:text-[#FFFFFF]/80
-                  "
-                >
+                {/* Description */}
+                <p className="text-[#BCC1CA]/70 text-xs sm:text-sm leading-relaxed">
                   {benefit.desc}
                 </p>
-
               </div>
             ))}
           </div>
+
         </div>
       </div>
     </section>

@@ -5,39 +5,40 @@ import { FiZap, FiLock, FiTrendingUp, FiEdit2 } from "react-icons/fi";
 export default function ShopifyTrust() {
   const advantages = [
     {
-      icon: <FiZap />,
+      icon: <FiZap className="w-5 h-5 text-zinc-400 group-hover:text-white transition-colors duration-300" />,
       title: "Fast & Reliable Infrastructure",
       desc: "Shopify's global CDN and enterprise-ready uptime keep your store fast and available during every launch and sale.",
     },
     {
-      icon: <FiLock />,
+      icon: <FiLock className="w-5 h-5 text-zinc-400 group-hover:text-white transition-colors duration-300" />,
       title: "Secure Payment Ecosystem",
       desc: "PCI-compliant checkout, Shop Pay optimization, and secure payments so customers can buy with confidence.",
     },
     {
-      icon: <FiTrendingUp />,
+      icon: <FiTrendingUp className="w-5 h-5 text-zinc-400 group-hover:text-white transition-colors duration-300" />,
       title: "Scalable Commerce Platform",
       desc: "Grow from a single storefront to Shopify Plus, multi-country stores, and headless commerce without a rewrite.",
     },
     {
-      icon: <FiEdit2 />,
+      icon: <FiEdit2 className="w-5 h-5 text-zinc-400 group-hover:text-white transition-colors duration-300" />,
       title: "Easy Store Management",
       desc: "A polished admin experience and smart workflows make product, order, and campaign management simple.",
     },
   ];
 
   return (
-    <section className="py-12 sm:py-16 lg:py-28 bg-[#12131c] border-t border-b border-[#2a2e40]">
+    // Kept your precise desktop padding parameters (py-12 sm:py-16 lg:py-28) & background consistency
+    <section className="py-12 sm:py-16 lg:py-28 bg-[#0D0F12] border-t border-b border-[#2a2e40]" id="why-shopify">
       <div className="service-page-container">
+        
+        {/* Section Header */}
         <div className="text-center mb-12 lg:mb-16">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <span className="block w-7 h-0.5 bg-[#FFFFFF]" />
-            <span className="text-xs font-semibold uppercase tracking-widest text-[#BCC1CA]">
+          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-[#181B23] border border-[#2a2e40] mb-4">
+            <span className="text-[11px] font-semibold uppercase tracking-widest text-[#BCC1CA]/80">
               Platform Advantages
             </span>
-            <span className="block w-7 h-0.5 bg-[#FFFFFF]" />
           </div>
-          <h2 className="service-section-heading mb-3">
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-4">
             Why Leading Brands Choose Shopify
           </h2>
           <p className="text-[#BCC1CA]/80 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
@@ -45,78 +46,58 @@ export default function ShopifyTrust() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+        {/* Unified Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {advantages.map((item, idx) => (
             <div
               key={idx}
+              // Consistent with pichla section: No scaling, no rotations, unified hover response
               className="
-                group
-                bg-[#181B23]
-                border border-[#2a2e40]
-                rounded-2xl
-                p-5 sm:p-8
-
-                transition-all duration-300 ease-out
-
-                hover:-translate-y-2
-                hover:border-[#DC4242]/50
-                hover:bg-[#1a1e2a]
-                hover:shadow-[0_15px_40px_rgba(220,66,66,0.15)]
+                group 
+                relative 
+                rounded-xl 
+                p-6 
+                flex 
+                flex-col 
+                bg-[#14161F] 
+                border 
+                border-[#2a2e40]/70 
+                hover:border-[#DC4242]/50 
+                hover:shadow-[0_12px_30px_rgba(220,66,66,0.06)] 
+                transition-all 
+                duration-300
               "
             >
-
+              {/* Minimal Clean Icon Container */}
               <div
                 className="
-                  w-12 h-12
-                  bg-[rgba(220,66,66,0.1)]
-                  border border-[rgba(220,66,66,0.25)]
-                  rounded-lg
-                  flex items-center justify-center
-                  mb-4
-                  text-xl
-                  text-white
-
-                  transition-all duration-300
-
-                  group-hover:scale-110
-                  group-hover:bg-[rgba(220,66,66,0.2)]
-                  group-hover:border-[#DC4242]/50
-                  group-hover:text-[#DC4242]
-                  group-hover:rotate-3
+                  w-10 h-10 
+                  rounded-lg 
+                  flex 
+                  items-center 
+                  justify-center 
+                  mb-5 
+                  bg-[#0D0F12] 
+                  border 
+                  border-[#2a2e40] 
+                  group-hover:bg-[#DC4242]/10 
+                  group-hover:border-[#DC4242]/30 
+                  transition-all 
+                  duration-300
                 "
               >
                 {item.icon}
               </div>
 
-              <h3
-                className="
-                  text-[#FFFFFF]
-                  font-semibold
-                  text-base
-                  mb-2
-
-                  transition-colors duration-300
-
-                  group-hover:text-[#DC4242]
-                "
-              >
+              {/* Title with matching transitions */}
+              <h3 className="font-bold text-base text-white tracking-tight mb-2.5 group-hover:text-[#DC4242] transition-colors duration-300">
                 {item.title}
               </h3>
 
-              <p
-                className="
-                  text-[#BCC1CA]/70
-                  text-sm
-                  leading-relaxed
-
-                  transition-colors duration-300
-
-                  group-hover:text-[#FFFFFF]/80
-                "
-              >
+              {/* Description */}
+              <p className="text-[#BCC1CA]/70 text-xs sm:text-sm leading-relaxed">
                 {item.desc}
               </p>
-
             </div>
           ))}
         </div>
