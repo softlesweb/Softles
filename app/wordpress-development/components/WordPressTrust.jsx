@@ -32,7 +32,7 @@ export default function WordPressTrust() {
       <div className="service-page-container">
         
         {/* Header - Kept identical typography structure layout */}
-        <div className="mb-10">
+        <div className="mb-16">
           <div className="softles-eyebrow mb-2">
             <span className="softles-eyebrow-line" />
             <span className="softles-eyebrow-text">

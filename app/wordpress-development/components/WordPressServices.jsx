@@ -57,7 +57,7 @@ export default function WordPressServices() {
       <div className="service-page-container">
         
         {/* Header - Keeping the original exact line elements and text styling */}
-        <div className="mb-10">
+        <div className="mb-10 sm:mb-16">
           <div className="softles-eyebrow mb-2">
             <span className="softles-eyebrow-line" />
             <span className="softles-eyebrow-text">

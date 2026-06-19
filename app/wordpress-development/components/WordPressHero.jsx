@@ -71,7 +71,7 @@ export default function WordPressHero() {
             </div>
 
             {/* Title */}
-            <h1 className="relative font-extrabold text-3xl sm:text-[56px] md:text-[64px] leading-[1.05] tracking-[-0.03em] text-[#F5F6FA]">
+            <h1 className="relative font-extrabold text-3xl sm:text-[56px] md:text-[56px] leading-[1.05] tracking-[-0.03em] text-[#F5F6FA]">
               Build High-Performing<br className="hidden sm:block" />
               WordPress Sites That <span className="text-[#DC4242]">Scale</span>
               <span className="ml-1 text-[#DC4242]">.</span>
