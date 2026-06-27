@@ -9,7 +9,7 @@ import OurTeamSection from "./components/OurTeamSection";
 
 export default function Home() {
   return (
-    <main className="bg-[#191C26] sm:pt-[60px]">
+    <main className="bg-[#191C26] overflow-x-hidden sm:pt-[60px]">
       <Hero />
       <OurServicesSection />
       {/* <IndustriesSection /> */}

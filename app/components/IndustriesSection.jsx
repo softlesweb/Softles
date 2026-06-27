@@ -136,13 +136,13 @@ export default function IndustriesSection() {
     <motion.section
       ref={containerRef}
       id="industries"
-      className="snap-start min-h-screen w-full pb-20 md:pb-28 px-5 sm:px-6 lg:px-[120px] bg-[#191C26] bg-grid-white text-white flex flex-col justify-center"
+      className="w-full pt-5 pb-20 md:pt-10 md:pb-28 px-0 bg-[#191C26] bg-grid-white text-white flex flex-col justify-center"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
       variants={containerVariants}
     >
-      <div className="max-w-7xl mx-auto w-full">
+      <div className="service-page-container mx-auto w-full">
         <motion.div
           className="flex flex-col mb-8 md:mb-12"
           variants={itemVariants}
@@ -179,7 +179,7 @@ export default function IndustriesSection() {
         </motion.div>
 
         <div
-          className="relative w-full max-w-7xl mx-auto"
+          className="relative w-full service-page-container mx-auto"
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
         >

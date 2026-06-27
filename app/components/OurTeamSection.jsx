@@ -35,7 +35,7 @@ const team = [
     accent: "#00D1A0",
   },
   {
-    image: "/Neeraj_Kumar.jpeg",
+    image: "/neeraj_kumar.png",
     name: "Neeraj Kumar",
     role: "Shopify Developer",
     bio: "Builds and optimizes high-converting Shopify stores with a strong emphasis on performance, scalability, and seamless customer journeys.",
@@ -209,8 +209,8 @@ export default function OurTeamSection() {
 
   return (
     <section
-      id="our-team"
-      className="snap-start min-h-screen relative w-full pb-20 md:pt-10 md:pb-28"
+      id="about"
+      className="relative w-full py-12 md:py-20 border-t border-[#2a2e40] bg-[#191C26]" 
     >
       {/* Background effects */}
       {/* <div className="absolute inset-0 pointer-events-none">
@@ -221,19 +221,19 @@ export default function OurTeamSection() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(220,66,66,0.08),transparent_50%),radial-gradient(circle_at_80%_10%,rgba(90,107,255,0.05),transparent_50%)]" />
       </div> */}
 
-      <div className="relative mx-auto flex max-w-7xl flex-col px-2 sm:px-6 lg:px-8">
+      <div className="service-page-container mx-auto flex flex-col">
         {/* Header */}
         <div className="flex flex-col">
-          <div className="flex items-center text-base font-normal text-[#FFFFFF]">
-            <Image src={"/Separator.png"} alt="separator"  width={0} height={0} sizes="(max-width: 768px) 40vw, (max-width: 1024px) 50vw, 33vw" className="object-cover overflow-hidden min-w-min h-[2px] mr-[10px]" />
+            <div className="flex items-center text-base font-normal text-[#FFFFFF]">
+            <Image src={"/Separator.png"} alt="separator"  width={0} height={0} sizes="(max-width: 768px) 40vw, (max-width: 1024px) 50vw, 33vw" className="object-cover overflow-hidden min-w-min h-[2px] w-auto mr-[10px]" />
             <p className="text-sm uppercase tracking-[0.2em] text-[#BCC1CA]">
               Meet the team
             </p>
           </div>
-          <span className="mt-2 mb-2 lg:mb-0 font-bold text-3xl md:text-[53px] lg:text-[64px] leading-none md:leading-[64px] lg:leading-[76.8px] text-[#FFFFFF]">
+          <span className="mt-2 mb-2 lg:mb-0 service-section-heading text-[#FFFFFF]">
             The minds behind your growth
           </span>
-          <span className="text-base text-[#BCC1CA]/80 mt-2 max-w-2xl">
+          <span className="text-sm sm:text-base text-[#BCC1CA]/80 mt-2 max-w-2xl leading-relaxed">
             A multidisciplinary team blending strategy, design, engineering, and growth.
             We move fast, align to outcomes, and keep collaboration transparent.
           </span>
@@ -306,7 +306,7 @@ export default function OurTeamSection() {
               // Tablet & Desktop: Grouped slides (multiple items per slide)
               slideGroups.map((group, groupIndex) => (
                 <SwiperSlide key={groupIndex}>
-                  <div className="flex gap-1 md:gap-6 justify-center items-stretch p-0 md:p-3">
+                  <div className="flex gap-1 md:gap-6 justify-center items-stretch p-0">
                     {group.map((member, idx) =>
                       member.isSpecial
                         ? renderMoreMembersCard(member, `more-${groupIndex}-${idx}`)
