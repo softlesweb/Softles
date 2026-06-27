@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function WordPressHero() {
   const [showTooltip, setShowTooltip] = useState(false);
@@ -84,7 +85,7 @@ export default function WordPressHero() {
             {/* Action Button */}
             <div className="flex flex-col items-center lg:items-start w-full relative">
               <div className="relative w-full sm:w-auto">
-                <a
+                <Link
                   href="/#book-call"
                   className="softles-primary-button w-full sm:w-auto group"
                   onMouseEnter={() => setShowTooltip(true)}
@@ -92,7 +93,7 @@ export default function WordPressHero() {
                 >
                   <span>Book Free Discovery Call</span>
                   <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1 shrink-0" />
-                </a>
+                </Link>
               </div>
               
               {showTooltip && (

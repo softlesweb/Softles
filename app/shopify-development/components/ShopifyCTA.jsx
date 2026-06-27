@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 export default function ShopifyCTA() {
   return (
     // Unified dark base weight background with global structural padding metrics
@@ -34,7 +36,7 @@ export default function ShopifyCTA() {
             {/* Unified Action Controls */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               {/* Primary Call Action */}
-              <a
+              <Link
                 href="/#book-call"
                 className="softles-primary-button w-full sm:w-auto group"
               >
@@ -55,7 +57,7 @@ export default function ShopifyCTA() {
                   <line x1="3" y1="10" x2="21" y2="10" />
                 </svg>
                 <span>Book Discovery Call</span>
-              </a>
+              </Link>
 
               {/* Secondary Mail Action */}
               <a

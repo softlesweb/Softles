@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { FiZap, FiSearch, FiLayers } from "react-icons/fi";
 import { AiOutlineCode } from "react-icons/ai";
 import { MdBusinessCenter } from "react-icons/md";
@@ -63,7 +64,7 @@ export default function WordPressBenefits() {
           
           {/* Action Button - Converted to strict system rounded corners geometry */}
           <div className="shrink-0 pt-2 w-full sm:w-auto">
-            <a
+            <Link
               href="/#book-call"
               className="softles-primary-button w-full sm:w-auto group"
             >
@@ -81,7 +82,7 @@ export default function WordPressBenefits() {
               >
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
-            </a>
+            </Link>
           </div>
         </div>
 

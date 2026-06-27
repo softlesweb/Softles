@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { FiTarget, FiStar, FiZap, FiLayers, FiCode } from "react-icons/fi";
 import { RiShakeHandsLine } from "react-icons/ri";
 
@@ -58,7 +59,7 @@ export default function ShopifyBenefits() {
             </p>
             
             {/* Unified Button Style */}
-            <a
+            <Link
               href="/#book-call"
               className="softles-primary-button group"
             >
@@ -76,7 +77,7 @@ export default function ShopifyBenefits() {
               >
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
-            </a>
+            </Link>
           </div>
 
           {/* Right Cards Grid */}
