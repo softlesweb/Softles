@@ -25,16 +25,6 @@ function BulletTooltip({ children, tip }) {
 
 const services = [
   {
-    image: "/UserResearch.png",
-    title: "Research & Strategy",
-    bullets: [
-      { txt: "Stakeholder interviews",  tip: "In-depth discussions to align business goals with user needs." },
-      { txt: "Persona & journey mapping", tip: "Visualize user behavior to uncover pain-points & opportunities." },
-      { txt: "Usability studies", tip: "Observe real users to validate or refine product decisions." },
-      { txt: "Product strategy", tip: "Prioritise features and define KPIs for measurable impact." },
-    ],
-  },
-  {
     image: "/DesignSystem.png",
     title: "Design & Prototyping",
     bullets: [
@@ -44,24 +34,37 @@ const services = [
       { txt: "User testing", tip: "Task-based sessions to refine UX and boost conversion." },
     ],
   },
+
   {
     image: "/InterfaceDesign.png",
-    title: "Development",
+    title: "Shopify Development",
     bullets: [
-      { txt: "Frontend & backend dev", tip: "Pixel-perfect React / Next.js paired with robust Node or Python APIs." },
-      { txt: "API & cloud integration", tip: "Serverless, micro-services and third-party integrations." },
-      { txt: "3rd Party Integration solutions", tip: "Platform powered features that sync data in real time." },
-      { txt: "Performance optimization", tip: "Sub-second load times and perfect Lighthouse scores." },
+      { txt: "Custom Theme Development", tip: "Conversion-focused themes built for brand and speed." },
+      { txt: "Headless & Next.js / Hydrogen", tip: "Decoupled storefronts for performance and flexibility." },
+      { txt: "Shopify App Development", tip: "Embedded and private apps to extend store capability." },
+      { txt: "Integrations & Automation", tip: "Connect Shopify to CRM, email and business systems." },
     ],
   },
+
+  {
+    image: "/UserResearch.png",
+    title: "WordPress Development",
+    bullets: [
+      { txt: "Custom Theme Development", tip: "Pixel-perfect WordPress themes built from scratch." },
+      { txt: "Headless WordPress (Next.js)", tip: "Decoupled architectures for modern frontends and speed." },
+      { txt: "Plugin & WooCommerce Extensions", tip: "Custom plugins and commerce features built to spec." },
+      { txt: "Integrations & Automation", tip: "Connect WordPress to CRMs, email and business tools." },
+    ],
+  },
+
   {
     image: "/Prototyping.png",
-    title: "AI & Automation",
+    title: "Custom Web Development",
     bullets: [
-      { txt: "LLM integration & fine-tuning", tip: "Custom models that speak your brand voice." },
-      { txt: "Custom chatbots & voice agents", tip: "24/7 support across web, mobile and smart speakers." },
-      { txt: "Process automation & RPA", tip: "Save hours by automating repetitive workflows." },
-      { txt: "Predictive analytics dashboards", tip: "Turn data into foresight with real-time ML insights." },
+      { txt: "Custom website development", tip: "Bespoke sites tailored to your brand and goals." },
+      { txt: "Full-stack web applications", tip: "React, Next.js, Node and modern backend architectures." },
+      { txt: "Scalable web solutions", tip: "Architecture and ops that grow with your product." },
+      { txt: "API development & integrations", tip: "Robust APIs and third-party integrations for data flow." },
     ],
   },
 ];
@@ -188,12 +191,12 @@ function MobileStackCarousel({ services }) {
                 className="rounded-full"
               />
             </div>
-            <h3 className="text-2xl font-bold mb-4 text-left text-white">{services[active].title}</h3>
+            <h3 className="text-xl font-bold mb-4 text-left text-white">{services[active].title}</h3>
             <ul className="w-full flex flex-col gap-5">
               {services[active].bullets.map((b, i) => (
                 <li
                   key={i}
-                  className="relative pl-10 py-2 bg-[#23263a]/60 rounded-lg text-base text-[#F3F4F6] font-medium shadow-sm border border-[#23263a] text-left hover:border-[#DC4242] transition-all duration-200"
+                  className="relative pl-10 py-2 bg-[#23263a]/60 rounded-lg text-sm text-[#F3F4F6] font-medium shadow-sm border border-[#23263a] text-left hover:border-[#DC4242] transition-all duration-200"
                 >
                   <span className="absolute left-3 top-1/2 -translate-y-1/2 flex items-center justify-center w-5 h-5 rounded-full bg-[#DC4242] text-white text-xs font-bold shadow-md">
                     <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
@@ -267,26 +270,26 @@ function MobileStackCarousel({ services }) {
 
 export default function OurServicesSection() {
   return (
-    <section id="services" className="snap-start min-h-screen w-full pt-5 pb-20 md:pt-10 md:pb-28 px-5 sm:px-6 lg:px-[120px] flex flex-col justify-center place-content-between overflow-hidden bg-[#191C26]">
-
-      <div className="relative z-10 flex flex-col">
-        <div className="flex items-center text-base font-normal text-[#FFFFFF]">
-          <Image
-            src={"/Separator.png"}
-            alt="separator"
-            width={0}
-            height={0}
-            sizes="(max-width: 768px) 40vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-cover overflow-hidden min-w-min h-[2px] mr-[10px]"
-          />
+    <section id="services" className="w-full py-12 md:pt-20 md:pb-24 px-0 flex flex-col justify-center place-content-between overflow-hidden border-t border-[#2a2e40] bg-[#191C26]">
+      <div className="service-page-container mx-auto w-full flex flex-col">
+        <div className="relative z-10 flex flex-col">
+          <div className="flex items-center text-base font-normal text-[#FFFFFF]">
+            <Image
+              src={"/Separator.png"}
+              alt="separator"
+              width={0}
+              height={0}
+              sizes="(max-width: 768px) 40vw, (max-width: 1024px) 50vw, 33vw"
+              className="object-cover overflow-hidden min-w-min h-[2px] mr-[10px]"
+            />
           <p className="text-sm uppercase tracking-[0.2em] text-[#BCC1CA]">
             What We Do
           </p>
         </div>
-        <span className="mt-2 mb-2 lg:mb-0 font-bold text-3xl md:text-[53px] lg:text-[64px] leading-none md:leading-[64px] lg:leading-[76.8px] text-[#FFFFFF]">
+        <span className="mt-2 mb-2 lg:mb-0 service-section-heading text-[#FFFFFF]">
           What we do
         </span>
-        <span className="text-base text-[#BCC1CA]/80 mt-2 max-w-2xl">
+        <span className="text-sm sm:text-base text-[#BCC1CA]/80 mt-2 max-w-2xl leading-relaxed">
           We blend creativity and technology to deliver impactful digital products. Explore our core services below.
         </span>
       </div>
@@ -332,7 +335,7 @@ export default function OurServicesSection() {
                 transition: { duration: 0.3 }
               }}
               viewport={{ once: true }}
-              className="group cursor-pointer bg-gradient-to-br from-[#23263a] to-[#181B23] rounded-2xl shadow-2xl p-8 flex flex-col items-start transition-all duration-500 relative min-h-[320px] border border-[#2a2e40] hover:border-[#DC4242]/40"
+              className="group cursor-pointer bg-gradient-to-br from-[#23263a] to-[#181B23] rounded-2xl shadow-2xl p-4 flex flex-col items-start transition-all duration-500 relative min-h-[320px] border border-[#2a2e40] hover:border-[#DC4242]/40"
               style={{
                 zIndex: stackOrder,
                 transformStyle: 'preserve-3d',
@@ -353,7 +356,7 @@ export default function OurServicesSection() {
                 <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#DC4242]/20 to-transparent opacity-0 group-hover:opacity-100 blur transition-opacity duration-500" />
               </div>
 
-              <h3 className="text-2xl font-bold mb-4 text-left text-white group-hover:text-[#DC4242] transition-colors duration-300 leading-tight relative z-10">
+              <h3 className="text-xl font-bold mb-4 text-left text-white group-hover:text-[#DC4242] transition-colors duration-300 leading-tight relative z-10">
                 {service.title}
               </h3>
 
@@ -366,7 +369,7 @@ export default function OurServicesSection() {
                     transition={{ delay: idx * 0.1 + i * 0.05 }}
                     viewport={{ once: true }}
                     whileHover={{ x: 5 }}
-                    className="relative pl-10 py-2 bg-[#23263a]/60 rounded-lg text-base text-[#F3F4F6] font-medium shadow-sm border border-[#23263a] hover:border-[#DC4242] hover:bg-[#23263a]/80 transition-all duration-300 text-left group/bullet"
+                    className="relative pl-10 py-2 bg-[#23263a]/60 rounded-lg text-sm text-[#F3F4F6] font-medium shadow-sm border border-[#23263a] hover:border-[#DC4242] hover:bg-[#23263a]/80 transition-all duration-300 text-left group/bullet"
                   >
                     <span className="absolute left-3 top-1/2 -translate-y-1/2 flex items-center justify-center w-5 h-5 rounded-full bg-[#DC4242] text-white text-xs font-bold shadow-md group-hover/bullet:scale-110 transition-transform duration-300">
                       <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
@@ -403,6 +406,7 @@ export default function OurServicesSection() {
           </svg>
         </div>
       </div> */}
+      </div>
     </section>
   );
 }

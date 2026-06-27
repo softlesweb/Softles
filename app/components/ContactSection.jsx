@@ -54,18 +54,19 @@ export default function ContactSection() {
         )
     }
     return (
-        <section id="contact" className="snap-start min-h-screen w-full pt-5 pb-20 md:pt-10 md:pb-28 px-5 sm:px-6 lg:px-[120px] bg-[#111319] flex flex-col justify-center place-content-between">
-            <div className="flex flex-col">
-                <div className="flex items-center text-base font-normal text-[#FFFFFF]">
-                    <Image src={Separator} className="mr-[10px]" alt="separator" />
-                    <p className="text-sm uppercase tracking-[0.2em] text-[#BCC1CA]">
-                        Get In Touch
-                    </p>
+        <section id="book-call" className="w-full py-12 md:py-20 px-0 flex flex-col justify-center place-content-between bg-[#12131c] border-t border-b border-[#2a2e40]">
+            <div className="service-page-container mx-auto w-full flex flex-col gap-12">
+                <div className="flex flex-col">
+                    <div className="flex items-center text-base font-normal text-[#FFFFFF]">
+                        <Image src={Separator} alt="separator" width={0} height={0} sizes="(max-width: 768px) 20vw, (max-width: 1024px) 10vw, 6vw" className="object-cover overflow-hidden h-[2px] w-auto mr-[10px]" />
+                        <p className="text-sm uppercase tracking-[0.2em] text-[#BCC1CA]">
+                            Get In Touch
+                        </p>
+                    </div>
+                    <span className="mt-2 mb-4 lg:mb-0 service-section-heading text-[#FFFFFF]">Book a Discovery Session</span>
                 </div>
-                <span className="mt-2 mb-4 lg:mb-0 text-3xl md:text-[53px] lg:text-[64px] leading-none md:leading-[64px] lg:leading-[76.8px] text-[#FFFFFF]">Book a Discovery Session</span>
-            </div>
-            <div className="w-full flex flex-col md:flex-row gap-0 mt-12 justify-center items-stretch">
-                {/* Book a Discovery Session via Google Meet */}
+                <div className="w-full flex flex-col md:flex-row gap-0 mt-12 justify-center items-stretch">
+                    {/* Book a Discovery Session via Google Meet */}
                 <div className="bg-gradient-to-br from-[#191C26] via-[#221429] to-[#191C26] rounded-2xl md:rounded-r-none md:rounded-l-2xl mb-5 md:mb-0 shadow-lg flex flex-col justify-between p-0 border border-[#23263a] w-full md:w-1/3 max-w-none">
                     <div className="flex flex-col items-center pt-8 pb-4 px-3 md:px-6 h-full">
                         <div className="relative">
@@ -155,6 +156,7 @@ export default function ContactSection() {
                         </p>
                     </form>
                 </div>
+            </div>
             </div>
         </section>
     )

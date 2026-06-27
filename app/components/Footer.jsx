@@ -17,9 +17,9 @@ export default function Footer() {
 
     return (
         <footer className="snap-start bg-[#18181B] text-white pt-5 sm:pt-12 pb-6 px-5 md:px-16">
-            <div className="flex flex-col gap-5 w-full max-w-7xl mx-auto border-b border-[#27272A] pb-10">
+            <div className="flex flex-col gap-5 w-full service-page-container border-b border-[#27272A] pb-10">
                 <Link href="/">
-                    <Image src={"/SoftLes.png"} alt="Logo" width={0} height={0} sizes="(max-width: 768px) 40vw, (max-width: 1024px) 50vw, 33vw" className="object-cover overflow-hidden min-w-min h-[54px]"/>
+                    <Image src={"/SoftLes.png"} alt="Logo" width={0} height={0} sizes="(max-width: 768px) 40vw, (max-width: 1024px) 50vw, 33vw" className="object-cover overflow-hidden min-w-min h-[54px] w-auto"/>
                 </Link>
                 <div className=" grid grid-cols-1 md:grid-cols-3 gap-10">
                     {/* About */}
@@ -85,21 +85,21 @@ export default function Footer() {
                     </div>
                 </div>
             </div>
-            <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 pt-6">
+            <div className="service-page-container flex flex-col md:flex-row items-center justify-between gap-4 pt-6">
                 <p className="text-[#A1A1AA] text-sm text-center md:text-left">
                     &quot;Do something today that your future self will thank you for.&quot;
                 </p>
                 <div className="flex gap-4 mt-2">
-                    <Link href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                    <Link href="https://www.facebook.com/softlesweb/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                         <Image src={"/FacebookIcon.png"} alt="Facebook" width={0} height={0} sizes="(max-width: 768px) 40vw, (max-width: 1024px) 50vw, 33vw" className="object-cover overflow-hidden w-7 h-7 hover:scale-110 transition"/>
                     </Link>
-                    <Link href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                    <Link href="https://x.com/softlesindia" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
                         <Image src={"/TwitterIcon.png"} alt="Twitter" width={0} height={0} sizes="(max-width: 768px) 40vw, (max-width: 1024px) 50vw, 33vw" className="object-cover overflow-hidden w-7 h-7 hover:scale-110 transition"/>
                     </Link>
-                    <Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                    <Link href="https://www.linkedin.com/company/softlesindia/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                         <Image src={"/LinkedInIcon.png"} alt="LinkedIn" width={0} height={0} sizes="(max-width: 768px) 40vw, (max-width: 1024px) 50vw, 33vw" className="object-cover overflow-hidden w-7 h-7 hover:scale-110 transition"/>
                     </Link>
-                    <Link href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                    <Link href="https://www.instagram.com/softlesindia/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                         <Image src={"/InstagramIcon.png"} alt="Instagram" width={0} height={0} sizes="(max-width: 768px) 40vw, (max-width: 1024px) 50vw, 33vw" className="object-cover overflow-hidden w-7 h-7 hover:scale-110 transition"/>
                     </Link>
                 </div>

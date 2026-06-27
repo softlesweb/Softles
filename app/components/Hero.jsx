@@ -41,7 +41,7 @@ export default function Hero() {
     return (
         <section
             id="hero"
-            className="snap-start relative min-h-screen lg:min-h-[92vh] w-full flex items-center justify-center px-5 sm:px-6 lg:px-[120px] pt-20 overflow-hidden bg-gradient-to-br from-[#191C26] via-[#23263a] to-[#111319]"
+            className="snap-start relative min-h-screen lg:min-h-[92vh] w-full flex items-center justify-center pt-20 overflow-hidden bg-gradient-to-br from-[#191C26] via-[#23263a] to-[#111319]"
         >
             {/* Animated awe-struck blob */}
             <div
@@ -61,8 +61,8 @@ export default function Hero() {
                 }}
                 aria-hidden="true"
             />
-            <div className="flex flex-col items-center justify-center w-full lg:my-10">
-                <div className="relative flex flex-col-reverse lg:flex-row items-center justify-center w-full max-w-4xl lg:max-w-6xl mx-auto gap-2 lg:gap-20 z-10 px-[10px] md:px-8 lg:px-[120px] xl:px-0">
+            <div className="service-page-container flex flex-col items-center justify-center w-full lg:my-10">
+                <div className="relative flex flex-col-reverse lg:flex-row items-center justify-center w-full mx-auto gap-2 lg:gap-20 z-10 px-0">
                     {/* Left Content */}
                     <div className="flex-1 flex flex-col items-center lg:items-start justify-center max-w-2xl text-center lg:text-left max-h-min min-h-10">
                         {/* Creative Ideas Label (updated copy) */}
@@ -71,10 +71,18 @@ export default function Hero() {
                             <span className="text-base text-[#BCC1CA] font-normal">We&apos;re a small agency which</span>
                         </div>
                         {/* Main Heading */}
-                        <h1 className="font-extrabold md:mb-2 leading-3 md:leading-tight tracking-tight relative text-[clamp(2.2rem,6vw,4.5rem)] text-[#F5F6FA]">
-                            Bespoke Business <br className="hidden sm:block" />
+                        {/* <h1 className="font-extrabold md:mb-2 leading-3 md:leading-tight tracking-wide relative text-[clamp(2.2rem,6vw,3.5rem)] text-[#F5F6FA]">
+                            Bespoke<br className="block" /> Business <br className="hidden sm:block" />
                             Solutions
                             <span className="text-[#DC4242] align-super text-5xl ml-1">.</span>
+                        </h1> */}
+                        <h1 className="relative font-extrabold text-3xl sm:text-[56px] md:text-[64px] leading-[1.05] tracking-[-0.03em] text-[#F5F6FA]">
+                            Bespoke
+                            <br />
+                            <span className="text-[#DC4242]">Business</span>
+                            <br className="hidden sm:block" />
+                            Solutions
+                            <span className="ml-1 text-[#DC4242]">.</span>
                         </h1>
                         {/* Supporting Line */}
                         <p className="text-[#BCC1CA] mt-4 mb-5 md:mb-12 max-w-xl block text-base lg:text-lg leading-relaxed" style={{maxWidth: '40ch', lineHeight: 1.5}}>
@@ -119,29 +127,33 @@ export default function Hero() {
                     </div>
                 </div>
                 {/* Client Logo Rail - responsive */}
-                <div className="w-full mt-5 md:mt-20 z-20 flex flex-col gap-8 md:gap-12">
-                    <div className="overflow-hidden w-full relative">
-                        <div
-                            className="flex animate-logo-rail whitespace-nowrap w-max gap-20"
-                            style={{ animation: 'logo-rail 18s linear infinite' }}
-                        >
-                            {clientLogos.concat(clientLogos).map((logo, idx) => (
-                                <Image
-                                    key={idx}
-                                    src={logo}
-                                    alt={`Client Logo ${idx + 1}`}
-                                    width={120}
-                                    height={48}
-                                    className="h-12 w-auto"
-                                    style={{ display: "inline-block" }}
-                                />
-                            ))}
+                <div className="w-full mt-5 md:mt-14 z-20 flex flex-col gap-6 md:gap-8">
+
+                <div className="overflow-hidden w-full relative before:absolute before:left-0 before:top-0 before:bottom-0 before:w-20 before:bg-gradient-to-r before:from-[#191C26] before:to-transparent before:z-10 after:absolute after:right-0 after:top-0 after:bottom-0 after:w-20 after:bg-gradient-to-l after:from-[#191C26] after:to-transparent after:z-10">
+                    <div className="flex animate-logo-rail whitespace-nowrap w-max gap-12 md:gap-20 items-center" style={{ animation: "logo-rail 18s linear infinite" }}>
+                    {clientLogos.concat(clientLogos).map((logo, idx) => (
+                        <div key={idx} className="group h-14 md:h-16 px-5 md:px-7 rounded-xl flex items-center justify-center bg-white/5 border border-white/10 backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:border-[#DC4242]/50 hover:shadow-[0_10px_30px_rgba(220,66,66,0.15)]">
+                        <Image
+                            src={logo}
+                            alt={`Client Logo ${idx + 1}`}
+                            width={120}
+                            height={48}
+                            className="h-8 md:h-10 w-auto opacity-80 transition-all duration-300 group-hover:opacity-100 group-hover:scale-105"
+                        />
                         </div>
+                    ))}
                     </div>
-                                {/* Scroll prompt */}
-                    <div className="flex flex-col items-center z-20">
-                        <span className="text-[#BCC1CA] text-sm animate-bounce">↓ Scroll to explore our services</span>
+                </div>
+
+                <div className="flex flex-col items-center gap-2">
+                    <span className="text-[#BCC1CA] text-sm animate-pulse">
+                    Scroll to explore our services
+                    </span>
+                    <div className="w-6 h-10 rounded-full border border-[#3a4052] flex justify-center pt-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#DC4242] animate-bounce" />
                     </div>
+                </div>
+
                 </div>
             </div>
             {/* Decorative Background Elements */}
