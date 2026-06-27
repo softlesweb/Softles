@@ -67,6 +67,11 @@ export default function Navbar() {
                                 Shopify
                             </Link>
                         </li>
+                        <li>
+                            <Link href="/blog" className="hover:text-[#DC4242] transition-colors">
+                                Blog
+                            </Link>
+                        </li>
                     </ul>
                     <Link href="/#book-call" onClick={e => handleSectionClick(e, "book-call")}>
                         <button className="relative inline-flex h-10 overflow-hidden rounded-full p-[1px] focus:outline-none ">

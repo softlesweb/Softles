@@ -50,6 +50,9 @@ export const MobileSidebar = () => {
                         <li className="hover:text-[#DC4242] transition-colors">
                             <Link href="/shopify-development" onClick={() => setOpen(false)} tabIndex={0} className="focus-visible:ring-2 focus-visible:ring-[#DC4242] rounded">Shopify Development</Link>
                         </li>
+                        <li className="hover:text-[#DC4242] transition-colors">
+                            <Link href="/blog" onClick={() => setOpen(false)} tabIndex={0} className="focus-visible:ring-2 focus-visible:ring-[#DC4242] rounded">Blog</Link>
+                        </li>
                     </ul>
                     <div className="mt-auto w-full flex justify-center">
                         <Link href="/#book-call" onClick={e => handleSectionClick(e, "book-call")} className="w-full max-w-xs">
