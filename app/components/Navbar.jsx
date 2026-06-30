@@ -38,6 +38,9 @@ export default function Navbar() {
         }
     };
 
+    // Ad landing pages (/lp/*) use their own minimal header — hide the global nav.
+    if (pathname?.startsWith("/lp")) return null;
+
     return (
         <div className={`h-[60px] w-full z-50 fixed top-0 transition-all duration-300 ease-in-out bg-[#191C26] text-[#FFFFFF] ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`}>
             <div className="service-page-container h-full flex items-center justify-between lg:justify-normal">
