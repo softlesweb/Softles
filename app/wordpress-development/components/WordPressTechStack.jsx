@@ -13,15 +13,17 @@ import {
 
 export default function WordPressTechStack() {
   const techs = [
-    { icon: <SiWordpress />, name: "WordPress", desc: "Core CMS Platform" },
-    { icon: <SiWoocommerce />, name: "WooCommerce", desc: "E-commerce Engine" },
-    { icon: <SiPhp />, name: "PHP", desc: "Server-side Logic" },
-    { icon: <SiMysql />, name: "MySQL", desc: "Database Layer" },
-    { icon: <SiElementor />, name: "Elementor", desc: "Visual Page Builder" },
-    { icon: <SiGutenberg />, name: "Gutenberg", desc: "Block Editor" },
-    { icon: <SiWpengine />, name: "WP Engine", desc: "Managed Hosting" },
-    { icon: <SiCloudflare />, name: "Cloudflare", desc: "CDN & Security" },
+    { icon: <SiWordpress className="w-5 h-5" />, name: "WordPress", desc: "Core CMS Platform" },
+    { icon: <SiWoocommerce className="w-5 h-5" />, name: "WooCommerce", desc: "E-commerce Engine" },
+    { icon: <SiPhp className="w-5 h-5" />, name: "PHP", desc: "Server-side Logic" },
+    { icon: <SiMysql className="w-5 h-5" />, name: "MySQL", desc: "Database Layer" },
+    { icon: <SiElementor className="w-5 h-5" />, name: "Elementor", desc: "Visual Page Builder" },
+    { icon: <SiGutenberg className="w-5 h-5" />, name: "Gutenberg", desc: "Block Editor" },
+    { icon: <SiWpengine className="w-5 h-5" />, name: "WP Engine", desc: "Managed Hosting" },
+    { icon: <SiCloudflare className="w-5 h-5" />, name: "Cloudflare", desc: "CDN & Security" },
   ];
+
+  const loopedTechs = [...techs, ...techs];
 
   return (
     <section className="softles-section-secondary">
@@ -44,80 +46,37 @@ export default function WordPressTechStack() {
           </p>
         </div>
 
-        {/* 4-Column Dev Console Grid System (Different structure layout from Shopify) */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {techs.map((tech, idx) => (
-            <div
-              key={idx}
-              className="
-                group
-                relative
-                softles-card
-                p-6
-                overflow-hidden
-              "
-            >
-              
-              {/* Dev Terminal Layout Metadata Marker */}
-              <div className="absolute top-2.5 right-3 text-[9px] text-[#BCC1CA]/30 uppercase tracking-widest group-hover:text-[#DC4242]/50 transition-colors duration-300">
-                [dep_0{idx + 1}]
-              </div>
-
-              {/* Core Content Layout Alignment */}
-              <div className="relative z-10 flex flex-col items-center text-center">
-
-                {/* Technical Metric Icon Box */}
-                <div
-                  className="
-                    w-14 h-14
-                    mb-4
-                    rounded-xl
-                    flex
-                    items-center
-                    justify-center
-                    bg-[#191C26]
-                    border border-[#2a2e40]
-                    text-2xl
-                    text-white
-                    transition-all duration-300
-                    group-hover:bg-[#DC4242]/10
-                    group-hover:border-[#DC4242]/30
-                    group-hover:text-[#DC4242]
-                  "
-                >
+        <div className="overflow-hidden rounded-2xl border border-[#2a2e40]/70 bg-[#191C26]/70 py-4 sm:py-5">
+          <div className="flex w-max items-center justify-center gap-3 sm:gap-4 animate-[marquee_22s_linear_infinite] hover:[animation-play-state:paused]">
+            {loopedTechs.map((tech, idx) => (
+              <div
+                key={`${tech.name}-${idx}`}
+                className="group min-w-[170px] sm:min-w-[190px] rounded-xl border border-[#2a2e40]/70 bg-[#181B23]/90 px-4 py-4 sm:px-5 sm:py-5 text-center shadow-sm transition-all duration-300 hover:border-[#DC4242]/40 hover:bg-[#1E222D]"
+              >
+                <div className="mb-3 mx-auto flex h-10 w-10 items-center justify-center rounded-lg border border-[#2a2e40] bg-[#191C26] text-[#BCC1CA] transition-all duration-300 group-hover:border-[#DC4242]/30 group-hover:text-[#DC4242]">
                   {tech.icon}
                 </div>
-
-                {/* Typography Block - Retaining original exact hierarchy parameters */}
-                <h4
-                  className="
-                    font-bold
-                    text-[#FFFFFF]
-                    text-sm
-                    mb-1
-                    transition-colors duration-300
-                    group-hover:text-[#DC4242]
-                  "
-                >
+                <h4 className="mb-1 text-sm font-semibold text-white transition-colors duration-300 group-hover:text-[#DC4242]">
                   {tech.name}
                 </h4>
-
-                <p
-                  className="
-                    text-[#BCC1CA]/60
-                    text-xs
-                    transition-colors duration-300
-                    group-hover:text-[#FFFFFF]/80
-                  "
-                >
+                <p className="text-[11px] uppercase tracking-[0.2em] text-[#BCC1CA]/60">
                   {tech.desc}
                 </p>
-
               </div>
-
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
+
+        <style jsx>{`
+          @keyframes marquee {
+            from {
+              transform: translateX(0);
+            }
+            to {
+              transform: translateX(-50%);
+            }
+          }
+        `}</style>
 
       </div>
     </section>

@@ -18,11 +18,11 @@ export default function WordPressDevelopment() {
   return (
     <main className="bg-[#191C26] overflow-x-hidden">
       <WordPressHero />
+      <WordPressProjects />
       <WordPressServices />
       <WordPressTrust />
       <WordPressProcess />
       <WordPressTechStack />
-      <WordPressProjects />
       <WordPressBenefits />
       <WordPressFAQ />
       <WordPressCTA />

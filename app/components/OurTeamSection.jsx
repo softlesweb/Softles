@@ -114,76 +114,53 @@ export default function OurTeamSection() {
   const renderTeamMemberCard = (member, key) => (
     <article
       key={key}
-      className="group relative w-full max-w-[300px] min-h-[350px] sm:max-w-xs md:max-w-[385px] shrink-0 transition-transform duration-500 mx-auto"
+      className="group relative mx-auto w-full min-h-[380px] max-w-[300px] shrink-0 transition-all duration-500 sm:max-w-xs md:max-w-[360px]"
     >
-      <div className="relative h-full overflow-hidden rounded-md border border-[#242836]/50 bg-gradient-to-br from-[#0F1118]/80 via-[#131623]/60 to-[#0B0C12]/90 p-3 xs:p-6 transition-all duration-500 hover:scale-[1.02] hover:border-[#DC4242]/40 hover:shadow-2xl hover:shadow-[#DC4242]/10">
-        {/* Background Glow */}
-        <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-          <div
-            className={`absolute -right-8 -top-8 h-40 w-40 rounded-full bg-gradient-to-br ${member.hue} blur-3xl`}
-          />
-        </div>
+      <div className="relative flex h-full flex-col overflow-hidden rounded-[28px] border border-white/10 bg-[linear-gradient(135deg,rgba(255,255,255,0.06),rgba(10,12,18,0.96))] p-5 shadow-[0_20px_70px_rgba(0,0,0,0.28)] backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:border-white/20 hover:shadow-[0_24px_80px_rgba(0,0,0,0.32)] xs:p-6">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.08),transparent_45%)] opacity-70" />
+        <div className={`absolute -right-10 -top-10 h-28 w-28 rounded-full bg-gradient-to-br ${member.hue} opacity-20 blur-3xl transition-all duration-500 group-hover:opacity-30`} />
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
 
-        {/* Top Border Accent */}
-        <div className="absolute top-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-[#DC4242]/30 to-transparent"></div>
-
-        {/* Profile Header */}
-        <div className="relative mb-6">
-          <div className="flex items-center gap-4 max-w-[280px] sm:max-w-auto">
-            {/* Avatar */}
-            <div className={`relative h-20 w-20 overflow-hidden rounded-2xl bg-gradient-to-br ${member.tone} ring-2 ring-[#242836] ring-offset-2 ring-offset-[#0F1118]`}>
-              <div className="absolute inset-0 flex items-center justify-center">
-                {
-                  member.image ? (
-                    <Image src={member.image} alt={member.name} width={80} height={80} className="rounded-2xl object-cover" />
-                  ) : (
-                    <span className="text-lg font-bold text-[#F5F6FA]">
-                      {member.name
-                        .split(" ")
-                        .map((n) => n[0])
-                        .join("")}
-                    </span>
-                  )
-                }
-              </div>
-              <div
-                className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                style={{ background: `radial-gradient(circle at center, ${member.accent}20, transparent 70%)` }}
-              />
+        <div className="relative mt-6 flex items-center gap-4">
+          <div className={`relative h-20 w-20 shrink-0 overflow-hidden rounded-[20px] border border-white/10 bg-gradient-to-br ${member.tone} p-[2px]`}>
+            <div className="h-full w-full overflow-hidden rounded-[18px]">
+              {member.image ? (
+                <Image src={member.image} alt={member.name} width={96} height={96} className="h-full w-full object-cover" />
+              ) : (
+                <div className="flex h-full w-full items-center justify-center bg-[#10131C] text-lg font-semibold text-white">
+                  {member.name
+                    .split(" ")
+                    .map((n) => n[0])
+                    .join("")}
+                </div>
+              )}
             </div>
+          </div>
 
-            {/* Name & Role */}
-            <div className="flex-1 min-w-0 max-w-[200px] sm:max-w-auto">
-              <h4 className="text-xl font-bold text-[#F5F6FA] ">
-                {member.name}
-              </h4>
-              <p className="text-sm font-semibold tracking-tighter md:tracking-widest text-gray-400 uppercase">
-                {member.role}
-              </p>
-            </div>
+          <div className="min-w-0">
+            <h4 className="text-xl font-semibold text-[#F5F6FA]">
+              {member.name}
+            </h4>
+            <p className="mt-1 text-sm font-medium uppercase tracking-[0.25em] text-[#BCC1CA]">
+              {member.role}
+            </p>
           </div>
         </div>
 
-        {/* Bio */}
-        <p className="relative mb-6 text-sm leading-relaxed text-[#D5D8E1]/90">
+        <p className="relative mt-5 text-sm leading-relaxed text-[#D5D8E1]/90">
           {member.bio}
         </p>
 
-        {/* Quote */}
-        <div className="relative mb-6 overflow-hidden rounded-xl border border-[#242836]/50 bg-gradient-to-br from-[#0F1118] to-[#131623]/50 p-2 md:p-4">
-          <div className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-[#DC4242] to-[#5A6BFF]"></div>
-          <div className="relative pl-1 md:pl-3">
-            <svg className="absolute -top-1 left-0 md:-left-1 h-2 md:h-4 w-2 md:w-4 text-[#DC4242]/50" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-            </svg>
-            <p className="text-sm font-medium italic text-[#F5F6FA]/90">
+        <div className="relative mt-5 rounded-2xl border border-white/10 bg-[#0D1018]/80 p-3">
+          <div className="flex items-start gap-2">
+            <div className="mt-1 h-2.5 w-2.5 rounded-full" style={{ backgroundColor: member.accent }} />
+            <p className="text-sm leading-relaxed text-[#D9DDE7]">
               {member.quote}
             </p>
           </div>
         </div>
 
-        {/* Hover Effect Line */}
-        <div className="absolute bottom-0 left-0 h-px w-0 bg-gradient-to-r from-[#DC4242] to-[#5A6BFF] transition-all duration-500 group-hover:w-full"></div>
+        <div className="absolute bottom-0 left-0 h-px w-0 bg-gradient-to-r from-[#DC4242] via-[#5A6BFF] to-[#00D1A0] transition-all duration-500 group-hover:w-full" />
       </div>
     </article>
   );
@@ -192,14 +169,17 @@ export default function OurTeamSection() {
   const renderMoreMembersCard = (member, key) => (
     <article
       key={key}
-      className="relative min-w-[200px] min-h-[350px] sm:min-w-xs md:min-w-[285px] shrink-0 transition-transform duration-500"
+      className="relative min-h-[380px] min-w-[200px] shrink-0 transition-transform duration-500 sm:min-w-xs md:min-w-[285px]"
     >
-      <div className="flex min-h-[350px] items-center justify-center rounded-md transition-all cursor-disabled">
-        <div className="text-center">
-          <p className="text-5xl font-bold text-[#F5F6FA]">
+      <div className="flex min-h-[380px] items-center justify-center rounded-[28px] border border-dashed border-white/15 bg-[linear-gradient(135deg,rgba(255,255,255,0.06),rgba(7,9,14,0.95))] px-6 py-8 text-center shadow-[0_20px_70px_rgba(0,0,0,0.25)] backdrop-blur-xl">
+        <div>
+          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-white/10 bg-white/5 text-2xl font-semibold text-[#F5F6FA]">
+            +
+          </div>
+          <p className="mt-5 text-4xl font-semibold text-[#F5F6FA]">
             {member.count}
           </p>
-          <p className="mt-2 text-sm uppercase tracking-widest text-[#BCC1CA]">
+          <p className="mt-2 text-sm uppercase tracking-[0.25em] text-[#BCC1CA]">
             {member.name}
           </p>
         </div>
