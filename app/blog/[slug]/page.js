@@ -1,6 +1,7 @@
 import { client } from "@/lib/sanity";
 import { urlFor } from "@/lib/sanityImage";
 import { PortableText } from "@portabletext/react";
+import Footer from "../../components/Footer";
 
 export const revalidate = 60;
 
@@ -22,20 +23,24 @@ export default async function BlogDetail({ params }) {
 
   if (!post) {
     return (
-      <section className="softles-section-primary py-20 text-center">
-        <div className="max-w-md mx-auto px-4">
-          <h2 className="text-white text-3xl font-bold mb-3 tracking-tight">
-            Article Not Found
-          </h2>
-          <p className="text-[#BCC1CA] text-base">
-            The article you are looking for does not exist or has been moved.
-          </p>
-        </div>
-      </section>
+      <>
+        <section className="softles-section-primary py-20 text-center">
+          <div className="max-w-md mx-auto px-4">
+            <h2 className="text-white text-3xl font-bold mb-3 tracking-tight">
+              Article Not Found
+            </h2>
+            <p className="text-[#BCC1CA] text-base">
+              The article you are looking for does not exist or has been moved.
+            </p>
+          </div>
+        </section>
+        <Footer />
+      </>
     );
   }
 
   return (
+    <>
     <section className="softles-section-primary py-12 md:py-24 bg-[#0f111a]">
       {/* Article Wrapper: Reading purpose ke liye perfect width (max-w-3xl) */}
       <article className="max-w-4xl mx-auto px-4 sm:px-6">
@@ -102,5 +107,7 @@ export default async function BlogDetail({ params }) {
 
       </article>
     </section>
+    <Footer />
+    </>
   );
 }

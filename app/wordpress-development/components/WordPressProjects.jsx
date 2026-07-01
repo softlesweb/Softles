@@ -1,6 +1,5 @@
 "use client";
 
-import { FaYoutube } from "react-icons/fa";
 import WordPressProjectShowcase from "../../components/_components/WordPressProjectShowcase";
 
 const projects = [
@@ -11,7 +10,10 @@ const projects = [
     image: "/prideandjustice.png",
     industry: "Legal / Law Firm",
     summary:
-      "WordPress website for a Gurugram-based law firm — practice areas, team profiles, pan-India network, blog, and appointment booking.",
+      "A trust-driven WordPress experience for a growing law firm, combining strong practice-area navigation, team credibility, and conversion-focused enquiry flows.",
+    content:
+      "Built with a custom information architecture that helps visitors quickly understand the firm’s expertise, locate the right legal services, and book consultations with confidence.",
+    results: ["Practice area clarity", "Faster consultation intent", "Stronger trust signals"],
     tags: ["WordPress", "Custom Theme", "Legal", "SEO"],
   },
   {
@@ -21,7 +23,10 @@ const projects = [
     image: "/enviroguru.png",
     industry: "Environmental / Consulting",
     summary:
-      "Corporate WordPress site for pollution control and environmental compliance services — services, testimonials, and lead forms.",
+      "A professional corporate website designed to present environmental compliance services clearly while turning visitor interest into qualified leads.",
+    content:
+      "The site structure emphasizes service credibility, testimonials, and lead capture modules so decision-makers can evaluate the consultancy quickly.",
+    results: ["Lead-focused UX", "Service clarity", "Higher conversion intent"],
     tags: ["WordPress", "Corporate", "Lead Forms", "SEO"],
   },
   {
@@ -31,21 +36,11 @@ const projects = [
     image: "/bnpsinternational.png",
     industry: "Education / Study Abroad",
     summary:
-      "Study abroad consultancy website with counselling CTAs, university partners, success stories, and student enquiry forms.",
+      "A polished WordPress platform for an education consultancy with strong storytelling, partner credibility, and high-intent student enquiry journeys.",
+    content:
+      "Designed to support both informational browsing and action-oriented conversion through clear callouts for counselling, university partnerships, and success stories.",
+    results: ["Student enquiry flow", "Partner credibility", "Clear education messaging"],
     tags: ["WordPress", "Education", "Lead Generation"],
-  },
-  {
-    title: "Gaam Guhaand",
-    shortName: "Gaam Guhaand",
-    url: "https://www.youtube.com/@gaamguhaand",
-    linkLabel: "Watch on YouTube",
-    image: null,
-    placeholderIcon: <FaYoutube />,
-    industry: "Media / Regional News",
-    badge: "Redeploying soon",
-    summary:
-      "Regional Hindi media platform for western UP, Delhi & Haryana. The WordPress site featured latest YouTube videos and category-wise video sections.",
-    tags: ["WordPress", "YouTube API", "Hindi CMS", "Media"],
   },
 ];
 

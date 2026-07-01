@@ -50,16 +50,11 @@ export default function Navbar() {
                 <MobileSidebar/>
                 <div className="w-full ml-16 hidden lg:flex items-center justify-between text-base leading-5 font-semibold" >
                     <ul className="flex items-center gap-x-8">
-                        <li>
+                        {/* <li>
                             <Link href="/#about" onClick={e => handleSectionClick(e, "about")} className="hover:text-[#DC4242] transition-colors">
                                 About Us
                             </Link>
-                        </li>
-                        <li>
-                            <Link href="/#services" onClick={e => handleSectionClick(e, "services")} className="hover:text-[#DC4242] transition-colors">
-                                Services
-                            </Link>
-                        </li>
+                        </li> */}
                         <li>
                             <Link href="/wordpress-development" className="hover:text-[#DC4242] transition-colors">
                                 WordPress

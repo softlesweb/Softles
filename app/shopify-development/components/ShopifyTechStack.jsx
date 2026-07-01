@@ -11,15 +11,17 @@ import { RiStarSFill } from "react-icons/ri";
 
 export default function ShopifyTechStack() {
   const techs = [
-    { icon: <SiShopify className="w-5 h-5 text-zinc-400 group-hover:text-[#DC4242] transition-colors duration-300" />, name: "Shopify", desc: "Core Platform" },
-    { icon: <RiStarSFill className="w-5 h-5 text-zinc-400 group-hover:text-[#DC4242] transition-colors duration-300" />, name: "Shopify Plus", desc: "Enterprise Commerce" },
-    { icon: <FiDroplet className="w-5 h-5 text-zinc-400 group-hover:text-[#DC4242] transition-colors duration-300" />, name: "Liquid", desc: "Template Language" },
-    { icon: <FiCpu className="w-5 h-5 text-zinc-400 group-hover:text-[#DC4242] transition-colors duration-300" />, name: "Hydrogen", desc: "Headless Framework" },
-    { icon: <SiReact className="w-5 h-5 text-zinc-400 group-hover:text-[#DC4242] transition-colors duration-300" />, name: "React", desc: "Storefront UI" },
-    { icon: <SiNextdotjs className="w-5 h-5 text-zinc-400 group-hover:text-[#DC4242] transition-colors duration-300" />, name: "Next.js", desc: "Commerce Framework" },
-    { icon: <SiGraphql className="w-5 h-5 text-zinc-400 group-hover:text-[#DC4242] transition-colors duration-300" />, name: "GraphQL", desc: "Storefront API" },
-    { icon: <FiMail className="w-5 h-5 text-zinc-400 group-hover:text-[#DC4242] transition-colors duration-300" />, name: "Klaviyo", desc: "Email Automation" },
+    { icon: <SiShopify className="w-5 h-5" />, name: "Shopify", desc: "Core Platform" },
+    { icon: <RiStarSFill className="w-5 h-5" />, name: "Shopify Plus", desc: "Enterprise Commerce" },
+    { icon: <FiDroplet className="w-5 h-5" />, name: "Liquid", desc: "Template Language" },
+    { icon: <FiCpu className="w-5 h-5" />, name: "Hydrogen", desc: "Headless Framework" },
+    { icon: <SiReact className="w-5 h-5" />, name: "React", desc: "Storefront UI" },
+    { icon: <SiNextdotjs className="w-5 h-5" />, name: "Next.js", desc: "Commerce Framework" },
+    { icon: <SiGraphql className="w-5 h-5" />, name: "GraphQL", desc: "Storefront API" },
+    { icon: <FiMail className="w-5 h-5" />, name: "Klaviyo", desc: "Email Automation" },
   ];
+
+  const loopedTechs = [...techs, ...techs];
 
   return (
     <section className="softles-section-secondary" id="tech-stack">
@@ -41,60 +43,37 @@ export default function ShopifyTechStack() {
           </p>
         </div>
 
-        {/* Uniform Grid Layout */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {techs.map((tech, idx) => (
-            <div
-              key={idx}
-              // Symmetrical hover and styles with previous sections (No fake radial glows)
-              className="
-                group
-                relative
-                softles-card
-                p-6
-                text-center
-                flex
-                flex-col
-                items-center
-                justify-center
-              "
-            >
-              <div className="relative z-10 w-full flex flex-col items-center">
-
-                {/* Unified Icon Box Shape */}
-                <div
-                  className="
-                    w-10 h-10
-                    mb-4
-                    flex
-                    items-center
-                    justify-center
-                    rounded-lg
-                    bg-[#191C26]
-                    border border-[#2a2e40]
-                    group-hover:bg-[#DC4242]/10
-                    group-hover:border-[#DC4242]/30
-                    transition-all
-                    duration-300
-                  "
-                >
+        <div className="overflow-hidden rounded-2xl border border-[#2a2e40]/70 bg-[#191C26]/70 py-4 sm:py-5">
+          <div className="flex w-max items-center gap-3 sm:gap-4 animate-[marquee_22s_linear_infinite] hover:[animation-play-state:paused]">
+            {loopedTechs.map((tech, idx) => (
+              <div
+                key={`${tech.name}-${idx}`}
+                className="group min-w-[170px] sm:min-w-[190px] rounded-xl border border-[#2a2e40]/70 bg-[#181B23]/90 px-4 py-4 sm:px-5 sm:py-5 text-center shadow-sm transition-all duration-300 hover:border-[#DC4242]/40 hover:bg-[#1E222D]"
+              >
+                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg border border-[#2a2e40] bg-[#191C26] text-[#BCC1CA] transition-all duration-300 group-hover:border-[#DC4242]/30 group-hover:text-[#DC4242]">
                   {tech.icon}
                 </div>
-
-                {/* Title */}
-                <h4 className="font-bold text-base text-white mb-1 group-hover:text-[#DC4242] transition-colors duration-300">
+                <h4 className="mb-1 text-sm font-semibold text-white transition-colors duration-300 group-hover:text-[#DC4242]">
                   {tech.name}
                 </h4>
-
-                {/* Description */}
-                <p className="text-[#BCC1CA]/60 text-xs tracking-wide">
+                <p className="text-[11px] uppercase tracking-[0.2em] text-[#BCC1CA]/60">
                   {tech.desc}
                 </p>
-
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
+
+        <style jsx>{`
+          @keyframes marquee {
+            from {
+              transform: translateX(0);
+            }
+            to {
+              transform: translateX(-50%);
+            }
+          }
+        `}</style>
       </div>
     </section>
   );

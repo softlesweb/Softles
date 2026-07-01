@@ -41,28 +41,22 @@ export default function ShopifyBenefits() {
   return (
     <section className="softles-section-secondary" id="why-softles">
       <div className="service-page-container">
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
-          
-          {/* Left Text Block */}
-          <div className="flex-1 lg:sticky lg:top-24">
-            <div className="softles-eyebrow mb-2">
-              <span className="softles-eyebrow-line" />
-              <span className="softles-eyebrow-text">
-                Why SoftLes
-              </span>
+        <div className="p-2 sm:p-3 lg:p-4">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 lg:gap-10">
+            <div className="max-w-xl">
+              <div className="softles-eyebrow mb-3">
+                <span className="softles-eyebrow-line" />
+                <span className="softles-eyebrow-text">Why SoftLes</span>
+              </div>
+              <h2 className="service-section-heading text-[#FFFFFF] mb-4">
+                Why Partner With SoftLes
+              </h2>
+              <p className="softles-section-copy max-w-lg">
+                We combine commercial thinking, platform expertise, and hands-on delivery to help brands grow faster with a more reliable digital experience.
+              </p>
             </div>
-            <h2 className="service-section-heading text-[#FFFFFF]">
-              Why Partner With SoftLes
-            </h2>
-            <p className="softles-section-copy mb-8 max-w-md">
-              We bring commercial thinking to every Shopify engagement. Your store&apos;s revenue metrics are our KPIs — not just the number of tickets closed.
-            </p>
-            
-            {/* Unified Button Style */}
-            <Link
-              href="/#book-call"
-              className="softles-primary-button group"
-            >
+
+            <Link href="/#book-call" className="softles-primary-button group w-full sm:w-auto">
               <span>Start a Project</span>
               <svg
                 width="14"
@@ -80,50 +74,21 @@ export default function ShopifyBenefits() {
             </Link>
           </div>
 
-          {/* Right Cards Grid */}
-          <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
             {benefits.map((benefit, idx) => (
-              <div
-                key={idx}
-                // Matching cards language from previous components
-                className="
-                  group
-                  flex flex-col
-                  p-6
-                  softles-card
-                "
-              >
-                {/* Clean Custom Icon Box */}
-                <div
-                  className="
-                    w-10 h-10
-                    rounded-lg
-                    flex items-center justify-center
-                    bg-[#191C26]
-                    border border-[#2a2e40]
-                    group-hover:bg-[#DC4242]/10
-                    group-hover:border-[#DC4242]/30
-                    mb-4
-                    transition-all
-                    duration-300
-                  "
-                >
+              <div key={idx} className="group flex flex-col p-5 sm:p-6 rounded-2xl border border-[#2a2e40]/60 bg-[#191C26]/60 hover:border-[#DC4242]/30 hover:bg-[#1b1f2b] transition-all duration-300">
+                <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-[#13161f] border border-[#2a2e40] group-hover:bg-[#DC4242]/10 group-hover:border-[#DC4242]/30 mb-4 transition-all duration-300">
                   {benefit.icon}
                 </div>
-
-                {/* Title */}
-                <h4 className="font-bold text-xl text-white mb-3 leading-tight group-hover:text-[#DC4242] transition-colors duration-300">
+                <h4 className="font-bold text-lg text-white mb-2.5 leading-tight group-hover:text-[#DC4242] transition-colors duration-300">
                   {benefit.title}
                 </h4>
-
-                {/* Description */}
                 <p className="text-[#BCC1CA] text-sm leading-relaxed">
                   {benefit.desc}
                 </p>
               </div>
             ))}
           </div>
-
         </div>
       </div>
     </section>

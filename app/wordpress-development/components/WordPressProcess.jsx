@@ -32,61 +32,67 @@ export default function WordPressProcess() {
   return (
     <section className="softles-section-primary">
       <div className="service-page-container">
-        
-        {/* Header - Keeping identical line markers and font typography hierarchies */}
-        <div className="text-center mb-12 lg:mb-20">
+        <div className="text-center mb-12">
           <div className="softles-eyebrow justify-center mb-2">
             <span className="softles-eyebrow-line" />
-            <span className="softles-eyebrow-text">
-              How We Work
-            </span>
+            <span className="softles-eyebrow-text">How We Work</span>
           </div>
-          <h2 className="service-section-heading mb-3">
-            Our Development Process
-          </h2>
+          <h2 className="service-section-heading mb-3">Our WordPress Development Process</h2>
           <p className="softles-section-copy mx-auto">
-            A structured, transparent process that keeps projects on time and on
-            budget — every time.
+            A structured, transparent process that keeps WordPress projects moving from strategy to launch with clarity.
           </p>
         </div>
 
-        {/* Unique Pipeline Flow Infrastructure (Completely separated from Shopify) */}
-        <div className="relative max-w-5xl mx-auto flex flex-col gap-6">
-          
-          {/* Vertical Engineering Timeline Path Line for Desktop Layout */}
-          <div className="absolute left-[39px] top-4 bottom-4 w-0.5 bg-[#2a2e40]/50 hidden md:block" />
+        <div className="relative hidden lg:flex gap-0 max-w-6xl mx-auto">
+          <div className="absolute top-5 left-[10%] right-[10%] h-px bg-[#2a2e40]/50 z-0" />
 
-          {steps.map((step, idx) => (
-            <div
-              key={idx}
-              className="group relative flex flex-col md:flex-row items-start gap-4 md:gap-8 softles-card p-5 sm:p-6 lg:p-8"
-            >
-              {/* Symmetrical Left Column - Process Step Tracking Node */}
-              <div className="flex items-center gap-4 shrink-0 z-10">
-                <div className="w-20 h-10 rounded-xl bg-[#191C26] border border-[#2a2e40] flex items-center justify-center text-xs font-bold tracking-widest text-[#BCC1CA] group-hover:border-[#DC4242] group-hover:text-[#DC4242] transition-colors duration-300">
-                  STEP// {step.num}
+          <div className="flex w-full gap-4 relative z-10">
+            {steps.map((step, idx) => (
+              <div key={idx} className="flex-1 flex flex-col items-center text-center group">
+                <div className="w-10 h-10 rounded-xl bg-[#191C26] border border-[#2a2e40] flex items-center justify-center mb-6 relative z-10 transition-all duration-300 group-hover:border-[#DC4242]/30 group-hover:bg-[#DC4242]/10">
+                  <span className="font-bold text-[#BCC1CA]/80 text-sm transition-colors duration-300 group-hover:text-[#DC4242]">
+                    {step.num}
+                  </span>
+                </div>
+
+                <div className="softles-card p-5 w-full flex-1">
+                  <h3 className="font-bold text-white text-base mb-2.5 transition-colors duration-300 group-hover:text-[#DC4242]">
+                    {step.title}
+                  </h3>
+                  <p className="text-[#BCC1CA]/70 text-xs sm:text-sm leading-relaxed">
+                    {step.desc}
+                  </p>
                 </div>
               </div>
+            ))}
+          </div>
+        </div>
 
-              {/* Symmetrical Right Column - Process Core Text Data Module */}
-              <div className="flex-1">
-                <h3 className="text-base sm:text-lg font-bold text-[#FFFFFF] mb-2 tracking-tight group-hover:text-[#DC4242] transition-colors duration-300">
-                  {step.title}
-                </h3>
-                <p className="text-[#BCC1CA]/70 text-sm leading-relaxed max-w-3xl">
-                  {step.desc}
-                </p>
+        <div className="flex flex-col gap-0 lg:hidden">
+          {steps.map((step, idx) => (
+            <div key={step.num ?? idx} className="flex gap-4 sm:gap-5 group">
+              <div className="flex flex-col items-center">
+                <div className="w-10 h-10 shrink-0 rounded-xl bg-[#191C26] border border-[#2a2e40] flex items-center justify-center group-hover:bg-[#DC4242]/10 group-hover:border-[#DC4242]/30 transition-all duration-300">
+                  <span className="font-bold text-[#BCC1CA]/80 text-xs sm:text-sm group-hover:text-[#DC4242] transition-colors">
+                    {step.num}
+                  </span>
+                </div>
+                {idx < steps.length - 1 && <div className="w-px flex-1 min-h-[32px] bg-[#2a2e40]/60 my-2" />}
               </div>
 
-              {/* Step Flow System Meta Tag */}
-              <div className="absolute right-4 top-4 hidden sm:block text-[9px] text-[#BCC1CA]/40 uppercase tracking-widest">
-                {`Stage_0${idx + 1} // Active`}
+              <div className="flex-1 pb-8">
+                <div className="softles-card p-5">
+                  <h3 className="font-bold text-white text-base mb-2 transition-colors duration-300">
+                    {step.title}
+                  </h3>
+                  <p className="text-[#BCC1CA]/70 text-xs sm:text-sm leading-relaxed">
+                    {step.desc}
+                  </p>
+                </div>
               </div>
-
             </div>
           ))}
         </div>
-
       </div>
     </section>
   );

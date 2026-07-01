@@ -19,11 +19,11 @@ export default function ShopifyDevelopment() {
   return (
     <main className="bg-[#191C26] overflow-x-hidden">
       <ShopifyHero />
+      <ShopifyProjects />
       <ShopifyServices />
       <ShopifyTrust />
       <ShopifyProcess />
       <ShopifyTechStack />
-      <ShopifyProjects />
       <ShopifyBenefits />
       <ShopifyFAQ />
       <ShopifyCTA />

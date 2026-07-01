@@ -55,8 +55,35 @@ function ProjectSlide({ project, isActive }) {
         </div>
 
         <div className="p-5 sm:p-6 lg:p-8 flex flex-col justify-center">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-[#DC4242] mb-2">
+            Featured Project
+          </p>
           <h3 className="text-xl sm:text-2xl font-bold text-[#FFFFFF] mb-2">{project.title}</h3>
           <p className="text-[#BCC1CA]/80 text-sm leading-relaxed mb-4">{project.summary}</p>
+
+          {project.content && (
+            <p className="text-[#BCC1CA]/70 text-sm leading-relaxed mb-4 border-l-2 border-[#DC4242]/40 pl-3">
+              {project.content}
+            </p>
+          )}
+
+          {project.results && project.results.length > 0 && (
+            <div className="mb-5">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-[#BCC1CA]/60 mb-2">
+                Key Outcomes
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {project.results.map((result) => (
+                  <span
+                    key={result}
+                    className="rounded-full border border-[#2a2e40] bg-[#191C26]/80 px-2.5 py-1 text-[11px] font-medium text-[#F5F6FA]"
+                  >
+                    {result}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
 
           <div className="flex flex-wrap gap-1.5 mb-5">
             {project.tags.map((tag) => (
@@ -111,13 +138,14 @@ export default function WordPressProjectShowcase({ projects }) {
 
   return (
     <div className="relative w-full">
-      <div className="flex items-center justify-between mb-5 sm:mb-6 gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-5 sm:mb-6">
         <div className="flex items-center gap-2 text-xs sm:text-sm text-[#BCC1CA]">
           <span className="font-semibold text-[#FFFFFF]">
             {String(activeIndex + 1).padStart(2, "0")}
           </span>
           <span>/</span>
           <span>{String(projects.length).padStart(2, "0")}</span>
+          <span className="hidden sm:inline">projects</span>
         </div>
 
         <div className="flex items-center gap-2">

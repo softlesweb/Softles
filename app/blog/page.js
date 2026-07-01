@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { client } from "@/lib/sanity";
 import { urlFor } from "@/lib/sanityImage";
+import Footer from "../components/Footer";
 
 export const revalidate = 60;
 
@@ -20,6 +21,7 @@ export default async function BlogPage() {
   const [featured, ...rest] = posts || [];
 
   return (
+    <>
     <section className="softles-section-primary" id="blog">
       <div className="service-page-container">
         {/* Section Header */}
@@ -175,6 +177,8 @@ export default async function BlogPage() {
           </div>
         )}
       </div>
-    </section> 
+    </section>
+    <Footer />
+    </>
   );
 }

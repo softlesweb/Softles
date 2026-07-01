@@ -132,14 +132,17 @@ export default function Hero() {
                 <div className="overflow-hidden w-full relative before:absolute before:left-0 before:top-0 before:bottom-0 before:w-20 before:bg-gradient-to-r before:from-[#191C26] before:to-transparent before:z-10 after:absolute after:right-0 after:top-0 after:bottom-0 after:w-20 after:bg-gradient-to-l after:from-[#191C26] after:to-transparent after:z-10">
                     <div className="flex animate-logo-rail whitespace-nowrap w-max gap-12 md:gap-20 items-center" style={{ animation: "logo-rail 18s linear infinite" }}>
                     {clientLogos.concat(clientLogos).map((logo, idx) => (
-                        <div key={idx} className="group h-14 md:h-16 px-5 md:px-7 rounded-xl flex items-center justify-center bg-white/5 border border-white/10 backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:border-[#DC4242]/50 hover:shadow-[0_10px_30px_rgba(220,66,66,0.15)]">
-                        <Image
-                            src={logo}
-                            alt={`Client Logo ${idx + 1}`}
-                            width={120}
-                            height={48}
-                            className="h-8 md:h-10 w-auto opacity-80 transition-all duration-300 group-hover:opacity-100 group-hover:scale-105"
-                        />
+                        <div 
+                            key={idx} 
+                            className="group h-14 md:h-16 px-5 md:px-7 rounded-xl flex items-center justify-center"
+                        >
+                            <Image
+                                src={logo}
+                                alt={`Client Logo ${idx + 1}`}
+                                width={120}
+                                height={48}
+                                className="h-8 md:h-10 w-auto opacity-80 transition-all duration-300 group-hover:opacity-100 group-hover:scale-105"
+                            />
                         </div>
                     ))}
                     </div>
