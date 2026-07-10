@@ -71,36 +71,32 @@ export default function Hero() {
                             <span className="text-base text-[#BCC1CA] font-normal">Design-led. AI-accelerated.</span>
                         </div>
                         {/* Main Heading */}
-                        <h1 className="relative font-extrabold text-3xl sm:text-[52px] md:text-[60px] leading-[1.08] tracking-[-0.03em] text-[#F5F6FA]">
-                            We build businesses on
-                            <br />
-                            <span className="text-[#DC4242]">WordPress</span> &amp;{" "}
+                        <h1 className="relative font-extrabold text-[2rem] leading-[1.12] sm:text-5xl sm:leading-[1.1] lg:text-[52px] xl:text-[58px] tracking-[-0.03em] text-[#F5F6FA]">
+                            We build businesses on{" "}
+                            <span className="text-[#DC4242]">WordPress</span>
+                            <br className="hidden sm:block" /> &amp;{" "}
                             <span className="text-[#DC4242]">Shopify</span>
-                            <span className="ml-1 text-[#DC4242]">.</span>
+                            <span className="text-[#DC4242]">.</span>
                         </h1>
                         {/* Supporting Line */}
-                        <p className="text-[#BCC1CA] mt-4 mb-5 md:mb-12 max-w-xl block text-base lg:text-lg leading-relaxed" style={{maxWidth: '44ch', lineHeight: 1.5}}>
+                        <p className="text-[#BCC1CA] mt-5 mb-6 md:mb-10 text-base lg:text-lg leading-relaxed" style={{maxWidth: '46ch', lineHeight: 1.55}}>
                             Design-led builds — from AI-accelerated prototyping to custom themes, headless storefronts, apps, and integrations that grow your business.
                         </p>
-                        {/* CTAs on one line */}
-                        <div className="flex justify-center lg:justify-start w-full max-w-xs">
-                            <div onClick={e => handleClick(e, "book-call")} className="relative">
-                                <button
-                                    className="flex items-center text-lg whitespace-nowrap group relative shadow-[inset_0_0_0_2px_#616467] text-[#DC4242] px-4 md:px-8 py-2 md:py-4 rounded-full uppercase font-bold bg-transparent hover:bg-[#616467] transition duration-300"
-                                    onMouseEnter={() => setShowTooltip(true)}
-                                    onMouseLeave={() => setShowTooltip(false)}
-                                >
-                                    <span>Book a Free Discovery Call</span>
-                                    <span className="hidden sm:inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none ml-2">
-                                        <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" className="text-[#DC4242]"><path d="M5 12h14M15 8l4 4-4 4"/></svg>
-                                    </span>
-                                </button>
-                                {showTooltip && (
-                                    <span className="absolute left-1/2 -bottom-10 -translate-x-1/2 bg-[#23263a] text-white text-xs px-3 py-2 rounded shadow-lg z-20 whitespace-nowrap animate-fade-in">
-                                        30-minute free strategy session
-                                    </span>
-                                )}
-                            </div>
+                        {/* Primary CTA */}
+                        <div className="relative" onClick={e => handleClick(e, "book-call")}>
+                            <button
+                                className="group inline-flex items-center gap-2 rounded-full bg-[#DC4242] px-7 md:px-8 py-3.5 md:py-4 text-sm md:text-base font-bold uppercase tracking-wide text-white shadow-lg shadow-[#DC4242]/25 transition-all duration-300 hover:bg-[#c23636] hover:shadow-[#DC4242]/40 hover:-translate-y-0.5"
+                                onMouseEnter={() => setShowTooltip(true)}
+                                onMouseLeave={() => setShowTooltip(false)}
+                            >
+                                <span>Book a Free Discovery Call</span>
+                                <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="transition-transform group-hover:translate-x-1 shrink-0"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                            </button>
+                            {showTooltip && (
+                                <span className="absolute left-1/2 -bottom-10 -translate-x-1/2 bg-[#23263a] text-white text-xs px-3 py-2 rounded shadow-lg z-20 whitespace-nowrap animate-fade-in">
+                                    30-minute free strategy session
+                                </span>
+                            )}
                         </div>
                     </div>
                     {/* Right Illustration with diagonal divider */}
@@ -123,7 +119,13 @@ export default function Hero() {
                 {/* Client Logo Rail - responsive */}
                 <div className="w-full mt-5 md:mt-14 z-20 flex flex-col gap-6 md:gap-8">
 
-                <div className="overflow-hidden w-full relative before:absolute before:left-0 before:top-0 before:bottom-0 before:w-20 before:bg-gradient-to-r before:from-[#191C26] before:to-transparent before:z-10 after:absolute after:right-0 after:top-0 after:bottom-0 after:w-20 after:bg-gradient-to-l after:from-[#191C26] after:to-transparent after:z-10">
+                <div
+                    className="overflow-hidden w-full"
+                    style={{
+                        maskImage: "linear-gradient(to right, transparent 0, black 7%, black 93%, transparent 100%)",
+                        WebkitMaskImage: "linear-gradient(to right, transparent 0, black 7%, black 93%, transparent 100%)",
+                    }}
+                >
                     {/* Two identical lists; each list carries the same gap as trailing padding so the loop seam is spaced evenly. Track translates exactly -50%. */}
                     <div className="flex animate-logo-rail w-max items-center">
                     {[0, 1].map((listIdx) => (

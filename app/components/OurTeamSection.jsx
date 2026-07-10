@@ -1,17 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React, { useRef, useState, useEffect, useMemo } from "react";
-import { SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import dynamic from "next/dynamic";
-
-const Swiper = dynamic(
-    () => import("swiper/react").then((mod) => mod.Swiper),
-    { ssr: false }
-);
+import React from "react";
 
 const team = [
   {
@@ -47,46 +37,11 @@ const team = [
 ];
 
 export default function OurTeamSection() {
-  const swiperRef = useRef(null);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
-  const [isTablet, setIsTablet] = useState(false);
-
-  useEffect(() => {
-    const updateBreakpoint = () => {
-      const width = window.innerWidth;
-      setIsMobile(width < 880);
-      setIsTablet(width >= 880 && width < 1280);
-    };
-
-    updateBreakpoint();
-    window.addEventListener('resize', updateBreakpoint);
-    return () => window.removeEventListener('resize', updateBreakpoint);
-  }, []);
-
-  // Mobile: one slide per member
-  const mobileSlides = [...team];
-
-  // Tablet: 2 slides (2 + 1)
-  const tabletSlideGroups = [
-    team.slice(0, 2),
-    team.slice(2, 3)
-  ];
-
-  // Desktop: all three on one slide
-  const desktopSlideGroups = [
-    team.slice(0, 3)
-  ];
-
-  // Determine which slide groups to use and calculate maxIndex
-  const slideGroups = isMobile ? mobileSlides : (isTablet ? tabletSlideGroups : desktopSlideGroups);
-  const maxIndex = Math.max(0, slideGroups.length - 1);
-
   // Helper function to render a team member card
   const renderTeamMemberCard = (member, key) => (
     <article
       key={key}
-      className="group relative mx-auto w-full min-h-[380px] max-w-[300px] shrink-0 transition-all duration-500 sm:max-w-xs md:max-w-[360px]"
+      className="group relative w-full min-h-[380px] transition-all duration-500"
     >
       <div className="relative flex h-full flex-col overflow-hidden rounded-[28px] border border-white/10 bg-[linear-gradient(135deg,rgba(255,255,255,0.06),rgba(10,12,18,0.96))] p-5 shadow-[0_20px_70px_rgba(0,0,0,0.28)] backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:border-white/20 hover:shadow-[0_24px_80px_rgba(0,0,0,0.32)] xs:p-6">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.08),transparent_45%)] opacity-70" />
@@ -168,97 +123,9 @@ export default function OurTeamSection() {
             directly with you. No layers, no hand-offs.
           </span>
         </div>
-        {/* Carousel */}
-        <div className="relative py-10 md:py-0">
-          {/* Controls (hidden when everything fits on one slide) */}
-          <div className={`mb-5 items-center justify-between ${maxIndex > 0 ? "hidden lg:flex" : "hidden"}`}>
-            <div></div>
-            <div className="flex items-center gap-3">
-              <div className="flex gap-2">
-                <button
-                  aria-label="Previous"
-                  onClick={() => swiperRef.current?.slidePrev()}
-                  className="group flex h-12 w-12 items-center justify-center rounded-full border border-[#343844] bg-gradient-to-br from-[#0F1118] to-[#131623] text-[#F5F6FA] transition-all hover:border-[#DC4242] hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  <svg className="w-5 h-5 transition-transform group-hover:-translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                  </svg>
-                </button>
-                <button
-                  aria-label="Next"
-                  onClick={() => swiperRef.current?.slideNext()}
-                  className="group flex h-12 w-12 items-center justify-center rounded-full border border-[#343844] bg-gradient-to-br from-[#0F1118] to-[#131623] text-[#F5F6FA] transition-all hover:border-[#DC4242] hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  <svg className="w-5 h-5 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Carousel Container */}
-          <Swiper
-            onSwiper={(swiper) => {
-              swiperRef.current = swiper;
-            }}
-            onSlideChange={(swiper) => {
-              setActiveIndex(swiper.activeIndex);
-            }}
-            spaceBetween={10}
-            slidesPerView={1.1}
-            breakpoints={{
-              880: {
-                slidesPerView: 1,
-                spaceBetween: 24,
-              },
-              1280: {
-                slidesPerView: 1,
-                spaceBetween: 30,
-              },
-            }}
-            grabCursor={true}
-            modules={[Navigation]}
-            className="relative overflow-visible"
-          >
-            {isMobile ? (
-              // Mobile: Individual slides (1 item per slide)
-              mobileSlides.map((member) => (
-                <SwiperSlide key={member.name}>
-                  <div className="flex justify-center items-stretch">
-                    {renderTeamMemberCard(member, member.name)}
-                  </div>
-                </SwiperSlide>
-              ))
-            ) : (
-              // Tablet & Desktop: Grouped slides (multiple items per slide)
-              slideGroups.map((group, groupIndex) => (
-                <SwiperSlide key={groupIndex}>
-                  <div className="flex gap-1 md:gap-6 justify-center items-stretch p-0">
-                    {group.map((member) => renderTeamMemberCard(member, member.name))}
-            </div>
-            </SwiperSlide>
-              ))
-            )}
-          </Swiper>
-
-          {/* Dots Indicator (hidden when there is only one slide) */}
-          <div className={`mt-8 justify-center ${maxIndex > 0 ? "flex" : "hidden"}`}>
-            <div className="flex gap-2">
-              {Array.from({ length: maxIndex + 1 }).map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => swiperRef.current?.slideTo(i)}
-                  className={`h-1.5 rounded-full transition-all duration-500 ${
-                    i === activeIndex
-                      ? "w-8 bg-gradient-to-r from-[#DC4242] to-[#5A6BFF]"
-                      : "w-1.5 bg-[#343844] hover:bg-[#5A6BFF]/50"
-                  }`}
-                  aria-label={`Go to slide ${i + 1}`}
-                />
-              ))}
-            </div>
-          </div>
+        {/* Team grid — three members, no carousel needed */}
+        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 items-stretch">
+          {team.map((member) => renderTeamMemberCard(member, member.name))}
         </div>
       </div>
     </section>
