@@ -44,33 +44,7 @@ const team = [
     tone: "from-[#2E2617]/80 to-[#0F1118]",
     accent: "#FFC857",
   },
-  {
-    image: "/Manish_Rana.png",
-    name: "Manish Rana",
-    role: "UX/UI Expert",
-    bio: "Shapes intuitive user experiences and scalable design systems that balance aesthetics, usability, and conversion across digital products.",
-    hue: "from-[#5A6BFF]/80 via-[#343B6F]/60 to-[#191C26]/80",
-    quote: "Good design feels invisible—until it starts driving results.",
-    tone: "from-[#202435]/80 to-[#0F1118]",
-    accent: "#5A6BFF",
-  },
-  {
-    image: "/Divy.jpg",
-    name: "Divyansh Veermanya",
-    role: "Product Lead",
-    bio: "Owns product vision and execution by translating business goals and user insights into clear roadmaps, priorities, and shipped outcomes.",
-    hue: "from-[#6B8CFF]/80 via-[#2E356B]/60 to-[#191C26]/80",
-    quote: "Great products are built by aligning teams around the right problems.",
-    tone: "from-[#1B2140]/80 to-[#0F1118]",
-    accent: "#6B8CFF",
-  },
 ];
-
-const moreMembersCard = {
-  isSpecial: true,
-  name: "More members",
-  count: "+3"
-};
 
 export default function OurTeamSection() {
   const swiperRef = useRef(null);
@@ -90,20 +64,18 @@ export default function OurTeamSection() {
     return () => window.removeEventListener('resize', updateBreakpoint);
   }, []);
 
-  // Mobile: 6 slides with 1 item each (individual slides)
-  const mobileSlides = [...team, moreMembersCard];
+  // Mobile: one slide per member
+  const mobileSlides = [...team];
 
-  // Tablet: 3 slides with 2 items each
+  // Tablet: 2 slides (2 + 1)
   const tabletSlideGroups = [
     team.slice(0, 2),
-    team.slice(2, 4),
-    [...team.slice(4, 5), moreMembersCard]
+    team.slice(2, 3)
   ];
 
-  // Desktop: 2 slides with 3 items each (current structure)
+  // Desktop: all three on one slide
   const desktopSlideGroups = [
-    team.slice(0, 3),
-    [...team.slice(3, 5), moreMembersCard]
+    team.slice(0, 3)
   ];
 
   // Determine which slide groups to use and calculate maxIndex
@@ -165,28 +137,6 @@ export default function OurTeamSection() {
     </article>
   );
 
-  // Helper function to render the special "More members" card
-  const renderMoreMembersCard = (member, key) => (
-    <article
-      key={key}
-      className="relative min-h-[380px] min-w-[200px] shrink-0 transition-transform duration-500 sm:min-w-xs md:min-w-[285px]"
-    >
-      <div className="flex min-h-[380px] items-center justify-center rounded-[28px] border border-dashed border-white/15 bg-[linear-gradient(135deg,rgba(255,255,255,0.06),rgba(7,9,14,0.95))] px-6 py-8 text-center shadow-[0_20px_70px_rgba(0,0,0,0.25)] backdrop-blur-xl">
-        <div>
-          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-white/10 bg-white/5 text-2xl font-semibold text-[#F5F6FA]">
-            +
-          </div>
-          <p className="mt-5 text-4xl font-semibold text-[#F5F6FA]">
-            {member.count}
-          </p>
-          <p className="mt-2 text-sm uppercase tracking-[0.25em] text-[#BCC1CA]">
-            {member.name}
-          </p>
-        </div>
-      </div>
-    </article>
-  );
-
   return (
     <section
       id="about"
@@ -214,14 +164,14 @@ export default function OurTeamSection() {
             The minds behind your growth
           </span>
           <span className="text-sm sm:text-base text-[#BCC1CA]/80 mt-2 max-w-2xl leading-relaxed">
-            A multidisciplinary team blending strategy, design, engineering, and growth.
-            We move fast, align to outcomes, and keep collaboration transparent.
+            A small senior team — strategy, engineering, and Shopify expertise working
+            directly with you. No layers, no hand-offs.
           </span>
         </div>
         {/* Carousel */}
         <div className="relative py-10 md:py-0">
-          {/* Controls */}
-          <div className="mb-5 hidden lg:flex items-center justify-between">
+          {/* Controls (hidden when everything fits on one slide) */}
+          <div className={`mb-5 items-center justify-between ${maxIndex > 0 ? "hidden lg:flex" : "hidden"}`}>
             <div></div>
             <div className="flex items-center gap-3">
               <div className="flex gap-2">
@@ -273,12 +223,10 @@ export default function OurTeamSection() {
           >
             {isMobile ? (
               // Mobile: Individual slides (1 item per slide)
-              mobileSlides.map((member, index) => (
-                <SwiperSlide key={member.isSpecial ? `more-${index}` : member.name}>
+              mobileSlides.map((member) => (
+                <SwiperSlide key={member.name}>
                   <div className="flex justify-center items-stretch">
-                    {member.isSpecial
-                      ? renderMoreMembersCard(member, `more-${index}`)
-                      : renderTeamMemberCard(member, member.name)}
+                    {renderTeamMemberCard(member, member.name)}
                   </div>
                 </SwiperSlide>
               ))
@@ -287,19 +235,15 @@ export default function OurTeamSection() {
               slideGroups.map((group, groupIndex) => (
                 <SwiperSlide key={groupIndex}>
                   <div className="flex gap-1 md:gap-6 justify-center items-stretch p-0">
-                    {group.map((member, idx) =>
-                      member.isSpecial
-                        ? renderMoreMembersCard(member, `more-${groupIndex}-${idx}`)
-                        : renderTeamMemberCard(member, member.name)
-                    )}
+                    {group.map((member) => renderTeamMemberCard(member, member.name))}
             </div>
             </SwiperSlide>
               ))
             )}
           </Swiper>
 
-          {/* Dots Indicator */}
-          <div className="mt-8 flex justify-center">
+          {/* Dots Indicator (hidden when there is only one slide) */}
+          <div className={`mt-8 justify-center ${maxIndex > 0 ? "flex" : "hidden"}`}>
             <div className="flex gap-2">
               {Array.from({ length: maxIndex + 1 }).map((_, i) => (
                 <button

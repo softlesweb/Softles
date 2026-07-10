@@ -28,7 +28,7 @@ const services = [
     image: "/DesignSystem.png",
     title: "Design & Prototyping",
     bullets: [
-      { txt: "Wireframing & mockups", tip: "Low → high fidelity screens that map every interaction." },
+      { txt: "AI-accelerated wireframes & mockups", tip: "AI-assisted design moves from idea to high-fidelity screens in days, not weeks." },
       { txt: "Design systems & branding", tip: "Re-usable components that ensure brand consistency at scale." },
       { txt: "Interactive prototypes", tip: "Clickable demos for rapid feedback before writing code." },
       { txt: "User testing", tip: "Task-based sessions to refine UX and boost conversion." },
@@ -59,12 +59,12 @@ const services = [
 
   {
     image: "/Prototyping.png",
-    title: "Custom Web Development",
+    title: "Integrations & Automation",
     bullets: [
-      { txt: "Custom website development", tip: "Bespoke sites tailored to your brand and goals." },
-      { txt: "Full-stack web applications", tip: "React, Next.js, Node and modern backend architectures." },
-      { txt: "Scalable web solutions", tip: "Architecture and ops that grow with your product." },
-      { txt: "API development & integrations", tip: "Robust APIs and third-party integrations for data flow." },
+      { txt: "API & CRM integrations", tip: "Connect your store or site to CRMs, email, and business systems." },
+      { txt: "Workflow & AI automation", tip: "Automate order flows, notifications, and back-office busywork." },
+      { txt: "Payments, shipping & ERP", tip: "Reliable hookups to the platforms your operations run on." },
+      { txt: "Custom web apps when needed", tip: "Bespoke full-stack development as the supporting layer for automations and integrations." },
     ],
   },
 ];

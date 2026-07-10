@@ -13,42 +13,42 @@ export default function OurApproachSection() {
         {
             link: "#",
             image: Empathize,
-            name: "Empathize",
+            name: "Discovery Session",
             zIndex: 40,
-            alt: "Empathize process step icon",
-            description: "Understand user needs, motivations, and pain points through research and observation."
+            alt: "Discovery session process step icon",
+            description: "A focused session to understand your business, current store or site, and what success looks like."
         },
         {
             link: "#",
             image: Define,
-            name: "Define",
+            name: "Scope of Work",
             zIndex: 30,
-            alt: "Define process step icon",
-            description: "Clearly articulate the core problems identified during the empathize phase."
+            alt: "Scope of work process step icon",
+            description: "A clear written scope — deliverables, timeline, and success criteria you can hold us to."
         },
         {
             link: "#",
             image: Ideate,
-            name: "Ideate",
+            name: "Transparent Pricing",
             zIndex: 20,
-            alt: "Ideate process step icon",
-            description: "Brainstorm a wide range of creative solutions and innovative approaches."
+            alt: "Transparent pricing process step icon",
+            description: "Fixed-cost or value-based pricing agreed upfront. No hourly surprises, no scope creep."
         },
         {
             link: "#",
             image: Prototype,
-            name: "Prototype",
+            name: "Build & Delivery",
             zIndex: 10,
-            alt: "Prototype process step icon",
-            description: "Build tangible representations of solutions to test and gather feedback."
+            alt: "Build and delivery process step icon",
+            description: "Design-led build with regular reviews, delivered on the committed timeline."
         },
         {
             link: "#",
             image: Test,
-            name: "Test",
+            name: "Support & Growth",
             zIndex: 0,
-            alt: "Test process step icon",
-            description: "Validate solutions with users, gather insights, and iterate on designs."
+            alt: "Support and growth process step icon",
+            description: "We stay on after launch — support, improvements, and growth as your long-term partner."
         }
     ]
 
@@ -62,9 +62,9 @@ export default function OurApproachSection() {
                             Our Approach
                         </p>
                     </div>
-                    <span className="mt-2 mb-2 lg:mb-0 service-section-heading text-[#FFFFFF]">Right thing matters to us</span>
+                    <span className="mt-2 mb-2 lg:mb-0 service-section-heading text-[#FFFFFF]">From discovery to delivery</span>
                     <span className="text-sm sm:text-base text-[#BCC1CA]/80 mt-2 max-w-2xl leading-relaxed">
-                        Our process ensures we deliver the right solutions, every time. Here&apos;s how we work with you.
+                        A clear engagement process — you know the scope, the price, and the timeline before we write a line of code.
                     </span>
                 </div>
 

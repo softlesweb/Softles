@@ -1,6 +1,7 @@
 "use client";
 
 import { FiZap, FiLock, FiTrendingUp, FiEdit2 } from "react-icons/fi";
+import { FaShopify } from "react-icons/fa";
 
 export default function ShopifyTrust() {
   const advantages = [
@@ -44,6 +45,16 @@ export default function ShopifyTrust() {
           <p className="softles-section-copy mx-auto">
             Shopify powers over 4.6 million stores worldwide. It&apos;s the platform built to convert browsers into buyers — and to scale without friction.
           </p>
+
+          {/* Partner framing — we build with Shopify, as partners, not resellers */}
+          <div className="flex justify-center mt-6">
+            <div className="inline-flex items-center gap-2.5 rounded-full border border-[#95BF47]/30 bg-[#95BF47]/[0.07] px-5 py-2.5">
+              <FaShopify className="w-5 h-5 text-[#95BF47] shrink-0" />
+              <span className="text-sm text-[#BCC1CA]">
+                <span className="font-bold text-white">SoftLes × Shopify</span> — we work as a Shopify partner agency, building on the platform every day.
+              </span>
+            </div>
+          </div>
         </div>
 
         {/* Unified Cards Grid */}

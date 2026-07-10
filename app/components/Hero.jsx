@@ -65,28 +65,22 @@ export default function Hero() {
                 <div className="relative flex flex-col-reverse lg:flex-row items-center justify-center w-full mx-auto gap-2 lg:gap-20 z-10 px-0">
                     {/* Left Content */}
                     <div className="flex-1 flex flex-col items-center lg:items-start justify-center max-w-2xl text-center lg:text-left max-h-min min-h-10">
-                        {/* Creative Ideas Label (updated copy) */}
+                        {/* Tagline eyebrow */}
                         <div className="flex items-center mb-2 md:mb-6">
                             <span className="block w-12 h-0.5 bg-[#F5F6FA] mr-4" />
-                            <span className="text-base text-[#BCC1CA] font-normal">We&apos;re a small agency which</span>
+                            <span className="text-base text-[#BCC1CA] font-normal">Design-led. AI-accelerated.</span>
                         </div>
                         {/* Main Heading */}
-                        {/* <h1 className="font-extrabold md:mb-2 leading-3 md:leading-tight tracking-wide relative text-[clamp(2.2rem,6vw,3.5rem)] text-[#F5F6FA]">
-                            Bespoke<br className="block" /> Business <br className="hidden sm:block" />
-                            Solutions
-                            <span className="text-[#DC4242] align-super text-5xl ml-1">.</span>
-                        </h1> */}
-                        <h1 className="relative font-extrabold text-3xl sm:text-[56px] md:text-[64px] leading-[1.05] tracking-[-0.03em] text-[#F5F6FA]">
-                            Bespoke
+                        <h1 className="relative font-extrabold text-3xl sm:text-[52px] md:text-[60px] leading-[1.08] tracking-[-0.03em] text-[#F5F6FA]">
+                            We build businesses on
                             <br />
-                            <span className="text-[#DC4242]">Business</span>
-                            <br className="hidden sm:block" />
-                            Solutions
+                            <span className="text-[#DC4242]">WordPress</span> &amp;{" "}
+                            <span className="text-[#DC4242]">Shopify</span>
                             <span className="ml-1 text-[#DC4242]">.</span>
                         </h1>
                         {/* Supporting Line */}
-                        <p className="text-[#BCC1CA] mt-4 mb-5 md:mb-12 max-w-xl block text-base lg:text-lg leading-relaxed" style={{maxWidth: '40ch', lineHeight: 1.5}}>
-                            We create new design for your online business with the support of our wonderful team of professionals.
+                        <p className="text-[#BCC1CA] mt-4 mb-5 md:mb-12 max-w-xl block text-base lg:text-lg leading-relaxed" style={{maxWidth: '44ch', lineHeight: 1.5}}>
+                            Design-led builds — from AI-accelerated prototyping to custom themes, headless storefronts, apps, and integrations that grow your business.
                         </p>
                         {/* CTAs on one line */}
                         <div className="flex justify-center lg:justify-start w-full max-w-xs">
@@ -130,19 +124,21 @@ export default function Hero() {
                 <div className="w-full mt-5 md:mt-14 z-20 flex flex-col gap-6 md:gap-8">
 
                 <div className="overflow-hidden w-full relative before:absolute before:left-0 before:top-0 before:bottom-0 before:w-20 before:bg-gradient-to-r before:from-[#191C26] before:to-transparent before:z-10 after:absolute after:right-0 after:top-0 after:bottom-0 after:w-20 after:bg-gradient-to-l after:from-[#191C26] after:to-transparent after:z-10">
-                    <div className="flex animate-logo-rail whitespace-nowrap w-max gap-12 md:gap-20 items-center" style={{ animation: "logo-rail 18s linear infinite" }}>
-                    {clientLogos.concat(clientLogos).map((logo, idx) => (
-                        <div 
-                            key={idx} 
-                            className="group h-14 md:h-16 px-5 md:px-7 rounded-xl flex items-center justify-center"
-                        >
-                            <Image
-                                src={logo}
-                                alt={`Client Logo ${idx + 1}`}
-                                width={120}
-                                height={48}
-                                className="h-8 md:h-10 w-auto opacity-80 transition-all duration-300 group-hover:opacity-100 group-hover:scale-105"
-                            />
+                    {/* Two identical lists; each list carries the same gap as trailing padding so the loop seam is spaced evenly. Track translates exactly -50%. */}
+                    <div className="flex animate-logo-rail w-max items-center">
+                    {[0, 1].map((listIdx) => (
+                        <div key={listIdx} className="flex items-center shrink-0 gap-14 md:gap-20 pr-14 md:pr-20" aria-hidden={listIdx === 1}>
+                            {clientLogos.map((logo, idx) => (
+                                <div key={idx} className="group h-14 md:h-16 flex items-center justify-center shrink-0">
+                                    <Image
+                                        src={logo}
+                                        alt={`Client Logo ${idx + 1}`}
+                                        width={120}
+                                        height={48}
+                                        className="h-8 md:h-10 w-auto opacity-80 transition-all duration-300 group-hover:opacity-100 group-hover:scale-105"
+                                    />
+                                </div>
+                            ))}
                         </div>
                     ))}
                     </div>
@@ -201,7 +197,7 @@ export default function Hero() {
                 }
                 @keyframes logo-rail {
                     0% { transform: translateX(0); }
-                    100% { transform: translateX(-51%); }
+                    100% { transform: translateX(-50%); }
                 }
                 .animate-logo-rail {
                     animation: logo-rail 18s linear infinite;
