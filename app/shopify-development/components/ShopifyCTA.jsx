@@ -25,11 +25,11 @@ export default function ShopifyCTA() {
             {/* Heading with explicit tracking & font weights */}
             <h2 className="service-section-heading text-[#FFFFFF] mb-4">
               Ready to Grow Your<br className="hidden sm:block" />{" "}
-              <span className="text-[#DC4242]">Shopify Business?</span>
+              <span className="text-[#FF4D57]">Shopify Business?</span>
             </h2>
 
             {/* Paragraph Content */}
-            <p className="text-[#BCC1CA]/80 max-w-xl mx-auto mb-8 lg:mb-10 text-sm sm:text-base leading-relaxed">
+            <p className="text-[#C7CCD6]/80 max-w-xl mx-auto mb-8 lg:mb-10 text-sm sm:text-base leading-relaxed">
               Whether you&apos;re launching a new ecommerce brand or scaling an existing Shopify Plus store, SoftLes can help you build a faster, smarter, and more profitable ecommerce experience.
             </p>
 

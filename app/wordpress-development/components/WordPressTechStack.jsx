@@ -46,20 +46,20 @@ export default function WordPressTechStack() {
           </p>
         </div>
 
-        <div className="overflow-hidden rounded-2xl border border-[#2a2e40]/70 bg-[#191C26]/70 py-4 sm:py-5">
+        <div className="overflow-hidden rounded-2xl border border-[#2E3446]/70 bg-[#0E1219]/70 py-4 sm:py-5">
           <div className="flex w-max items-center justify-center gap-3 sm:gap-4 animate-[marquee_22s_linear_infinite] hover:[animation-play-state:paused]">
             {loopedTechs.map((tech, idx) => (
               <div
                 key={`${tech.name}-${idx}`}
-                className="group min-w-[170px] sm:min-w-[190px] rounded-xl border border-[#2a2e40]/70 bg-[#181B23]/90 px-4 py-4 sm:px-5 sm:py-5 text-center shadow-sm transition-all duration-300 hover:border-[#DC4242]/40 hover:bg-[#1E222D]"
+                className="group min-w-[170px] sm:min-w-[190px] rounded-xl border border-[#2E3446]/70 bg-[#181B23]/90 px-4 py-4 sm:px-5 sm:py-5 text-center shadow-sm transition-all duration-300 hover:border-[#FF4D57]/40 hover:bg-[#1E222D]"
               >
-                <div className="mb-3 mx-auto flex h-10 w-10 items-center justify-center rounded-lg border border-[#2a2e40] bg-[#191C26] text-[#BCC1CA] transition-all duration-300 group-hover:border-[#DC4242]/30 group-hover:text-[#DC4242]">
+                <div className="mb-3 mx-auto flex h-10 w-10 items-center justify-center rounded-lg border border-[#2E3446] bg-[#0E1219] text-[#C7CCD6] transition-all duration-300 group-hover:border-[#FF4D57]/30 group-hover:text-[#FF4D57]">
                   {tech.icon}
                 </div>
-                <h4 className="mb-1 text-sm font-semibold text-white transition-colors duration-300 group-hover:text-[#DC4242]">
+                <h4 className="mb-1 text-sm font-semibold text-white transition-colors duration-300 group-hover:text-[#FF4D57]">
                   {tech.name}
                 </h4>
-                <p className="text-[11px] uppercase tracking-[0.2em] text-[#BCC1CA]/60">
+                <p className="text-[11px] uppercase tracking-[0.2em] text-[#C7CCD6]/60">
                   {tech.desc}
                 </p>
               </div>

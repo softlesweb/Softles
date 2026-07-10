@@ -8,7 +8,7 @@ import { Check } from "lucide-react";
 export default function ShopifyServices() {
   const services = [
     {
-      icon: <RiBrushLine className="w-5 h-5 text-[#DC4242]" />,
+      icon: <RiBrushLine className="w-5 h-5 text-[#FF4D57]" />,
       title: "Theme Design & Redesign",
       desc: "Conversion-focused, custom Shopify themes built for brand impact, speed, and seamless mobile performance.",
       featured: true,
@@ -93,33 +93,33 @@ export default function ShopifyServices() {
                   <div
                     className={`w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-300 ${
                       service.featured
-                        ? "bg-[#DC4242]/10 border border-[#DC4242]/30"
-                        : "bg-[#191C26] border border-[#2a2e40] group-hover:bg-[#DC4242]/10 group-hover:border-[#DC4242]/30"
+                        ? "bg-[#FF4D57]/10 border border-[#FF4D57]/30"
+                        : "bg-[#0E1219] border border-[#2E3446] group-hover:bg-[#FF4D57]/10 group-hover:border-[#FF4D57]/30"
                     }`}
                   >
                     {service.icon}
                   </div>
                   
                   {service.featured && (
-                    <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-[#DC4242]/10 border border-[#DC4242]/30 text-[#DC4242]">
+                    <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-[#FF4D57]/10 border border-[#FF4D57]/30 text-[#FF4D57]">
                       Core Expert
                     </span>
                   )}
                 </div>
 
                 {/* Title */}
-                <h3 className="font-bold text-xl text-white mb-3 leading-tight group-hover:text-[#DC4242] transition-colors duration-300">
+                <h3 className="font-bold text-xl text-white mb-3 leading-tight group-hover:text-[#FF4D57] transition-colors duration-300">
                   {service.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-[#BCC1CA] text-sm leading-relaxed mb-6">
+                <p className="text-[#C7CCD6] text-sm leading-relaxed mb-6">
                   {service.desc}
                 </p>
               </div>
 
               {/* Functional Tech Features */}
-              <div className="pt-4 border-t border-[#2a2e40]/40">
+              <div className="pt-4 border-t border-[#2E3446]/40">
                 <ul className="space-y-2">
                   {service.bullets.map((bullet, i) => (
                     <li
@@ -127,7 +127,7 @@ export default function ShopifyServices() {
                       // Removed font-mono for unified brand style look
                     className="flex items-center gap-2.5 text-sm text-[#F3F4F6] font-medium"
                     >
-                      <Check className="w-3.5 h-3.5 shrink-0 text-[#DC4242]" />
+                      <Check className="w-3.5 h-3.5 shrink-0 text-[#FF4D57]" />
                       <span className="truncate">{bullet}</span>
                     </li>
                   ))}

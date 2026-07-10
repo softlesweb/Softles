@@ -1,33 +1,12 @@
 "use client";
-import { useRef, useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
+import CursorSpotlight from "./_components/CursorSpotlight";
 
 const clientLogos = ["/logo_1.png", "/logo_2.png", "/logo_3.png", "/logo_4.png", "/logo_5.png", "/logo_6.png", "/logo_7.png", "/logo_8.png", "/logo_9.png"];
 
 export default function Hero() {
-    const blobRef = useRef(null);
     const [showTooltip, setShowTooltip] = useState(false);
-
-    useEffect(() => {
-        const handleMouseMove = (e) => {
-            if (!blobRef.current) return;
-            const { clientX, clientY } = e;
-            // Animate the blob to follow the cursor with a springy effect
-            blobRef.current.animate(
-                {
-                    left: `${clientX - 150}px`,
-                    top: `${clientY - 150}px`
-                },
-                {
-                    duration: 600,
-                    fill: "forwards",
-                    easing: "cubic-bezier(.22,1.12,.58,1)"
-                }
-            );
-        };
-        window.addEventListener("mousemove", handleMouseMove);
-        return () => window.removeEventListener("mousemove", handleMouseMove);
-    }, []);
 
     // Smooth scroll handler for navbar links
     const handleClick = (e, sectionId) => {
@@ -41,26 +20,9 @@ export default function Hero() {
     return (
         <section
             id="hero"
-            className="snap-start relative min-h-screen lg:min-h-[92vh] w-full flex items-center justify-center pt-20 overflow-hidden bg-gradient-to-br from-[#191C26] via-[#23263a] to-[#111319]"
+            className="snap-start relative min-h-screen lg:min-h-[92vh] w-full flex items-center justify-center pt-20 overflow-hidden bg-gradient-to-br from-[#0E1219] via-[#23263a] to-[#111319]"
         >
-            {/* Animated awe-struck blob */}
-            <div
-                ref={blobRef}
-                className="pointer-events-none fixed z-0"
-                style={{
-                    width: 300,
-                    height: 300,
-                    borderRadius: "50%",
-                    background: "radial-gradient(circle at 60% 40%, #DC4242 0%, #191C26 100%)",
-                    filter: "blur(80px)",
-                    opacity: 0.35,
-                    left: "50vw",
-                    top: "50vh",
-                    transform: "translate(-50%, -50%)",
-                    transition: "opacity 0.3s"
-                }}
-                aria-hidden="true"
-            />
+            <CursorSpotlight />
             <div className="service-page-container flex flex-col items-center justify-center w-full lg:my-10">
                 <div className="relative flex flex-col-reverse lg:flex-row items-center justify-center w-full mx-auto gap-2 lg:gap-20 z-10 px-0">
                     {/* Left Content */}
@@ -68,24 +30,24 @@ export default function Hero() {
                         {/* Tagline eyebrow */}
                         <div className="flex items-center mb-2 md:mb-6">
                             <span className="block w-12 h-0.5 bg-[#F5F6FA] mr-4" />
-                            <span className="text-base text-[#BCC1CA] font-normal">Design-led. AI-accelerated.</span>
+                            <span className="text-base text-[#C7CCD6] font-normal">Design-led. AI-accelerated.</span>
                         </div>
                         {/* Main Heading */}
-                        <h1 className="relative font-extrabold text-[2rem] leading-[1.12] sm:text-5xl sm:leading-[1.1] lg:text-[52px] xl:text-[58px] tracking-[-0.03em] text-[#F5F6FA]">
+                        <h1 className="relative font-extrabold text-[2rem] leading-[1.18] sm:text-5xl sm:leading-[1.14] lg:text-[52px] xl:text-[58px] lg:leading-[1.16] tracking-[-0.03em] text-[#F5F6FA]">
                             We build businesses on{" "}
-                            <span className="text-[#DC4242]">WordPress</span>
+                            <span className="softles-gradient-text">WordPress</span>
                             <br className="hidden sm:block" /> &amp;{" "}
-                            <span className="text-[#DC4242]">Shopify</span>
-                            <span className="text-[#DC4242]">.</span>
+                            <span className="softles-gradient-text">Shopify</span>
+                            <span className="text-[#FF4D57]">.</span>
                         </h1>
                         {/* Supporting Line */}
-                        <p className="text-[#BCC1CA] mt-5 mb-6 md:mb-10 text-base lg:text-lg leading-relaxed" style={{maxWidth: '46ch', lineHeight: 1.55}}>
-                            Design-led builds — from AI-accelerated prototyping to custom themes, headless storefronts, apps, and integrations that grow your business.
+                        <p className="text-[#C7CCD6] mt-5 mb-6 md:mb-10 text-base lg:text-lg leading-relaxed" style={{maxWidth: '46ch', lineHeight: 1.55}}>
+                            We design and build custom WordPress and Shopify sites — fast storefronts, headless builds, apps, and the integrations that keep them running. AI helps us move quicker; it doesn&apos;t replace the craft.
                         </p>
                         {/* Primary CTA */}
                         <div className="relative" onClick={e => handleClick(e, "book-call")}>
                             <button
-                                className="group inline-flex items-center gap-2 rounded-full bg-[#DC4242] px-7 md:px-8 py-3.5 md:py-4 text-sm md:text-base font-bold uppercase tracking-wide text-white shadow-lg shadow-[#DC4242]/25 transition-all duration-300 hover:bg-[#c23636] hover:shadow-[#DC4242]/40 hover:-translate-y-0.5"
+                                className="group inline-flex items-center gap-2 rounded-full bg-[#FF4D57] px-7 md:px-8 py-3.5 md:py-4 text-sm md:text-base font-bold uppercase tracking-wide text-white shadow-lg shadow-[#FF4D57]/25 transition-all duration-300 hover:bg-[#E83A45] hover:shadow-[#FF4D57]/40 hover:-translate-y-0.5"
                                 onMouseEnter={() => setShowTooltip(true)}
                                 onMouseLeave={() => setShowTooltip(false)}
                             >
@@ -147,20 +109,21 @@ export default function Hero() {
                 </div>
 
                 <div className="flex flex-col items-center gap-2">
-                    <span className="text-[#BCC1CA] text-sm animate-pulse">
+                    <span className="text-[#C7CCD6] text-sm animate-pulse">
                     Scroll to explore our services
                     </span>
                     <div className="w-6 h-10 rounded-full border border-[#3a4052] flex justify-center pt-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#DC4242] animate-bounce" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#FF4D57] animate-bounce" />
                     </div>
                 </div>
 
                 </div>
             </div>
-            {/* Decorative Background Elements */}
-            <div className="absolute top-0 left-0 w-72 h-72 bg-[#DC4242]/20 rounded-full blur-3xl -z-10" />
-            <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#DC4242]/10 rounded-full blur-3xl -z-10" />
-            <div className="absolute inset-0 bg-gradient-to-br from-transparent via-[#191C26]/40 to-[#DC4242]/10 pointer-events-none -z-10" />
+            {/* Decorative Background Elements — warm accent + cool secondary glow */}
+            <div className="absolute -top-10 -left-10 w-[26rem] h-[26rem] bg-[#FF4D57]/25 rounded-full blur-3xl -z-10" />
+            <div className="absolute bottom-0 right-0 w-[30rem] h-[30rem] bg-[#6D5EF6]/25 rounded-full blur-3xl -z-10" />
+            <div className="absolute top-1/3 right-1/3 w-80 h-80 bg-[#FF4D57]/12 rounded-full blur-3xl -z-10" />
+            <div className="absolute inset-0 bg-gradient-to-br from-[#FF4D57]/[0.06] via-transparent to-[#6D5EF6]/[0.10] pointer-events-none -z-10" />
             <style jsx global>{`
                 @keyframes pulse-slow {
                     0%, 100% { opacity: 1; }
@@ -170,8 +133,8 @@ export default function Hero() {
                     animation: pulse-slow 2.5s infinite;
                 }
                 @keyframes glow {
-                    0%, 100% { text-shadow: 0 0 16px #DC4242, 0 0 32px #DC4242; }
-                    50% { text-shadow: 0 0 32px #fff, 0 0 64px #DC4242; }
+                    0%, 100% { text-shadow: 0 0 16px #FF4D57, 0 0 32px #FF4D57; }
+                    50% { text-shadow: 0 0 32px #fff, 0 0 64px #FF4D57; }
                 }
                 .animate-glow {
                     animation: glow 2.5s infinite alternate;

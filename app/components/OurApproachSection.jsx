@@ -16,7 +16,7 @@ export default function OurApproachSection() {
             name: "Discovery Session",
             zIndex: 40,
             alt: "Discovery session process step icon",
-            description: "A focused session to understand your business, current store or site, and what success looks like."
+            description: "We sit down to understand your business, your current site, and what a win actually looks like for you."
         },
         {
             link: "#",
@@ -24,7 +24,7 @@ export default function OurApproachSection() {
             name: "Scope of Work",
             zIndex: 30,
             alt: "Scope of work process step icon",
-            description: "A clear written scope — deliverables, timeline, and success criteria you can hold us to."
+            description: "A written scope you can hold us to: what we'll deliver, by when, and how we'll both know it worked."
         },
         {
             link: "#",
@@ -32,7 +32,7 @@ export default function OurApproachSection() {
             name: "Transparent Pricing",
             zIndex: 20,
             alt: "Transparent pricing process step icon",
-            description: "Fixed-cost or value-based pricing agreed upfront. No hourly surprises, no scope creep."
+            description: "Fixed or value-based pricing agreed upfront, so there's no hourly meter and no surprise invoices later."
         },
         {
             link: "#",
@@ -40,7 +40,7 @@ export default function OurApproachSection() {
             name: "Build & Delivery",
             zIndex: 10,
             alt: "Build and delivery process step icon",
-            description: "Design-led build with regular reviews, delivered on the committed timeline."
+            description: "We build it with regular check-ins so there are no surprises, and ship on the date we agreed."
         },
         {
             link: "#",
@@ -48,23 +48,26 @@ export default function OurApproachSection() {
             name: "Support & Growth",
             zIndex: 0,
             alt: "Support and growth process step icon",
-            description: "We stay on after launch — support, improvements, and growth as your long-term partner."
+            description: "We stick around after launch to fix things, make improvements, and help you grow."
         }
     ]
 
     return (
-        <section id="approach" className="w-full py-12 md:py-32 px-0 flex flex-col justify-center place-content-between bg-[#12131c] border-t border-b border-[#2a2e40]">
-            <div className="service-page-container mx-auto w-full flex flex-col">
+        <section id="approach" className="relative overflow-hidden w-full py-12 md:py-32 px-0 flex flex-col justify-center place-content-between bg-[#161C27] border-t border-b border-[#2E3446]">
+            {/* Indigo secondary glow — the two-tone system beyond the hero */}
+            <div className="absolute -top-24 -left-24 w-[32rem] h-[32rem] bg-[#6D5EF6]/12 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-24 right-0 w-96 h-96 bg-[#6D5EF6]/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="service-page-container relative mx-auto w-full flex flex-col">
                 <div className="flex flex-col">
                     <div className="flex items-center text-base font-normal text-[#FFFFFF]">
-                        <Image src={Separator} alt="separator" width={0} height={0} sizes="(max-width: 768px) 20vw, (max-width: 1024px) 10vw, 6vw" className="object-cover overflow-hidden h-[2px] w-auto mr-[10px]"/>
-                        <p className="text-sm uppercase tracking-[0.2em] text-[#BCC1CA]">
+                        <span className="block w-12 h-0.5 bg-[#6D5EF6] mr-[10px]" />
+                        <p className="text-sm uppercase tracking-[0.2em] text-[#C7CCD6]">
                             Our Approach
                         </p>
                     </div>
                     <span className="mt-2 mb-2 lg:mb-0 service-section-heading text-[#FFFFFF]">From discovery to delivery</span>
-                    <span className="text-sm sm:text-base text-[#BCC1CA]/80 mt-2 max-w-2xl leading-relaxed">
-                        A clear engagement process — you know the scope, the price, and the timeline before we write a line of code.
+                    <span className="text-sm sm:text-base text-[#C7CCD6] mt-2 max-w-2xl leading-relaxed">
+                        A clear process, so you know the scope, price, and timeline before we write any code.
                     </span>
                 </div>
 
@@ -74,16 +77,16 @@ export default function OurApproachSection() {
                     {processSteps.map((step, index) => (
                         <div
                             key={index}
-                            className="group relative overflow-hidden flex flex-col gap-3 p-5 rounded-2xl bg-[#181B23] border border-[#2a2e40] transition-all duration-300 hover:-translate-y-1 hover:border-[#DC4242]/40 hover:bg-[#1a1e2a]"
+                            className="group relative overflow-hidden flex flex-col gap-3 p-5 rounded-2xl bg-[#181B23] border border-[#2E3446] transition-all duration-300 hover:-translate-y-1 hover:border-[#FF4D57]/40 hover:bg-[#1a1e2a]"
                         >
 
                             {/* Glow */}
-                            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(220,66,66,0.12),transparent_60%)] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,77,87,0.12),transparent_60%)] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                             <div className="relative z-10">
 
                                 {/* Icon */}
-                                <div className="w-12 h-12 mb-3 rounded-xl flex items-center justify-center bg-[rgba(220,66,66,0.08)] border border-[rgba(220,66,66,0.25)] transition-all duration-300 group-hover:scale-110 group-hover:border-[#DC4242]/50">
+                                <div className="w-12 h-12 mb-3 rounded-xl flex items-center justify-center bg-[rgba(255,77,87,0.08)] border border-[rgba(255,77,87,0.25)] transition-all duration-300 group-hover:scale-110 group-hover:border-[#FF4D57]/50">
                                     <Image
                                         src={step.image}
                                         alt={`Service icon for ${step.name}`}
@@ -94,19 +97,19 @@ export default function OurApproachSection() {
 
 
                                 {/* Step Number */}
-                                <span className="text-xs text-[#DC4242] font-semibold uppercase tracking-wider">
+                                <span className="text-xs text-[#FF4D57] font-semibold uppercase tracking-wider">
                                     Step {String(index + 1).padStart(2, "0")}
                                 </span>
 
 
                                 {/* Title */}
-                                <h3 className="mt-1 text-lg font-semibold text-white leading-snug group-hover:text-[#DC4242] transition-colors duration-300">
+                                <h3 className="mt-1 text-lg font-semibold text-white leading-snug group-hover:text-[#FF4D57] transition-colors duration-300">
                                     {step.name}
                                 </h3>
 
 
                                 {/* Description */}
-                                <p className="mt-2 text-sm text-[#BCC1CA] leading-relaxed">
+                                <p className="mt-2 text-sm text-[#C7CCD6] leading-relaxed">
                                     {step.description}
                                 </p>
 
@@ -124,8 +127,8 @@ export default function OurApproachSection() {
                     <ServiceCard
                         key={index}
                         link={step.link}
-                        bg={index % 2 === 0 ? "lg:bg-[#191C26]" : "lg:bg-[#111319]"}
-                        hover="hover:ring-2 hover:ring-[#DC4242]/40 hover:scale-105 transition-all duration-200"
+                        bg={index % 2 === 0 ? "lg:bg-[#0E1219]" : "lg:bg-[#111319]"}
+                        hover="hover:ring-2 hover:ring-[#FF4D57]/40 hover:scale-105 transition-all duration-200"
                         zIndex={step.zIndex}
                         source={step.image}
                         name={step.name}

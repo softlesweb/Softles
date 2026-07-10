@@ -1,60 +1,23 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import CursorSpotlight from "@/app/components/_components/CursorSpotlight";
 
 export default function WordPressHero() {
   const [showTooltip, setShowTooltip] = useState(false);
-  const blobRef = useRef(null);
-
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      if (!blobRef.current) return;
-      const { clientX, clientY } = e;
-      blobRef.current.animate(
-        {
-          left: `${clientX - 150}px`,
-          top: `${clientY - 150}px`,
-        },
-        {
-          duration: 600,
-          fill: "forwards",
-          easing: "cubic-bezier(.22,1.12,.58,1)",
-        }
-      );
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
 
   return (
-    <section className="relative min-h-screen lg:min-h-[92vh] w-full flex items-center justify-center pt-20 overflow-hidden bg-gradient-to-br from-[#191C26] via-[#23263a] to-[#111319]">
-      
+    <section className="relative min-h-screen lg:min-h-[92vh] w-full flex items-center justify-center pt-20 overflow-hidden bg-gradient-to-br from-[#0E1219] via-[#23263a] to-[#111319]">
+
       {/* ─── STRUCTURAL BACKGROUND LAYER ─── */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-[#191C26]/40 to-[#DC4242]/10" />
+        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-[#0E1219]/40 to-[#FF4D57]/10" />
       </div>
 
-      {/* Ambient Tracking Glow */}
-      <div
-        ref={blobRef}
-        className="pointer-events-none fixed z-0 hidden lg:block"
-        style={{
-          width: 300,
-          height: 300,
-          borderRadius: "50%",
-          background: "radial-gradient(circle at 60% 40%, #DC4242 0%, #191C26 100%)",
-          filter: "blur(80px)",
-          opacity: 0.35,
-          left: "50vw",
-          top: "50vh",
-          transform: "translate(-50%, -50%)",
-        }}
-        aria-hidden="true"
-      />
+      <CursorSpotlight />
 
       {/* ─── MAIN CONTENT CONTAINER ─── */}
       <div className="service-page-container flex flex-col items-center justify-center w-full h-full z-10 lg:my-10">
@@ -66,7 +29,7 @@ export default function WordPressHero() {
             {/* Sync Badge */}
             <div className="softles-eyebrow mb-2 md:mb-6">
               <span className="softles-eyebrow-line" />
-              <span className="text-base text-[#BCC1CA] font-normal">
+              <span className="text-base text-[#C7CCD6] font-normal">
                 Enterprise WordPress Architects
               </span>
             </div>
@@ -74,11 +37,11 @@ export default function WordPressHero() {
             {/* Title */}
             <h1 className="relative font-extrabold text-3xl sm:text-[56px] md:text-[56px] leading-[1.05] tracking-[-0.03em] text-[#F5F6FA]">
               Build High-Performing<br className="hidden sm:block" />
-              WordPress Sites That <span className="text-[#DC4242]">Scale</span>
-              <span className="ml-1 text-[#DC4242]">.</span>
+              WordPress Sites That <span className="text-[#FF4D57]">Scale</span>
+              <span className="ml-1 text-[#FF4D57]">.</span>
             </h1>
 
-            <p className="text-[#BCC1CA] mt-4 mb-5 md:mb-12 max-w-xl text-base lg:text-lg leading-relaxed font-normal">
+            <p className="text-[#C7CCD6] mt-4 mb-5 md:mb-12 max-w-xl text-base lg:text-lg leading-relaxed font-normal">
               We engineer secure, blazing-fast custom WordPress frameworks and headless configurations designed to maximize engagement and eliminate technical limits.
             </p>
 
@@ -109,11 +72,11 @@ export default function WordPressHero() {
             <div className="w-full softles-card p-2 shadow-2xl aspect-[4/3] relative overflow-hidden group">
               
               {/* Inner Decorative Tech Lines on Corners */}
-              <div className="absolute top-3 left-3 w-3 h-3 border-t-2 border-l-2 border-[#2a2e40] group-hover:border-[#DC4242]/40 transition-colors" />
-              <div className="absolute bottom-3 right-3 w-3 h-3 border-b-2 border-r-2 border-[#2a2e40] group-hover:border-[#DC4242]/40 transition-colors" />
+              <div className="absolute top-3 left-3 w-3 h-3 border-t-2 border-l-2 border-[#2E3446] group-hover:border-[#FF4D57]/40 transition-colors" />
+              <div className="absolute bottom-3 right-3 w-3 h-3 border-b-2 border-r-2 border-[#2E3446] group-hover:border-[#FF4D57]/40 transition-colors" />
               
               {/* Main Illustration Wrapper */}
-              <div className="w-full h-full relative rounded-xl overflow-hidden bg-[#191C26]/60 flex items-center justify-center">
+              <div className="w-full h-full relative rounded-xl overflow-hidden bg-[#0E1219]/60 flex items-center justify-center">
                 
                 <Image 
                   src="/wordpress-hero.png"

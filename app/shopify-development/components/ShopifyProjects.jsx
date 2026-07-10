@@ -43,7 +43,7 @@ export default function ShopifyProjects() {
 
         <div className="softles-card overflow-hidden shadow-2xl">
           <div className="grid grid-cols-1 lg:grid-cols-[1.02fr_0.98fr]">
-            <div className="relative min-h-[240px] sm:min-h-[300px] lg:min-h-full bg-[#191C26] border-b lg:border-b-0 lg:border-r border-[#2a2e40]/70">
+            <div className="relative min-h-[240px] sm:min-h-[300px] lg:min-h-full bg-[#0E1219] border-b lg:border-b-0 lg:border-r border-[#2E3446]/70">
               <Image
                 src="/brunswickfurfood.png"
                 alt="Brunswick Fur Food Shopify storefront homepage"
@@ -53,7 +53,7 @@ export default function ShopifyProjects() {
                 priority
               />
               <div className="absolute top-4 left-4 sm:top-6 sm:left-6">
-                <span className="inline-flex items-center border border-[#2a2e40] bg-[#191C26]/90 backdrop-blur-md px-3 py-1 rounded text-[10px] font-bold uppercase tracking-wider text-[#F5F6FA]/90">
+                <span className="inline-flex items-center border border-[#2E3446] bg-[#0E1219]/90 backdrop-blur-md px-3 py-1 rounded text-[10px] font-bold uppercase tracking-wider text-[#F5F6FA]/90">
                   Pet Food / DTC
                 </span>
               </div>
@@ -61,18 +61,18 @@ export default function ShopifyProjects() {
 
             <div className="p-6 sm:p-7 lg:p-8 xl:p-9 flex flex-col justify-between gap-5">
               <div>
-                <p className="text-xs font-bold uppercase tracking-wider text-[#DC4242] mb-2">
+                <p className="text-xs font-bold uppercase tracking-wider text-[#FF4D57] mb-2">
                   Case Study
                 </p>
                 <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-tight mb-3">
                   Fresh dog food, built to convert
                 </h3>
-                <p className="text-[#BCC1CA]/80 text-sm sm:text-base leading-relaxed">
+                <p className="text-[#C7CCD6]/80 text-sm sm:text-base leading-relaxed">
                   <a
                     href="https://www.brunswickfurfood.com/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#DC4242] hover:underline transition-all font-semibold"
+                    className="text-[#FF4D57] hover:underline transition-all font-semibold"
                   >
                     Brunswick Fur Food
                   </a>{" "}
@@ -84,10 +84,10 @@ export default function ShopifyProjects() {
                 {stats.map((stat) => (
                   <div
                     key={stat.label}
-                    className="rounded-lg border border-[#2a2e40]/60 bg-[#191C26]/70 px-3 py-3"
+                    className="rounded-lg border border-[#2E3446]/60 bg-[#0E1219]/70 px-3 py-3"
                   >
                     <div className="text-lg font-extrabold text-white tracking-tight">{stat.value}</div>
-                    <div className="text-[10px] text-[#BCC1CA]/60 mt-1 font-medium leading-tight uppercase tracking-wider">
+                    <div className="text-[10px] text-[#C7CCD6]/60 mt-1 font-medium leading-tight uppercase tracking-wider">
                       {stat.label}
                     </div>
                   </div>
@@ -98,7 +98,7 @@ export default function ShopifyProjects() {
                 {tags.map((tag) => (
                   <span
                     key={tag}
-                    className="inline-block px-2.5 py-1 bg-[#DC4242]/5 border border-[#DC4242]/20 rounded text-[11px] text-[#DC4242] font-semibold tracking-wide"
+                    className="inline-block px-2.5 py-1 bg-[#FF4D57]/5 border border-[#FF4D57]/20 rounded text-[11px] text-[#FF4D57] font-semibold tracking-wide"
                   >
                     {tag}
                   </span>
@@ -121,17 +121,17 @@ export default function ShopifyProjects() {
             </div>
           </div>
 
-          <div className="border-t border-[#2a2e40]/70 p-5 sm:p-6 lg:p-7 bg-[#181B23]">
+          <div className="border-t border-[#2E3446]/70 p-5 sm:p-6 lg:p-7 bg-[#181B23]">
             <div className="grid gap-3 sm:grid-cols-3">
               {deliverables.map((item) => (
                 <div
                   key={item.title}
-                  className="rounded-2xl border border-[#2a2e40]/70 bg-[#191C26]/80 p-4"
+                  className="rounded-2xl border border-[#2E3446]/70 bg-[#0E1219]/80 p-4"
                 >
                   <h4 className="text-white font-semibold text-sm tracking-tight mb-2">
                     {item.title}
                   </h4>
-                  <p className="text-[#BCC1CA]/70 text-xs sm:text-sm leading-relaxed">
+                  <p className="text-[#C7CCD6]/70 text-xs sm:text-sm leading-relaxed">
                     {item.desc}
                   </p>
                 </div>

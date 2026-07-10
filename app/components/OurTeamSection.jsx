@@ -8,18 +8,18 @@ const team = [
     image: "/Shakti_Singh.jpeg",
     name: "Shakti Singh",
     role: "Strategy Lead",
-    bio: "Drives vision and strategic clarity, connecting market insight, execution, and leadership to long-term, sustainable business growth.",
-    hue: "from-[#DC4242]/80 via-[#DC4242]/40 to-[#191C26]/80",
-    quote: "Strong strategy is not about ideas—it's about making the right decisions consistently.",
+    bio: "Runs strategy and keeps every project pointed at real business outcomes, not just a list of deliverables.",
+    hue: "from-[#FF4D57]/80 via-[#FF4D57]/40 to-[#0E1219]/80",
+    quote: "Good strategy is mostly making the right call, over and over.",
     tone: "from-[#1F1F27]/80 to-[#0F1118]",
-    accent: "#DC4242",
+    accent: "#FF4D57",
   },
   {
     image: "/Shahad_Hassan.jpeg",
     name: "Shahad Hassan",
     role: "FullStack Developer",
-    bio: "Engineers robust, scalable applications with a focus on performance, security, and maintainable architecture across frontend and backend systems.",
-    hue: "from-[#00D1A0]/70 via-[#1F4E47]/60 to-[#191C26]/80",
+    bio: "Builds the whole stack, front end to back end, and cares a lot about performance and clean code that's easy to maintain.",
+    hue: "from-[#00D1A0]/70 via-[#1F4E47]/60 to-[#0E1219]/80",
     quote: "Clean architecture today prevents production fires tomorrow.",
     tone: "from-[#17312C]/80 to-[#0F1118]",
     accent: "#00D1A0",
@@ -28,9 +28,9 @@ const team = [
     image: "/neeraj_kumar.png",
     name: "Neeraj Kumar",
     role: "Shopify Developer",
-    bio: "Builds and optimizes high-converting Shopify stores with a strong emphasis on performance, scalability, and seamless customer journeys.",
-    hue: "from-[#FFC857]/80 via-[#5B4A1F]/60 to-[#191C26]/80",
-    quote: "E-commerce success lives at the intersection of speed, clarity, and trust.",
+    bio: "Builds and tunes Shopify stores that load fast and convert, without the usual theme bloat.",
+    hue: "from-[#FFC857]/80 via-[#5B4A1F]/60 to-[#0E1219]/80",
+    quote: "A good store is fast, clear, and easy to trust. That's most of the battle.",
     tone: "from-[#2E2617]/80 to-[#0F1118]",
     accent: "#FFC857",
   },
@@ -68,7 +68,7 @@ export default function OurTeamSection() {
             <h4 className="text-xl font-semibold text-[#F5F6FA]">
               {member.name}
             </h4>
-            <p className="mt-1 text-sm font-medium uppercase tracking-[0.25em] text-[#BCC1CA]">
+            <p className="mt-1 text-sm font-medium uppercase tracking-[0.25em] text-[#C7CCD6]">
               {member.role}
             </p>
           </div>
@@ -87,7 +87,7 @@ export default function OurTeamSection() {
           </div>
         </div>
 
-        <div className="absolute bottom-0 left-0 h-px w-0 bg-gradient-to-r from-[#DC4242] via-[#5A6BFF] to-[#00D1A0] transition-all duration-500 group-hover:w-full" />
+        <div className="absolute bottom-0 left-0 h-px w-0 bg-gradient-to-r from-[#FF4D57] via-[#5A6BFF] to-[#00D1A0] transition-all duration-500 group-hover:w-full" />
       </div>
     </article>
   );
@@ -95,15 +95,15 @@ export default function OurTeamSection() {
   return (
     <section
       id="about"
-      className="relative w-full py-12 md:py-20 border-t border-[#2a2e40] bg-[#191C26]" 
+      className="relative w-full py-12 md:py-20 border-t border-[#2E3446] bg-[#0E1219]" 
     >
       {/* Background effects */}
       {/* <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -left-24 top-12 h-72 w-72 rounded-full bg-[#DC4242]/15 blur-3xl" />
+        <div className="absolute -left-24 top-12 h-72 w-72 rounded-full bg-[#FF4D57]/15 blur-3xl" />
         <div className="absolute right-0 bottom-0 h-96 w-96 rounded-full bg-[#5A6BFF]/10 blur-3xl" />
         <div className="absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#00D1A0]/05 blur-3xl" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0F1118]/20 to-transparent" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(220,66,66,0.08),transparent_50%),radial-gradient(circle_at_80%_10%,rgba(90,107,255,0.05),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(255,77,87,0.08),transparent_50%),radial-gradient(circle_at_80%_10%,rgba(90,107,255,0.05),transparent_50%)]" />
       </div> */}
 
       <div className="service-page-container mx-auto flex flex-col">
@@ -111,16 +111,16 @@ export default function OurTeamSection() {
         <div className="flex flex-col">
             <div className="flex items-center text-base font-normal text-[#FFFFFF]">
             <Image src={"/Separator.png"} alt="separator"  width={0} height={0} sizes="(max-width: 768px) 40vw, (max-width: 1024px) 50vw, 33vw" className="object-cover overflow-hidden min-w-min h-[2px] w-auto mr-[10px]" />
-            <p className="text-sm uppercase tracking-[0.2em] text-[#BCC1CA]">
+            <p className="text-sm uppercase tracking-[0.2em] text-[#C7CCD6]">
               Meet the team
             </p>
           </div>
           <span className="mt-2 mb-2 lg:mb-0 service-section-heading text-[#FFFFFF]">
-            The minds behind your growth
+            The people you&apos;ll work with
           </span>
-          <span className="text-sm sm:text-base text-[#BCC1CA]/80 mt-2 max-w-2xl leading-relaxed">
-            A small senior team — strategy, engineering, and Shopify expertise working
-            directly with you. No layers, no hand-offs.
+          <span className="text-sm sm:text-base text-[#C7CCD6] mt-2 max-w-2xl leading-relaxed">
+            We&apos;re a small senior team, so you work straight with the people building your
+            site, not an account manager passing notes along.
           </span>
         </div>
         {/* Team grid — three members, no carousel needed */}

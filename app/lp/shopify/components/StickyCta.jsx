@@ -10,7 +10,7 @@ export default function StickyCta() {
   };
 
   return (
-    <div className="lg:hidden fixed bottom-0 inset-x-0 z-50 bg-[#12131c]/95 backdrop-blur border-t border-[#2a2e40] px-4 py-3 flex items-center gap-3">
+    <div className="lg:hidden fixed bottom-0 inset-x-0 z-50 bg-[#161C27]/95 backdrop-blur border-t border-[#2E3446] px-4 py-3 flex items-center gap-3">
       <button
         onClick={scrollToForm}
         className="softles-primary-button flex-1 justify-center !py-3 text-sm"

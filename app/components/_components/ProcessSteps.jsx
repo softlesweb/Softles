@@ -8,13 +8,13 @@ export default function ProcessSteps({ steps }) {
         {steps.map((step, idx) => (
           <div key={step.num ?? idx} className="flex gap-4 sm:gap-5 group">
             <div className="flex flex-col items-center">
-              <div className="w-10 h-10 shrink-0 rounded-xl bg-[#191C26] border border-[#2a2e40] flex items-center justify-center group-hover:bg-[#DC4242]/10 group-hover:border-[#DC4242]/30 transition-all duration-300">
-                <span className="font-bold text-[#BCC1CA]/80 text-xs sm:text-sm group-hover:text-[#DC4242] transition-colors">
+              <div className="w-10 h-10 shrink-0 rounded-xl bg-[#0E1219] border border-[#2E3446] flex items-center justify-center group-hover:bg-[#FF4D57]/10 group-hover:border-[#FF4D57]/30 transition-all duration-300">
+                <span className="font-bold text-[#C7CCD6]/80 text-xs sm:text-sm group-hover:text-[#FF4D57] transition-colors">
                   {step.num}
                 </span>
               </div>
               {idx < steps.length - 1 && (
-                <div className="w-px flex-1 min-h-[32px] bg-[#2a2e40]/60 my-2" />
+                <div className="w-px flex-1 min-h-[32px] bg-[#2E3446]/60 my-2" />
               )}
             </div>
 
@@ -23,7 +23,7 @@ export default function ProcessSteps({ steps }) {
                 <h3 className="font-bold text-white text-base mb-2 transition-colors duration-300">
                   {step.title}
                 </h3>
-                <p className="text-[#BCC1CA]/70 text-xs sm:text-sm leading-relaxed">
+                <p className="text-[#C7CCD6]/70 text-xs sm:text-sm leading-relaxed">
                   {step.desc}
                 </p>
               </div>
@@ -35,7 +35,7 @@ export default function ProcessSteps({ steps }) {
       {/* Desktop: horizontal timeline */}
       <div className="relative hidden lg:flex gap-0">
         {/* Continuous Solid Structural Guide Line */}
-        <div className="absolute top-5 left-[10%] right-[10%] h-px bg-[#2a2e40]/50 z-0" />
+        <div className="absolute top-5 left-[10%] right-[10%] h-px bg-[#2E3446]/50 z-0" />
 
         <div className="flex w-full gap-4 relative z-10">
           {steps.map((step, idx) => (
@@ -45,20 +45,20 @@ export default function ProcessSteps({ steps }) {
               <div
                 className="
                   w-10 h-10 rounded-xl 
-                  bg-[#191C26] 
-                  border border-[#2a2e40]
+                  bg-[#0E1219] 
+                  border border-[#2E3446]
                   flex items-center justify-center
                   mb-6 relative z-10
                   transition-all duration-300
-                  group-hover:border-[#DC4242]/30
-                  group-hover:bg-[#DC4242]/10
+                  group-hover:border-[#FF4D57]/30
+                  group-hover:bg-[#FF4D57]/10
                 "
               >
                 <span
                   className="
-                    font-bold text-[#BCC1CA]/80 text-sm
+                    font-bold text-[#C7CCD6]/80 text-sm
                     transition-colors duration-300
-                    group-hover:text-[#DC4242]
+                    group-hover:text-[#FF4D57]
                   "
                 >
                   {step.num}
@@ -81,13 +81,13 @@ export default function ProcessSteps({ steps }) {
                     text-base
                     mb-2.5
                     transition-colors duration-300
-                    group-hover:text-[#DC4242]
+                    group-hover:text-[#FF4D57]
                   "
                 >
                   {step.title}
                 </h3>
 
-                <p className="text-[#BCC1CA]/70 text-xs sm:text-sm leading-relaxed">
+                <p className="text-[#C7CCD6]/70 text-xs sm:text-sm leading-relaxed">
                   {step.desc}
                 </p>
               </div>

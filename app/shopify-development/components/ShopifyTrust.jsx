@@ -50,7 +50,7 @@ export default function ShopifyTrust() {
           <div className="flex justify-center mt-6">
             <div className="inline-flex items-center gap-2.5 rounded-full border border-[#95BF47]/30 bg-[#95BF47]/[0.07] px-5 py-2.5">
               <FaShopify className="w-5 h-5 text-[#95BF47] shrink-0" />
-              <span className="text-sm text-[#BCC1CA]">
+              <span className="text-sm text-[#C7CCD6]">
                 <span className="font-bold text-white">SoftLes × Shopify</span> — we work as a Shopify partner agency, building on the platform every day.
               </span>
             </div>
@@ -81,11 +81,11 @@ export default function ShopifyTrust() {
                   items-center 
                   justify-center 
                   mb-5 
-                  bg-[#191C26] 
+                  bg-[#0E1219] 
                   border 
-                  border-[#2a2e40] 
-                  group-hover:bg-[#DC4242]/10 
-                  group-hover:border-[#DC4242]/30 
+                  border-[#2E3446] 
+                  group-hover:bg-[#FF4D57]/10 
+                  group-hover:border-[#FF4D57]/30 
                   transition-all 
                   duration-300
                 "
@@ -94,12 +94,12 @@ export default function ShopifyTrust() {
               </div>
 
               {/* Title with matching transitions */}
-              <h3 className="font-bold text-xl text-white mb-3 leading-tight group-hover:text-[#DC4242] transition-colors duration-300">
+              <h3 className="font-bold text-xl text-white mb-3 leading-tight group-hover:text-[#FF4D57] transition-colors duration-300">
                 {item.title}
               </h3>
 
               {/* Description */}
-              <p className="text-[#BCC1CA] text-sm leading-relaxed">
+              <p className="text-[#C7CCD6] text-sm leading-relaxed">
                 {item.desc}
               </p>
             </div>

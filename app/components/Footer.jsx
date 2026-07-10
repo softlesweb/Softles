@@ -15,33 +15,33 @@ export default function Footer() {
                     <div className="flex flex-col gap-y-3 w-full lg:col-span-2">
                         <h3 className="font-semibold text-base mb-1">About</h3>
                         <p className="text-sm text-[#D4D4D8]">
-                            At Softles, we craft unique digital experiences by combining design, technology, and strategy. From innovative UI/UX to smart development and automation, our passionate team helps businesses grow online. Book a free discovery call and let’s build something remarkable together. Your vision, our creativity — powered by purpose.
+                            SoftLes is a small team that builds WordPress and Shopify sites for growing brands. We handle the design, the development, and the automation that ties it together. If you have a project in mind, book a call and we&apos;ll talk it through.
                         </p>
                     </div>
 
                     {/* WordPress services */}
                     <div className="flex flex-col gap-y-2">
                         <h3 className="font-semibold text-base mb-1">
-                            <Link href="/wordpress-development" className="hover:text-[#DC4242] transition">WordPress</Link>
+                            <Link href="/wordpress-development" className="hover:text-[#FF4D57] transition">WordPress</Link>
                         </h3>
                         <ul className="space-y-2 text-sm text-[#D4D4D8]">
-                            <li><Link href="/wordpress-development" className="hover:text-[#DC4242] transition">Custom Theme Development</Link></li>
-                            <li><Link href="/wordpress-development" className="hover:text-[#DC4242] transition">Headless WordPress</Link></li>
-                            <li><Link href="/wordpress-development" className="hover:text-[#DC4242] transition">Plugins &amp; WooCommerce</Link></li>
-                            <li><Link href="/wordpress-development" className="hover:text-[#DC4242] transition">Integrations &amp; Automation</Link></li>
+                            <li><Link href="/wordpress-development" className="hover:text-[#FF4D57] transition">Custom Theme Development</Link></li>
+                            <li><Link href="/wordpress-development" className="hover:text-[#FF4D57] transition">Headless WordPress</Link></li>
+                            <li><Link href="/wordpress-development" className="hover:text-[#FF4D57] transition">Plugins &amp; WooCommerce</Link></li>
+                            <li><Link href="/wordpress-development" className="hover:text-[#FF4D57] transition">Integrations &amp; Automation</Link></li>
                         </ul>
                     </div>
 
                     {/* Shopify services */}
                     <div className="flex flex-col gap-y-2">
                         <h3 className="font-semibold text-base mb-1">
-                            <Link href="/shopify-development" className="hover:text-[#DC4242] transition">Shopify</Link>
+                            <Link href="/shopify-development" className="hover:text-[#FF4D57] transition">Shopify</Link>
                         </h3>
                         <ul className="space-y-2 text-sm text-[#D4D4D8]">
-                            <li><Link href="/shopify-development" className="hover:text-[#DC4242] transition">Custom Theme Development</Link></li>
-                            <li><Link href="/shopify-development" className="hover:text-[#DC4242] transition">Headless &amp; Hydrogen</Link></li>
-                            <li><Link href="/shopify-development" className="hover:text-[#DC4242] transition">Shopify Apps</Link></li>
-                            <li><Link href="/shopify-development" className="hover:text-[#DC4242] transition">Integrations &amp; Automation</Link></li>
+                            <li><Link href="/shopify-development" className="hover:text-[#FF4D57] transition">Custom Theme Development</Link></li>
+                            <li><Link href="/shopify-development" className="hover:text-[#FF4D57] transition">Headless &amp; Hydrogen</Link></li>
+                            <li><Link href="/shopify-development" className="hover:text-[#FF4D57] transition">Shopify Apps</Link></li>
+                            <li><Link href="/shopify-development" className="hover:text-[#FF4D57] transition">Integrations &amp; Automation</Link></li>
                         </ul>
                     </div>
 
@@ -49,9 +49,9 @@ export default function Footer() {
                     <div className="flex flex-col gap-y-2">
                         <h3 className="font-semibold text-base mb-1">Resources</h3>
                         <ul className="space-y-2 text-sm text-[#D4D4D8]">
-                            <li><Link href="/blog" className="hover:text-[#DC4242] transition">Blog</Link></li>
-                            <li><Link href="/blog" className="hover:text-[#DC4242] transition">Shopify &amp; WordPress guides</Link></li>
-                            <li><Link href="/#book-call" className="hover:text-[#DC4242] transition">Talk to us</Link></li>
+                            <li><Link href="/blog" className="hover:text-[#FF4D57] transition">Blog</Link></li>
+                            <li><Link href="/blog" className="hover:text-[#FF4D57] transition">Shopify &amp; WordPress guides</Link></li>
+                            <li><Link href="/#book-call" className="hover:text-[#FF4D57] transition">Talk to us</Link></li>
                         </ul>
                     </div>
 
@@ -59,16 +59,16 @@ export default function Footer() {
                     <div className="flex flex-col gap-y-2">
                         <h3 className="font-semibold text-base mb-1">Contact</h3>
                         <div className="flex flex-col items-start gap-2 text-sm">
-                            <a href="mailto:info@softles.in?cc=hr@softles.in" className="font-medium underline hover:text-[#DC4242] transition">
+                            <a href="mailto:info@softles.in?cc=hr@softles.in" className="font-medium underline hover:text-[#FF4D57] transition">
                                 info@softles.in
                             </a>
-                            <a href="mailto:hr@softles.in?cc=info@softles.in" className="font-medium underline hover:text-[#DC4242] transition">
+                            <a href="mailto:hr@softles.in?cc=info@softles.in" className="font-medium underline hover:text-[#FF4D57] transition">
                                 hr@softles.in
                             </a>
-                            <a href="tel:+918954000202" className="font-medium underline hover:text-[#DC4242] transition">
+                            <a href="tel:+918954000202" className="font-medium underline hover:text-[#FF4D57] transition">
                                 +91 89540 00202
                             </a>
-                            <a href="tel:+919990548795" className="font-medium underline hover:text-[#DC4242] transition">
+                            <a href="tel:+919990548795" className="font-medium underline hover:text-[#FF4D57] transition">
                                 +91 99905 48795
                             </a>
                         </div>
@@ -108,16 +108,16 @@ export default function Footer() {
                     <h3 className="font-semibold text-base mb-3">Quick Links</h3>
                     <ul className="space-y-2 text-[#D4D4D8]">
                         <li>
-                            <Link href="/#about" className="hover:text-[#DC4242] transition focus-visible:ring-2 focus-visible:ring-[#DC4242] rounded">About Us</Link>
+                            <Link href="/#about" className="hover:text-[#FF4D57] transition focus-visible:ring-2 focus-visible:ring-[#FF4D57] rounded">About Us</Link>
                         </li>
                         <li>
-                            <Link href="/#services" className="hover:text-[#DC4242] transition focus-visible:ring-2 focus-visible:ring-[#DC4242] rounded">Services</Link>
+                            <Link href="/#services" className="hover:text-[#FF4D57] transition focus-visible:ring-2 focus-visible:ring-[#FF4D57] rounded">Services</Link>
                         </li>
                         <li>
-                            <Link href="/#work" className="hover:text-[#DC4242] transition focus-visible:ring-2 focus-visible:ring-[#DC4242] rounded">Our Work</Link>
+                            <Link href="/#work" className="hover:text-[#FF4D57] transition focus-visible:ring-2 focus-visible:ring-[#FF4D57] rounded">Our Work</Link>
                         </li>
                         <li>
-                            <Link href="/#brochure" className="hover:text-[#DC4242] transition focus-visible:ring-2 focus-visible:ring-[#DC4242] rounded">Our Brochure</Link>
+                            <Link href="/#brochure" className="hover:text-[#FF4D57] transition focus-visible:ring-2 focus-visible:ring-[#FF4D57] rounded">Our Brochure</Link>
                         </li>
                     </ul>
                 </div> */}

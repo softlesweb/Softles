@@ -32,26 +32,26 @@ export const MobileSidebar = () => {
             <SheetTrigger className="lg:hidden pr-4 hover:opacity-75 transition" aria-label="Open navigation menu">
                 <Menu/>
             </SheetTrigger>
-            <SheetContent side="left" className="w-full h-full bg-[#191C26] text-[#FFFFFF] flex flex-col items-center p-6">
+            <SheetContent side="left" className="w-full h-full bg-[#0E1219] text-[#FFFFFF] flex flex-col items-center p-6">
                 <Link href="/">
                     <Image src={Logo} alt="Softles Logo"/>
                 </Link>
                 <div className="w-full flex flex-col items-center justify-start text-base leading-5 gap-10 mt-14 font-semibold flex-grow">
                     <ul className="flex flex-col items-center justify-start gap-8">
-                        <li className="hover:text-[#DC4242] transition-colors">
-                            <Link href="/#about" onClick={e => handleSectionClick(e, "about")} tabIndex={0} className="focus-visible:ring-2 focus-visible:ring-[#DC4242] rounded">About Us</Link>
+                        <li className="hover:text-[#FF4D57] transition-colors">
+                            <Link href="/#about" onClick={e => handleSectionClick(e, "about")} tabIndex={0} className="focus-visible:ring-2 focus-visible:ring-[#FF4D57] rounded">About Us</Link>
                         </li>
-                        <li className="hover:text-[#DC4242] transition-colors">
-                            <Link href="/#services" onClick={e => handleSectionClick(e, "services")} tabIndex={0} className="focus-visible:ring-2 focus-visible:ring-[#DC4242] rounded">Services</Link>
+                        <li className="hover:text-[#FF4D57] transition-colors">
+                            <Link href="/#services" onClick={e => handleSectionClick(e, "services")} tabIndex={0} className="focus-visible:ring-2 focus-visible:ring-[#FF4D57] rounded">Services</Link>
                         </li>
-                        <li className="hover:text-[#DC4242] transition-colors">
-                            <Link href="/wordpress-development" onClick={() => setOpen(false)} tabIndex={0} className="focus-visible:ring-2 focus-visible:ring-[#DC4242] rounded">WordPress Development</Link>
+                        <li className="hover:text-[#FF4D57] transition-colors">
+                            <Link href="/wordpress-development" onClick={() => setOpen(false)} tabIndex={0} className="focus-visible:ring-2 focus-visible:ring-[#FF4D57] rounded">WordPress Development</Link>
                         </li>
-                        <li className="hover:text-[#DC4242] transition-colors">
-                            <Link href="/shopify-development" onClick={() => setOpen(false)} tabIndex={0} className="focus-visible:ring-2 focus-visible:ring-[#DC4242] rounded">Shopify Development</Link>
+                        <li className="hover:text-[#FF4D57] transition-colors">
+                            <Link href="/shopify-development" onClick={() => setOpen(false)} tabIndex={0} className="focus-visible:ring-2 focus-visible:ring-[#FF4D57] rounded">Shopify Development</Link>
                         </li>
-                        <li className="hover:text-[#DC4242] transition-colors">
-                            <Link href="/blog" onClick={() => setOpen(false)} tabIndex={0} className="focus-visible:ring-2 focus-visible:ring-[#DC4242] rounded">Blog</Link>
+                        <li className="hover:text-[#FF4D57] transition-colors">
+                            <Link href="/blog" onClick={() => setOpen(false)} tabIndex={0} className="focus-visible:ring-2 focus-visible:ring-[#FF4D57] rounded">Blog</Link>
                         </li>
                     </ul>
                     <div className="mt-auto w-full flex justify-center">
