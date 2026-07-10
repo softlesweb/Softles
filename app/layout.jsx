@@ -1,9 +1,12 @@
 import { Space_Grotesk, Inter } from "next/font/google";
-import Script from "next/script";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import WhatsAppFab from "./components/_components/WhatsAppFab";
 import RouteLoader from "./components/_components/RouteLoader";
+
+// GA4 measurement ID — overridable via env, with the live property as default.
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "G-X446Z72C6Z";
 
 // Modern type system: Space Grotesk for display/headings, Inter for body.
 const display = Space_Grotesk({
@@ -73,23 +76,12 @@ export default function RootLayout({ children }) {
       <body
         className={`${display.variable} ${body.variable} antialiased`}
       >
-        {/* <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-X446Z72C6Z"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-X446Z72C6Z');
-          `}
-        </Script> */}
         <RouteLoader />
         <Navbar/>
         {children}
         <WhatsAppFab />
       </body>
+      {GA_ID ? <GoogleAnalytics gaId={GA_ID} /> : null}
     </html>
   );
 }
