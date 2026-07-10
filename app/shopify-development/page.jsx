@@ -17,7 +17,7 @@ export const metadata = {
 
 export default function ShopifyDevelopment() {
   return (
-    <main className="bg-[#191C26] overflow-x-hidden">
+    <main className="bg-[#0E1219] overflow-x-hidden">
       <ShopifyHero />
       <ShopifyProjects />
       <ShopifyServices />

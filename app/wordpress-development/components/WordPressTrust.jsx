@@ -49,15 +49,15 @@ export default function WordPressTrust() {
               key={idx}
               className="group relative softles-card p-6 flex flex-col"
             >
-              <div className="w-10 h-10 rounded-lg flex items-center justify-center mb-5 bg-[#191C26] border border-[#2a2e40] group-hover:bg-[#DC4242]/10 group-hover:border-[#DC4242]/30 transition-all duration-300">
+              <div className="w-10 h-10 rounded-lg flex items-center justify-center mb-5 bg-[#0E1219] border border-[#2E3446] group-hover:bg-[#FF4D57]/10 group-hover:border-[#FF4D57]/30 transition-all duration-300">
                 {item.icon}
               </div>
 
-              <h3 className="font-bold text-xl text-white mb-3 leading-tight group-hover:text-[#DC4242] transition-colors duration-300">
+              <h3 className="font-bold text-xl text-white mb-3 leading-tight group-hover:text-[#FF4D57] transition-colors duration-300">
                 {item.title}
               </h3>
 
-              <p className="text-[#BCC1CA] text-sm leading-relaxed">
+              <p className="text-[#C7CCD6] text-sm leading-relaxed">
                 {item.desc}
               </p>
             </div>

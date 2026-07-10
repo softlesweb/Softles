@@ -7,32 +7,32 @@ import { RiShakeHandsLine } from "react-icons/ri";
 export default function ShopifyBenefits() {
   const benefits = [
     {
-      icon: <FiTarget className="w-5 h-5 text-zinc-400 group-hover:text-[#DC4242] transition-colors duration-300" />,
+      icon: <FiTarget className="w-5 h-5 text-zinc-400 group-hover:text-[#FF4D57] transition-colors duration-300" />,
       title: "Conversion Focused",
       desc: "Every design and development decision is informed by CRO best practices and your specific customer journey data.",
     },
     {
-      icon: <FiStar className="w-5 h-5 text-zinc-400 group-hover:text-[#DC4242] transition-colors duration-300" />,
+      icon: <FiStar className="w-5 h-5 text-zinc-400 group-hover:text-[#FF4D57] transition-colors duration-300" />,
       title: "Shopify Plus Experience",
       desc: "Hands-on experience with Scripts, Flow, Launchpad, B2B Commerce, Markets, and multi-storefront architecture.",
     },
     {
-      icon: <FiZap className="w-5 h-5 text-zinc-400 group-hover:text-[#DC4242] transition-colors duration-300" />,
+      icon: <FiZap className="w-5 h-5 text-zinc-400 group-hover:text-[#FF4D57] transition-colors duration-300" />,
       title: "Performance Optimization",
       desc: "Sub-2s page loads and strong Core Web Vitals scores as a baseline on every project — not optional extras.",
     },
     {
-      icon: <FiLayers className="w-5 h-5 text-zinc-400 group-hover:text-[#DC4242] transition-colors duration-300" />,
+      icon: <FiLayers className="w-5 h-5 text-zinc-400 group-hover:text-[#FF4D57] transition-colors duration-300" />,
       title: "Scalable Architecture",
       desc: "Systems designed to grow from launch to 100k daily orders without expensive platform migrations or rebuilds.",
     },
     {
-      icon: <FiCode className="w-5 h-5 text-zinc-400 group-hover:text-[#DC4242] transition-colors duration-300" />,
+      icon: <FiCode className="w-5 h-5 text-zinc-400 group-hover:text-[#FF4D57] transition-colors duration-300" />,
       title: "Clean Dev Standards",
       desc: "Documented, maintainable Liquid and React code that any developer can confidently continue after our engagement ends.",
     },
     {
-      icon: <RiShakeHandsLine className="w-5 h-5 text-zinc-400 group-hover:text-[#DC4242] transition-colors duration-300" />,
+      icon: <RiShakeHandsLine className="w-5 h-5 text-zinc-400 group-hover:text-[#FF4D57] transition-colors duration-300" />,
       title: "Long-Term Support",
       desc: "We don't disappear after launch. Flexible retainers provide ongoing development, security patches, and growth support.",
     },
@@ -76,14 +76,14 @@ export default function ShopifyBenefits() {
 
           <div className="mt-8 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
             {benefits.map((benefit, idx) => (
-              <div key={idx} className="group flex flex-col p-5 sm:p-6 rounded-2xl border border-[#2a2e40]/60 bg-[#191C26]/60 hover:border-[#DC4242]/30 hover:bg-[#1b1f2b] transition-all duration-300">
-                <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-[#13161f] border border-[#2a2e40] group-hover:bg-[#DC4242]/10 group-hover:border-[#DC4242]/30 mb-4 transition-all duration-300">
+              <div key={idx} className="group flex flex-col p-5 sm:p-6 rounded-2xl border border-[#2E3446]/60 bg-[#0E1219]/60 hover:border-[#FF4D57]/30 hover:bg-[#1b1f2b] transition-all duration-300">
+                <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-[#13161f] border border-[#2E3446] group-hover:bg-[#FF4D57]/10 group-hover:border-[#FF4D57]/30 mb-4 transition-all duration-300">
                   {benefit.icon}
                 </div>
-                <h4 className="font-bold text-lg text-white mb-2.5 leading-tight group-hover:text-[#DC4242] transition-colors duration-300">
+                <h4 className="font-bold text-lg text-white mb-2.5 leading-tight group-hover:text-[#FF4D57] transition-colors duration-300">
                   {benefit.title}
                 </h4>
-                <p className="text-[#BCC1CA] text-sm leading-relaxed">
+                <p className="text-[#C7CCD6] text-sm leading-relaxed">
                   {benefit.desc}
                 </p>
               </div>

@@ -2,86 +2,76 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 
 export default function Footer() {
-    const [email, setEmail] = useState("");
-    const [submitted, setSubmitted] = useState(false);
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        setSubmitted(true);
-        setEmail("");
-        setTimeout(() => setSubmitted(false), 3000);
-    };
-
     return (
         <footer className="snap-start bg-[#18181B] text-white pt-5 sm:pt-12 pb-6 px-5 md:px-16">
             <div className="flex flex-col gap-5 w-full service-page-container border-b border-[#27272A] pb-10">
                 <Link href="/">
                     <Image src={"/SoftLes.png"} alt="Logo" width={0} height={0} sizes="(max-width: 768px) 40vw, (max-width: 1024px) 50vw, 33vw" className="object-cover overflow-hidden min-w-min h-[54px] w-auto"/>
                 </Link>
-                <div className=" grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10">
                     {/* About */}
-                    <div className="flex flex-col gap-y-3 w-full">
+                    <div className="flex flex-col gap-y-3 w-full lg:col-span-2">
                         <h3 className="font-semibold text-base mb-1">About</h3>
                         <p className="text-sm text-[#D4D4D8]">
-                            At Softles, we craft unique digital experiences by combining design, technology, and strategy. From innovative UI/UX to smart development and automation, our passionate team helps businesses grow online. Book a free discovery call and let’s build something remarkable together. Your vision, our creativity — powered by purpose.
+                            SoftLes is a small team that builds WordPress and Shopify sites for growing brands. We handle the design, the development, and the automation that ties it together. If you have a project in mind, book a call and we&apos;ll talk it through.
                         </p>
                     </div>
-                    <div className="flex flex-col gap-y-3 w-full">
-                        <h3 className="font-semibold text-base mb-1">Contact</h3>
-                        <div className="grid grid-cols-2 gap-5 w-full">
-                            <div className="flex flex-col gap-x-2">
-                                <h6 className="text-sm text-[#D4D4D8]">Email:</h6>
-                                <div className="flex flex-col items-start">
-                                    <a href="mailto:info@softles.com?cc=hr@softles.in" className="text-md font-medium underline hover:text-[#DC4242] transition">
-                                        info@softles.in
-                                    </a>
-                                    <a href="mailto:hr@softles.in?cc=info@softles.in" className="text-md font-medium underline hover:text-[#DC4242] transition">
-                                        hr@softles.in
-                                    </a>
-                                </div>
-                            </div>
-                            <div className="flex flex-col gap-x-2">
-                                <h6 className="text-sm text-[#D4D4D8]">Phone:</h6>
-                                <div className="flex flex-col items-start">
-                                    <a href="tel:+918954000202" className="text-md font-medium underline hover:text-[#DC4242] transition">
-                                        +918954000202
-                                    </a>
-                                    <a href="tel:+919990548795" className="text-md font-medium underline hover:text-[#DC4242] transition">
-                                        +919990548795
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+
+                    {/* WordPress services */}
+                    <div className="flex flex-col gap-y-2">
+                        <h3 className="font-semibold text-base mb-1">
+                            <Link href="/wordpress-development" className="hover:text-[#FF4D57] transition">WordPress</Link>
+                        </h3>
+                        <ul className="space-y-2 text-sm text-[#D4D4D8]">
+                            <li><Link href="/wordpress-development" className="hover:text-[#FF4D57] transition">Custom Theme Development</Link></li>
+                            <li><Link href="/wordpress-development" className="hover:text-[#FF4D57] transition">Headless WordPress</Link></li>
+                            <li><Link href="/wordpress-development" className="hover:text-[#FF4D57] transition">Plugins &amp; WooCommerce</Link></li>
+                            <li><Link href="/wordpress-development" className="hover:text-[#FF4D57] transition">Integrations &amp; Automation</Link></li>
+                        </ul>
                     </div>
-                    {/* Newsletter */}
-                    <div>
-                        <h3 className="font-semibold text-base mb-3">Newsletter</h3>
-                        <p className="text-sm text-[#D4D4D8] mb-3">Stay up to date with our latest news and offers.</p>
-                        <form onSubmit={handleSubmit} className="flex flex-col gap-2">
-                            <label htmlFor="footer-email" className="sr-only">Email address</label>
-                            <input
-                                id="footer-email"
-                                type="email"
-                                name="email"
-                                value={email}
-                                onChange={e => setEmail(e.target.value)}
-                                placeholder="Your email address"
-                                className="bg-[#23232A] border border-[#27272A] rounded px-3 py-2 text-white placeholder-[#A1A1AA] focus:outline-none focus:border-[#DC4242] transition"
-                                required
-                            />
-                            <button
-                                type="submit"
-                                className="bg-[#DC4242] hover:bg-[#b32e2e] transition text-white rounded px-4 py-2 font-semibold"
-                            >
-                                Subscribe
-                            </button>
-                            {submitted && (
-                                <span className="text-green-400 text-xs mt-1">Thank you for subscribing!</span>
-                            )}
-                        </form>
+
+                    {/* Shopify services */}
+                    <div className="flex flex-col gap-y-2">
+                        <h3 className="font-semibold text-base mb-1">
+                            <Link href="/shopify-development" className="hover:text-[#FF4D57] transition">Shopify</Link>
+                        </h3>
+                        <ul className="space-y-2 text-sm text-[#D4D4D8]">
+                            <li><Link href="/shopify-development" className="hover:text-[#FF4D57] transition">Custom Theme Development</Link></li>
+                            <li><Link href="/shopify-development" className="hover:text-[#FF4D57] transition">Headless &amp; Hydrogen</Link></li>
+                            <li><Link href="/shopify-development" className="hover:text-[#FF4D57] transition">Shopify Apps</Link></li>
+                            <li><Link href="/shopify-development" className="hover:text-[#FF4D57] transition">Integrations &amp; Automation</Link></li>
+                        </ul>
+                    </div>
+
+                    {/* Resources */}
+                    <div className="flex flex-col gap-y-2">
+                        <h3 className="font-semibold text-base mb-1">Resources</h3>
+                        <ul className="space-y-2 text-sm text-[#D4D4D8]">
+                            <li><Link href="/blog" className="hover:text-[#FF4D57] transition">Blog</Link></li>
+                            <li><Link href="/blog" className="hover:text-[#FF4D57] transition">Shopify &amp; WordPress guides</Link></li>
+                            <li><Link href="/#book-call" className="hover:text-[#FF4D57] transition">Talk to us</Link></li>
+                        </ul>
+                    </div>
+
+                    {/* Contact */}
+                    <div className="flex flex-col gap-y-2">
+                        <h3 className="font-semibold text-base mb-1">Contact</h3>
+                        <div className="flex flex-col items-start gap-2 text-sm">
+                            <a href="mailto:info@softles.in?cc=hr@softles.in" className="font-medium underline hover:text-[#FF4D57] transition">
+                                info@softles.in
+                            </a>
+                            <a href="mailto:hr@softles.in?cc=info@softles.in" className="font-medium underline hover:text-[#FF4D57] transition">
+                                hr@softles.in
+                            </a>
+                            <a href="tel:+918954000202" className="font-medium underline hover:text-[#FF4D57] transition">
+                                +91 89540 00202
+                            </a>
+                            <a href="tel:+919990548795" className="font-medium underline hover:text-[#FF4D57] transition">
+                                +91 99905 48795
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -118,16 +108,16 @@ export default function Footer() {
                     <h3 className="font-semibold text-base mb-3">Quick Links</h3>
                     <ul className="space-y-2 text-[#D4D4D8]">
                         <li>
-                            <Link href="/#about" className="hover:text-[#DC4242] transition focus-visible:ring-2 focus-visible:ring-[#DC4242] rounded">About Us</Link>
+                            <Link href="/#about" className="hover:text-[#FF4D57] transition focus-visible:ring-2 focus-visible:ring-[#FF4D57] rounded">About Us</Link>
                         </li>
                         <li>
-                            <Link href="/#services" className="hover:text-[#DC4242] transition focus-visible:ring-2 focus-visible:ring-[#DC4242] rounded">Services</Link>
+                            <Link href="/#services" className="hover:text-[#FF4D57] transition focus-visible:ring-2 focus-visible:ring-[#FF4D57] rounded">Services</Link>
                         </li>
                         <li>
-                            <Link href="/#work" className="hover:text-[#DC4242] transition focus-visible:ring-2 focus-visible:ring-[#DC4242] rounded">Our Work</Link>
+                            <Link href="/#work" className="hover:text-[#FF4D57] transition focus-visible:ring-2 focus-visible:ring-[#FF4D57] rounded">Our Work</Link>
                         </li>
                         <li>
-                            <Link href="/#brochure" className="hover:text-[#DC4242] transition focus-visible:ring-2 focus-visible:ring-[#DC4242] rounded">Our Brochure</Link>
+                            <Link href="/#brochure" className="hover:text-[#FF4D57] transition focus-visible:ring-2 focus-visible:ring-[#FF4D57] rounded">Our Brochure</Link>
                         </li>
                     </ul>
                 </div> */}

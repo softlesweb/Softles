@@ -1,5 +1,6 @@
 import Footer from "./components/Footer";
 import Hero from "./components/Hero";
+import FeaturedCaseStudy from "./components/FeaturedCaseStudy";
 import OurServicesSection from "./components/OurServicesSection";
 // import IndustriesSection from "./components/IndustriesSection";
 import OurApproachSection from "./components/OurApproachSection";
@@ -9,8 +10,9 @@ import OurTeamSection from "./components/OurTeamSection";
 
 export default function Home() {
   return (
-    <main className="bg-[#191C26] overflow-x-hidden sm:pt-[60px]">
+    <main className="bg-[#0E1219] overflow-x-hidden sm:pt-[60px]">
       <Hero />
+      <FeaturedCaseStudy />
       <OurServicesSection />
       {/* <IndustriesSection /> */}
       <OurApproachSection />

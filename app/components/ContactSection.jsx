@@ -2,182 +2,117 @@
 
 import Image from "next/image";
 import Separator from "@/public/Separator.png";
-import Divy from "@/public/Divy.jpg";
-import React, { useState, useRef } from "react";
-import { cn } from "@/lib/utils";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Send } from "lucide-react";
-import emailjs from '@emailjs/browser';
+import React, { useState } from "react";
 
-
+const PHONE_DISPLAY = "+91 89540 00202";
 
 export default function ContactSection() {
-    const [userName, setUserName] = useState('')
-    const [userMail, setUserMail] = useState('')
-    const [loading, setLoading] = useState(false)
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
+    const [message, setMessage] = useState("");
+    const [status, setStatus] = useState("idle"); // idle | sending | sent | error
 
-    const form = useRef(null);
-    const sendEmail = (e) => {
+    const valid = name.trim() !== "" && email.trim() !== "";
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!form.current) return;
-        setLoading(true);
+        if (!valid || status === "sending") return;
+        setStatus("sending");
 
-        emailjs
-            .sendForm(
-                'service_db4zwz8',      // ← replace
-                'template_oiu2ped',     // ← replace
-                form.current,
-                'oo80cgXuN0GQTNqFm'       // ← replacecd sof
-            )
-            .then(
-                () => {
-                    setLoading(false);
-                    alert('Thanks! We’ll be in touch soon.');
-                    // optional: reset form
-                    form.current?.reset();
-                    setUserName('');
-                    setUserMail('');
-                },
-                (err) => {
-                    console.error(err);
-                    setLoading(false);
-                    alert('Sorry, something went wrong. Try again.');
-                }
-            );
+        try {
+            const res = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ name, email, phone, message }),
+            });
+            if (!res.ok) throw new Error("Request failed");
+            setStatus("sent");
+            setName("");
+            setEmail("");
+            setPhone("");
+            setMessage("");
+        } catch (err) {
+            console.error(err);
+            setStatus("error");
+        }
     };
 
-    const isFormValid = () => {
-        return (
-            userName.trim() !== '' &&
-            userMail.trim() !== ''
-        )
-    }
     return (
-        <section id="book-call" className="w-full py-12 md:py-20 px-0 flex flex-col justify-center place-content-between bg-[#12131c] border-t border-b border-[#2a2e40]">
-            <div className="service-page-container mx-auto w-full flex flex-col gap-12">
+        <section id="book-call" className="w-full py-12 md:py-20 px-0 bg-[#161C27] border-t border-b border-[#2E3446]">
+            <div className="service-page-container">
+                {/* Header */}
                 <div className="flex flex-col">
                     <div className="flex items-center text-base font-normal text-[#FFFFFF]">
                         <Image src={Separator} alt="separator" width={0} height={0} sizes="(max-width: 768px) 20vw, (max-width: 1024px) 10vw, 6vw" className="object-cover overflow-hidden h-[2px] w-auto mr-[10px]" />
-                        <p className="text-sm uppercase tracking-[0.2em] text-[#BCC1CA]">
-                            Get In Touch
+                        <p className="text-sm uppercase tracking-[0.2em] text-[#C7CCD6]">
+                            Get in touch
                         </p>
                     </div>
-                    <span className="mt-2 mb-4 lg:mb-0 service-section-heading text-[#FFFFFF]">Book a Discovery Session</span>
+                    <span className="mt-2 mb-2 lg:mb-0 service-section-heading text-[#FFFFFF]">Let&apos;s talk about your project</span>
+                    <span className="text-sm sm:text-base text-[#C7CCD6] mt-2 max-w-2xl leading-relaxed">
+                        Tell us what you&apos;re building and we&apos;ll get back to you — usually within a day.
+                    </span>
                 </div>
-                <div className="w-full flex flex-col md:flex-row gap-0 mt-12 justify-center items-stretch">
-                    {/* Book a Discovery Session via Google Meet */}
-                <div className="bg-gradient-to-br from-[#191C26] via-[#221429] to-[#191C26] rounded-2xl md:rounded-r-none md:rounded-l-2xl mb-5 md:mb-0 shadow-lg flex flex-col justify-between p-0 border border-[#23263a] w-full md:w-1/3 max-w-none">
-                    <div className="flex flex-col items-center pt-8 pb-4 px-3 md:px-6 h-full">
-                        <div className="relative">
-                            <Image src={Divy} alt="Expert Image" className="rounded-xl w-[180px] h-[180px] object-cover border-4 border-[#221429] shadow-md" />
-                        </div>
-                        <div className="mt-4 bg-[#221429] rounded-xl px-5 py-2 shadow-lg flex flex-col items-center">
-                            <p className="text-lg font-semibold text-white">Divyansh Veermanya</p>
-                            <p className="text-sm font-normal text-[#bdbdbd]">Product Lead</p>
-                        </div>
-                        <div className="bg-[#221429] px-8 py-6 flex flex-col items-center gap-3 border-t border-[#23263a] w-full mt-8 rounded-b-2xl">
-                            <h2 className="font-bold text-2xl text-white text-center">Book a Discovery Session</h2>
-                            <p className="text-base font-medium text-[#bdbdbd] text-center">
-                                Instantly schedule a call with our expert.<br />
-                                <span className="text-xs text-[#888]">Powered by <span className="font-semibold">Google Meet</span></span>
-                            </p>
-                            <a
-                                href="https://calendar.google.com/calendar/u/0?cid=ZGl2eWFuc2gudmVlcm1hbnlhQGdtYWlsLmNvbQ" // ← put your own public booking URL here
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="mt-4 py-2 px-8 rounded-full border border-[#DC4242] text-[#DC4242] text-base font-semibold hover:bg-[#DC4242] hover:text-white transition-colors duration-200 shadow-sm text-center"
-                            >
-                                Book via Google Meet
-                            </a>
-                            <span className="text-xs text-[#bdbdbd] mt-2">Email: <a href="mailto:info@softles.in?cc=hr@softles.in" className="underline hover:text-[#DC4242] transition">info@softles.in</a>, <a href="mailto:hr@softles.com?cc=info@softles.in" className="underline hover:text-[#DC4242] transition">hr@softles.in</a></span>
-                        </div>
-                    </div>
-                </div>
-                {/* Submit details for callback */}
-                <div className="bg-gradient-to-br from-[#191C26] via-[#23263a] to-[#191C26] rounded-2xl md:rounded-l-none rounded-r-2xl shadow-lg flex flex-col justify-center p-3 md:p-8 border-t border-b border-r border-[#23263a] w-full md:w-2/3 max-w-none">
-                    <form className="w-full" ref={form} onSubmit={sendEmail} autoComplete="off">
-                        <h3 className="text-2xl font-bold text-white mb-6 text-center">Let us reach out to you</h3>
-                        <LabelInputContainer className="mb-5">
-                            <Label htmlFor="name" className="text-[#bdbdbd]">Name <span className="text-[#DC4242]">*</span></Label>
-                            <Input id="name" name="user_name" placeholder="John Doe" type="text"
-                                value={userName}
-                                onChange={(e) => setUserName(e.target.value)}
-                                className="bg-[#181a20] border border-[#23263a] focus:border-[#DC4242] text-white placeholder-[#666] rounded-lg"
-                                required
-                            />
-                        </LabelInputContainer>
-                        <LabelInputContainer className="mb-5">
-                            <Label htmlFor="email" className="text-[#bdbdbd]">Email Address <span className="text-[#DC4242]">*</span></Label>
-                            <Input id="email" name="user_email" placeholder="johndoe@gmail.com" type="email"
-                                value={userMail}
-                                onChange={(e) => setUserMail(e.target.value)}
-                                className="bg-[#181a20] border border-[#23263a] focus:border-[#DC4242] text-white placeholder-[#666] rounded-lg"
-                                required
-                            />
-                        </LabelInputContainer>
-                        <LabelInputContainer className="mb-5">
-                            <Label htmlFor="phone" className="text-[#bdbdbd]">Phone Number</Label>
-                            <Input id="phone" name="user_phone" placeholder="+91 98765 43210" type="tel"
-                                className="bg-[#181a20] border border-[#23263a] focus:border-[#DC4242] text-white placeholder-[#666] rounded-lg"
-                            />
-                        </LabelInputContainer>
-                        <LabelInputContainer className="mb-5">
-                            <Label htmlFor="message" className="text-[#bdbdbd]">Message (Optional)</Label>
-                            <textarea
-                                id="message"
-                                name="user_message"
-                                placeholder="Tell us about your needs..."
-                                rows={3}
-                                className="bg-[#181a20] border border-[#23263a] focus:border-[#DC4242] text-white placeholder-[#666] rounded-lg px-3 py-2 resize-none"
-                            />
-                        </LabelInputContainer>
-                        <button
-                            className={cn(
-                                "relative group/btn mt-8 w-full py-3 rounded-full font-semibold text-lg flex items-center justify-center gap-2 transition-all duration-200",
-                                "bg-gradient-to-br from-[#DC4242] to-[#b92d2d] border border-[#DC4242] text-white shadow-lg hover:from-[#b92d2d] hover:to-[#DC4242] hover:scale-[1.03]",
-                                loading ? "opacity-60 cursor-not-allowed" : ""
-                            )}
-                            value='send'
-                            disabled={!isFormValid() || loading}
-                            type="submit"
-                        >
-                            {loading ? (
-                                <span className="animate-pulse">Sending ...</span>
-                            ) : (
-                                <>
-                                    <Send size={20} strokeWidth={2} />
-                                    Submit Details
-                                </>
-                            )}
-                        </button>
-                        <p className="text-xs text-[#bdbdbd] mt-4 text-center">
-                            We&apos;ll reach out to you to schedule your session.
-                        </p>
+
+                <div className="mt-10 grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-8 items-stretch">
+                    {/* Form */}
+                    <form onSubmit={handleSubmit} className="lg:col-span-3 softles-card p-6 sm:p-8 flex flex-col gap-4" autoComplete="off">
+                        {status === "sent" ? (
+                            <div className="flex flex-col items-center justify-center text-center py-10 gap-3">
+                                <div className="w-14 h-14 rounded-full bg-[#FF4D57]/12 border border-[#FF4D57]/40 flex items-center justify-center">
+                                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FF4D57" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5" /></svg>
+                                </div>
+                                <h3 className="text-xl font-bold text-white">Thanks — we&apos;ll be in touch</h3>
+                                <p className="text-[#C7CCD6] text-sm max-w-sm">We&apos;ve got your message and will reply shortly. For anything urgent, ping us on WhatsApp.</p>
+                            </div>
+                        ) : (
+                            <>
+                                <h3 className="text-xl font-bold text-white">Send us a message</h3>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <input type="text" placeholder="Your name *" value={name} onChange={(e) => setName(e.target.value)} required
+                                        className="bg-[#0F131A] border border-[#2E3446] focus:border-[#FF4D57] focus:outline-none text-white placeholder-[#7c8394] rounded-lg px-4 py-3 text-sm" />
+                                    <input type="email" placeholder="Email *" value={email} onChange={(e) => setEmail(e.target.value)} required
+                                        className="bg-[#0F131A] border border-[#2E3446] focus:border-[#FF4D57] focus:outline-none text-white placeholder-[#7c8394] rounded-lg px-4 py-3 text-sm" />
+                                </div>
+                                <input type="tel" placeholder="Phone / WhatsApp (optional)" value={phone} onChange={(e) => setPhone(e.target.value)}
+                                    className="bg-[#0F131A] border border-[#2E3446] focus:border-[#FF4D57] focus:outline-none text-white placeholder-[#7c8394] rounded-lg px-4 py-3 text-sm" />
+                                <textarea placeholder="Tell us about your project…" rows={4} value={message} onChange={(e) => setMessage(e.target.value)}
+                                    className="bg-[#0F131A] border border-[#2E3446] focus:border-[#FF4D57] focus:outline-none text-white placeholder-[#7c8394] rounded-lg px-4 py-3 text-sm resize-none" />
+                                <button type="submit" disabled={!valid || status === "sending"}
+                                    className="softles-primary-button w-full justify-center mt-1 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0">
+                                    {status === "sending" ? "Sending…" : "Send message"}
+                                </button>
+                                {status === "error" && (
+                                    <p className="text-[#FF4D57] text-xs text-center">Something went wrong. Please try again or WhatsApp us.</p>
+                                )}
+                            </>
+                        )}
                     </form>
+
+                    {/* Direct contact */}
+                    <div className="lg:col-span-2 softles-card p-6 sm:p-8 flex flex-col justify-center gap-5">
+                        <h3 className="text-xl font-bold text-white">Prefer to reach out directly?</h3>
+                        <div className="flex flex-col gap-3 text-[#C7CCD6]">
+                            <a href="tel:+918954000202" className="flex items-center gap-3 hover:text-[#FF4D57] transition-colors">
+                                <span className="w-9 h-9 rounded-lg bg-[#FF4D57]/10 border border-[#FF4D57]/30 flex items-center justify-center text-[#FF4D57]">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" /></svg>
+                                </span>
+                                {PHONE_DISPLAY}
+                            </a>
+                            <a href="mailto:info@softles.in" className="flex items-center gap-3 hover:text-[#FF4D57] transition-colors">
+                                <span className="w-9 h-9 rounded-lg bg-[#FF4D57]/10 border border-[#FF4D57]/30 flex items-center justify-center text-[#FF4D57]">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" /><polyline points="22,6 12,13 2,6" /></svg>
+                                </span>
+                                info@softles.in
+                            </a>
+                        </div>
+                        <p className="text-[#C7CCD6]/60 text-xs">
+                            Or tap the WhatsApp button in the corner — it&apos;s the fastest way to reach us.
+                        </p>
+                    </div>
                 </div>
-            </div>
             </div>
         </section>
-    )
+    );
 }
-
-const BottomGradient = () => {
-    return (
-        <>
-            <span className="group-hover/btn:opacity-100 block transition duration-500 opacity-0 absolute h-px w-full -bottom-px inset-x-0 bg-gradient-to-r from-transparent via-cyan-500 to-transparent" />
-            <span className="group-hover/btn:opacity-100 blur-sm block transition duration-500 opacity-0 absolute h-px w-1/2 mx-auto -bottom-px inset-x-10 bg-gradient-to-r from-transparent via-indigo-500 to-transparent" />
-        </>
-    );
-};
-
-const LabelInputContainer = ({
-    children,
-    className,
-}) => {
-    return (
-        <div className={cn("flex flex-col space-y-2 w-full", className)}>
-            {children}
-        </div>
-    );
-};

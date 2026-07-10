@@ -1,17 +1,21 @@
-import localFont from "next/font/local";
+import { Space_Grotesk, Inter } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import Navbar from "./components/Navbar";
+import WhatsAppFab from "./components/_components/WhatsAppFab";
+import RouteLoader from "./components/_components/RouteLoader";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+// Modern type system: Space Grotesk for display/headings, Inter for body.
+const display = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  variable: "--font-display",
+  display: "swap",
 });
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+const body = Inter({
+  subsets: ["latin"],
+  variable: "--font-body",
+  display: "swap",
 });
 
 export default function RootLayout({ children }) {
@@ -67,7 +71,7 @@ export default function RootLayout({ children }) {
         <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${display.variable} ${body.variable} antialiased`}
       >
         {/* <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-X446Z72C6Z"
@@ -81,8 +85,10 @@ export default function RootLayout({ children }) {
             gtag('config', 'G-X446Z72C6Z');
           `}
         </Script> */}
+        <RouteLoader />
         <Navbar/>
         {children}
+        <WhatsAppFab />
       </body>
     </html>
   );

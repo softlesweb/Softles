@@ -136,7 +136,7 @@ export default function IndustriesSection() {
     <motion.section
       ref={containerRef}
       id="industries"
-      className="w-full pt-5 pb-20 md:pt-10 md:pb-28 px-0 bg-[#191C26] bg-grid-white text-white flex flex-col justify-center"
+      className="w-full pt-5 pb-20 md:pt-10 md:pb-28 px-0 bg-[#0E1219] bg-grid-white text-white flex flex-col justify-center"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
@@ -158,7 +158,7 @@ export default function IndustriesSection() {
               width={24}
               height={4}
             />
-            <p className="text-sm uppercase tracking-[0.2em] text-[#BCC1CA]">
+            <p className="text-sm uppercase tracking-[0.2em] text-[#C7CCD6]">
               Industries we serve
             </p>
           </motion.div>
@@ -171,7 +171,7 @@ export default function IndustriesSection() {
           </motion.h2>
 
           <motion.p
-            className="text-base text-[#BCC1CA]/80 mt-2 max-w-2xl"
+            className="text-base text-[#C7CCD6]/80 mt-2 max-w-2xl"
             variants={itemVariants}
           >
             We empower businesses across diverse industries with tailored digital solutions. Explore our expertise below.
@@ -187,7 +187,7 @@ export default function IndustriesSection() {
           <button
             aria-label="Previous"
             onClick={handlePrev}
-            className="hidden md:flex absolute top-1/2 -left-10 lg:-left-12 z-20 bg-[#23263a] hover:bg-[#DC4242] text-white rounded-full p-3 shadow-xl transition-all"
+            className="hidden md:flex absolute top-1/2 -left-10 lg:-left-12 z-20 bg-[#23263a] hover:bg-[#FF4D57] text-white rounded-full p-3 shadow-xl transition-all"
             style={{ transform: 'translateY(-50%)' }}
           >
             <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -198,7 +198,7 @@ export default function IndustriesSection() {
           <button
             aria-label="Next"
             onClick={handleNext}
-            className="hidden md:flex absolute top-1/2 -right-10 lg:-right-12 z-20 bg-[#23263a] hover:bg-[#DC4242] text-white rounded-full p-3 shadow-xl transition-all"
+            className="hidden md:flex absolute top-1/2 -right-10 lg:-right-12 z-20 bg-[#23263a] hover:bg-[#FF4D57] text-white rounded-full p-3 shadow-xl transition-all"
             style={{ transform: 'translateY(-50%)' }}
           >
             <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -256,7 +256,7 @@ export default function IndustriesSection() {
 
                       {/* Floating title */}
                       <div className="absolute bottom-4 left-4 z-20">
-                        <h3 className="text-2xl md:text-3xl font-bold text-white group-hover:text-[#DC4242] transition-colors duration-200">
+                        <h3 className="text-2xl md:text-3xl font-bold text-white group-hover:text-[#FF4D57] transition-colors duration-200">
                           {industry.label}
                         </h3>
                       </div>
@@ -265,13 +265,13 @@ export default function IndustriesSection() {
                     {/* Content */}
                     <div className="p-6 md:p-7 flex flex-col flex-grow">
                       <div className="flex-grow mb-4">
-                        <p className="text-base md:text-lg text-[#BCC1CA]">
+                        <p className="text-base md:text-lg text-[#C7CCD6]">
                           {industry.description}
                         </p>
                       </div>
 
                       <div className="mt-auto">
-                        <button className="text-[#DC4242] font-medium flex items-center group-hover:text-white transition-colors">
+                        <button className="text-[#FF4D57] font-medium flex items-center group-hover:text-white transition-colors">
                           Learn more
                           <svg
                             className="ml-2 transition-transform group-hover:translate-x-1"
@@ -304,7 +304,7 @@ export default function IndustriesSection() {
             <button
               aria-label="Previous"
               onClick={handlePrev}
-              className="bg-[#23263a] hover:bg-[#DC4242] text-white rounded-full p-3 shadow-lg transition-all"
+              className="bg-[#23263a] hover:bg-[#FF4D57] text-white rounded-full p-3 shadow-lg transition-all"
             >
               <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M17 22l-8-8 8-8"/>
@@ -313,7 +313,7 @@ export default function IndustriesSection() {
             <button
               aria-label="Next"
               onClick={handleNext}
-              className="bg-[#23263a] hover:bg-[#DC4242] text-white rounded-full p-3 shadow-lg transition-all"
+              className="bg-[#23263a] hover:bg-[#FF4D57] text-white rounded-full p-3 shadow-lg transition-all"
             >
               <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M11 6l8 8-8 8"/>
@@ -329,7 +329,7 @@ export default function IndustriesSection() {
                 onClick={() => setCurrentIndex(idx)}
                 className={`w-3 h-3 rounded-full transition-all ${
                   idx === currentIndex
-                    ? 'bg-[#DC4242] w-8'
+                    ? 'bg-[#FF4D57] w-8'
                     : 'bg-white/30 hover:bg-white/60'
                 }`}
                 aria-label={`Go to slide ${idx + 1}`}

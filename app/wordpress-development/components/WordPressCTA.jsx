@@ -25,11 +25,11 @@ export default function WordPressCTA() {
             {/* Heading with explicit tracking, font weights & WordPress theme variables */}
             <h2 className="service-section-heading text-[#FFFFFF] mb-4">
               Let&apos;s Build a Better<br className="hidden sm:block" />{" "}
-              <span className="text-[#DC4242]">WordPress Experience</span>
+              <span className="text-[#FF4D57]">WordPress Experience</span>
             </h2>
 
             {/* Paragraph Content tailored for WordPress services */}
-            <p className="text-[#BCC1CA]/80 max-w-xl mx-auto mb-8 lg:mb-10 text-sm sm:text-base leading-relaxed">
+            <p className="text-[#C7CCD6]/80 max-w-xl mx-auto mb-8 lg:mb-10 text-sm sm:text-base leading-relaxed">
               Whether you need a custom website, WooCommerce store, or a headless WordPress solution, SoftLes can help you design, build, and scale a faster, smarter digital presence.
             </p>
 

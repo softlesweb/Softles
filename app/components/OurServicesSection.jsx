@@ -28,7 +28,7 @@ const services = [
     image: "/DesignSystem.png",
     title: "Design & Prototyping",
     bullets: [
-      { txt: "Wireframing & mockups", tip: "Low → high fidelity screens that map every interaction." },
+      { txt: "AI-accelerated wireframes & mockups", tip: "AI-assisted design moves from idea to high-fidelity screens in days, not weeks." },
       { txt: "Design systems & branding", tip: "Re-usable components that ensure brand consistency at scale." },
       { txt: "Interactive prototypes", tip: "Clickable demos for rapid feedback before writing code." },
       { txt: "User testing", tip: "Task-based sessions to refine UX and boost conversion." },
@@ -59,12 +59,12 @@ const services = [
 
   {
     image: "/Prototyping.png",
-    title: "Custom Web Development",
+    title: "Integrations & Automation",
     bullets: [
-      { txt: "Custom website development", tip: "Bespoke sites tailored to your brand and goals." },
-      { txt: "Full-stack web applications", tip: "React, Next.js, Node and modern backend architectures." },
-      { txt: "Scalable web solutions", tip: "Architecture and ops that grow with your product." },
-      { txt: "API development & integrations", tip: "Robust APIs and third-party integrations for data flow." },
+      { txt: "API & CRM integrations", tip: "Connect your store or site to CRMs, email, and business systems." },
+      { txt: "Workflow & AI automation", tip: "Automate order flows, notifications, and back-office busywork." },
+      { txt: "Payments, shipping & ERP", tip: "Reliable hookups to the platforms your operations run on." },
+      { txt: "Custom web apps when needed", tip: "Bespoke full-stack development as the supporting layer for automations and integrations." },
     ],
   },
 ];
@@ -101,7 +101,7 @@ function MobileStackCarousel({ services }) {
   };
 
   return (
-    <div className="xl:hidden w-full flex flex-col items-center py-8 mt-5 relative">
+    <div className="md:hidden w-full flex flex-col items-center py-8 mt-5 relative">
       <div
         className="relative w-full max-w-xs min-h-[460px] perspective-1000"
         onTouchStart={handleTouchStart}
@@ -126,7 +126,7 @@ function MobileStackCarousel({ services }) {
                 rotateX: 5,
               }}
               transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="absolute inset-0 bg-gradient-to-br from-[#23263a] to-[#181B23] rounded-2xl shadow-xl p-8 flex flex-col items-start min-h-[320px] border border-[#2a2e40]"
+              className="absolute inset-0 bg-gradient-to-br from-[#23263a] to-[#181B23] rounded-2xl shadow-xl p-8 flex flex-col items-start min-h-[320px] border border-[#2E3446]"
               style={{
                 zIndex,
                 transformOrigin: "center bottom",
@@ -148,7 +148,7 @@ function MobileStackCarousel({ services }) {
                     key={i}
                     className="relative pl-8 py-1.5 bg-[#23263a]/40 rounded-lg text-sm text-[#F3F4F6]/70 font-medium"
                   >
-                    <span className="absolute left-3 top-1/2 -translate-y-1/2 flex items-center justify-center w-4 h-4 rounded-full bg-[#DC4242]/50 text-white text-xs">
+                    <span className="absolute left-3 top-1/2 -translate-y-1/2 flex items-center justify-center w-4 h-4 rounded-full bg-[#FF4D57]/50 text-white text-xs">
                       ✓
                     </span>
                     {b.txt}
@@ -180,7 +180,7 @@ function MobileStackCarousel({ services }) {
               scale: 0.94,
             }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
-            className="absolute inset-0 bg-gradient-to-br from-[#23263a] to-[#181B23] rounded-2xl shadow-2xl p-8 flex flex-col items-start min-h-[320px] z-30 border border-[#DC4242]/20"
+            className="absolute inset-0 bg-gradient-to-br from-[#23263a] to-[#181B23] rounded-2xl shadow-2xl p-8 flex flex-col items-start min-h-[320px] z-30 border border-[#FF4D57]/20"
           >
             <div className="mb-2 md:mb-6 flex items-center justify-center">
               <Image
@@ -196,11 +196,11 @@ function MobileStackCarousel({ services }) {
               {services[active].bullets.map((b, i) => (
                 <li
                   key={i}
-                  className="relative pl-10 py-2 bg-[#23263a]/60 rounded-lg text-sm text-[#F3F4F6] font-medium shadow-sm border border-[#23263a] text-left hover:border-[#DC4242] transition-all duration-200"
+                  className="relative pl-10 py-2 bg-[#23263a]/60 rounded-lg text-sm text-[#F3F4F6] font-medium shadow-sm border border-[#23263a] text-left hover:border-[#FF4D57] transition-all duration-200"
                 >
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 flex items-center justify-center w-5 h-5 rounded-full bg-[#DC4242] text-white text-xs font-bold shadow-md">
+                  <span className="absolute left-3 top-1/2 -translate-y-1/2 flex items-center justify-center w-5 h-5 rounded-full bg-[#FF4D57] text-white text-xs font-bold shadow-md">
                     <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
-                      <circle cx="10" cy="10" r="10" fill="#DC4242"/>
+                      <circle cx="10" cy="10" r="10" fill="#FF4D57"/>
                       <path d="M7 10.5L9 12.5L13 8.5" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                   </span>
@@ -210,7 +210,7 @@ function MobileStackCarousel({ services }) {
             </ul>
 
             {/* Active card indicator */}
-            <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-16 h-1.5 bg-gradient-to-r from-[#DC4242] to-[#ff6b6b] rounded-full" />
+            <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-16 h-1.5 bg-gradient-to-r from-[#FF4D57] to-[#ff6b6b] rounded-full" />
           </motion.div>
         </AnimatePresence>
       </div>
@@ -223,7 +223,7 @@ function MobileStackCarousel({ services }) {
           className={`flex h-12 w-12 items-center justify-center rounded-full shadow-lg transition-all duration-300 ${
             isPrevDisabled
               ? "bg-[#23263a]/40 text-white/40 cursor-not-allowed"
-              : "bg-gradient-to-br from-[#23263a] to-[#181B23] hover:from-[#DC4242] hover:to-[#ff6b6b] text-white hover:shadow-xl"
+              : "bg-gradient-to-br from-[#23263a] to-[#181B23] hover:from-[#FF4D57] hover:to-[#ff6b6b] text-white hover:shadow-xl"
           }`}
         >
           <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -243,8 +243,8 @@ function MobileStackCarousel({ services }) {
               }}
               className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
                 idx === active
-                  ? 'w-8 bg-gradient-to-r from-[#DC4242] to-[#ff6b6b]'
-                  : 'bg-[#23263a] hover:bg-[#DC4242]/50'
+                  ? 'w-8 bg-gradient-to-r from-[#FF4D57] to-[#ff6b6b]'
+                  : 'bg-[#23263a] hover:bg-[#FF4D57]/50'
               }`}
             />
           ))}
@@ -256,7 +256,7 @@ function MobileStackCarousel({ services }) {
           className={`flex h-12 w-12 items-center justify-center rounded-full shadow-lg transition-all duration-300 ${
             isNextDisabled
               ? "bg-[#23263a]/40 text-white/40 cursor-not-allowed"
-              : "bg-gradient-to-br from-[#23263a] to-[#181B23] hover:from-[#DC4242] hover:to-[#ff6b6b] text-white hover:shadow-xl"
+              : "bg-gradient-to-br from-[#23263a] to-[#181B23] hover:from-[#FF4D57] hover:to-[#ff6b6b] text-white hover:shadow-xl"
           }`}
         >
           <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -270,7 +270,7 @@ function MobileStackCarousel({ services }) {
 
 export default function OurServicesSection() {
   return (
-    <section id="services" className="w-full py-12 md:pt-20 md:pb-24 px-0 flex flex-col justify-center place-content-between overflow-hidden border-t border-[#2a2e40] bg-[#191C26]">
+    <section id="services" className="w-full py-12 md:pt-20 md:pb-24 px-0 flex flex-col justify-center place-content-between overflow-hidden border-t border-[#2E3446] bg-[#0E1219]">
       <div className="service-page-container mx-auto w-full flex flex-col">
         <div className="relative z-10 flex flex-col">
           <div className="flex items-center text-base font-normal text-[#FFFFFF]">
@@ -282,23 +282,23 @@ export default function OurServicesSection() {
               sizes="(max-width: 768px) 40vw, (max-width: 1024px) 50vw, 33vw"
               className="object-cover overflow-hidden min-w-min h-[2px] mr-[10px]"
             />
-          <p className="text-sm uppercase tracking-[0.2em] text-[#BCC1CA]">
+          <p className="text-sm uppercase tracking-[0.2em] text-[#C7CCD6]">
             What We Do
           </p>
         </div>
         <span className="mt-2 mb-2 lg:mb-0 service-section-heading text-[#FFFFFF]">
           What we do
         </span>
-        <span className="text-sm sm:text-base text-[#BCC1CA]/80 mt-2 max-w-2xl leading-relaxed">
-          We blend creativity and technology to deliver impactful digital products. Explore our core services below.
+        <span className="text-sm sm:text-base text-[#C7CCD6] mt-2 max-w-2xl leading-relaxed">
+          Design, development, and the automation that connects it all. Here&apos;s where we spend our time.
         </span>
       </div>
 
-      {/* Mobile stack card carousel */}
+      {/* Mobile stack card carousel — phones only */}
       <MobileStackCarousel services={services} />
 
-      {/* Desktop stacked grid */}
-      <div className="mt-10 hidden xl:grid xl:grid-cols-4 gap-8 relative perspective-1200">
+      {/* Tablet & desktop grid: 2 columns on tablet, 4 on desktop */}
+      <div className="mt-10 hidden md:grid grid-cols-2 xl:grid-cols-4 gap-6 xl:gap-8 relative perspective-1200">
         {services.map((service, idx) => {
           // Calculate stacking order with perspective
           const stackOrder = services.length - idx;
@@ -335,7 +335,7 @@ export default function OurServicesSection() {
                 transition: { duration: 0.3 }
               }}
               viewport={{ once: true }}
-              className="group cursor-pointer bg-gradient-to-br from-[#23263a] to-[#181B23] rounded-2xl shadow-2xl p-4 flex flex-col items-start transition-all duration-500 relative min-h-[320px] border border-[#2a2e40] hover:border-[#DC4242]/40"
+              className="group cursor-pointer bg-gradient-to-br from-[#23263a] to-[#181B23] rounded-2xl shadow-2xl p-4 flex flex-col items-start transition-all duration-500 relative min-h-[320px] border border-[#2E3446] hover:border-[#FF4D57]/40"
               style={{
                 zIndex: stackOrder,
                 transformStyle: 'preserve-3d',
@@ -343,7 +343,7 @@ export default function OurServicesSection() {
               }}
             >
               {/* Card glow effect */}
-              <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-[#DC4242]/0 via-[#DC4242]/10 to-[#DC4242]/0 opacity-0 group-hover:opacity-100 blur transition-opacity duration-500" />
+              <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-[#FF4D57]/0 via-[#FF4D57]/10 to-[#FF4D57]/0 opacity-0 group-hover:opacity-100 blur transition-opacity duration-500" />
 
               <div className="mb-6 transition-all duration-500 group-hover:rotate-12 group-hover:scale-110 flex items-center justify-start relative z-10">
                 <Image
@@ -353,10 +353,10 @@ export default function OurServicesSection() {
                   height={72}
                   className="rounded-full"
                 />
-                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#DC4242]/20 to-transparent opacity-0 group-hover:opacity-100 blur transition-opacity duration-500" />
+                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#FF4D57]/20 to-transparent opacity-0 group-hover:opacity-100 blur transition-opacity duration-500" />
               </div>
 
-              <h3 className="text-xl font-bold mb-4 text-left text-white group-hover:text-[#DC4242] transition-colors duration-300 leading-tight relative z-10">
+              <h3 className="text-xl font-bold mb-4 text-left text-white group-hover:text-[#FF4D57] transition-colors duration-300 leading-tight relative z-10">
                 {service.title}
               </h3>
 
@@ -369,11 +369,11 @@ export default function OurServicesSection() {
                     transition={{ delay: idx * 0.1 + i * 0.05 }}
                     viewport={{ once: true }}
                     whileHover={{ x: 5 }}
-                    className="relative pl-10 py-2 bg-[#23263a]/60 rounded-lg text-sm text-[#F3F4F6] font-medium shadow-sm border border-[#23263a] hover:border-[#DC4242] hover:bg-[#23263a]/80 transition-all duration-300 text-left group/bullet"
+                    className="relative pl-10 py-2 bg-[#23263a]/60 rounded-lg text-sm text-[#F3F4F6] font-medium shadow-sm border border-[#23263a] hover:border-[#FF4D57] hover:bg-[#23263a]/80 transition-all duration-300 text-left group/bullet"
                   >
-                    <span className="absolute left-3 top-1/2 -translate-y-1/2 flex items-center justify-center w-5 h-5 rounded-full bg-[#DC4242] text-white text-xs font-bold shadow-md group-hover/bullet:scale-110 transition-transform duration-300">
+                    <span className="absolute left-3 top-1/2 -translate-y-1/2 flex items-center justify-center w-5 h-5 rounded-full bg-[#FF4D57] text-white text-xs font-bold shadow-md group-hover/bullet:scale-110 transition-transform duration-300">
                       <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
-                        <circle cx="10" cy="10" r="10" fill="#DC4242"/>
+                        <circle cx="10" cy="10" r="10" fill="#FF4D57"/>
                         <path d="M7 10.5L9 12.5L13 8.5" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
                     </span>
@@ -389,7 +389,7 @@ export default function OurServicesSection() {
               </ul>
 
               {/* Card edge highlight */}
-              <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-[#DC4242]/20 transition-all duration-500 pointer-events-none" />
+              <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-[#FF4D57]/20 transition-all duration-500 pointer-events-none" />
 
               {/* 3D depth effect */}
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -401,7 +401,7 @@ export default function OurServicesSection() {
       {/* Stack indicator for desktop */}
       {/* <div className="hidden sm:flex justify-center mt-12 relative z-10">
         <div className="flex items-center gap-2 px-4 py-2 bg-[#23263a]/50 rounded-full backdrop-blur-sm">
-          <svg className="w-4 h-4 text-[#DC4242] animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-4 h-4 text-[#FF4D57] animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
           </svg>
         </div>

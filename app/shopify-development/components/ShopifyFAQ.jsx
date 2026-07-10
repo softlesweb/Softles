@@ -67,7 +67,7 @@ export default function ShopifyFAQ() {
                   border 
                   transition-all 
                   duration-300
-                  ${isOpen ? "border-[#DC4242]/40 shadow-[0_12px_30px_rgba(220,66,66,0.04)]" : "border-[#2a2e40]/70 hover:border-[#DC4242]/30"}
+                  ${isOpen ? "border-[#FF4D57]/40 shadow-[0_12px_30px_rgba(255,77,87,0.04)]" : "border-[#2E3446]/70 hover:border-[#FF4D57]/30"}
                 `}
               >
                 {/* Accordion Trigger */}
@@ -75,12 +75,12 @@ export default function ShopifyFAQ() {
                   onClick={() => setOpenIdx(isOpen ? -1 : idx)}
                   className="w-full px-5 sm:px-8 py-5 flex items-center justify-between gap-4 text-left group transition-colors"
                 >
-                  <h4 className={`font-bold text-sm sm:text-base tracking-tight transition-colors duration-300 ${isOpen ? "text-[#DC4242]" : "text-white group-hover:text-[#DC4242]"}`}>
+                  <h4 className={`font-bold text-sm sm:text-base tracking-tight transition-colors duration-300 ${isOpen ? "text-[#FF4D57]" : "text-white group-hover:text-[#FF4D57]"}`}>
                     {faq.q}
                   </h4>
                   
                   {/* Precision Chevron Icon instead of hardcoded raw string plus code */}
-                  <span className="shrink-0 flex items-center justify-center w-6 h-6 rounded bg-[#191C26] border border-[#2a2e40] text-[#BCC1CA]/60 group-hover:text-[#DC4242] transition-colors">
+                  <span className="shrink-0 flex items-center justify-center w-6 h-6 rounded bg-[#0E1219] border border-[#2E3446] text-[#C7CCD6]/60 group-hover:text-[#FF4D57] transition-colors">
                     <svg
                       width="12"
                       height="12"
@@ -104,11 +104,11 @@ export default function ShopifyFAQ() {
                     transition-all 
                     duration-300 
                     ease-in-out
-                    ${isOpen ? "grid-rows-[1fr] opacity-100 border-t border-[#2a2e40]/40" : "grid-rows-[0fr] opacity-0"}
+                    ${isOpen ? "grid-rows-[1fr] opacity-100 border-t border-[#2E3446]/40" : "grid-rows-[0fr] opacity-0"}
                   `}
                 >
                   <div className="overflow-hidden">
-                    <div className="px-5 sm:px-8 py-5 bg-[#191C26]/60 text-[#BCC1CA]/80 text-sm leading-relaxed">
+                    <div className="px-5 sm:px-8 py-5 bg-[#0E1219]/60 text-[#C7CCD6]/80 text-sm leading-relaxed">
                       {faq.a}
                     </div>
                   </div>

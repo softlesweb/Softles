@@ -1,60 +1,23 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import CursorSpotlight from "@/app/components/_components/CursorSpotlight";
 
 export default function ShopifyHero() {
   const [showTooltip, setShowTooltip] = useState(false);
-  const blobRef = useRef(null);
-
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      if (!blobRef.current) return;
-      const { clientX, clientY } = e;
-      blobRef.current.animate(
-        {
-          left: `${clientX - 150}px`,
-          top: `${clientY - 150}px`,
-        },
-        {
-          duration: 600,
-          fill: "forwards",
-          easing: "cubic-bezier(.22,1.12,.58,1)",
-        }
-      );
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
 
   return (
-    <section className="relative min-h-screen lg:min-h-[92vh] w-full flex items-center justify-center pt-20 overflow-hidden bg-gradient-to-br from-[#191C26] via-[#23263a] to-[#111319]">
-      
+    <section className="relative min-h-screen lg:min-h-[92vh] w-full flex items-center justify-center pt-20 overflow-hidden bg-gradient-to-br from-[#0E1219] via-[#23263a] to-[#111319]">
+
       {/* ─── STRUCTURAL BACKGROUND LAYER ─── */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-[#191C26]/40 to-[#DC4242]/10" />
+        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-[#0E1219]/40 to-[#FF4D57]/10" />
       </div>
 
-      {/* Dynamic Mouse Tracking Ambient Glow */}
-      <div
-        ref={blobRef}
-        className="pointer-events-none fixed z-0 hidden lg:block"
-        style={{
-          width: 300,
-          height: 300,
-          borderRadius: "50%",
-          background: "radial-gradient(circle at 60% 40%, #DC4242 0%, #191C26 100%)",
-          filter: "blur(80px)",
-          opacity: 0.35,
-          left: "50vw",
-          top: "50vh",
-          transform: "translate(-50%, -50%)",
-        }}
-        aria-hidden="true"
-      />
+      <CursorSpotlight />
 
       {/* ─── MAIN CONTENT CONTAINER ─── */}
       <div className="service-page-container flex flex-col items-center justify-center w-full h-full z-10 lg:my-10">
@@ -66,7 +29,7 @@ export default function ShopifyHero() {
             {/* Unified Structural Badge Layer */}
             <div className="softles-eyebrow mb-2 md:mb-6">
               <span className="softles-eyebrow-line" />
-              <span className="text-base text-[#BCC1CA] font-normal">
+              <span className="text-base text-[#C7CCD6] font-normal">
                 Certified Shopify Development Experts
               </span>
             </div>
@@ -74,11 +37,11 @@ export default function ShopifyHero() {
             {/* Title */}
             <h1 className="relative font-extrabold text-3xl sm:text-[56px] md:text-[56px] leading-[1.05] tracking-[-0.03em] text-[#F5F6FA]">
               Build High-Converting<br className="hidden sm:block" />
-              Shopify Stores That <span className="text-[#DC4242]">Scale</span>
-              <span className="ml-1 text-[#DC4242]">.</span>
+              Shopify Stores That <span className="text-[#FF4D57]">Scale</span>
+              <span className="ml-1 text-[#FF4D57]">.</span>
             </h1>
 
-            <p className="text-[#BCC1CA] mt-4 mb-5 md:mb-12 max-w-xl text-base lg:text-lg leading-relaxed font-normal">
+            <p className="text-[#C7CCD6] mt-4 mb-5 md:mb-12 max-w-xl text-base lg:text-lg leading-relaxed font-normal">
               We design and develop conversion-focused Shopify experiences that help brands increase sales, improve customer experience, and scale efficiently.
             </p>
 
@@ -109,7 +72,7 @@ export default function ShopifyHero() {
             <div className="w-full relative aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/3] rounded-2xl overflow-hidden group">
               
               {/* Subtle Glowing Underlay Border matching our aesthetic */}
-              <div className="absolute inset-0 rounded-2xl border border-[#2a2e40]/70 group-hover:border-[#DC4242]/30 transition-all duration-500 z-20 pointer-events-none" />
+              <div className="absolute inset-0 rounded-2xl border border-[#2E3446]/70 group-hover:border-[#FF4D57]/30 transition-all duration-500 z-20 pointer-events-none" />
               
               {/* Image Frame Wrapper */}
               <div className="w-full h-full relative rounded-2xl overflow-hidden bg-[#14161F]/40 flex items-center justify-center">
