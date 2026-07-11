@@ -1,13 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import emailjs from "@emailjs/browser";
 import { trackPixel } from "@/lib/metaPixel";
-
-// Reuses the site's existing EmailJS credentials.
-const EMAILJS_SERVICE = "service_db4zwz8";
-const EMAILJS_TEMPLATE = "template_oiu2ped";
-const EMAILJS_PUBLIC_KEY = "oo80cgXuN0GQTNqFm";
 
 const GOALS = [
   "Redesign my store",
@@ -25,33 +19,30 @@ export default function LeadForm({ ctaLabel = "Talk to a Shopify Expert" }) {
 
   const valid = name.trim() && whatsapp.trim();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!valid || status === "loading") return;
     setStatus("loading");
 
-    emailjs
-      .send(
-        EMAILJS_SERVICE,
-        EMAILJS_TEMPLATE,
-        {
-          user_name: name,
-          user_phone: whatsapp,
-          user_email: "",
-          user_message: `New Shopify landing-page lead\nWhatsApp: ${whatsapp}\nStore URL: ${
-            storeUrl || "—"
-          }\nGoal: ${goal}\nSource: Meta Ads — /lp/shopify`,
-        },
-        EMAILJS_PUBLIC_KEY
-      )
-      .then(() => {
-        setStatus("sent");
-        trackPixel("Lead", { content_name: "shopify-lp", goal });
-      })
-      .catch((err) => {
-        console.error(err);
-        setStatus("error");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          phone: whatsapp,
+          storeUrl,
+          goal,
+          source: "Shopify Landing Page (/lp/shopify)",
+        }),
       });
+      if (!res.ok) throw new Error("Request failed");
+      setStatus("sent");
+      trackPixel("Lead", { content_name: "shopify-lp", goal });
+    } catch (err) {
+      console.error(err);
+      setStatus("error");
+    }
   };
 
   if (status === "sent") {

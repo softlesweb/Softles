@@ -1,31 +1,46 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 
-function ProjectImage({ project }) {
-  if (project.image) {
-    return (
-      <Image
-        src={project.image}
-        alt={`${project.title} website`}
-        fill
-        className="object-cover object-top"
-        sizes="(max-width: 1024px) 100vw, 50vw"
-      />
-    );
-  }
+function BrowserPreview({ project }) {
+  const domain = project.url
+    ? project.url.replace(/^https?:\/\//, "").replace(/\/$/, "")
+    : project.title;
 
   return (
-    <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-[#161C27] via-[#1a1e2a] to-[#23263a] p-8 text-center">
-      <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-[rgba(255,77,87,0.4)] bg-[rgba(255,77,87,0.1)] flex items-center justify-center text-2xl sm:text-3xl mb-3">
-        {project.placeholderIcon || "▶️"}
+    <div className="flex h-full flex-col bg-[#0E1219]">
+      {/* Browser chrome */}
+      <div className="flex items-center gap-2 px-3 sm:px-4 py-2.5 bg-[#161C27] border-b border-[#2E3446] shrink-0">
+        <span className="flex gap-1.5">
+          <span className="h-2.5 w-2.5 rounded-full bg-[#FF5F57]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#FEBC2E]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#28C840]" />
+        </span>
+        <span className="ml-1 flex-1 truncate rounded-md bg-[#0E1219] border border-[#2E3446] px-3 py-1 text-[11px] text-[#C7CCD6]/70">
+          {domain}
+        </span>
       </div>
-      <p className="text-[#FFFFFF] font-bold text-lg sm:text-xl">{project.title}</p>
+
+      {/* Screenshot viewport — shows the top of the site in a browser window */}
+      <div className="group/preview relative flex-1 min-h-[240px] sm:min-h-[300px] w-full overflow-hidden">
+        {project.image ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={project.image}
+            alt={`${project.title} website`}
+            loading="lazy"
+            className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-[600ms] ease-out group-hover/preview:scale-[1.03]"
+          />
+        ) : (
+          <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
+            <p className="text-[#FFFFFF] font-bold text-lg sm:text-xl">{project.title}</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
@@ -38,15 +53,15 @@ function ProjectSlide({ project, isActive }) {
       }`}
     >
       <div className="grid grid-cols-1 md:grid-cols-2">
-        <div className="relative min-h-[200px] sm:min-h-[260px] md:min-h-[320px] bg-[#161C27] border-b md:border-b-0 md:border-r border-[#2E3446]">
-          <ProjectImage project={project} />
-          <div className="absolute top-4 left-4 z-[2]">
+        <div className="relative overflow-hidden border-b md:border-b-0 md:border-r border-[#2E3446]">
+          <BrowserPreview project={project} />
+          <div className="absolute top-[54px] left-4 z-[2]">
             <span className="inline-flex rounded-full border border-white/10 bg-[#0E1219]/85 backdrop-blur-md px-3 py-1 text-[10px] sm:text-xs font-semibold uppercase tracking-widest text-[#F5F6FA]">
               {project.industry}
             </span>
           </div>
           {project.badge && (
-            <div className="absolute top-4 right-4 z-[2]">
+            <div className="absolute top-[54px] right-4 z-[2]">
               <span className="inline-flex rounded-full bg-[rgba(255,77,87,0.15)] border border-[rgba(255,77,87,0.3)] px-3 py-1 text-[10px] sm:text-xs font-semibold text-[#FF4D57]">
                 {project.badge}
               </span>
