@@ -1,131 +1,88 @@
-"use client";
-
 import Image from "next/image";
-import React from "react";
 
+// role/photo confirmed for the first five; Sparsh & Tanmay need a photo + role.
 const team = [
-  {
-    image: "/Shakti_Singh.jpeg",
-    name: "Shakti Singh",
-    role: "Strategy Lead",
-    bio: "Runs strategy and keeps every project pointed at real business outcomes, not just a list of deliverables.",
-    hue: "from-[#FF4D57]/80 via-[#FF4D57]/40 to-[#0E1219]/80",
-    quote: "Good strategy is mostly making the right call, over and over.",
-    tone: "from-[#1F1F27]/80 to-[#0F1118]",
-    accent: "#FF4D57",
-  },
-  {
-    image: "/Shahad_Hassan.jpeg",
-    name: "Shahad Hassan",
-    role: "FullStack Developer",
-    bio: "Builds the whole stack, front end to back end, and cares a lot about performance and clean code that's easy to maintain.",
-    hue: "from-[#00D1A0]/70 via-[#1F4E47]/60 to-[#0E1219]/80",
-    quote: "Clean architecture today prevents production fires tomorrow.",
-    tone: "from-[#17312C]/80 to-[#0F1118]",
-    accent: "#00D1A0",
-  },
-  {
-    image: "/neeraj_kumar.png",
-    name: "Neeraj Kumar",
-    role: "Shopify Developer",
-    bio: "Builds and tunes Shopify stores that load fast and convert, without the usual theme bloat.",
-    hue: "from-[#FFC857]/80 via-[#5B4A1F]/60 to-[#0E1219]/80",
-    quote: "A good store is fast, clear, and easy to trust. That's most of the battle.",
-    tone: "from-[#2E2617]/80 to-[#0F1118]",
-    accent: "#FFC857",
-  },
+  { name: "Shakti Singh", role: "Strategy Lead", image: "/Shakti_Singh.jpeg", linkedin: "https://www.linkedin.com/in/gurjarshakti/" },
+  { name: "Divyansh Chaudhary", role: "Product Lead", image: "/Divy.jpg", linkedin: "https://www.linkedin.com/in/divyansh-chaudhary-887744119/" },
+  { name: "Shahad Hassan", role: "Full-Stack Developer", image: "/Shahad_Hassan.jpeg", linkedin: "https://www.linkedin.com/in/shahad-hassan-82287a220/" },
+  { name: "Neeraj Kumar", role: "Shopify Developer", image: "/neeraj_kumar.png", linkedin: "https://www.linkedin.com/in/neerajkumar94/" },
+  { name: "Manish Rana", role: "UI/UX Designer", image: "/Manish_Rana.png", linkedin: "https://www.linkedin.com/in/mymkrana/" },
+  { name: "Sparsh Yadav", role: "Senior Product Designer", image: "/sparsh_yadav.webp", linkedin: "https://www.linkedin.com/in/sparsh-yadav-8a794714a/" },
+  { name: "Tanmay Sharma", role: "SaaS Sales Professional", image: "/tanmay_sharma.png", linkedin: "https://www.linkedin.com/in/tanmaybummlers/" },
 ];
 
+function initials(name) {
+  return name
+    .split(" ")
+    .map((n) => n[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+}
+
 export default function OurTeamSection() {
-  // Helper function to render a team member card
-  const renderTeamMemberCard = (member, key) => (
-    <article
-      key={key}
-      className="group relative w-full min-h-[380px] transition-all duration-500"
-    >
-      <div className="relative flex h-full flex-col overflow-hidden rounded-[28px] border border-white/10 bg-[linear-gradient(135deg,rgba(255,255,255,0.06),rgba(10,12,18,0.96))] p-5 shadow-[0_20px_70px_rgba(0,0,0,0.28)] backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:border-white/20 hover:shadow-[0_24px_80px_rgba(0,0,0,0.32)] xs:p-6">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.08),transparent_45%)] opacity-70" />
-        <div className={`absolute -right-10 -top-10 h-28 w-28 rounded-full bg-gradient-to-br ${member.hue} opacity-20 blur-3xl transition-all duration-500 group-hover:opacity-30`} />
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-
-        <div className="relative mt-6 flex items-center gap-4">
-          <div className={`relative h-20 w-20 shrink-0 overflow-hidden rounded-[20px] border border-white/10 bg-gradient-to-br ${member.tone} p-[2px]`}>
-            <div className="h-full w-full overflow-hidden rounded-[18px]">
-              {member.image ? (
-                <Image src={member.image} alt={member.name} width={96} height={96} className="h-full w-full object-cover" />
-              ) : (
-                <div className="flex h-full w-full items-center justify-center bg-[#10131C] text-lg font-semibold text-white">
-                  {member.name
-                    .split(" ")
-                    .map((n) => n[0])
-                    .join("")}
-                </div>
-              )}
-            </div>
-          </div>
-
-          <div className="min-w-0">
-            <h4 className="text-xl font-semibold text-[#F5F6FA]">
-              {member.name}
-            </h4>
-            <p className="mt-1 text-sm font-medium uppercase tracking-[0.25em] text-[#C7CCD6]">
-              {member.role}
-            </p>
-          </div>
+  return (
+    <section id="about" className="softles-section-primary">
+      <div className="service-page-container">
+        <div className="softles-eyebrow mb-2">
+          <span className="softles-eyebrow-line" />
+          <span className="softles-eyebrow-text">Our team</span>
         </div>
-
-        <p className="relative mt-5 text-sm leading-relaxed text-[#D5D8E1]/90">
-          {member.bio}
+        <h2 className="service-section-heading text-[#FFFFFF]">The people behind SoftLes</h2>
+        <p className="softles-section-copy">
+          A small senior team you work with directly — no account managers, no hand-offs.
         </p>
 
-        <div className="relative mt-5 rounded-2xl border border-white/10 bg-[#0D1018]/80 p-3">
-          <div className="flex items-start gap-2">
-            <div className="mt-1 h-2.5 w-2.5 rounded-full" style={{ backgroundColor: member.accent }} />
-            <p className="text-sm leading-relaxed text-[#D9DDE7]">
-              {member.quote}
-            </p>
-          </div>
-        </div>
+        <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">
+          {team.map((member) => (
+            <article
+              key={member.name}
+              className="group softles-card overflow-hidden"
+            >
+              {/* Photo */}
+              <div className="relative aspect-[4/5] overflow-hidden bg-gradient-to-br from-[#222A3B] to-[#12161F]">
+                {member.image ? (
+                  <Image
+                    src={member.image}
+                    alt={member.name}
+                    fill
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
+                  />
+                ) : (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="flex h-20 w-20 items-center justify-center rounded-full bg-[#FF4D57]/12 border border-[#FF4D57]/30 text-2xl font-bold text-[#FF4D57]">
+                      {initials(member.name)}
+                    </span>
+                  </div>
+                )}
 
-        <div className="absolute bottom-0 left-0 h-px w-0 bg-gradient-to-r from-[#FF4D57] via-[#5A6BFF] to-[#00D1A0] transition-all duration-500 group-hover:w-full" />
-      </div>
-    </article>
-  );
+                {/* subtle bottom fade for name legibility if needed */}
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-[#12161F]/80 to-transparent" />
 
-  return (
-    <section
-      id="about"
-      className="relative w-full py-12 md:py-20 border-t border-[#2E3446] bg-[#0E1219]" 
-    >
-      {/* Background effects */}
-      {/* <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -left-24 top-12 h-72 w-72 rounded-full bg-[#FF4D57]/15 blur-3xl" />
-        <div className="absolute right-0 bottom-0 h-96 w-96 rounded-full bg-[#5A6BFF]/10 blur-3xl" />
-        <div className="absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#00D1A0]/05 blur-3xl" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0F1118]/20 to-transparent" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(255,77,87,0.08),transparent_50%),radial-gradient(circle_at_80%_10%,rgba(90,107,255,0.05),transparent_50%)]" />
-      </div> */}
+                {/* LinkedIn */}
+                {member.linkedin && (
+                  <a
+                    href={member.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${member.name} on LinkedIn`}
+                    className="absolute top-3 right-3 flex h-8 w-8 items-center justify-center rounded-lg bg-[#0E1219]/80 border border-[#2E3446] text-[#C7CCD6] backdrop-blur-md transition-all hover:bg-[#FF4D57] hover:border-[#FF4D57] hover:text-white opacity-0 group-hover:opacity-100 focus-visible:opacity-100"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S.02 4.88.02 3.5C.02 2.12 1.13 1 2.5 1S4.98 2.12 4.98 3.5zM.24 8h4.52v14H.24V8zm7.5 0h4.33v1.9h.06c.6-1.14 2.08-2.34 4.28-2.34 4.58 0 5.43 3.01 5.43 6.93V22h-4.52v-6.6c0-1.57-.03-3.6-2.2-3.6-2.2 0-2.54 1.72-2.54 3.49V22H7.74V8z" />
+                    </svg>
+                  </a>
+                )}
+              </div>
 
-      <div className="service-page-container mx-auto flex flex-col">
-        {/* Header */}
-        <div className="flex flex-col">
-            <div className="flex items-center text-base font-normal text-[#FFFFFF]">
-            <Image src={"/Separator.png"} alt="separator"  width={0} height={0} sizes="(max-width: 768px) 40vw, (max-width: 1024px) 50vw, 33vw" className="object-cover overflow-hidden min-w-min h-[2px] w-auto mr-[10px]" />
-            <p className="text-sm uppercase tracking-[0.2em] text-[#C7CCD6]">
-              Meet the team
-            </p>
-          </div>
-          <span className="mt-2 mb-2 lg:mb-0 service-section-heading text-[#FFFFFF]">
-            The people you&apos;ll work with
-          </span>
-          <span className="text-sm sm:text-base text-[#C7CCD6] mt-2 max-w-2xl leading-relaxed">
-            We&apos;re a small senior team, so you work straight with the people building your
-            site, not an account manager passing notes along.
-          </span>
-        </div>
-        {/* Team grid — three members, no carousel needed */}
-        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 items-stretch">
-          {team.map((member) => renderTeamMemberCard(member, member.name))}
+              {/* Name + role */}
+              <div className="p-4 text-center">
+                <h3 className="text-sm sm:text-base font-bold text-white leading-tight">{member.name}</h3>
+                <p className="text-xs sm:text-sm text-[#C7CCD6]/80 mt-1">{member.role}</p>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>
