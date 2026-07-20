@@ -46,7 +46,10 @@ export default function Hero() {
                     className="hero-reveal mt-7 max-w-[16ch] text-ink font-semibold tracking-[-0.03em] text-[clamp(2.75rem,1rem+7vw,5.25rem)] leading-[0.98]"
                     style={{ animationDelay: "80ms" }}
                 >
-                    We build businesses on WordPress &amp; Shopify<span className="text-brand">.</span>
+                    We build businesses on{" "}
+                    <span className="font-[family-name:var(--font-hand)] font-bold text-brand tracking-normal text-[1.12em] leading-none">WordPress</span>{" "}
+                    &amp;{" "}
+                    <span className="font-[family-name:var(--font-hand)] font-bold text-brand tracking-normal text-[1.12em] leading-none">Shopify</span><span className="text-brand">.</span>
                 </h1>
 
                 {/* Subhead */}
