@@ -270,7 +270,7 @@ function MobileStackCarousel({ services }) {
 
 export default function OurServicesSection() {
   return (
-    <section id="services" className="w-full py-12 md:pt-20 md:pb-24 px-0 flex flex-col justify-center place-content-between overflow-hidden border-t border-line bg-surface">
+    <section id="services" className="w-full py-16 md:py-24 px-0 flex flex-col justify-center place-content-between overflow-hidden border-t border-line bg-surface">
       <div className="service-page-container mx-auto w-full flex flex-col">
         <div className="relative z-10 flex flex-col">
           <div className="flex items-center text-base font-normal text-ink">

@@ -10,7 +10,7 @@ const STATS = [
 
 export default function FeaturedCaseStudy() {
   return (
-    <section className="w-full py-12 md:py-20 bg-[#161C27] border-y border-[#2E3446]">
+    <section className="w-full py-16 md:py-24 bg-surface-raised border-y border-line">
       <div className="service-page-container">
         <div className="softles-eyebrow mb-3">
           <span className="softles-eyebrow-line" />

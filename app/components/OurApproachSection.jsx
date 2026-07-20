@@ -53,7 +53,7 @@ export default function OurApproachSection() {
     ]
 
     return (
-        <section id="approach" className="relative overflow-hidden w-full py-12 md:py-32 px-0 flex flex-col justify-center place-content-between bg-surface-raised border-t border-b border-line">
+        <section id="approach" className="relative overflow-hidden w-full py-16 md:py-24 px-0 flex flex-col justify-center place-content-between bg-surface-raised border-t border-b border-line">
             {/* Indigo secondary glow — the two-tone system beyond the hero */}
             <div className="absolute -top-24 -left-24 w-[32rem] h-[32rem] bg-[#6D5EF6]/12 rounded-full blur-3xl pointer-events-none" />
             <div className="absolute -bottom-24 right-0 w-96 h-96 bg-[#6D5EF6]/10 rounded-full blur-3xl pointer-events-none" />

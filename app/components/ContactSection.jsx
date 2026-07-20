@@ -39,7 +39,7 @@ export default function ContactSection() {
     };
 
     return (
-        <section id="book-call" className="w-full py-12 md:py-20 px-0 bg-surface-raised border-t border-b border-line">
+        <section id="book-call" className="w-full py-16 md:py-24 px-0 bg-surface-raised border-t border-b border-line">
             <div className="service-page-container">
                 {/* Header */}
                 <div className="flex flex-col">
