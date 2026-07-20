@@ -1,4 +1,4 @@
-import { Space_Grotesk, Inter } from "next/font/google";
+import { Space_Grotesk, Inter, Caveat } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
@@ -18,6 +18,13 @@ const display = Space_Grotesk({
 const body = Inter({
   subsets: ["latin"],
   variable: "--font-body",
+  display: "swap",
+});
+// Handwritten accent — used only for expressive brand words in the hero.
+const hand = Caveat({
+  subsets: ["latin"],
+  weight: ["600", "700"],
+  variable: "--font-hand",
   display: "swap",
 });
 
@@ -74,7 +81,7 @@ export default function RootLayout({ children }) {
         <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body
-        className={`${display.variable} ${body.variable} antialiased`}
+        className={`${display.variable} ${body.variable} ${hand.variable} antialiased`}
       >
         <RouteLoader />
         <Navbar/>

@@ -30,7 +30,43 @@ module.exports = {
       },
       colors: {
         background: 'var(--background)',
-        foreground: 'var(--foreground)'
+        foreground: 'var(--foreground)',
+
+        // ---- Design tokens (semantic) ----
+        // Surfaces: page → raised (cards/sections) → overlay (inputs/hover)
+        surface: {
+          DEFAULT: '#0E1219',
+          raised: '#161C27',
+          overlay: '#1E2533',
+        },
+        // Hairlines / dividers
+        line: {
+          subtle: '#232B3A',
+          DEFAULT: '#2E3446',
+          strong: '#3A4256',
+        },
+        // Text ("ink")
+        ink: {
+          DEFAULT: '#F5F6FA',
+          muted: '#C7CCD6',
+          faint: '#7C8394',
+        },
+        // Brand
+        brand: {
+          DEFAULT: '#FF4D57',
+          hover: '#E23B45',
+          accent: '#FF6A3D',
+          soft: 'rgba(255,77,87,0.10)',
+        },
+      },
+
+      fontSize: {
+        // Semantic type scale (size, {lineHeight, letterSpacing, fontWeight})
+        eyebrow: ['0.8125rem', { lineHeight: '1', letterSpacing: '0.2em', fontWeight: '600' }],
+        h3: ['1.25rem', { lineHeight: '1.35', letterSpacing: '-0.01em', fontWeight: '700' }],
+        h2: ['clamp(1.5rem, 1rem + 2.2vw, 2.25rem)', { lineHeight: '1.15', letterSpacing: '-0.015em', fontWeight: '700' }],
+        h1: ['clamp(2rem, 1rem + 4vw, 3rem)', { lineHeight: '1.1', letterSpacing: '-0.02em', fontWeight: '800' }],
+        display: ['clamp(2.5rem, 1rem + 6vw, 4rem)', { lineHeight: '1.04', letterSpacing: '-0.02em', fontWeight: '800' }],
       },
   	  borderRadius: {
   			lg: 'var(--radius)',

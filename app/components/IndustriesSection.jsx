@@ -136,7 +136,7 @@ export default function IndustriesSection() {
     <motion.section
       ref={containerRef}
       id="industries"
-      className="w-full pt-5 pb-20 md:pt-10 md:pb-28 px-0 bg-[#0E1219] bg-grid-white text-white flex flex-col justify-center"
+      className="w-full pt-5 pb-20 md:pt-10 md:pb-28 px-0 bg-surface bg-grid-white text-white flex flex-col justify-center"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
@@ -158,7 +158,7 @@ export default function IndustriesSection() {
               width={24}
               height={4}
             />
-            <p className="text-sm uppercase tracking-[0.2em] text-[#C7CCD6]">
+            <p className="text-sm uppercase tracking-[0.2em] text-ink-muted">
               Industries we serve
             </p>
           </motion.div>
@@ -171,7 +171,7 @@ export default function IndustriesSection() {
           </motion.h2>
 
           <motion.p
-            className="text-base text-[#C7CCD6]/80 mt-2 max-w-2xl"
+            className="text-base text-ink-muted/80 mt-2 max-w-2xl"
             variants={itemVariants}
           >
             We empower businesses across diverse industries with tailored digital solutions. Explore our expertise below.
@@ -187,7 +187,7 @@ export default function IndustriesSection() {
           <button
             aria-label="Previous"
             onClick={handlePrev}
-            className="hidden md:flex absolute top-1/2 -left-10 lg:-left-12 z-20 bg-[#23263a] hover:bg-[#FF4D57] text-white rounded-full p-3 shadow-xl transition-all"
+            className="hidden md:flex absolute top-1/2 -left-10 lg:-left-12 z-20 bg-surface-overlay hover:bg-brand text-white rounded-full p-3 shadow-xl transition-all"
             style={{ transform: 'translateY(-50%)' }}
           >
             <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -198,7 +198,7 @@ export default function IndustriesSection() {
           <button
             aria-label="Next"
             onClick={handleNext}
-            className="hidden md:flex absolute top-1/2 -right-10 lg:-right-12 z-20 bg-[#23263a] hover:bg-[#FF4D57] text-white rounded-full p-3 shadow-xl transition-all"
+            className="hidden md:flex absolute top-1/2 -right-10 lg:-right-12 z-20 bg-surface-overlay hover:bg-brand text-white rounded-full p-3 shadow-xl transition-all"
             style={{ transform: 'translateY(-50%)' }}
           >
             <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -220,7 +220,7 @@ export default function IndustriesSection() {
                 {industries.slice(currentIndex, currentIndex + visibleCount).map((industry, idx) => (
                   <motion.div
                     key={`${industry.key}-${idx}`}
-                    className="group bg-gradient-to-br from-[#23263a] to-[#181B23] rounded-2xl shadow-xl overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl border border-white/10 w-full max-w-xl flex flex-col"
+                    className="group bg-gradient-to-br from-surface-overlay to-surface-raised rounded-2xl shadow-xl overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl border border-white/10 w-full max-w-xl flex flex-col"
                     variants={cardVariants}
                     initial="initial"
                     animate="animate"
@@ -236,7 +236,7 @@ export default function IndustriesSection() {
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#23263a] to-transparent opacity-90"></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-surface-overlay to-transparent opacity-90"></div>
 
                       {/* Icon badge */}
                       <div className="absolute top-4 right-4 z-20">
@@ -256,7 +256,7 @@ export default function IndustriesSection() {
 
                       {/* Floating title */}
                       <div className="absolute bottom-4 left-4 z-20">
-                        <h3 className="text-2xl md:text-3xl font-bold text-white group-hover:text-[#FF4D57] transition-colors duration-200">
+                        <h3 className="text-2xl md:text-3xl font-bold text-white group-hover:text-brand transition-colors duration-200">
                           {industry.label}
                         </h3>
                       </div>
@@ -265,13 +265,13 @@ export default function IndustriesSection() {
                     {/* Content */}
                     <div className="p-6 md:p-7 flex flex-col flex-grow">
                       <div className="flex-grow mb-4">
-                        <p className="text-base md:text-lg text-[#C7CCD6]">
+                        <p className="text-base md:text-lg text-ink-muted">
                           {industry.description}
                         </p>
                       </div>
 
                       <div className="mt-auto">
-                        <button className="text-[#FF4D57] font-medium flex items-center group-hover:text-white transition-colors">
+                        <button className="text-brand font-medium flex items-center group-hover:text-white transition-colors">
                           Learn more
                           <svg
                             className="ml-2 transition-transform group-hover:translate-x-1"
@@ -304,7 +304,7 @@ export default function IndustriesSection() {
             <button
               aria-label="Previous"
               onClick={handlePrev}
-              className="bg-[#23263a] hover:bg-[#FF4D57] text-white rounded-full p-3 shadow-lg transition-all"
+              className="bg-surface-overlay hover:bg-brand text-white rounded-full p-3 shadow-lg transition-all"
             >
               <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M17 22l-8-8 8-8"/>
@@ -313,7 +313,7 @@ export default function IndustriesSection() {
             <button
               aria-label="Next"
               onClick={handleNext}
-              className="bg-[#23263a] hover:bg-[#FF4D57] text-white rounded-full p-3 shadow-lg transition-all"
+              className="bg-surface-overlay hover:bg-brand text-white rounded-full p-3 shadow-lg transition-all"
             >
               <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M11 6l8 8-8 8"/>
@@ -329,7 +329,7 @@ export default function IndustriesSection() {
                 onClick={() => setCurrentIndex(idx)}
                 className={`w-3 h-3 rounded-full transition-all ${
                   idx === currentIndex
-                    ? 'bg-[#FF4D57] w-8'
+                    ? 'bg-brand w-8'
                     : 'bg-white/30 hover:bg-white/60'
                 }`}
                 aria-label={`Go to slide ${idx + 1}`}

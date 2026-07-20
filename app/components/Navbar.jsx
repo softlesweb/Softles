@@ -42,7 +42,7 @@ export default function Navbar() {
     if (pathname?.startsWith("/lp")) return null;
 
     return (
-        <div className={`h-[60px] w-full z-50 fixed top-0 transition-all duration-300 ease-in-out bg-[#0E1219] text-[#FFFFFF] ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`}>
+        <div className={`h-[60px] w-full z-50 fixed top-0 transition-all duration-300 ease-in-out bg-surface text-ink ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`}>
             <div className="service-page-container h-full flex items-center justify-between lg:justify-normal">
                 <Link href="/">
                     <Image src={"/SoftLes.png"} alt="logo"  width={0} height={0} sizes="(max-width: 768px) 40vw, (max-width: 1024px) 50vw, 33vw" className="object-cover overflow-hidden min-w-min h-[38px] w-auto"/>
@@ -51,22 +51,22 @@ export default function Navbar() {
                 <div className="w-full ml-16 hidden lg:flex items-center justify-between text-base leading-5 font-semibold" >
                     <ul className="flex items-center gap-x-8">
                         {/* <li>
-                            <Link href="/#about" onClick={e => handleSectionClick(e, "about")} className="hover:text-[#FF4D57] transition-colors">
+                            <Link href="/#about" onClick={e => handleSectionClick(e, "about")} className="hover:text-brand transition-colors">
                                 About Us
                             </Link>
                         </li> */}
                         <li>
-                            <Link href="/wordpress-development" className="hover:text-[#FF4D57] transition-colors">
+                            <Link href="/wordpress-development" className="hover:text-brand transition-colors">
                                 WordPress
                             </Link>
                         </li>
                         <li>
-                            <Link href="/shopify-development" className="hover:text-[#FF4D57] transition-colors">
+                            <Link href="/shopify-development" className="hover:text-brand transition-colors">
                                 Shopify
                             </Link>
                         </li>
                         <li>
-                            <Link href="/blog" className="hover:text-[#FF4D57] transition-colors">
+                            <Link href="/blog" className="hover:text-brand transition-colors">
                                 Blog
                             </Link>
                         </li>

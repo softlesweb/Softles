@@ -15,11 +15,31 @@ function BulletTooltip({ children, tip }) {
     >
       {children}
       {show && (
-        <span className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 z-20 bg-[#23263a] text-white text-xs px-2.5 py-1.5 rounded shadow-lg whitespace-nowrap">
+        <span className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 z-20 bg-surface-overlay text-ink text-xs px-2.5 py-1.5 rounded-lg border border-line shadow-lg whitespace-nowrap">
           {tip}
         </span>
       )}
     </span>
+  );
+}
+
+/* ---------- Small calm check mark (token-driven, no raw hex) ---------- */
+function CheckMark() {
+  return (
+    <svg
+      width="15"
+      height="15"
+      viewBox="0 0 20 20"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="mt-0.5 shrink-0 text-brand"
+      aria-hidden="true"
+    >
+      <path d="M4 10.5L8.5 15L16 5.5" />
+    </svg>
   );
 }
 
@@ -101,9 +121,9 @@ function MobileStackCarousel({ services }) {
   };
 
   return (
-    <div className="md:hidden w-full flex flex-col items-center py-8 mt-5 relative">
+    <div className="md:hidden w-full flex flex-col items-center mt-12 relative">
       <div
-        className="relative w-full max-w-xs min-h-[460px] perspective-1000"
+        className="relative w-full max-w-xs min-h-[460px]"
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
@@ -111,9 +131,9 @@ function MobileStackCarousel({ services }) {
         {[1, 2].map((offset) => {
           const index = (active + offset) % services.length;
           const zIndex = 10 - offset;
-          const scale = 1 - (offset * 0.08);
-          const opacity = 1 - (offset * 0.4);
-          const yOffset = offset * 20;
+          const scale = 1 - (offset * 0.05);
+          const opacity = 1 - (offset * 0.5);
+          const yOffset = offset * 16;
 
           return (
             <motion.div
@@ -123,10 +143,9 @@ function MobileStackCarousel({ services }) {
                 scale,
                 y: yOffset,
                 opacity,
-                rotateX: 5,
               }}
               transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="absolute inset-0 bg-gradient-to-br from-[#23263a] to-[#181B23] rounded-2xl shadow-xl p-8 flex flex-col items-start min-h-[320px] border border-[#2E3446]"
+              className="absolute inset-0 softles-card p-8 flex flex-col items-start min-h-[320px]"
               style={{
                 zIndex,
                 transformOrigin: "center bottom",
@@ -136,21 +155,19 @@ function MobileStackCarousel({ services }) {
                 <Image
                   src={services[index].image}
                   alt={services[index].title}
-                  width={64}
-                  height={64}
+                  width={56}
+                  height={56}
                   className="rounded-full"
                 />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-left text-white/70">{services[index].title}</h3>
+              <h3 className="text-lg font-semibold mb-4 text-left text-ink-muted">{services[index].title}</h3>
               <ul className="w-full flex flex-col gap-2 mt-2 mb-6 opacity-70">
                 {services[index].bullets.slice(0, 2).map((b, i) => (
                   <li
                     key={i}
-                    className="relative pl-8 py-1.5 bg-[#23263a]/40 rounded-lg text-sm text-[#F3F4F6]/70 font-medium"
+                    className="flex items-start gap-2.5 py-1 text-sm text-ink-muted"
                   >
-                    <span className="absolute left-3 top-1/2 -translate-y-1/2 flex items-center justify-center w-4 h-4 rounded-full bg-[#FF4D57]/50 text-white text-xs">
-                      ✓
-                    </span>
+                    <CheckMark />
                     {b.txt}
                   </li>
                 ))}
@@ -166,67 +183,60 @@ function MobileStackCarousel({ services }) {
             custom={direction}
             initial={{
               opacity: 0,
-              y: 24,
-              scale: 0.94,
+              y: 20,
             }}
             animate={{
               opacity: 1,
               y: 0,
-              scale: 1,
             }}
             exit={{
               opacity: 0,
-              y: -24,
-              scale: 0.94,
+              y: -20,
             }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
-            className="absolute inset-0 bg-gradient-to-br from-[#23263a] to-[#181B23] rounded-2xl shadow-2xl p-8 flex flex-col items-start min-h-[320px] z-30 border border-[#FF4D57]/20"
+            className="absolute inset-0 bg-surface-raised rounded-2xl border border-line-strong shadow-[0_1px_2px_rgba(0,0,0,0.25)] p-8 flex flex-col items-start min-h-[320px] z-30"
           >
-            <div className="mb-2 md:mb-6 flex items-center justify-center">
+            <div className="mb-4 flex items-center justify-center">
               <Image
                 src={services[active].image}
                 alt={services[active].title}
-                width={72}
-                height={72}
+                width={64}
+                height={64}
                 className="rounded-full"
               />
             </div>
-            <h3 className="text-xl font-bold mb-4 text-left text-white">{services[active].title}</h3>
-            <ul className="w-full flex flex-col gap-5">
+            <h3 className="text-xl font-semibold mb-5 text-left text-ink">{services[active].title}</h3>
+            <ul className="w-full flex flex-col gap-3">
               {services[active].bullets.map((b, i) => (
                 <li
                   key={i}
-                  className="relative pl-10 py-2 bg-[#23263a]/60 rounded-lg text-sm text-[#F3F4F6] font-medium shadow-sm border border-[#23263a] text-left hover:border-[#FF4D57] transition-all duration-200"
+                  className="flex items-start gap-3 rounded-lg border border-line-subtle bg-surface-overlay/40 px-3 py-2 text-sm text-ink-muted text-left transition-colors duration-200 hover:border-line hover:text-ink"
                 >
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 flex items-center justify-center w-5 h-5 rounded-full bg-[#FF4D57] text-white text-xs font-bold shadow-md">
-                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
-                      <circle cx="10" cy="10" r="10" fill="#FF4D57"/>
-                      <path d="M7 10.5L9 12.5L13 8.5" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </span>
+                  <CheckMark />
                   {b.txt}
                 </li>
               ))}
             </ul>
 
             {/* Active card indicator */}
-            <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-16 h-1.5 bg-gradient-to-r from-[#FF4D57] to-[#ff6b6b] rounded-full" />
+            <div className="absolute -top-px left-8 w-10 h-0.5 bg-brand rounded-full" />
           </motion.div>
         </AnimatePresence>
       </div>
 
       {/* Navigation buttons */}
-      <div className="flex gap-4 mt-8 z-40">
+      <div className="flex items-center gap-4 mt-8 z-40">
         <button
           disabled={isPrevDisabled}
           onClick={handlePrev}
-          className={`flex h-12 w-12 items-center justify-center rounded-full shadow-lg transition-all duration-300 ${
+          aria-label="Previous service"
+          className={`flex h-11 w-11 items-center justify-center rounded-full border transition-all duration-300 ${
             isPrevDisabled
-              ? "bg-[#23263a]/40 text-white/40 cursor-not-allowed"
-              : "bg-gradient-to-br from-[#23263a] to-[#181B23] hover:from-[#FF4D57] hover:to-[#ff6b6b] text-white hover:shadow-xl"
+              ? "border-line-subtle text-ink-faint cursor-not-allowed"
+              : "border-line-strong text-ink hover:border-brand hover:text-brand"
           }`}
         >
-          <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M15 19L8 12L15 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </button>
@@ -237,14 +247,15 @@ function MobileStackCarousel({ services }) {
             <button
               key={idx}
               disabled={idx === active}
+              aria-label={`Go to service ${idx + 1}`}
               onClick={() => {
                 setDirection(idx > active ? 1 : -1);
                 setActive(idx);
               }}
-              className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+              className={`h-1.5 rounded-full transition-all duration-300 ${
                 idx === active
-                  ? 'w-8 bg-gradient-to-r from-[#FF4D57] to-[#ff6b6b]'
-                  : 'bg-[#23263a] hover:bg-[#FF4D57]/50'
+                  ? 'w-8 bg-brand'
+                  : 'w-1.5 bg-line-strong hover:bg-ink-faint'
               }`}
             />
           ))}
@@ -253,13 +264,14 @@ function MobileStackCarousel({ services }) {
         <button
           disabled={isNextDisabled}
           onClick={handleNext}
-          className={`flex h-12 w-12 items-center justify-center rounded-full shadow-lg transition-all duration-300 ${
+          aria-label="Next service"
+          className={`flex h-11 w-11 items-center justify-center rounded-full border transition-all duration-300 ${
             isNextDisabled
-              ? "bg-[#23263a]/40 text-white/40 cursor-not-allowed"
-              : "bg-gradient-to-br from-[#23263a] to-[#181B23] hover:from-[#FF4D57] hover:to-[#ff6b6b] text-white hover:shadow-xl"
+              ? "border-line-subtle text-ink-faint cursor-not-allowed"
+              : "border-line-strong text-ink hover:border-brand hover:text-brand"
           }`}
         >
-          <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M9 5L16 12L9 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </button>
@@ -270,142 +282,69 @@ function MobileStackCarousel({ services }) {
 
 export default function OurServicesSection() {
   return (
-    <section id="services" className="w-full py-12 md:pt-20 md:pb-24 px-0 flex flex-col justify-center place-content-between overflow-hidden border-t border-[#2E3446] bg-[#0E1219]">
+    <section id="services" className="w-full py-16 md:py-24 px-0 flex flex-col justify-center overflow-hidden border-t border-line bg-surface">
       <div className="service-page-container mx-auto w-full flex flex-col">
         <div className="relative z-10 flex flex-col">
-          <div className="flex items-center text-base font-normal text-[#FFFFFF]">
-            <Image
-              src={"/Separator.png"}
-              alt="separator"
-              width={0}
-              height={0}
-              sizes="(max-width: 768px) 40vw, (max-width: 1024px) 50vw, 33vw"
-              className="object-cover overflow-hidden min-w-min h-[2px] mr-[10px]"
-            />
-          <p className="text-sm uppercase tracking-[0.2em] text-[#C7CCD6]">
-            What We Do
-          </p>
+          <div className="softles-eyebrow">
+            <span className="softles-eyebrow-line" />
+            <span className="softles-eyebrow-text">What We Do</span>
+          </div>
+          <span className="mt-4 service-section-heading font-semibold text-ink">
+            What we do
+          </span>
+          <span className="softles-section-copy">
+            Design, development, and the automation that connects it all. Here&apos;s where we spend our time.
+          </span>
         </div>
-        <span className="mt-2 mb-2 lg:mb-0 service-section-heading text-[#FFFFFF]">
-          What we do
-        </span>
-        <span className="text-sm sm:text-base text-[#C7CCD6] mt-2 max-w-2xl leading-relaxed">
-          Design, development, and the automation that connects it all. Here&apos;s where we spend our time.
-        </span>
-      </div>
 
-      {/* Mobile stack card carousel — phones only */}
-      <MobileStackCarousel services={services} />
+        {/* Mobile stack card carousel — phones only */}
+        <MobileStackCarousel services={services} />
 
-      {/* Tablet & desktop grid: 2 columns on tablet, 4 on desktop */}
-      <div className="mt-10 hidden md:grid grid-cols-2 xl:grid-cols-4 gap-6 xl:gap-8 relative perspective-1200">
-        {services.map((service, idx) => {
-          // Calculate stacking order with perspective
-          const stackOrder = services.length - idx;
-          const translateY = idx * 8; // Slight vertical offset
-          const translateX = idx % 2 === 0 ? -idx * 4 : idx * 4; // Alternating horizontal offset
-          const rotate = idx % 2 === 0 ? -1 : 1; // Slight alternating rotation
-
-          return (
+        {/* Tablet & desktop grid: 2 columns on tablet, 4 on desktop */}
+        <div className="mt-12 md:mt-16 hidden md:grid grid-cols-2 xl:grid-cols-4 gap-6">
+          {services.map((service, idx) => (
             <motion.div
               key={idx}
-              initial={{
-                opacity: 0,
-                y: 50,
-                rotateX: 10,
-                rotateY: rotate * 5
-              }}
-              whileInView={{
-                opacity: 1,
-                y: translateY,
-                rotateX: 0,
-                rotateY: rotate
-              }}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{
-                duration: 0.6,
-                delay: idx * 0.1,
-                ease: "easeOut"
-              }}
-              whileHover={{
-                y: -20,
-                scale: 1.05,
-                rotateY: 0,
-                rotateX: -5,
-                zIndex: 50,
-                transition: { duration: 0.3 }
+                duration: 0.5,
+                delay: idx * 0.08,
+                ease: "easeOut",
               }}
               viewport={{ once: true }}
-              className="group cursor-pointer bg-gradient-to-br from-[#23263a] to-[#181B23] rounded-2xl shadow-2xl p-4 flex flex-col items-start transition-all duration-500 relative min-h-[320px] border border-[#2E3446] hover:border-[#FF4D57]/40"
-              style={{
-                zIndex: stackOrder,
-                transformStyle: 'preserve-3d',
-                transform: `translate3d(${translateX}px, ${translateY}px, ${-idx * 20}px) rotateY(${rotate}deg)`,
-              }}
+              className="group softles-card p-6 md:p-8 flex flex-col items-start min-h-[320px]"
             >
-              {/* Card glow effect */}
-              <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-[#FF4D57]/0 via-[#FF4D57]/10 to-[#FF4D57]/0 opacity-0 group-hover:opacity-100 blur transition-opacity duration-500" />
-
-              <div className="mb-6 transition-all duration-500 group-hover:rotate-12 group-hover:scale-110 flex items-center justify-start relative z-10">
+              <div className="mb-6 flex items-center justify-start transition-transform duration-300 group-hover:-translate-y-0.5">
                 <Image
                   src={service.image}
                   alt={service.title}
-                  width={72}
-                  height={72}
+                  width={64}
+                  height={64}
                   className="rounded-full"
                 />
-                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#FF4D57]/20 to-transparent opacity-0 group-hover:opacity-100 blur transition-opacity duration-500" />
               </div>
 
-              <h3 className="text-xl font-bold mb-4 text-left text-white group-hover:text-[#FF4D57] transition-colors duration-300 leading-tight relative z-10">
+              <h3 className="text-lg font-semibold mb-5 text-left text-ink leading-tight">
                 {service.title}
               </h3>
 
-              <ul className="w-full flex flex-col gap-3 mt-2 mb-6 relative z-10">
+              <ul className="w-full flex flex-col gap-2.5">
                 {service.bullets.map((b, i) => (
-                  <motion.li
+                  <li
                     key={i}
-                    initial={{ opacity: 0, x: -10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: idx * 0.1 + i * 0.05 }}
-                    viewport={{ once: true }}
-                    whileHover={{ x: 5 }}
-                    className="relative pl-10 py-2 bg-[#23263a]/60 rounded-lg text-sm text-[#F3F4F6] font-medium shadow-sm border border-[#23263a] hover:border-[#FF4D57] hover:bg-[#23263a]/80 transition-all duration-300 text-left group/bullet"
+                    className="flex items-start gap-3 rounded-lg border border-line-subtle bg-surface-overlay/40 px-3 py-2 text-sm text-ink-muted text-left transition-colors duration-300 hover:border-line hover:text-ink"
                   >
-                    <span className="absolute left-3 top-1/2 -translate-y-1/2 flex items-center justify-center w-5 h-5 rounded-full bg-[#FF4D57] text-white text-xs font-bold shadow-md group-hover/bullet:scale-110 transition-transform duration-300">
-                      <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
-                        <circle cx="10" cy="10" r="10" fill="#FF4D57"/>
-                        <path d="M7 10.5L9 12.5L13 8.5" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </span>
-
-                    {/* Tooltip wrapped bullet text */}
+                    <CheckMark />
                     <BulletTooltip tip={b.tip}>
-                      <span className="group-hover:text-white transition-colors duration-200">
-                        {b.txt}
-                      </span>
+                      <span>{b.txt}</span>
                     </BulletTooltip>
-                  </motion.li>
+                  </li>
                 ))}
               </ul>
-
-              {/* Card edge highlight */}
-              <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-[#FF4D57]/20 transition-all duration-500 pointer-events-none" />
-
-              {/* 3D depth effect */}
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </motion.div>
-          );
-        })}
-      </div>
-
-      {/* Stack indicator for desktop */}
-      {/* <div className="hidden sm:flex justify-center mt-12 relative z-10">
-        <div className="flex items-center gap-2 px-4 py-2 bg-[#23263a]/50 rounded-full backdrop-blur-sm">
-          <svg className="w-4 h-4 text-[#FF4D57] animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
+          ))}
         </div>
-      </div> */}
       </div>
     </section>
   );
