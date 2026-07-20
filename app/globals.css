@@ -51,7 +51,7 @@ h1, h2, h3,
     }
 
     .softles-card {
-        @apply bg-gradient-to-br from-surface-raised to-surface rounded-2xl border border-line shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_4px_20px_rgba(0,0,0,0.35)] transition-all duration-300 hover:border-brand/50 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_18px_44px_rgba(255,77,87,0.18)] hover:-translate-y-0.5;
+        @apply bg-surface-raised rounded-2xl border border-line shadow-[0_1px_2px_rgba(0,0,0,0.25)] transition-all duration-300 hover:border-line-strong hover:-translate-y-0.5;
     }
 
     .softles-icon-box {
