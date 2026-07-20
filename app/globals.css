@@ -19,7 +19,7 @@ h1, h2, h3,
     }
 
     .service-section-heading {
-        @apply text-h2 text-ink;
+        @apply text-h1 text-ink;
     }
 
     .service-page-container {

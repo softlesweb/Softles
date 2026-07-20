@@ -12,15 +12,15 @@ function BrowserPreview({ project }) {
     : project.title;
 
   return (
-    <div className="flex h-full flex-col bg-[#0E1219]">
+    <div className="flex h-full flex-col bg-surface">
       {/* Browser chrome */}
-      <div className="flex items-center gap-2 px-3 sm:px-4 py-2.5 bg-[#161C27] border-b border-[#2E3446] shrink-0">
+      <div className="flex items-center gap-2 px-3 sm:px-4 py-2.5 bg-surface-raised border-b border-line shrink-0">
         <span className="flex gap-1.5">
           <span className="h-2.5 w-2.5 rounded-full bg-[#FF5F57]" />
           <span className="h-2.5 w-2.5 rounded-full bg-[#FEBC2E]" />
           <span className="h-2.5 w-2.5 rounded-full bg-[#28C840]" />
         </span>
-        <span className="ml-1 flex-1 truncate rounded-md bg-[#0E1219] border border-[#2E3446] px-3 py-1 text-[11px] text-[#C7CCD6]/70">
+        <span className="ml-1 flex-1 truncate rounded-md bg-surface border border-line px-3 py-1 text-[11px] text-ink-muted/70">
           {domain}
         </span>
       </div>
@@ -37,7 +37,7 @@ function BrowserPreview({ project }) {
           />
         ) : (
           <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
-            <p className="text-[#FFFFFF] font-bold text-lg sm:text-xl">{project.title}</p>
+            <p className="text-ink font-bold text-lg sm:text-xl">{project.title}</p>
           </div>
         )}
       </div>
@@ -48,21 +48,21 @@ function BrowserPreview({ project }) {
 function ProjectSlide({ project, isActive }) {
   return (
     <article
-      className={`bg-gradient-to-br from-[#23263a] to-[#181B23] border rounded-2xl overflow-hidden transition-all duration-500 ${
-        isActive ? "border-[rgba(255,77,87,0.4)] shadow-[0_20px_60px_rgba(0,0,0,0.3)]" : "border-[#2E3446]"
+      className={`bg-gradient-to-br from-surface-overlay to-surface-raised border rounded-2xl overflow-hidden transition-all duration-500 ${
+        isActive ? "border-[rgba(255,77,87,0.4)] shadow-[0_20px_60px_rgba(0,0,0,0.3)]" : "border-line"
       }`}
     >
       <div className="grid grid-cols-1 md:grid-cols-2">
-        <div className="relative overflow-hidden border-b md:border-b-0 md:border-r border-[#2E3446]">
+        <div className="relative overflow-hidden border-b md:border-b-0 md:border-r border-line">
           <BrowserPreview project={project} />
           <div className="absolute top-[54px] left-4 z-[2]">
-            <span className="inline-flex rounded-full border border-white/10 bg-[#0E1219]/85 backdrop-blur-md px-3 py-1 text-[10px] sm:text-xs font-semibold uppercase tracking-widest text-[#F5F6FA]">
+            <span className="inline-flex rounded-full border border-white/10 bg-surface/85 backdrop-blur-md px-3 py-1 text-[10px] sm:text-xs font-semibold uppercase tracking-widest text-ink">
               {project.industry}
             </span>
           </div>
           {project.badge && (
             <div className="absolute top-[54px] right-4 z-[2]">
-              <span className="inline-flex rounded-full bg-[rgba(255,77,87,0.15)] border border-[rgba(255,77,87,0.3)] px-3 py-1 text-[10px] sm:text-xs font-semibold text-[#FF4D57]">
+              <span className="inline-flex rounded-full bg-[rgba(255,77,87,0.15)] border border-[rgba(255,77,87,0.3)] px-3 py-1 text-[10px] sm:text-xs font-semibold text-brand">
                 {project.badge}
               </span>
             </div>
@@ -70,28 +70,28 @@ function ProjectSlide({ project, isActive }) {
         </div>
 
         <div className="p-5 sm:p-6 lg:p-8 flex flex-col justify-center">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-[#FF4D57] mb-2">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-brand mb-2">
             Featured Project
           </p>
-          <h3 className="text-xl sm:text-2xl font-bold text-[#FFFFFF] mb-2">{project.title}</h3>
-          <p className="text-[#C7CCD6]/80 text-sm leading-relaxed mb-4">{project.summary}</p>
+          <h3 className="text-xl sm:text-2xl font-bold text-ink mb-2">{project.title}</h3>
+          <p className="text-ink-muted/80 text-sm leading-relaxed mb-4">{project.summary}</p>
 
           {project.content && (
-            <p className="text-[#C7CCD6]/70 text-sm leading-relaxed mb-4 border-l-2 border-[#FF4D57]/40 pl-3">
+            <p className="text-ink-muted/70 text-sm leading-relaxed mb-4 border-l-2 border-brand/40 pl-3">
               {project.content}
             </p>
           )}
 
           {project.results && project.results.length > 0 && (
             <div className="mb-5">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-[#C7CCD6]/60 mb-2">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-ink-muted/60 mb-2">
                 Key Outcomes
               </p>
               <div className="flex flex-wrap gap-2">
                 {project.results.map((result) => (
                   <span
                     key={result}
-                    className="rounded-full border border-[#2E3446] bg-[#0E1219]/80 px-2.5 py-1 text-[11px] font-medium text-[#F5F6FA]"
+                    className="rounded-full border border-line bg-surface/80 px-2.5 py-1 text-[11px] font-medium text-ink"
                   >
                     {result}
                   </span>
@@ -104,7 +104,7 @@ function ProjectSlide({ project, isActive }) {
             {project.tags.map((tag) => (
               <span
                 key={tag}
-                className="px-2.5 py-1 bg-[rgba(255,77,87,0.1)] border border-[rgba(255,77,87,0.2)] rounded-full text-[10px] sm:text-xs text-[#FF4D57] font-semibold"
+                className="px-2.5 py-1 bg-brand/10 border border-[rgba(255,77,87,0.2)] rounded-full text-[10px] sm:text-xs text-brand font-semibold"
               >
                 {tag}
               </span>
@@ -112,7 +112,7 @@ function ProjectSlide({ project, isActive }) {
           </div>
 
           {project.note && (
-            <p className="text-[#C7CCD6]/60 text-xs leading-relaxed mb-4 border-l-2 border-[#FF4D57]/40 pl-3">
+            <p className="text-ink-muted/60 text-xs leading-relaxed mb-4 border-l-2 border-brand/40 pl-3">
               {project.note}
             </p>
           )}
@@ -154,8 +154,8 @@ export default function WordPressProjectShowcase({ projects }) {
   return (
     <div className="relative w-full">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-5 sm:mb-6">
-        <div className="flex items-center gap-2 text-xs sm:text-sm text-[#C7CCD6]">
-          <span className="font-semibold text-[#FFFFFF]">
+        <div className="flex items-center gap-2 text-xs sm:text-sm text-ink-muted">
+          <span className="font-semibold text-ink">
             {String(activeIndex + 1).padStart(2, "0")}
           </span>
           <span>/</span>
@@ -168,7 +168,7 @@ export default function WordPressProjectShowcase({ projects }) {
             type="button"
             aria-label="Previous project"
             onClick={() => swiperRef.current?.slidePrev()}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-[#343844] bg-[#0E1219] text-[#F5F6FA] hover:border-[#FF4D57] transition-all"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-line-strong bg-surface text-ink hover:border-brand transition-all"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -178,7 +178,7 @@ export default function WordPressProjectShowcase({ projects }) {
             type="button"
             aria-label="Next project"
             onClick={() => swiperRef.current?.slideNext()}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-[#343844] bg-[#0E1219] text-[#F5F6FA] hover:border-[#FF4D57] transition-all"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-line-strong bg-surface text-ink hover:border-brand transition-all"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -219,8 +219,8 @@ export default function WordPressProjectShowcase({ projects }) {
             onClick={() => swiperRef.current?.slideTo(i)}
             className={`px-3 py-1.5 rounded-full text-[10px] sm:text-xs font-semibold transition-all border ${
               i === activeIndex
-                ? "bg-[#FF4D57] border-[#FF4D57] text-white"
-                : "bg-transparent border-[#2E3446] text-[#C7CCD6] hover:border-[#FF4D57]/50"
+                ? "bg-brand border-brand text-white"
+                : "bg-transparent border-line text-ink-muted hover:border-brand/50"
             }`}
           >
             {project.shortName || project.title}

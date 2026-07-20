@@ -8,26 +8,26 @@ import "swiper/css";
 function ProjectCard({ project, isActive }) {
   return (
     <article
-      className={`project-card h-full bg-[#181B23] border rounded-2xl p-6 sm:p-8 transition-all duration-500 ${
+      className={`project-card h-full bg-surface-raised border rounded-2xl p-6 sm:p-8 transition-all duration-500 ${
         isActive
           ? "border-[rgba(255,77,87,0.45)] shadow-[0_20px_60px_rgba(255,77,87,0.12)]"
-          : "border-[#2E3446]"
+          : "border-line"
       }`}
     >
-      <div className="w-full h-28 sm:h-32 bg-gradient-to-br from-[#161C27] to-[#1a1e2a] border border-[#2E3446] rounded-2xl flex items-center justify-center mb-5 sm:mb-6 text-4xl relative overflow-hidden">
+      <div className="w-full h-28 sm:h-32 bg-gradient-to-br from-surface-raised to-[#1a1e2a] border border-line rounded-2xl flex items-center justify-center mb-5 sm:mb-6 text-4xl relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,77,87,0.12),transparent_70%)]" />
         <span className="relative z-10">{project.thumb}</span>
       </div>
 
-      <span className="inline-block text-[10px] sm:text-xs font-semibold uppercase tracking-widest text-[#FF4D57] mb-2 sm:mb-3">
+      <span className="inline-block text-[10px] sm:text-xs font-semibold uppercase tracking-widest text-brand mb-2 sm:mb-3">
         {project.industry}
       </span>
 
-      <h3 className="text-[#FFFFFF] font-semibold text-base sm:text-lg mb-2 sm:mb-3">
+      <h3 className="text-ink font-semibold text-base sm:text-lg mb-2 sm:mb-3">
         {project.title}
       </h3>
 
-      <p className="text-[#C7CCD6]/70 text-sm leading-relaxed mb-4">
+      <p className="text-ink-muted/70 text-sm leading-relaxed mb-4">
         {project.challenge}
       </p>
 
@@ -35,16 +35,16 @@ function ProjectCard({ project, isActive }) {
         {project.tags.map((tag, i) => (
           <span
             key={i}
-            className="inline-block px-2.5 sm:px-3 py-1 bg-[rgba(255,77,87,0.1)] border border-[rgba(255,77,87,0.2)] rounded-full text-[10px] sm:text-xs text-[#FF4D57] font-semibold"
+            className="inline-block px-2.5 sm:px-3 py-1 bg-brand/10 border border-[rgba(255,77,87,0.2)] rounded-full text-[10px] sm:text-xs text-brand font-semibold"
           >
             {tag}
           </span>
         ))}
       </div>
 
-      <div className="rounded-xl border border-[#2E3446] bg-[#161C27]/60 p-3 sm:p-4">
-        <p className="text-[#C7CCD6]/70 text-xs sm:text-sm leading-relaxed">
-          <strong className="text-[#FFFFFF]">Result:</strong> {project.result}
+      <div className="rounded-xl border border-line bg-surface-raised/60 p-3 sm:p-4">
+        <p className="text-ink-muted/70 text-xs sm:text-sm leading-relaxed">
+          <strong className="text-ink">Result:</strong> {project.result}
         </p>
       </div>
 
@@ -53,7 +53,7 @@ function ProjectCard({ project, isActive }) {
           href={project.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 mt-4 sm:mt-5 text-sm font-semibold text-[#FF4D57] hover:text-[#ff4d50] transition-colors"
+          className="inline-flex items-center gap-2 mt-4 sm:mt-5 text-sm font-semibold text-brand hover:text-[#ff4d50] transition-colors"
         >
           Visit live store
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -111,8 +111,8 @@ export default function ProjectsSlider({ projects }) {
   return (
     <div className="relative w-full">
       <div className="flex items-center justify-between mb-6 sm:mb-8">
-        <div className="flex items-center gap-2 text-xs sm:text-sm text-[#C7CCD6]">
-          <span className="font-semibold text-[#FFFFFF]">
+        <div className="flex items-center gap-2 text-xs sm:text-sm text-ink-muted">
+          <span className="font-semibold text-ink">
             {String(activeIndex + 1).padStart(2, "0")}
           </span>
           <span>/</span>
@@ -124,7 +124,7 @@ export default function ProjectsSlider({ projects }) {
             type="button"
             aria-label="Previous project"
             onClick={goPrev}
-            className="group flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full border border-[#343844] bg-gradient-to-br from-[#0F1118] to-[#131623] text-[#F5F6FA] transition-all hover:border-[#FF4D57] hover:scale-105"
+            className="group flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full border border-line-strong bg-gradient-to-br from-[#0F1118] to-[#131623] text-ink transition-all hover:border-brand hover:scale-105"
           >
             <svg className="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:-translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -134,7 +134,7 @@ export default function ProjectsSlider({ projects }) {
             type="button"
             aria-label="Next project"
             onClick={goNext}
-            className="group flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full border border-[#343844] bg-gradient-to-br from-[#0F1118] to-[#131623] text-[#F5F6FA] transition-all hover:border-[#FF4D57] hover:scale-105"
+            className="group flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full border border-line-strong bg-gradient-to-br from-[#0F1118] to-[#131623] text-ink transition-all hover:border-brand hover:scale-105"
           >
             <svg className="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -192,8 +192,8 @@ export default function ProjectsSlider({ projects }) {
               onClick={() => goToSlide(i)}
               className={`h-1.5 rounded-full transition-all duration-500 ${
                 i === activeIndex
-                  ? "w-8 bg-gradient-to-r from-[#FF4D57] to-[#5A6BFF]"
-                  : "w-1.5 bg-[#343844] hover:bg-[#5A6BFF]/50"
+                  ? "w-8 bg-gradient-to-r from-brand to-[#5A6BFF]"
+                  : "w-1.5 bg-line-strong hover:bg-[#5A6BFF]/50"
               }`}
               aria-label={`Go to project ${i + 1}`}
             />

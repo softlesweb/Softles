@@ -53,20 +53,20 @@ export default function OurApproachSection() {
     ]
 
     return (
-        <section id="approach" className="relative overflow-hidden w-full py-12 md:py-32 px-0 flex flex-col justify-center place-content-between bg-[#161C27] border-t border-b border-[#2E3446]">
+        <section id="approach" className="relative overflow-hidden w-full py-12 md:py-32 px-0 flex flex-col justify-center place-content-between bg-surface-raised border-t border-b border-line">
             {/* Indigo secondary glow — the two-tone system beyond the hero */}
             <div className="absolute -top-24 -left-24 w-[32rem] h-[32rem] bg-[#6D5EF6]/12 rounded-full blur-3xl pointer-events-none" />
             <div className="absolute -bottom-24 right-0 w-96 h-96 bg-[#6D5EF6]/10 rounded-full blur-3xl pointer-events-none" />
             <div className="service-page-container relative mx-auto w-full flex flex-col">
                 <div className="flex flex-col">
-                    <div className="flex items-center text-base font-normal text-[#FFFFFF]">
+                    <div className="flex items-center text-base font-normal text-ink">
                         <span className="block w-12 h-0.5 bg-[#6D5EF6] mr-[10px]" />
-                        <p className="text-sm uppercase tracking-[0.2em] text-[#C7CCD6]">
+                        <p className="text-sm uppercase tracking-[0.2em] text-ink-muted">
                             Our Approach
                         </p>
                     </div>
-                    <span className="mt-2 mb-2 lg:mb-0 service-section-heading text-[#FFFFFF]">From discovery to delivery</span>
-                    <span className="text-sm sm:text-base text-[#C7CCD6] mt-2 max-w-2xl leading-relaxed">
+                    <span className="mt-2 mb-2 lg:mb-0 service-section-heading text-ink">From discovery to delivery</span>
+                    <span className="text-sm sm:text-base text-ink-muted mt-2 max-w-2xl leading-relaxed">
                         A clear process, so you know the scope, price, and timeline before we write any code.
                     </span>
                 </div>
@@ -77,7 +77,7 @@ export default function OurApproachSection() {
                     {processSteps.map((step, index) => (
                         <div
                             key={index}
-                            className="group relative overflow-hidden flex flex-col gap-3 p-5 rounded-2xl bg-[#181B23] border border-[#2E3446] transition-all duration-300 hover:-translate-y-1 hover:border-[#FF4D57]/40 hover:bg-[#1a1e2a]"
+                            className="group relative overflow-hidden flex flex-col gap-3 p-5 rounded-2xl bg-surface-raised border border-line transition-all duration-300 hover:-translate-y-1 hover:border-brand/40 hover:bg-[#1a1e2a]"
                         >
 
                             {/* Glow */}
@@ -86,7 +86,7 @@ export default function OurApproachSection() {
                             <div className="relative z-10">
 
                                 {/* Icon */}
-                                <div className="w-12 h-12 mb-3 rounded-xl flex items-center justify-center bg-[rgba(255,77,87,0.08)] border border-[rgba(255,77,87,0.25)] transition-all duration-300 group-hover:scale-110 group-hover:border-[#FF4D57]/50">
+                                <div className="w-12 h-12 mb-3 rounded-xl flex items-center justify-center bg-brand/10 border border-brand/25 transition-all duration-300 group-hover:scale-110 group-hover:border-brand/50">
                                     <Image
                                         src={step.image}
                                         alt={`Service icon for ${step.name}`}
@@ -97,19 +97,19 @@ export default function OurApproachSection() {
 
 
                                 {/* Step Number */}
-                                <span className="text-xs text-[#FF4D57] font-semibold uppercase tracking-wider">
+                                <span className="text-xs text-brand font-semibold uppercase tracking-wider">
                                     Step {String(index + 1).padStart(2, "0")}
                                 </span>
 
 
                                 {/* Title */}
-                                <h3 className="mt-1 text-lg font-semibold text-white leading-snug group-hover:text-[#FF4D57] transition-colors duration-300">
+                                <h3 className="mt-1 text-lg font-semibold text-white leading-snug group-hover:text-brand transition-colors duration-300">
                                     {step.name}
                                 </h3>
 
 
                                 {/* Description */}
-                                <p className="mt-2 text-sm text-[#C7CCD6] leading-relaxed">
+                                <p className="mt-2 text-sm text-ink-muted leading-relaxed">
                                     {step.description}
                                 </p>
 
@@ -127,8 +127,8 @@ export default function OurApproachSection() {
                     <ServiceCard
                         key={index}
                         link={step.link}
-                        bg={index % 2 === 0 ? "lg:bg-[#0E1219]" : "lg:bg-[#111319]"}
-                        hover="hover:ring-2 hover:ring-[#FF4D57]/40 hover:scale-105 transition-all duration-200"
+                        bg={index % 2 === 0 ? "lg:bg-surface" : "lg:bg-surface"}
+                        hover="hover:ring-2 hover:ring-brand/40 hover:scale-105 transition-all duration-200"
                         zIndex={step.zIndex}
                         source={step.image}
                         name={step.name}

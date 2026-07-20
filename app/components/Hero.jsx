@@ -20,7 +20,7 @@ export default function Hero() {
     return (
         <section
             id="hero"
-            className="snap-start relative min-h-screen lg:min-h-[92vh] w-full flex items-center justify-center pt-20 overflow-hidden bg-gradient-to-br from-[#0E1219] via-[#23263a] to-[#111319]"
+            className="snap-start relative min-h-screen lg:min-h-[92vh] w-full flex items-center justify-center pt-20 overflow-hidden bg-gradient-to-br from-surface via-surface-overlay to-surface"
         >
             <CursorSpotlight />
             <div className="service-page-container flex flex-col items-center justify-center w-full lg:my-10">
@@ -29,25 +29,25 @@ export default function Hero() {
                     <div className="flex-1 flex flex-col items-center lg:items-start justify-center max-w-2xl text-center lg:text-left max-h-min min-h-10">
                         {/* Tagline eyebrow */}
                         <div className="flex items-center mb-2 md:mb-6">
-                            <span className="block w-12 h-0.5 bg-[#F5F6FA] mr-4" />
-                            <span className="text-base text-[#C7CCD6] font-normal">Design-led. AI-accelerated.</span>
+                            <span className="block w-12 h-0.5 bg-ink mr-4" />
+                            <span className="text-base text-ink-muted font-normal">Design-led. AI-accelerated.</span>
                         </div>
                         {/* Main Heading */}
-                        <h1 className="relative font-extrabold text-[2rem] leading-[1.18] sm:text-5xl sm:leading-[1.14] lg:text-[52px] xl:text-[58px] lg:leading-[1.16] tracking-[-0.03em] text-[#F5F6FA]">
+                        <h1 className="relative font-extrabold text-[2rem] leading-[1.18] sm:text-5xl sm:leading-[1.14] lg:text-[52px] xl:text-[58px] lg:leading-[1.16] tracking-[-0.03em] text-ink">
                             We build businesses on{" "}
                             <span className="softles-gradient-text">WordPress</span>
                             <br className="hidden sm:block" /> &amp;{" "}
                             <span className="softles-gradient-text">Shopify</span>
-                            <span className="text-[#FF4D57]">.</span>
+                            <span className="text-brand">.</span>
                         </h1>
                         {/* Supporting Line */}
-                        <p className="text-[#C7CCD6] mt-5 mb-6 md:mb-10 text-base lg:text-lg leading-relaxed" style={{maxWidth: '46ch', lineHeight: 1.55}}>
+                        <p className="text-ink-muted mt-5 mb-6 md:mb-10 text-base lg:text-lg leading-relaxed" style={{maxWidth: '46ch', lineHeight: 1.55}}>
                             We design and build custom WordPress and Shopify sites — fast storefronts, headless builds, apps, and the integrations that keep them running. AI helps us move quicker; it doesn&apos;t replace the craft.
                         </p>
                         {/* Primary CTA */}
                         <div className="relative" onClick={e => handleClick(e, "book-call")}>
                             <button
-                                className="group inline-flex items-center gap-2 rounded-full bg-[#FF4D57] px-7 md:px-8 py-3.5 md:py-4 text-sm md:text-base font-bold uppercase tracking-wide text-white shadow-lg shadow-[#FF4D57]/25 transition-all duration-300 hover:bg-[#E83A45] hover:shadow-[#FF4D57]/40 hover:-translate-y-0.5"
+                                className="group inline-flex items-center gap-2 rounded-full bg-brand px-7 md:px-8 py-3.5 md:py-4 text-sm md:text-base font-bold uppercase tracking-wide text-white shadow-lg shadow-brand/25 transition-all duration-300 hover:bg-[#E83A45] hover:shadow-brand/40 hover:-translate-y-0.5"
                                 onMouseEnter={() => setShowTooltip(true)}
                                 onMouseLeave={() => setShowTooltip(false)}
                             >
@@ -55,7 +55,7 @@ export default function Hero() {
                                 <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="transition-transform group-hover:translate-x-1 shrink-0"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
                             </button>
                             {showTooltip && (
-                                <span className="absolute left-1/2 -bottom-10 -translate-x-1/2 bg-[#23263a] text-white text-xs px-3 py-2 rounded shadow-lg z-20 whitespace-nowrap animate-fade-in">
+                                <span className="absolute left-1/2 -bottom-10 -translate-x-1/2 bg-surface-overlay text-white text-xs px-3 py-2 rounded shadow-lg z-20 whitespace-nowrap animate-fade-in">
                                     30-minute free strategy session
                                 </span>
                             )}
@@ -109,21 +109,21 @@ export default function Hero() {
                 </div>
 
                 <div className="flex flex-col items-center gap-2">
-                    <span className="text-[#C7CCD6] text-sm animate-pulse">
+                    <span className="text-ink-muted text-sm animate-pulse">
                     Scroll to explore our services
                     </span>
-                    <div className="w-6 h-10 rounded-full border border-[#3a4052] flex justify-center pt-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#FF4D57] animate-bounce" />
+                    <div className="w-6 h-10 rounded-full border border-line-strong flex justify-center pt-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand animate-bounce" />
                     </div>
                 </div>
 
                 </div>
             </div>
             {/* Decorative Background Elements — warm accent + cool secondary glow */}
-            <div className="absolute -top-10 -left-10 w-[26rem] h-[26rem] bg-[#FF4D57]/25 rounded-full blur-3xl -z-10" />
+            <div className="absolute -top-10 -left-10 w-[26rem] h-[26rem] bg-brand/25 rounded-full blur-3xl -z-10" />
             <div className="absolute bottom-0 right-0 w-[30rem] h-[30rem] bg-[#6D5EF6]/25 rounded-full blur-3xl -z-10" />
-            <div className="absolute top-1/3 right-1/3 w-80 h-80 bg-[#FF4D57]/12 rounded-full blur-3xl -z-10" />
-            <div className="absolute inset-0 bg-gradient-to-br from-[#FF4D57]/[0.06] via-transparent to-[#6D5EF6]/[0.10] pointer-events-none -z-10" />
+            <div className="absolute top-1/3 right-1/3 w-80 h-80 bg-brand/12 rounded-full blur-3xl -z-10" />
+            <div className="absolute inset-0 bg-gradient-to-br from-brand/[0.06] via-transparent to-[#6D5EF6]/[0.10] pointer-events-none -z-10" />
             <style jsx global>{`
                 @keyframes pulse-slow {
                     0%, 100% { opacity: 1; }
