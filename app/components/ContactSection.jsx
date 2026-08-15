@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Separator from "@/public/Separator.png";
 import React, { useState } from "react";
+import { trackEvent } from "@/lib/gtag";
 
 const PHONE_DISPLAY = "+91 89540 00202";
 
@@ -28,6 +29,7 @@ export default function ContactSection() {
             });
             if (!res.ok) throw new Error("Request failed");
             setStatus("sent");
+            trackEvent("generate_lead", { source: "contact_form", page: "home" });
             setName("");
             setEmail("");
             setPhone("");

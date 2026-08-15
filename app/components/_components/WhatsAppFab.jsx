@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import { trackEvent } from "@/lib/gtag";
 
 const WHATSAPP_NUMBER = "918954000202";
 const PREFILL = "Hi SoftLes, I'd like to talk about my project.";
@@ -19,6 +20,7 @@ export default function WhatsAppFab() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat with us on WhatsApp"
+      onClick={() => trackEvent("contact", { method: "whatsapp", source: "floating_fab" })}
       className="group fixed bottom-5 right-5 z-[60] flex items-center justify-center h-14 w-14 rounded-full bg-gradient-to-br from-[#FF4D57] to-[#FF6A3D] text-white shadow-[0_8px_28px_rgba(255,77,87,0.45)] transition-transform duration-300 hover:scale-110"
     >
       <span className="absolute inset-0 rounded-full bg-[#FF4D57]/40 animate-ping opacity-70 group-hover:opacity-0" />

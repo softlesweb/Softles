@@ -8,6 +8,10 @@ import OurApproachSection from "./components/OurApproachSection";
 import ContactSection from "./components/ContactSection";
 import OurTeamSection from "./components/OurTeamSection";
 
+export const metadata = {
+  alternates: { canonical: "/" },
+};
+
 export default function Home() {
   return (
     <main className="bg-[#0E1219] overflow-x-hidden sm:pt-[60px]">

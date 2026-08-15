@@ -4,6 +4,7 @@ export const metadata = {
   title: "Terms of Service | SoftLes",
   description:
     "The terms that apply when you use the SoftLes website and engage us for design and development services.",
+  alternates: { canonical: "/terms" },
 };
 
 const UPDATED = "August 2026";

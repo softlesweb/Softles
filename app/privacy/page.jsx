@@ -4,6 +4,7 @@ export const metadata = {
   title: "Privacy Policy | SoftLes",
   description:
     "How SoftLes collects, uses, and protects your information when you use our website and services.",
+  alternates: { canonical: "/privacy" },
 };
 
 const UPDATED = "August 2026";

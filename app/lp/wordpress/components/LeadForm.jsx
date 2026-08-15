@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { trackPixel } from "@/lib/metaPixel";
+import { trackEvent } from "@/lib/gtag";
 
 const GOALS = [
   "Redesign my site",
@@ -39,6 +40,7 @@ export default function LeadForm({ ctaLabel = "Talk to a WordPress Expert" }) {
       if (!res.ok) throw new Error("Request failed");
       setStatus("sent");
       trackPixel("Lead", { content_name: "wordpress-lp", goal });
+      trackEvent("generate_lead", { source: "wordpress_lp", goal });
     } catch (err) {
       console.error(err);
       setStatus("error");

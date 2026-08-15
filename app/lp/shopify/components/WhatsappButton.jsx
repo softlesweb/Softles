@@ -1,6 +1,7 @@
 "use client";
 
 import { trackPixel } from "@/lib/metaPixel";
+import { trackEvent } from "@/lib/gtag";
 
 const WHATSAPP_NUMBER = "918954000202";
 const PREFILL =
@@ -16,7 +17,10 @@ export default function WhatsappButton({ className = "", children }) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      onClick={() => trackPixel("Contact", { method: "whatsapp" })}
+      onClick={() => {
+        trackPixel("Contact", { method: "whatsapp" });
+        trackEvent("contact", { method: "whatsapp", source: "shopify_lp" });
+      }}
       className={className || "softles-secondary-button w-full sm:w-auto"}
     >
       <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" className="shrink-0">

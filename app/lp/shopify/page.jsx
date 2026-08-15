@@ -11,6 +11,12 @@ export const metadata = {
     "Get a faster, higher-converting Shopify store in 21 days. Redesign or migrate with zero downtime and no SEO loss. Talk to a Shopify expert at SoftLes.",
   // Dedicated ad landing page — keep out of the index so it doesn't compete with the main site.
   robots: { index: false, follow: true },
+  openGraph: {
+    title: "Shopify Store Redesign & Migration in 21 Days | SoftLes",
+    description:
+      "A faster, higher-converting Shopify store in 21 days — redesign or migrate with zero downtime and no SEO loss.",
+    url: "https://softles.in/lp/shopify",
+  },
 };
 
 const PROOF_STORES = [

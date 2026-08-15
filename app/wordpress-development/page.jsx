@@ -12,6 +12,13 @@ import WordPressCTA from "./components/WordPressCTA";
 export const metadata = {
   title: "WordPress Development Services — SoftLes",
   description: "Custom WordPress solutions built for growth. From custom themes and WooCommerce stores to headless architectures. Get scalable, secure, high-performing WordPress websites.",
+  alternates: { canonical: "/wordpress-development" },
+  openGraph: {
+    title: "WordPress Development Services — SoftLes",
+    description:
+      "Custom themes, WooCommerce and headless WordPress — scalable, secure, high-performing websites built for growth.",
+    url: "https://softles.in/wordpress-development",
+  },
 };
 
 export default function WordPressDevelopment() {

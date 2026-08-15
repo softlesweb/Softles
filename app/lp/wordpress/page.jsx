@@ -11,6 +11,12 @@ export const metadata = {
     "Get a fast, lead-generating WordPress website in 21 days. Redesign or migrate with zero downtime and no SEO loss. Talk to a WordPress expert at SoftLes.",
   // Dedicated ad landing page — keep out of the index so it doesn't compete with the main site.
   robots: { index: false, follow: true },
+  openGraph: {
+    title: "WordPress Website Design & Redesign in 21 Days | SoftLes",
+    description:
+      "A fast, lead-generating WordPress website in 21 days — redesign or migrate with zero downtime and no SEO loss.",
+    url: "https://softles.in/lp/wordpress",
+  },
 };
 
 const PROOF_SITES = [

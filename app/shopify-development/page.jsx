@@ -13,6 +13,13 @@ export const metadata = {
   title: "Shopify Development Services — SoftLes",
   description:
     "Certified Shopify development experts. Custom themes, Shopify Plus, headless commerce, app development and store automation for high-converting Shopify stores.",
+  alternates: { canonical: "/shopify-development" },
+  openGraph: {
+    title: "Shopify Development Services — SoftLes",
+    description:
+      "Custom themes, Shopify Plus, headless commerce and store automation for high-converting Shopify stores.",
+    url: "https://softles.in/shopify-development",
+  },
 };
 
 export default function ShopifyDevelopment() {
