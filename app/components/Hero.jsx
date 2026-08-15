@@ -1,12 +1,41 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
+import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import CursorSpotlight from "./_components/CursorSpotlight";
 
 const clientLogos = ["/logo_1.png", "/logo_2.png", "/logo_3.png", "/logo_4.png", "/logo_5.png", "/logo_6.png", "/logo_7.png", "/logo_8.png", "/logo_9.png"];
 
+// Staggered entrance for the hero copy.
+const containerVariants = {
+    hidden: {},
+    show: { transition: { staggerChildren: 0.09, delayChildren: 0.05 } },
+};
+const itemVariants = {
+    hidden: { opacity: 0, y: 18 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+};
+
 export default function Hero() {
     const [showTooltip, setShowTooltip] = useState(false);
+    const heroRef = useRef(null);
+    const reduce = useReducedMotion();
+
+    // Progress from 0 (hero pinned at top) → 1 (hero fully scrolled past).
+    const { scrollYProgress } = useScroll({
+        target: heroRef,
+        offset: ["start start", "end start"],
+    });
+
+    // Restrained parallax: copy drifts up and fades, illustration moves a touch
+    // faster (foreground), glows drift down at two speeds (depth). All off when
+    // the visitor prefers reduced motion.
+    const yContent = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : -70]);
+    const opacityContent = useTransform(scrollYProgress, [0, 0.85], [1, reduce ? 1 : 0.1]);
+    const yImage = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : -120]);
+    const yGlowSlow = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 70]);
+    const yGlowFast = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 150]);
+    const opacityHint = useTransform(scrollYProgress, [0, 0.3], [1, reduce ? 1 : 0]);
 
     // Smooth scroll handler for navbar links
     const handleClick = (e, sectionId) => {
@@ -19,6 +48,7 @@ export default function Hero() {
 
     return (
         <section
+            ref={heroRef}
             id="hero"
             className="snap-start relative min-h-screen lg:min-h-[92vh] w-full flex items-center justify-center pt-20 overflow-hidden bg-gradient-to-br from-[#0E1219] via-[#23263a] to-[#111319]"
         >
@@ -26,43 +56,56 @@ export default function Hero() {
             <div className="service-page-container flex flex-col items-center justify-center w-full lg:my-10">
                 <div className="relative flex flex-col-reverse lg:flex-row items-center justify-center w-full mx-auto gap-2 lg:gap-20 z-10 px-0">
                     {/* Left Content */}
-                    <div className="flex-1 flex flex-col items-center lg:items-start justify-center max-w-2xl text-center lg:text-left max-h-min min-h-10">
-                        {/* Tagline eyebrow */}
-                        <div className="flex items-center mb-2 md:mb-6">
-                            <span className="block w-12 h-0.5 bg-[#F5F6FA] mr-4" />
-                            <span className="text-base text-[#C7CCD6] font-normal">Design-led. AI-accelerated.</span>
-                        </div>
-                        {/* Main Heading */}
-                        <h1 className="relative font-extrabold text-[2rem] leading-[1.18] sm:text-5xl sm:leading-[1.14] lg:text-[52px] xl:text-[58px] lg:leading-[1.16] tracking-[-0.03em] text-[#F5F6FA]">
-                            We build businesses on{" "}
-                            <span className="softles-gradient-text">WordPress</span>
-                            <br className="hidden sm:block" /> &amp;{" "}
-                            <span className="softles-gradient-text">Shopify</span>
-                            <span className="text-[#FF4D57]">.</span>
-                        </h1>
-                        {/* Supporting Line */}
-                        <p className="text-[#C7CCD6] mt-5 mb-6 md:mb-10 text-base lg:text-lg leading-relaxed" style={{maxWidth: '46ch', lineHeight: 1.55}}>
-                            We design and build custom WordPress and Shopify sites — fast storefronts, headless builds, apps, and the integrations that keep them running. AI helps us move quicker; it doesn&apos;t replace the craft.
-                        </p>
-                        {/* Primary CTA */}
-                        <div className="relative" onClick={e => handleClick(e, "book-call")}>
-                            <button
-                                className="group inline-flex items-center gap-2 rounded-full bg-[#FF4D57] px-7 md:px-8 py-3.5 md:py-4 text-sm md:text-base font-bold uppercase tracking-wide text-white shadow-lg shadow-[#FF4D57]/25 transition-all duration-300 hover:bg-[#E83A45] hover:shadow-[#FF4D57]/40 hover:-translate-y-0.5"
-                                onMouseEnter={() => setShowTooltip(true)}
-                                onMouseLeave={() => setShowTooltip(false)}
-                            >
-                                <span>Book a Free Discovery Call</span>
-                                <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="transition-transform group-hover:translate-x-1 shrink-0"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-                            </button>
-                            {showTooltip && (
-                                <span className="absolute left-1/2 -bottom-10 -translate-x-1/2 bg-[#23263a] text-white text-xs px-3 py-2 rounded shadow-lg z-20 whitespace-nowrap animate-fade-in">
-                                    30-minute free strategy session
-                                </span>
-                            )}
-                        </div>
-                    </div>
+                    <motion.div style={{ y: yContent, opacity: opacityContent }} className="flex-1 flex justify-center lg:justify-start max-w-2xl">
+                        <motion.div
+                            variants={containerVariants}
+                            initial={reduce ? false : "hidden"}
+                            animate="show"
+                            className="flex flex-col items-center lg:items-start justify-center w-full text-center lg:text-left max-h-min min-h-10"
+                        >
+                            {/* Tagline eyebrow */}
+                            <motion.div variants={itemVariants} className="flex items-center mb-2 md:mb-6">
+                                <span className="block w-12 h-0.5 bg-[#F5F6FA] mr-4" />
+                                <span className="text-base text-[#C7CCD6] font-normal">Design-led. AI-accelerated.</span>
+                            </motion.div>
+                            {/* Main Heading */}
+                            <motion.h1 variants={itemVariants} className="relative font-extrabold text-[2rem] leading-[1.18] sm:text-5xl sm:leading-[1.14] lg:text-[52px] xl:text-[58px] lg:leading-[1.16] tracking-[-0.03em] text-[#F5F6FA]">
+                                We build businesses on{" "}
+                                <span className="softles-gradient-text">WordPress</span>
+                                <br className="hidden sm:block" /> &amp;{" "}
+                                <span className="softles-gradient-text">Shopify</span>
+                                <span className="text-[#FF4D57]">.</span>
+                            </motion.h1>
+                            {/* Supporting Line */}
+                            <motion.p variants={itemVariants} className="text-[#C7CCD6] mt-5 mb-6 md:mb-10 text-base lg:text-lg leading-relaxed" style={{ maxWidth: '46ch', lineHeight: 1.55 }}>
+                                We design and build custom WordPress and Shopify sites — fast storefronts, headless builds, apps, and the integrations that keep them running. AI helps us move quicker; it doesn&apos;t replace the craft.
+                            </motion.p>
+                            {/* Primary CTA */}
+                            <motion.div variants={itemVariants} className="relative" onClick={e => handleClick(e, "book-call")}>
+                                <button
+                                    className="group inline-flex items-center gap-2 rounded-full bg-[#FF4D57] px-7 md:px-8 py-3.5 md:py-4 text-sm md:text-base font-bold uppercase tracking-wide text-white shadow-lg shadow-[#FF4D57]/25 transition-all duration-300 hover:bg-[#E83A45] hover:shadow-[#FF4D57]/40 hover:-translate-y-0.5"
+                                    onMouseEnter={() => setShowTooltip(true)}
+                                    onMouseLeave={() => setShowTooltip(false)}
+                                >
+                                    <span>Book a Free Discovery Call</span>
+                                    <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="transition-transform group-hover:translate-x-1 shrink-0"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                                </button>
+                                {showTooltip && (
+                                    <span className="absolute left-1/2 -bottom-10 -translate-x-1/2 bg-[#23263a] text-white text-xs px-3 py-2 rounded shadow-lg z-20 whitespace-nowrap animate-fade-in">
+                                        30-minute free strategy session
+                                    </span>
+                                )}
+                            </motion.div>
+                        </motion.div>
+                    </motion.div>
                     {/* Right Illustration with diagonal divider */}
-                    <div className="flex-1 flex items-center justify-center w-full max-w-md lg:max-w-lg xl:max-w-xl lg:mt-0 relative">
+                    <motion.div
+                        style={{ y: yImage }}
+                        initial={reduce ? false : { opacity: 0, scale: 0.96 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+                        className="flex-1 flex items-center justify-center w-full max-w-md lg:max-w-lg xl:max-w-xl lg:mt-0 relative"
+                    >
                         {/* Diagonal divider */}
                         <svg className="hidden lg:block absolute -left-24 top-0 h-full w-48 z-10" viewBox="0 0 100 100" preserveAspectRatio="none">
                             <polygon points="100,0 100,100 0,100" fill="#23263a" opacity="0.7" />
@@ -76,7 +119,7 @@ export default function Hero() {
                             className="w-72 h-[281px] md:w-[414px] md:h-[353px] drop-shadow-2xl animate-float relative z-20"
                             priority
                         />
-                    </div>
+                    </motion.div>
                 </div>
                 {/* Client Logo Rail - responsive */}
                 <div className="w-full mt-5 md:mt-14 z-20 flex flex-col gap-6 md:gap-8">
@@ -108,21 +151,21 @@ export default function Hero() {
                     </div>
                 </div>
 
-                <div className="flex flex-col items-center gap-2">
+                <motion.div style={{ opacity: opacityHint }} className="flex flex-col items-center gap-2">
                     <span className="text-[#C7CCD6] text-sm animate-pulse">
                     Scroll to explore our services
                     </span>
                     <div className="w-6 h-10 rounded-full border border-[#3a4052] flex justify-center pt-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#FF4D57] animate-bounce" />
                     </div>
-                </div>
+                </motion.div>
 
                 </div>
             </div>
-            {/* Decorative Background Elements — warm accent + cool secondary glow */}
-            <div className="absolute -top-10 -left-10 w-[26rem] h-[26rem] bg-[#FF4D57]/25 rounded-full blur-3xl -z-10" />
-            <div className="absolute bottom-0 right-0 w-[30rem] h-[30rem] bg-[#6D5EF6]/25 rounded-full blur-3xl -z-10" />
-            <div className="absolute top-1/3 right-1/3 w-80 h-80 bg-[#FF4D57]/12 rounded-full blur-3xl -z-10" />
+            {/* Decorative Background Elements — warm accent + cool secondary glow, parallaxed for depth */}
+            <motion.div style={{ y: yGlowSlow }} className="absolute -top-10 -left-10 w-[26rem] h-[26rem] bg-[#FF4D57]/25 rounded-full blur-3xl -z-10" />
+            <motion.div style={{ y: yGlowFast }} className="absolute bottom-0 right-0 w-[30rem] h-[30rem] bg-[#6D5EF6]/25 rounded-full blur-3xl -z-10" />
+            <motion.div style={{ y: yGlowFast }} className="absolute top-1/3 right-1/3 w-80 h-80 bg-[#FF4D57]/12 rounded-full blur-3xl -z-10" />
             <div className="absolute inset-0 bg-gradient-to-br from-[#FF4D57]/[0.06] via-transparent to-[#6D5EF6]/[0.10] pointer-events-none -z-10" />
             <style jsx global>{`
                 @keyframes pulse-slow {
@@ -174,6 +217,9 @@ export default function Hero() {
                 .scrollbar-hide {
                     -ms-overflow-style: none;
                     scrollbar-width: none;
+                }
+                @media (prefers-reduced-motion: reduce) {
+                    .animate-float, .animate-logo-rail, .animate-bounce, .animate-pulse { animation: none !important; }
                 }
             `}</style>
         </section>
