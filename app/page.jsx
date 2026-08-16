@@ -1,7 +1,6 @@
 import Footer from "./components/Footer";
 import Hero from "./components/Hero";
-import FeaturedCaseStudy from "./components/FeaturedCaseStudy";
-import SelectedWork from "./components/SelectedWork";
+import WorkShowcase from "./components/WorkShowcase";
 import OurServicesSection from "./components/OurServicesSection";
 // import IndustriesSection from "./components/IndustriesSection";
 import OurApproachSection from "./components/OurApproachSection";
@@ -17,8 +16,7 @@ export default function Home() {
   return (
     <main className="bg-[#0E1219] overflow-x-hidden sm:pt-[60px]">
       <Hero />
-      <FeaturedCaseStudy />
-      <SelectedWork />
+      <WorkShowcase />
       <OurServicesSection />
       {/* <IndustriesSection /> */}
       <OurApproachSection />
