@@ -11,17 +11,7 @@ const projects = [
     industry: "Legal · Law firm",
     outcome:
       "A trust-driven site with clear practice areas and enquiry flows that turn visitors into consultations.",
-    tags: ["WordPress", "Custom theme", "SEO"],
-  },
-  {
-    name: "Enviro Guru",
-    host: "enviroguru.in",
-    url: "https://enviroguru.in/",
-    image: "/enviroguru.png",
-    industry: "Environmental · Consulting",
-    outcome:
-      "A corporate site that turns service credibility into qualified leads with clear calls to action.",
-    tags: ["WordPress", "Corporate", "Lead forms"],
+    tags: ["Website", "Legal", "SEO"],
   },
   {
     name: "BNPS International",
@@ -31,7 +21,97 @@ const projects = [
     industry: "Education · Study abroad",
     outcome:
       "Storytelling and partner credibility paired with high-intent student enquiry journeys.",
-    tags: ["WordPress", "Education", "Lead gen"],
+    tags: ["Website", "Education", "Lead gen"],
+  },
+  {
+    name: "Enviro Guru",
+    host: "enviroguru.in",
+    url: "https://enviroguru.in/",
+    image: "/enviroguru.png",
+    industry: "Consulting · Environmental",
+    outcome:
+      "A corporate site that turns environmental-service credibility into qualified leads.",
+    tags: ["Website", "Corporate", "Lead forms"],
+  },
+  {
+    name: "Global Icons",
+    host: "globalicons.co.in",
+    url: "https://globalicons.co.in/",
+    image: "/globalicons.png",
+    industry: "Media · News & magazine",
+    outcome:
+      "A fast editorial platform for a news-and-lifestyle magazine and its digital editions.",
+    tags: ["Website", "Publishing", "Media"],
+  },
+  {
+    name: "Vivekanand Vidya Niketan",
+    host: "vvnassandh.com",
+    url: "https://vvnassandh.com/",
+    image: "/vvnassandh.png",
+    industry: "Education · CBSE school",
+    outcome:
+      "A parent-friendly school site with admissions and academics front and centre.",
+    tags: ["Website", "School", "Admissions"],
+  },
+  {
+    name: "Art Tech Institute",
+    host: "arttechbsp.com",
+    url: "https://arttechbsp.com/",
+    image: "/arttechbsp.png",
+    industry: "Education · Training",
+    outcome:
+      "A course-forward site for a computer & AI training institute, built to book demo classes.",
+    tags: ["Website", "Education", "Courses"],
+  },
+  {
+    name: "School Saarthi",
+    host: "schoolsaarthi.com",
+    url: "https://schoolsaarthi.com/",
+    image: "/schoolsaarthi.png",
+    industry: "Marketing · Schools",
+    outcome:
+      "A lead-focused site for a school-marketing agency, built to drive admission enquiries.",
+    tags: ["Website", "Marketing", "Lead gen"],
+  },
+  {
+    name: "LibrarySetu",
+    host: "librarysetu.com",
+    url: "https://librarysetu.com/",
+    image: "/librarysetu.png",
+    industry: "SaaS · Library management",
+    outcome:
+      "A calm, conversion-focused SaaS site for study-library management software.",
+    tags: ["SaaS", "Product", "Web app"],
+  },
+  {
+    name: "Wavelo",
+    host: "wavelo.vercel.app",
+    url: "https://wavelo.vercel.app/",
+    image: "/wavelo.png",
+    industry: "SaaS · WhatsApp dashboard",
+    outcome:
+      "A crisp product-marketing site for a WhatsApp Business dashboard.",
+    tags: ["SaaS", "Product", "Marketing"],
+  },
+  {
+    name: "RecoBee",
+    host: "reco-bee.com",
+    url: "https://reco-bee.com/",
+    image: "/recobee.png",
+    industry: "Product · Movie discovery",
+    outcome:
+      "A movie reviews, ratings and watchlist platform built for easy discovery.",
+    tags: ["Product", "Web app", "Entertainment"],
+  },
+  {
+    name: "Umang Aatray",
+    host: "umang-mu.vercel.app",
+    url: "https://umang-mu.vercel.app/",
+    image: "/umang.png",
+    industry: "Legal · Advocate",
+    outcome:
+      "A sharp personal-brand site for a commercial & criminal lawyer in New Delhi.",
+    tags: ["Website", "Legal", "Portfolio"],
   },
 ];
 
@@ -45,7 +125,7 @@ export default function SelectedWork() {
         </div>
         <h2 className="service-section-heading text-[#FFFFFF]">More sites we&apos;ve shipped</h2>
         <p className="softles-section-copy max-w-2xl">
-          Real, live builds across WordPress and Shopify — designed to look sharp and built to convert.
+          Real, live builds across business sites, SaaS products, and web apps — designed to look sharp and built to convert.
         </p>
 
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
