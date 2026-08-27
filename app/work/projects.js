@@ -142,6 +142,59 @@ export const projects = [
       { label: "Home", d: "/work/umang-p0-d.jpg", m: "/work/umang-p0-m.jpg", dW: 1100, dH: 7519, mW: 440, mH: 9012 },
     ],
   },
+  {
+    slug: "ayla-solutions",
+    name: "Ayla Solutions",
+    category: "Website",
+    stack: "Headless",
+    year: "2025",
+    summary:
+      "A data & AI consultancy site — corporate credibility and clear service storytelling, built headless for speed.",
+    overview:
+      "Ayla Solutions helps organisations unlock value from their data — strategy, analytics and automation, including their Arth AI financial product. We built a fast, corporate headless site that makes complex services feel clear and credible.",
+    challenge:
+      "Data consultancies must signal deep expertise without drowning visitors in jargon. The site needed authority, clarity, and speed.",
+    solution:
+      "A confident corporate design, structured service and solution storytelling, testimonial-driven credibility, and a headless build tuned for performance.",
+    highlights: [
+      "Corporate, credibility-first design",
+      "Clear service & solution storytelling",
+      "Fast headless build",
+    ],
+    metrics: null,
+    services: ["Headless website", "UI/UX design", "Corporate identity"],
+    tags: ["Headless", "Corporate", "Data & AI"],
+    pages: [
+      { label: "Home", d: "/work/ayla-p0-d.jpg", m: "/work/ayla-p0-m.jpg", dW: 1100, dH: 3200, mW: 440, mH: 5649 },
+    ],
+  },
+  {
+    slug: "tuitionly",
+    name: "Tuitionly",
+    category: "Website",
+    stack: "Website",
+    year: "2025",
+    summary:
+      "An online tuition service for all age groups — a bright, trustworthy site built to turn parents into booked demo sessions.",
+    overview:
+      "Tuitionly offers personalised online tuition across IB, IGCSE, CBSE and AP curricula. We designed and built a bright, reassuring marketing site that explains the approach and drives free-demo bookings.",
+    challenge:
+      "Parents choosing a tutor need to trust it fast. The site had to feel warm and credible while making the curricula and process clear.",
+    solution:
+      "A friendly, confident visual system, a clear approach and pricing breakdown, curriculum-specific pages, and demo-booking CTAs throughout.",
+    highlights: [
+      "Warm, trustworthy visual system",
+      "Curriculum-specific pages (IB, IGCSE, CBSE, AP)",
+      "Demo-booking CTAs throughout",
+    ],
+    metrics: null,
+    services: ["Marketing site", "UI/UX design", "Multi-page build"],
+    tags: ["Website", "Education", "Lead gen"],
+    pages: [
+      { label: "Home", d: "/work/tuitionly-p0-d.jpg", m: "/work/tuitionly-p0-m.jpg", dW: 1100, dH: 4497, mW: 440, mH: 10213 },
+      { label: "IB curriculum", d: "/work/tuitionly-p1-d.jpg", m: "/work/tuitionly-p1-m.jpg", dW: 1100, dH: 3317, mW: 440, mH: 7239 },
+    ],
+  },
 ];
 
 export const getProject = (slug) => projects.find((p) => p.slug === slug);
