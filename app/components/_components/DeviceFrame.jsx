@@ -77,6 +77,21 @@ export default function DeviceFrame({ project, defaultDevice = "desktop" }) {
       {isDesktop ? (
         <div className="mx-auto w-full max-w-[640px]">
           <div className="rounded-t-xl border border-[#2E3446] border-b-0 bg-[#0b0d12] p-2 sm:p-2.5 shadow-2xl">
+            {/* Browser chrome: traffic lights + address pill */}
+            <div className="flex items-center gap-2 px-1 pb-2 pt-0.5">
+              <span className="flex items-center gap-1.5" aria-hidden="true">
+                <span className="h-2.5 w-2.5 rounded-full bg-[#FF5F57]" />
+                <span className="h-2.5 w-2.5 rounded-full bg-[#FEBC2E]" />
+                <span className="h-2.5 w-2.5 rounded-full bg-[#28C840]" />
+              </span>
+              <span className="ml-1 flex min-w-0 flex-1 max-w-[65%] items-center gap-1.5 rounded-md border border-[#2E3446]/70 bg-[#161C27] px-2.5 py-1 text-[10px] font-medium text-[#7c8394]">
+                <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="shrink-0">
+                  <rect x="3" y="11" width="18" height="11" rx="2" />
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                </svg>
+                <span className="truncate">{project.name}</span>
+              </span>
+            </div>
             <div className="df-screen relative overflow-hidden rounded-md bg-[#0E1219]">
               <img
                 key={imgKey}
@@ -95,6 +110,10 @@ export default function DeviceFrame({ project, defaultDevice = "desktop" }) {
       ) : (
         <div className="mx-auto w-[220px] sm:w-[250px]">
           <div className="relative rounded-[2rem] border-[7px] border-[#0b0d12] bg-[#0b0d12] shadow-2xl">
+            {/* Side buttons */}
+            <span aria-hidden="true" className="absolute -left-[9px] top-16 h-6 w-[3px] rounded-l-sm bg-[#2a2f3a]" />
+            <span aria-hidden="true" className="absolute -left-[9px] top-[6.5rem] h-6 w-[3px] rounded-l-sm bg-[#2a2f3a]" />
+            <span aria-hidden="true" className="absolute -right-[9px] top-20 h-10 w-[3px] rounded-r-sm bg-[#2a2f3a]" />
             <span className="absolute left-1/2 top-2 z-10 h-1.5 w-14 -translate-x-1/2 rounded-full bg-[#0b0d12] ring-1 ring-[#2E3446]" />
             <div className="df-screen-m relative overflow-hidden rounded-[1.5rem] bg-[#0E1219]">
               <img
@@ -104,6 +123,11 @@ export default function DeviceFrame({ project, defaultDevice = "desktop" }) {
                 loading="lazy"
                 className="df-scroll w-full"
                 style={{ animationDuration: `${dur}s`, animationPlayState: inView ? "running" : "paused" }}
+              />
+              {/* Glass reflection */}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 z-10 rounded-[1.5rem] bg-[linear-gradient(115deg,rgba(255,255,255,0.07)_0%,rgba(255,255,255,0.02)_28%,transparent_45%)]"
               />
             </div>
           </div>

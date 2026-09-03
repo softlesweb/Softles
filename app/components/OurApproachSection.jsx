@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
 import Empathize from "@/public/Empathize.png";
 import Define from "@/public/Define.png";
 import Ideate from "@/public/Ideate.png";
@@ -75,8 +78,12 @@ export default function OurApproachSection() {
             <div className="block xl:hidden w-full mt-8">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     {processSteps.map((step, index) => (
-                        <div
+                        <motion.div
                             key={index}
+                            initial={{ opacity: 0, y: 32, scale: 0.96 }}
+                            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                            viewport={{ once: true, margin: "-40px" }}
+                            transition={{ duration: 0.55, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
                             className="group relative overflow-hidden flex flex-col gap-3 p-5 rounded-2xl bg-[#181B23] border border-[#2E3446] transition-all duration-300 hover:-translate-y-1 hover:border-[#FF4D57]/40 hover:bg-[#1a1e2a]"
                         >
 
@@ -115,7 +122,7 @@ export default function OurApproachSection() {
 
                             </div>
 
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
             </div>
@@ -124,17 +131,26 @@ export default function OurApproachSection() {
             <div className="w-full hidden xl:flex flex-wrap xl:flex-row justify-around xl:justify-between items-center gap-5 lg:gap-0 mt-9 px-[10px] lg:px-0">
                {
                  processSteps.map((step, index) => (
-                    <ServiceCard
+                    <motion.div
                         key={index}
-                        link={step.link}
-                        bg={index % 2 === 0 ? "lg:bg-[#0E1219]" : "lg:bg-[#111319]"}
-                        hover="hover:ring-2 hover:ring-[#FF4D57]/40 hover:scale-105 transition-all duration-200"
-                        zIndex={step.zIndex}
-                        source={step.image}
-                        name={step.name}
-                        alt={step.alt}
-                        description={step.description}
-                    />
+                        initial={{ opacity: 0, y: 48, scale: 0.85 }}
+                        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                        viewport={{ once: true, margin: "-80px" }}
+                        transition={{ duration: 0.65, delay: index * 0.14, ease: [0.22, 1, 0.36, 1] }}
+                        className="relative"
+                        style={{ zIndex: step.zIndex }}
+                    >
+                        <ServiceCard
+                            link={step.link}
+                            bg={index % 2 === 0 ? "lg:bg-[#0E1219]" : "lg:bg-[#111319]"}
+                            hover="hover:ring-2 hover:ring-[#FF4D57]/40 hover:scale-105 transition-all duration-200"
+                            zIndex={step.zIndex}
+                            source={step.image}
+                            name={step.name}
+                            alt={step.alt}
+                            description={step.description}
+                        />
+                    </motion.div>
                  ))
                }
             </div>

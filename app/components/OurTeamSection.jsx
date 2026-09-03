@@ -2,9 +2,9 @@ import Image from "next/image";
 
 // Order: full-time trio first, then the wider team (Tanmay moved up).
 const team = [
-  { name: "Shakti Singh", role: "Strategy Lead", image: "/Shakti_Singh.jpeg", linkedin: "https://www.linkedin.com/in/gurjarshakti/" },
-  { name: "Neeraj Kumar", role: "Shopify Developer", image: "/neeraj_kumar.png", linkedin: "https://www.linkedin.com/in/neerajkumar94/" },
-  { name: "Shahad Hassan", role: "Full-Stack Developer", image: "/Shahad_Hassan.jpeg", linkedin: "https://www.linkedin.com/in/shahad-hassan-82287a220/" },
+  { name: "Shakti Singh", role: "Strategy Lead", image: "/shakti_singh.jpg", hoverImage: "/shakti-hover.jpg", linkedin: "https://www.linkedin.com/in/gurjarshakti/" },
+  { name: "Neeraj Kumar", role: "Shopify Developer", image: "/neeraj_kumar.jpg", hoverImage: "/neeraj-hover.jpg", linkedin: "https://www.linkedin.com/in/neerajkumar94/" },
+  { name: "Shahad Hassan", role: "Full-Stack Developer", image: "/shahad_hassan.jpg", hoverImage: "/shahad-hover.jpg", linkedin: "https://www.linkedin.com/in/shahad-hassan-82287a220/" },
   { name: "Tanmay Sharma", role: "SaaS Sales Professional", image: "/tanmay_sharma.png", linkedin: "https://www.linkedin.com/in/tanmaybummlers/" },
   { name: "Divyansh Chaudhary", role: "Product Lead", image: "/Divy.jpg", linkedin: "https://www.linkedin.com/in/divyansh-chaudhary-887744119/" },
   { name: "Manish Rana", role: "UI/UX Designer", image: "/Manish_Rana.png", linkedin: "https://www.linkedin.com/in/mymkrana/" },
@@ -20,13 +20,25 @@ function MemberCard({ member }) {
     <article className="group softles-card overflow-hidden w-[220px] sm:w-[240px] shrink-0">
       <div className="relative aspect-[4/5] overflow-hidden bg-gradient-to-br from-[#222A3B] to-[#12161F]">
         {member.image ? (
-          <Image
-            src={member.image}
-            alt={member.name}
-            fill
-            sizes="240px"
-            className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
-          />
+          <>
+            <Image
+              src={member.image}
+              alt={member.name}
+              fill
+              sizes="240px"
+              className="object-cover object-top"
+            />
+            {member.hoverImage && (
+              <Image
+                src={member.hoverImage}
+                alt={member.name}
+                fill
+                sizes="240px"
+                loading="eager"
+                className="object-cover object-top [clip-path:inset(100%_0_0_0)] group-hover:[clip-path:inset(0_0_0_0)] [transition:clip-path_600ms_cubic-bezier(0.65,0,0.35,1)]"
+              />
+            )}
+          </>
         ) : (
           <div className="absolute inset-0 flex items-center justify-center">
             <span className="flex h-20 w-20 items-center justify-center rounded-full bg-[#FF4D57]/12 border border-[#FF4D57]/30 text-2xl font-bold text-[#FF4D57]">
@@ -73,7 +85,7 @@ export default function OurTeamSection() {
 
       {/* Auto-scrolling team rail (pauses on hover) */}
       <div className="mt-10 relative overflow-hidden before:absolute before:left-0 before:top-0 before:bottom-0 before:w-16 sm:before:w-28 before:bg-gradient-to-r before:from-[#0E1219] before:to-transparent before:z-10 after:absolute after:right-0 after:top-0 after:bottom-0 after:w-16 sm:after:w-28 after:bg-gradient-to-l after:from-[#0E1219] after:to-transparent after:z-10">
-        <div className="flex w-max animate-[team-marquee_45s_linear_infinite] hover:[animation-play-state:paused]">
+        <div className="flex w-max py-1 animate-[team-marquee_45s_linear_infinite] hover:[animation-play-state:paused]">
           {[0, 1].map((dup) => (
             <div key={dup} className="flex gap-5 pr-5 shrink-0" aria-hidden={dup === 1}>
               {team.map((member) => (
