@@ -9,7 +9,7 @@ export default function ServiceCard(props) {
         <Link
             href={props.link || "#"}
             passHref
-            className={`relative overflow-hidden h-[280px] w-[280px] p-[24px] lg:-mr-10 rounded-full bg-[#111319] ${props.bg} ${props.hover} flex flex-col items-center justify-center gap-y-3 text-center group border border-[#2E3446] hover:border-[#FF4D57]/50 hover:shadow-[0_20px_50px_rgba(255,77,87,0.15)] hover:-translate-y-3 focus-visible:ring-4 focus-visible:ring-[#FF4D57] transition-all duration-300 ease-out outline-none`}
+            className={`relative overflow-hidden h-[280px] w-[280px] p-[24px] lg:-mr-10 rounded-full bg-[#111319] ${props.bg} ${props.hover} flex flex-col items-center justify-center gap-y-3 text-center group border border-[#2E3446] shadow-[inset_0_1px_0_rgba(255,255,255,0.06),inset_0_-24px_48px_rgba(0,0,0,0.35)] hover:border-[#FF4D57]/50 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_20px_50px_rgba(255,77,87,0.15)] hover:-translate-y-3 focus-visible:ring-4 focus-visible:ring-[#FF4D57] transition-all duration-300 ease-out outline-none`}
             style={{ zIndex: props.zIndex }}
             aria-label={`Learn more about ${props.name}`}
             tabIndex={0}
@@ -31,6 +31,11 @@ export default function ServiceCard(props) {
                     />
                 </div>
 
+                {props.step && (
+                    <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#FF4D57]/80 -mb-1">
+                        Step {props.step}
+                    </span>
+                )}
                 <span className="text-[#FFFFFF] text-xl leading-[30px] font-bold group-hover:text-[#FF4D57] transition-colors duration-300">
                     {props.name}
                 </span>

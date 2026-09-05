@@ -1,411 +1,237 @@
 "use client";
 
-import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useRef } from "react";
+import Link from "next/link";
+import { motion } from "framer-motion";
 
-/* ---------- Tooltip for bullets ---------- */
-function BulletTooltip({ children, tip }) {
-  const [show, setShow] = useState(false);
-  return (
-    <span
-      className="relative"
-      onMouseEnter={() => setShow(true)}
-      onMouseLeave={() => setShow(false)}
-    >
-      {children}
-      {show && (
-        <span className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 z-20 bg-[#23263a] text-white text-xs px-2.5 py-1.5 rounded shadow-lg whitespace-nowrap">
-          {tip}
-        </span>
-      )}
-    </span>
-  );
-}
+const MotionLink = motion(Link);
+
+const iconProps = {
+  width: 26,
+  height: 26,
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 2,
+  strokeLinecap: "round",
+  strokeLinejoin: "round",
+};
 
 const services = [
   {
-    image: "/DesignSystem.png",
+    number: "01",
+    icon: (
+      <svg {...iconProps}>
+        <path d="M12 19l7-7 3 3-7 7-3-3z" />
+        <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
+        <path d="M2 2l7.586 7.586" />
+        <circle cx="11" cy="11" r="2" />
+      </svg>
+    ),
+    href: "/#book-call",
+    linkLabel: "Start a project",
     title: "Design & Prototyping",
-    bullets: [
-      { txt: "AI-accelerated wireframes & mockups", tip: "AI-assisted design moves from idea to high-fidelity screens in days, not weeks." },
-      { txt: "Design systems & branding", tip: "Re-usable components that ensure brand consistency at scale." },
-      { txt: "Interactive prototypes", tip: "Clickable demos for rapid feedback before writing code." },
-      { txt: "User testing", tip: "Task-based sessions to refine UX and boost conversion." },
+    description: "From idea to clickable, user-tested screens — in days, not weeks.",
+    items: [
+      "AI-accelerated wireframes & mockups",
+      "Design systems & branding",
+      "Interactive prototypes",
+      "User testing",
     ],
   },
-
   {
-    image: "/InterfaceDesign.png",
+    number: "02",
+    icon: (
+      <svg {...iconProps}>
+        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+        <path d="M3 6h18" />
+        <path d="M16 10a4 4 0 0 1-8 0" />
+      </svg>
+    ),
+    href: "/shopify-development",
+    linkLabel: "Learn more",
     title: "Shopify Development",
-    bullets: [
-      { txt: "Custom Theme Development", tip: "Conversion-focused themes built for brand and speed." },
-      { txt: "Headless & Next.js / Hydrogen", tip: "Decoupled storefronts for performance and flexibility." },
-      { txt: "Shopify App Development", tip: "Embedded and private apps to extend store capability." },
-      { txt: "Integrations & Automation", tip: "Connect Shopify to CRM, email and business systems." },
+    description: "Storefronts and apps built for conversion, brand, and speed.",
+    items: [
+      "Custom Theme Development",
+      "Headless & Next.js / Hydrogen",
+      "Shopify App Development",
+      "Integrations & Automation",
     ],
   },
-
   {
-    image: "/UserResearch.png",
+    number: "03",
+    icon: (
+      <svg {...iconProps}>
+        <path d="M16 18l6-6-6-6" />
+        <path d="M8 6l-6 6 6 6" />
+      </svg>
+    ),
+    href: "/wordpress-development",
+    linkLabel: "Learn more",
     title: "WordPress Development",
-    bullets: [
-      { txt: "Custom Theme Development", tip: "Pixel-perfect WordPress themes built from scratch." },
-      { txt: "Headless WordPress (Next.js)", tip: "Decoupled architectures for modern frontends and speed." },
-      { txt: "Plugin & WooCommerce Extensions", tip: "Custom plugins and commerce features built to spec." },
-      { txt: "Integrations & Automation", tip: "Connect WordPress to CRMs, email and business tools." },
+    description: "Custom themes, plugins, and headless builds — pixel-perfect, to spec.",
+    items: [
+      "Custom Theme Development",
+      "Headless WordPress (Next.js)",
+      "Plugin & WooCommerce Extensions",
+      "Integrations & Automation",
     ],
   },
-
   {
-    image: "/Prototyping.png",
+    number: "04",
+    icon: (
+      <svg {...iconProps}>
+        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+      </svg>
+    ),
+    href: "/#book-call",
+    linkLabel: "Start a project",
     title: "Integrations & Automation",
-    bullets: [
-      { txt: "API & CRM integrations", tip: "Connect your store or site to CRMs, email, and business systems." },
-      { txt: "Workflow & AI automation", tip: "Automate order flows, notifications, and back-office busywork." },
-      { txt: "Payments, shipping & ERP", tip: "Reliable hookups to the platforms your operations run on." },
-      { txt: "Custom web apps when needed", tip: "Bespoke full-stack development as the supporting layer for automations and integrations." },
+    description: "Your store, CRM, and back office — finally talking to each other.",
+    items: [
+      "API & CRM integrations",
+      "Workflow & AI automation",
+      "Payments, shipping & ERP",
+      "Custom web apps when needed",
     ],
   },
 ];
 
-function MobileStackCarousel({ services }) {
-  const [active, setActive] = useState(0);
-  const [direction, setDirection] = useState(0);
-  const [touchStartX, setTouchStartX] = useState(0);
-  const isPrevDisabled = active === 0;
-  const isNextDisabled = active === services.length - 1;
+function SpotlightCard({ service, idx }) {
+  const ref = useRef(null);
 
-  const handleNext = () => {
-    if (isNextDisabled) return;
-    setDirection(1);
-    setActive((prev) => Math.min(prev + 1, services.length - 1));
-  };
-  const handlePrev = () => {
-    if (isPrevDisabled) return;
-    setDirection(-1);
-    setActive((prev) => Math.max(prev - 1, 0));
+  const handleMouseMove = (e) => {
+    const el = ref.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    el.style.setProperty("--mx", `${e.clientX - rect.left}px`);
+    el.style.setProperty("--my", `${e.clientY - rect.top}px`);
+    // Icon tilt follows the cursor (offset from card centre).
+    const px = (e.clientX - rect.left) / rect.width - 0.5;
+    const py = (e.clientY - rect.top) / rect.height - 0.5;
+    el.style.setProperty("--ry", `${(px * 18).toFixed(2)}deg`);
+    el.style.setProperty("--rx", `${(-py * 14).toFixed(2)}deg`);
   };
 
-  // Touch handlers for mobile swipe
-  const handleTouchStart = (e) => {
-    setTouchStartX(e.touches[0].clientX);
-  };
-
-  const handleTouchEnd = (e) => {
-    const touchEndX = e.changedTouches[0].clientX;
-    const diff = touchStartX - touchEndX;
-
-    if (diff > 50) handleNext(); // Swipe left -> next
-    else if (diff < -50) handlePrev(); // Swipe right -> prev
+  const handleMouseLeave = () => {
+    const el = ref.current;
+    if (!el) return;
+    el.style.setProperty("--mx", "-200px");
+    el.style.setProperty("--my", "-200px");
+    el.style.setProperty("--rx", "8deg");
+    el.style.setProperty("--ry", "-8deg");
   };
 
   return (
-    <div className="md:hidden w-full flex flex-col items-center py-8 mt-5 relative">
+    <MotionLink
+      href={service.href}
+      ref={ref}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      initial={{ opacity: 0, y: 28 }}
+      whileInView={{ opacity: 1, y: 0, transition: { duration: 0.55, delay: idx * 0.08, ease: "easeOut" } }}
+      whileHover={{ y: -5 }}
+      whileTap={{ scale: 0.98 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.25, ease: "easeOut" }}
+      className="group relative block rounded-2xl bg-[#2E3446]/70 p-px cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-[#FF4D57] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0E1219] active:bg-[#FF4D57]/40 transition-colors"
+      style={{ "--mx": "-200px", "--my": "-200px", "--rx": "8deg", "--ry": "-8deg" }}
+    >
+      {/* Border glow that follows the cursor */}
       <div
-        className="relative w-full max-w-xs min-h-[460px] perspective-1000"
-        onTouchStart={handleTouchStart}
-        onTouchEnd={handleTouchEnd}
-      >
-        {/* Stacked background cards */}
-        {[1, 2].map((offset) => {
-          const index = (active + offset) % services.length;
-          const zIndex = 10 - offset;
-          const scale = 1 - (offset * 0.08);
-          const opacity = 1 - (offset * 0.4);
-          const yOffset = offset * 20;
+        className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(320px circle at var(--mx) var(--my), rgba(255,77,87,0.55), transparent 70%)",
+        }}
+      />
 
-          return (
-            <motion.div
-              key={`stack-${index}`}
-              initial={false}
-              animate={{
-                scale,
-                y: yOffset,
-                opacity,
-                rotateX: 5,
-              }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="absolute inset-0 bg-gradient-to-br from-[#23263a] to-[#181B23] rounded-2xl shadow-xl p-8 flex flex-col items-start min-h-[320px] border border-[#2E3446]"
-              style={{
-                zIndex,
-                transformOrigin: "center bottom",
-              }}
-            >
-              <div className="mb-6 flex items-center justify-start opacity-70">
-                <Image
-                  src={services[index].image}
-                  alt={services[index].title}
-                  width={64}
-                  height={64}
-                  className="rounded-full"
-                />
-              </div>
-              <h3 className="text-xl font-bold mb-4 text-left text-white/70">{services[index].title}</h3>
-              <ul className="w-full flex flex-col gap-2 mt-2 mb-6 opacity-70">
-                {services[index].bullets.slice(0, 2).map((b, i) => (
-                  <li
-                    key={i}
-                    className="relative pl-8 py-1.5 bg-[#23263a]/40 rounded-lg text-sm text-[#F3F4F6]/70 font-medium"
-                  >
-                    <span className="absolute left-3 top-1/2 -translate-y-1/2 flex items-center justify-center w-4 h-4 rounded-full bg-[#FF4D57]/50 text-white text-xs">
-                      ✓
-                    </span>
-                    {b.txt}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          );
-        })}
+      {/* Card surface */}
+      <div className="relative h-full rounded-[15px] bg-gradient-to-b from-[#161C27] to-[#10141D] p-6 xl:p-7 overflow-hidden">
+        {/* Inner light wash following the cursor */}
+        <div
+          className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(480px circle at var(--mx) var(--my), rgba(255,77,87,0.06), transparent 65%)",
+          }}
+        />
 
-        {/* Active card */}
-        <AnimatePresence mode="wait" custom={direction}>
-          <motion.div
-            key={active}
-            custom={direction}
-            initial={{
-              opacity: 0,
-              y: 24,
-              scale: 0.94,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-              scale: 1,
-            }}
-            exit={{
-              opacity: 0,
-              y: -24,
-              scale: 0.94,
-            }}
-            transition={{ duration: 0.4, ease: "easeInOut" }}
-            className="absolute inset-0 bg-gradient-to-br from-[#23263a] to-[#181B23] rounded-2xl shadow-2xl p-8 flex flex-col items-start min-h-[320px] z-30 border border-[#FF4D57]/20"
-          >
-            <div className="mb-2 md:mb-6 flex items-center justify-center">
-              <Image
-                src={services[active].image}
-                alt={services[active].title}
-                width={72}
-                height={72}
-                className="rounded-full"
+        <div className="relative flex flex-col h-full">
+          <div className="mb-5 [perspective:600px]">
+            {/* Icon with a 3D bevel treatment */}
+            <div className="relative w-fit [transform-style:preserve-3d] transition-transform duration-200 ease-out [transform:rotateX(var(--rx))_rotateY(var(--ry))] group-hover:[transform:rotateX(var(--rx))_rotateY(var(--ry))_translateY(-4px)_scale(1.06)]">
+              {/* Glow under the icon */}
+              <div
+                aria-hidden="true"
+                className="absolute -inset-3 rounded-full bg-[radial-gradient(circle,rgba(255,77,87,0.16),transparent_70%)] blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500"
               />
+              {/* Ground shadow that deepens on hover */}
+              <div
+                aria-hidden="true"
+                className="absolute left-1/2 -bottom-2.5 h-2 w-10 -translate-x-1/2 rounded-full bg-black/50 blur-[6px] transition-all duration-500 group-hover:w-12 group-hover:bg-black/60"
+              />
+              <div className="relative flex h-14 w-14 items-center justify-center rounded-2xl border border-[#FF4D57]/30 bg-gradient-to-b from-[#FF4D57]/15 to-[#FF4D57]/[0.04] text-[#FF4D57] shadow-[inset_0_1px_0_rgba(255,255,255,0.12),0_10px_22px_rgba(0,0,0,0.5)] transition-all duration-500 group-hover:border-[#FF4D57]/60 group-hover:text-[#FF6A3D] group-hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_16px_30px_rgba(0,0,0,0.6)]">
+                {service.icon}
+              </div>
             </div>
-            <h3 className="text-xl font-bold mb-4 text-left text-white">{services[active].title}</h3>
-            <ul className="w-full flex flex-col gap-5">
-              {services[active].bullets.map((b, i) => (
-                <li
-                  key={i}
-                  className="relative pl-10 py-2 bg-[#23263a]/60 rounded-lg text-sm text-[#F3F4F6] font-medium shadow-sm border border-[#23263a] text-left hover:border-[#FF4D57] transition-all duration-200"
-                >
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 flex items-center justify-center w-5 h-5 rounded-full bg-[#FF4D57] text-white text-xs font-bold shadow-md">
-                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
-                      <circle cx="10" cy="10" r="10" fill="#FF4D57"/>
-                      <path d="M7 10.5L9 12.5L13 8.5" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </span>
-                  {b.txt}
-                </li>
-              ))}
-            </ul>
+          </div>
 
-            {/* Active card indicator */}
-            <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-16 h-1.5 bg-gradient-to-r from-[#FF4D57] to-[#ff6b6b] rounded-full" />
-          </motion.div>
-        </AnimatePresence>
-      </div>
+          <h3 className="text-lg xl:text-xl font-bold text-white leading-tight">
+            {service.title}
+          </h3>
+          <p className="text-sm text-[#C7CCD6]/75 leading-relaxed mt-2.5 mb-6">
+            {service.description}
+          </p>
 
-      {/* Navigation buttons */}
-      <div className="flex gap-4 mt-8 z-40">
-        <button
-          disabled={isPrevDisabled}
-          onClick={handlePrev}
-          className={`flex h-12 w-12 items-center justify-center rounded-full shadow-lg transition-all duration-300 ${
-            isPrevDisabled
-              ? "bg-[#23263a]/40 text-white/40 cursor-not-allowed"
-              : "bg-gradient-to-br from-[#23263a] to-[#181B23] hover:from-[#FF4D57] hover:to-[#ff6b6b] text-white hover:shadow-xl"
-          }`}
-        >
-          <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M15 19L8 12L15 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </button>
+          <ul className="mt-auto flex flex-col">
+            {service.items.map((item) => (
+              <li
+                key={item}
+                className="flex items-center gap-3 py-3 border-t border-[#252B3A] text-sm text-[#C7CCD6] hover:text-white hover:pl-1.5 transition-all duration-300"
+              >
+                <span className="text-[#FF4D57] text-xs leading-none">◆</span>
+                {item}
+              </li>
+            ))}
+          </ul>
 
-        {/* Indicators */}
-        <div className="flex items-center gap-2">
-          {services.map((_, idx) => (
-            <button
-              key={idx}
-              disabled={idx === active}
-              onClick={() => {
-                setDirection(idx > active ? 1 : -1);
-                setActive(idx);
-              }}
-              className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                idx === active
-                  ? 'w-8 bg-gradient-to-r from-[#FF4D57] to-[#ff6b6b]'
-                  : 'bg-[#23263a] hover:bg-[#FF4D57]/50'
-              }`}
-            />
-          ))}
+          {/* Link affordance — revealed on hover */}
+          <div className="flex items-center gap-2 pt-4 border-t border-[#252B3A] text-sm font-bold text-[#FF4D57] opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+            {service.linkLabel}
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-300 group-hover:translate-x-0.5">
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg>
+          </div>
         </div>
-
-        <button
-          disabled={isNextDisabled}
-          onClick={handleNext}
-          className={`flex h-12 w-12 items-center justify-center rounded-full shadow-lg transition-all duration-300 ${
-            isNextDisabled
-              ? "bg-[#23263a]/40 text-white/40 cursor-not-allowed"
-              : "bg-gradient-to-br from-[#23263a] to-[#181B23] hover:from-[#FF4D57] hover:to-[#ff6b6b] text-white hover:shadow-xl"
-          }`}
-        >
-          <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M9 5L16 12L9 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </button>
       </div>
-    </div>
+    </MotionLink>
   );
 }
 
 export default function OurServicesSection() {
   return (
-    <section id="services" className="w-full py-12 md:pt-20 md:pb-24 px-0 flex flex-col justify-center place-content-between overflow-hidden border-t border-[#2E3446] bg-[#0E1219]">
+    <section id="services" className="w-full py-12 md:pt-20 md:pb-24 overflow-hidden border-t border-[#2E3446] bg-[#0E1219]">
       <div className="service-page-container mx-auto w-full flex flex-col">
-        <div className="relative z-10 flex flex-col">
-          <div className="flex items-center text-base font-normal text-[#FFFFFF]">
-            <Image
-              src={"/Separator.png"}
-              alt="separator"
-              width={0}
-              height={0}
-              sizes="(max-width: 768px) 40vw, (max-width: 1024px) 50vw, 33vw"
-              className="object-cover overflow-hidden min-w-min h-[2px] mr-[10px]"
-            />
-          <p className="text-sm uppercase tracking-[0.2em] text-[#C7CCD6]">
-            What We Do
-          </p>
+        <div className="flex flex-col">
+          <div className="softles-eyebrow mb-2">
+            <span className="softles-eyebrow-line" />
+            <span className="softles-eyebrow-text">Our services</span>
+          </div>
+          <span className="mt-2 mb-2 lg:mb-0 service-section-heading text-[#FFFFFF]">
+            What we do
+          </span>
+          <span className="text-sm sm:text-base text-[#C7CCD6] mt-2 max-w-2xl leading-relaxed">
+            Design, development, and the automation that connects it all. Here&apos;s where we spend our time.
+          </span>
         </div>
-        <span className="mt-2 mb-2 lg:mb-0 service-section-heading text-[#FFFFFF]">
-          What we do
-        </span>
-        <span className="text-sm sm:text-base text-[#C7CCD6] mt-2 max-w-2xl leading-relaxed">
-          Design, development, and the automation that connects it all. Here&apos;s where we spend our time.
-        </span>
-      </div>
 
-      {/* Mobile stack card carousel — phones only */}
-      <MobileStackCarousel services={services} />
-
-      {/* Tablet & desktop grid: 2 columns on tablet, 4 on desktop */}
-      <div className="mt-10 hidden md:grid grid-cols-2 xl:grid-cols-4 gap-6 xl:gap-8 relative perspective-1200">
-        {services.map((service, idx) => {
-          // Calculate stacking order with perspective
-          const stackOrder = services.length - idx;
-          const translateY = idx * 8; // Slight vertical offset
-          const translateX = idx % 2 === 0 ? -idx * 4 : idx * 4; // Alternating horizontal offset
-          const rotate = idx % 2 === 0 ? -1 : 1; // Slight alternating rotation
-
-          return (
-            <motion.div
-              key={idx}
-              initial={{
-                opacity: 0,
-                y: 50,
-                rotateX: 10,
-                rotateY: rotate * 5
-              }}
-              whileInView={{
-                opacity: 1,
-                y: translateY,
-                rotateX: 0,
-                rotateY: rotate
-              }}
-              transition={{
-                duration: 0.6,
-                delay: idx * 0.1,
-                ease: "easeOut"
-              }}
-              whileHover={{
-                y: -20,
-                scale: 1.05,
-                rotateY: 0,
-                rotateX: -5,
-                zIndex: 50,
-                transition: { duration: 0.3 }
-              }}
-              viewport={{ once: true }}
-              className="group cursor-pointer bg-gradient-to-br from-[#23263a] to-[#181B23] rounded-2xl shadow-2xl p-4 flex flex-col items-start transition-all duration-500 relative min-h-[320px] border border-[#2E3446] hover:border-[#FF4D57]/40"
-              style={{
-                zIndex: stackOrder,
-                transformStyle: 'preserve-3d',
-                transform: `translate3d(${translateX}px, ${translateY}px, ${-idx * 20}px) rotateY(${rotate}deg)`,
-              }}
-            >
-              {/* Card glow effect */}
-              <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-[#FF4D57]/0 via-[#FF4D57]/10 to-[#FF4D57]/0 opacity-0 group-hover:opacity-100 blur transition-opacity duration-500" />
-
-              <div className="mb-6 transition-all duration-500 group-hover:rotate-12 group-hover:scale-110 flex items-center justify-start relative z-10">
-                <Image
-                  src={service.image}
-                  alt={service.title}
-                  width={72}
-                  height={72}
-                  className="rounded-full"
-                />
-                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#FF4D57]/20 to-transparent opacity-0 group-hover:opacity-100 blur transition-opacity duration-500" />
-              </div>
-
-              <h3 className="text-xl font-bold mb-4 text-left text-white group-hover:text-[#FF4D57] transition-colors duration-300 leading-tight relative z-10">
-                {service.title}
-              </h3>
-
-              <ul className="w-full flex flex-col gap-3 mt-2 mb-6 relative z-10">
-                {service.bullets.map((b, i) => (
-                  <motion.li
-                    key={i}
-                    initial={{ opacity: 0, x: -10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: idx * 0.1 + i * 0.05 }}
-                    viewport={{ once: true }}
-                    whileHover={{ x: 5 }}
-                    className="relative pl-10 py-2 bg-[#23263a]/60 rounded-lg text-sm text-[#F3F4F6] font-medium shadow-sm border border-[#23263a] hover:border-[#FF4D57] hover:bg-[#23263a]/80 transition-all duration-300 text-left group/bullet"
-                  >
-                    <span className="absolute left-3 top-1/2 -translate-y-1/2 flex items-center justify-center w-5 h-5 rounded-full bg-[#FF4D57] text-white text-xs font-bold shadow-md group-hover/bullet:scale-110 transition-transform duration-300">
-                      <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
-                        <circle cx="10" cy="10" r="10" fill="#FF4D57"/>
-                        <path d="M7 10.5L9 12.5L13 8.5" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </span>
-
-                    {/* Tooltip wrapped bullet text */}
-                    <BulletTooltip tip={b.tip}>
-                      <span className="group-hover:text-white transition-colors duration-200">
-                        {b.txt}
-                      </span>
-                    </BulletTooltip>
-                  </motion.li>
-                ))}
-              </ul>
-
-              {/* Card edge highlight */}
-              <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-[#FF4D57]/20 transition-all duration-500 pointer-events-none" />
-
-              {/* 3D depth effect */}
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            </motion.div>
-          );
-        })}
-      </div>
-
-      {/* Stack indicator for desktop */}
-      {/* <div className="hidden sm:flex justify-center mt-12 relative z-10">
-        <div className="flex items-center gap-2 px-4 py-2 bg-[#23263a]/50 rounded-full backdrop-blur-sm">
-          <svg className="w-4 h-4 text-[#FF4D57] animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch">
+          {services.map((service, idx) => (
+            <SpotlightCard key={service.number} service={service} idx={idx} />
+          ))}
         </div>
-      </div> */}
       </div>
     </section>
   );
