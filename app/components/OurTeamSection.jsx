@@ -1,14 +1,14 @@
 import Image from "next/image";
 
-// Order: full-time trio first, then the wider team (Tanmay moved up).
+// Order: full-time trio spread out between the wider team, not bunched together.
 const team = [
   { name: "Shakti Singh", role: "Strategy Lead", image: "/shakti_singh.jpg", hoverImage: "/shakti-hover.jpg", linkedin: "https://www.linkedin.com/in/gurjarshakti/" },
+  { name: "Tanmay Sharma", role: "SaaS Sales Professional", image: "/tanmay_sharma.jpg", linkedin: "https://www.linkedin.com/in/tanmaybummlers/" },
   { name: "Neeraj Kumar", role: "Shopify Developer", image: "/neeraj_kumar.jpg", hoverImage: "/neeraj-hover.jpg", linkedin: "https://www.linkedin.com/in/neerajkumar94/" },
+  { name: "Divyansh Chaudhary", role: "Product Lead", image: "/divyansh_chaudhary.jpg", linkedin: "https://www.linkedin.com/in/divyansh-chaudhary-887744119/" },
   { name: "Shahad Hassan", role: "Full-Stack Developer", image: "/shahad_hassan.jpg", hoverImage: "/shahad-hover.jpg", linkedin: "https://www.linkedin.com/in/shahad-hassan-82287a220/" },
-  { name: "Tanmay Sharma", role: "SaaS Sales Professional", image: "/tanmay_sharma.png", linkedin: "https://www.linkedin.com/in/tanmaybummlers/" },
-  { name: "Divyansh Chaudhary", role: "Product Lead", image: "/Divy.jpg", linkedin: "https://www.linkedin.com/in/divyansh-chaudhary-887744119/" },
-  { name: "Manish Rana", role: "UI/UX Designer", image: "/Manish_Rana.png", linkedin: "https://www.linkedin.com/in/mymkrana/" },
-  { name: "Sparsh Yadav", role: "Senior Product Designer", image: "/sparsh_yadav.webp", linkedin: "https://www.linkedin.com/in/sparsh-yadav-8a794714a/" },
+  { name: "Manish Rana", role: "UI/UX Designer", image: "/manish_rana.jpg", linkedin: "https://www.linkedin.com/in/mymkrana/" },
+  { name: "Sparsh Yadav", role: "Senior Product Designer", image: "/sparsh_yadav.jpg", linkedin: "https://www.linkedin.com/in/sparsh-yadav-8a794714a/" },
 ];
 
 function initials(name) {

@@ -148,6 +148,7 @@ export default function OurApproachSection() {
                             source={step.image}
                             name={step.name}
                             alt={step.alt}
+                            step={String(index + 1).padStart(2, "0")}
                             description={step.description}
                         />
                     </motion.div>

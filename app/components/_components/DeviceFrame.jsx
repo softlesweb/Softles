@@ -27,8 +27,8 @@ export default function DeviceFrame({ project, defaultDevice = "desktop" }) {
   const isDesktop = device === "desktop";
   const img = isDesktop ? p.d : p.m;
   const ratio = isDesktop ? p.dH / p.dW : p.mH / p.mW;
-  // Consistent, gentle pace: scroll time scales with page height.
-  const dur = Math.min(60, Math.max(18, Math.round(ratio * 9)));
+  // Consistent pace: scroll time scales with page height, but stays snappy.
+  const dur = Math.min(26, Math.max(8, Math.round(ratio * 4)));
   // Remount the image whenever the view/page/device changes so the
   // scroll animation always restarts cleanly from the top.
   const imgKey = `${device}-${page}-${inView}`;
@@ -153,13 +153,13 @@ export default function DeviceFrame({ project, defaultDevice = "desktop" }) {
           left: 0;
           will-change: transform;
           animation-name: dfScroll;
-          animation-timing-function: ease-in-out;
+          animation-timing-function: linear;
           animation-iteration-count: infinite;
           animation-direction: alternate;
         }
         @keyframes dfScroll {
-          0%, 6% { transform: translateY(0); }
-          94%, 100% { transform: translateY(calc(-100% + var(--sh))); }
+          0%, 2% { transform: translateY(0); }
+          98%, 100% { transform: translateY(calc(-100% + var(--sh))); }
         }
         @media (prefers-reduced-motion: reduce) {
           .df-scroll { animation: none !important; }
