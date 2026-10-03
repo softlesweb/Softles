@@ -30,6 +30,44 @@ h1, h2, h3,
         @apply w-full py-12 md:py-20 px-0 border-t border-[#2E3446] bg-[#0E1219];
     }
 
+    @keyframes pillFill {
+        from { transform: scaleX(0); }
+        to { transform: scaleX(1); }
+    }
+
+    @keyframes stepFloat {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-5px); }
+    }
+
+    /* Progress ring drawing around the playing process step; its length arrives as --ring-c. */
+    /* Option C process cards: the active card's top-edge timer */
+    .step-timer {
+        width: 0;
+        animation-name: stepTimer;
+        animation-timing-function: linear;
+        animation-fill-mode: forwards;
+    }
+    @keyframes stepTimer {
+        from { width: 0; }
+        to { width: 100%; }
+    }
+
+    .step-ring-draw {
+        animation-name: stepRingDraw;
+        animation-timing-function: linear;
+        animation-fill-mode: both;
+    }
+    @keyframes stepRingDraw {
+        from { stroke-dashoffset: var(--ring-c); }
+        to { stroke-dashoffset: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .step-float { animation: none !important; }
+        .step-timer { animation: none !important; width: 100%; }
+    }
+
     .softles-section-secondary {
         @apply w-full py-12 md:py-20 px-0 border-t border-b border-[#2E3446] bg-[#161C27];
     }
@@ -81,6 +119,14 @@ h1, h2, h3,
     }
 }
 
+/* Inside a drag rail nothing should be natively draggable — otherwise
+   press-and-hold on a photo lifts the image instead of moving the rail. */
+.drag-rail,
+.drag-rail * {
+    -webkit-user-drag: none;
+    -webkit-touch-callout: none;
+}
+
 .hide-scrollbar::-webkit-scrollbar {
     display: none;
 }
@@ -90,7 +136,128 @@ h1, h2, h3,
     scrollbar-width: none;
 }
 
+
+/* ── Hero illustration animation vocabulary ────────────────────────────────
+   Shared by the per-page hero scenes in _components/hero-art/. Kept global so
+   each scene can be its own component and still use the same motion. */
+.eh-illo { animation: ehFloat 8s ease-in-out infinite; }
+@keyframes ehFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.eh-stick { animation: ehStickP 4s ease-in-out infinite; }
+.eh-stick2 { animation-delay: 1.2s; }
+@keyframes ehStickP {
+    0%, 100% { opacity: 0.85; }
+    50% { opacity: 1; }
+}
+
+.eh-type { opacity: 0; animation: ehTypeIn 4.8s ease-in-out infinite; }
+.eh-t2 { animation-delay: 0.7s; }
+.eh-t3 { animation-delay: 1.4s; }
+@keyframes ehTypeIn {
+    0% { opacity: 0; }
+    12%, 72% { opacity: 1; }
+    86%, 100% { opacity: 0; }
+}
+
+.eh-arm { transform-origin: 352px 258px; animation: ehWrite 2.2s ease-in-out infinite; }
+@keyframes ehWrite {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(-3.5deg); }
+}
+
+.eh-steam { stroke-dasharray: 20; animation: ehSteamUp 3.2s linear infinite; opacity: 0.5; }
+@keyframes ehSteamUp {
+    from { stroke-dashoffset: 40; }
+    to { stroke-dashoffset: 0; }
+}
+
+.eh-glowp { animation: ehGlowP 5s ease-in-out infinite; }
+@keyframes ehGlowP {
+    0%, 100% { opacity: 0.35; }
+    50% { opacity: 0.6; }
+}
+
+.eh-curs { animation: ehBlink 1.1s steps(1) infinite; }
+@keyframes ehBlink {
+    0%, 55% { opacity: 1; }
+    56%, 100% { opacity: 0; }
+}
+
+.eh-flow { stroke-dasharray: 2 10; animation: ehFlowMove 2.6s linear infinite; }
+@keyframes ehFlowMove {
+    from { stroke-dashoffset: 60; }
+    to { stroke-dashoffset: 0; }
+}
+
+.eh-twk { animation: ehTwinkle 3.6s ease-in-out infinite; }
+.eh-twk2 { animation-delay: 1.2s; }
+.eh-twk3 { animation-delay: 2.3s; }
+@keyframes ehTwinkle {
+    0%, 100% { opacity: 0.15; transform: scale(0.8); }
+    50% { opacity: 0.9; transform: scale(1.1); }
+}
+
+/* Secondary objects drifting on their own offset rhythm. */
+.eh-bob { animation: ehBob 5.5s ease-in-out infinite; }
+.eh-bob2 { animation-delay: 1.4s; }
+.eh-bob3 { animation-delay: 2.8s; }
+@keyframes ehBob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-7px); }
+}
+
+/* Nodes and handles breathing in place. */
+.eh-pop { transform-box: fill-box; transform-origin: center; animation: ehPop 3s ease-in-out infinite; }
+.eh-pop2 { animation-delay: 1s; }
+.eh-pop3 { animation-delay: 2s; }
+@keyframes ehPop {
+    0%, 100% { transform: scale(1); opacity: 0.75; }
+    50% { transform: scale(1.18); opacity: 1; }
+}
+
+/* A bar or meter filling on a loop. */
+.eh-fillbar { transform-box: fill-box; transform-origin: left center; animation: ehFillBar 4.5s ease-in-out infinite; }
+@keyframes ehFillBar {
+    0%, 10% { transform: scaleX(0.05); }
+    55%, 75% { transform: scaleX(1); }
+    95%, 100% { transform: scaleX(0.05); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .eh-illo, .eh-stick, .eh-type, .eh-arm, .eh-steam, .eh-glowp,
+    .eh-curs, .eh-flow, .eh-twk, .eh-bob, .eh-pop, .eh-fillbar {
+        animation: none !important;
+    }
+    .eh-type { opacity: 1; }
+    .eh-fillbar { transform: scaleX(1); }
+}
+
 @keyframes team-marquee {
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }
+}
+
+/* Loading placeholder blocks — a slow sheen travelling across a panel colour. */
+.sk {
+    background: linear-gradient(90deg, #161C27 0%, #212938 50%, #161C27 100%);
+    background-size: 200% 100%;
+    animation: skeleton 1.6s linear infinite;
+}
+@keyframes skeleton {
+    from { background-position: 200% 0; }
+    to { background-position: -200% 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .sk { animation: none; background: #1a2130; }
+}
+
+/* Word reveal, rolling numbers and scroll-fill words set inline styles from JS;
+   these rules let reduced-motion visitors skip straight to the settled state. */
+@media (prefers-reduced-motion: reduce) {
+    .word-reveal { transform: none !important; opacity: 1 !important; }
+    .rolling-reel { transition: none !important; }
+    .fill-word { opacity: 1 !important; }
 }

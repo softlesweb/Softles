@@ -1,14 +1,32 @@
 "use client";
 
-import { RiBrushLine, RiPlug2Line } from "react-icons/ri";
-import { FiLink2 } from "react-icons/fi";
-import { SiNextdotjs } from "react-icons/si";
-import { Check } from "lucide-react";
+import WordReveal from "../../components/_components/WordReveal";
+import SpotlightServiceCard from "../../components/_components/SpotlightServiceCard";
+import { motion } from "framer-motion";
+import { enter } from "@/app/components/_components/motion-presets";
+
+const iconProps = {
+  width: 26,
+  height: 26,
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 2,
+  strokeLinecap: "round",
+  strokeLinejoin: "round",
+};
 
 export default function ShopifyServices() {
   const services = [
     {
-      icon: <RiBrushLine className="w-5 h-5 text-[#FF4D57]" />,
+      icon: (
+        <svg {...iconProps}>
+          <path d="M12 19l7-7 3 3-7 7-3-3z" />
+          <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
+          <path d="M2 2l7.586 7.586" />
+          <circle cx="11" cy="11" r="2" />
+        </svg>
+      ),
       title: "Theme Design & Redesign",
       desc: "Conversion-focused, custom Shopify themes built for brand impact, speed, and seamless mobile performance.",
       featured: true,
@@ -20,7 +38,12 @@ export default function ShopifyServices() {
       ],
     },
     {
-      icon: <SiNextdotjs className="w-5 h-5 text-zinc-400 group-hover:text-white transition-colors duration-300" />,
+      icon: (
+        <svg {...iconProps}>
+          <path d="M16 18l6-6-6-6" />
+          <path d="M8 6l-6 6 6 6" />
+        </svg>
+      ),
       title: "Headless Shopify Development",
       desc: "Decoupled storefronts with Next.js and Hydrogen for faster performance and total flexibility.",
       featured: false,
@@ -32,7 +55,13 @@ export default function ShopifyServices() {
       ],
     },
     {
-      icon: <RiPlug2Line className="w-5 h-5 text-zinc-400 group-hover:text-white transition-colors duration-300" />,
+      icon: (
+        <svg {...iconProps}>
+          <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" />
+          <path d="m3.3 7 8.7 5 8.7-5" />
+          <path d="M12 22V12" />
+        </svg>
+      ),
       title: "Shopify App Development",
       desc: "Custom apps built to extend Shopify with workflow automation, storefront integrations, and business logic.",
       featured: false,
@@ -44,7 +73,11 @@ export default function ShopifyServices() {
       ],
     },
     {
-      icon: <FiLink2 className="w-5 h-5 text-zinc-400 group-hover:text-white transition-colors duration-300" />,
+      icon: (
+        <svg {...iconProps}>
+          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+        </svg>
+      ),
       title: "Integrations & Automation",
       desc: "Connect Shopify to your CRM, email platform, and business systems so your store runs like clockwork.",
       featured: false,
@@ -63,77 +96,32 @@ export default function ShopifyServices() {
         
         {/* Section Header */}
         <div className="mb-10 max-w-3xl">
-          <div className="softles-eyebrow mb-2">
+          <motion.div {...enter(0)} className="softles-eyebrow mb-2">
             <span className="softles-eyebrow-line" />
             <span className="softles-eyebrow-text">
               Capabilities
             </span>
-          </div>
-          <h2 className="service-section-heading text-[#FFFFFF]">
+          </motion.div>
+          <WordReveal as="h2" className="service-section-heading text-[#FFFFFF]">
             Shopify Development Services
-          </h2>
-          <p className="softles-section-copy">
+          </WordReveal>
+          <motion.p {...enter(2)} className="softles-section-copy">
             End-to-end Shopify solutions — from brand-new stores and Shopify Plus builds to headless architectures and full ecosystem automation.
-          </p>
+          </motion.p>
         </div>
 
-        {/* Uniform Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {/* Homepage spotlight-card language */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch">
           {services.map((service, idx) => (
-            <div
-              key={idx}
-              // Hover effects ko sabhi cards ke liye perfectly identical aur uniform kar diya hai
-              className={`group relative softles-card p-6 flex flex-col justify-between ${
-                service.featured ? "shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]" : ""
-              }`}
-            >
-              <div>
-                {/* Header Row: Icon + Badge */}
-                <div className="flex items-center justify-between mb-6">
-                  <div
-                    className={`w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-300 ${
-                      service.featured
-                        ? "bg-[#FF4D57]/10 border border-[#FF4D57]/30"
-                        : "bg-[#0E1219] border border-[#2E3446] group-hover:bg-[#FF4D57]/10 group-hover:border-[#FF4D57]/30"
-                    }`}
-                  >
-                    {service.icon}
-                  </div>
-                  
-                  {service.featured && (
-                    <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-[#FF4D57]/10 border border-[#FF4D57]/30 text-[#FF4D57]">
-                      Core Expert
-                    </span>
-                  )}
-                </div>
-
-                {/* Title */}
-                <h3 className="font-bold text-xl text-white mb-3 leading-tight group-hover:text-[#FF4D57] transition-colors duration-300">
-                  {service.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-[#C7CCD6] text-sm leading-relaxed mb-6">
-                  {service.desc}
-                </p>
-              </div>
-
-              {/* Functional Tech Features */}
-              <div className="pt-4 border-t border-[#2E3446]/40">
-                <ul className="space-y-2">
-                  {service.bullets.map((bullet, i) => (
-                    <li
-                      key={i}
-                      // Removed font-mono for unified brand style look
-                    className="flex items-center gap-2.5 text-sm text-[#F3F4F6] font-medium"
-                    >
-                      <Check className="w-3.5 h-3.5 shrink-0 text-[#FF4D57]" />
-                      <span className="truncate">{bullet}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+            <SpotlightServiceCard
+              key={service.title}
+              idx={idx}
+              icon={service.icon}
+              title={service.title}
+              desc={service.desc}
+              bullets={service.bullets}
+              badge={service.featured ? "Core Expert" : undefined}
+            />
           ))}
         </div>
       </div>

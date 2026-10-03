@@ -45,10 +45,16 @@ export const MobileSidebar = () => {
                             <Link href="/#services" onClick={e => handleSectionClick(e, "services")} tabIndex={0} className="focus-visible:ring-2 focus-visible:ring-[#FF4D57] rounded">Services</Link>
                         </li>
                         <li className="hover:text-[#FF4D57] transition-colors">
+                            <Link href="/design-prototyping" onClick={() => setOpen(false)} tabIndex={0} className="focus-visible:ring-2 focus-visible:ring-[#FF4D57] rounded">Design &amp; Prototyping</Link>
+                        </li>
+                        <li className="hover:text-[#FF4D57] transition-colors">
                             <Link href="/wordpress-development" onClick={() => setOpen(false)} tabIndex={0} className="focus-visible:ring-2 focus-visible:ring-[#FF4D57] rounded">WordPress Development</Link>
                         </li>
                         <li className="hover:text-[#FF4D57] transition-colors">
                             <Link href="/shopify-development" onClick={() => setOpen(false)} tabIndex={0} className="focus-visible:ring-2 focus-visible:ring-[#FF4D57] rounded">Shopify Development</Link>
+                        </li>
+                        <li className="hover:text-[#FF4D57] transition-colors">
+                            <Link href="/integrations-automation" onClick={() => setOpen(false)} tabIndex={0} className="focus-visible:ring-2 focus-visible:ring-[#FF4D57] rounded">Integrations &amp; Automation</Link>
                         </li>
                         <li className="hover:text-[#FF4D57] transition-colors">
                             <Link href="/blog" onClick={() => setOpen(false)} tabIndex={0} className="focus-visible:ring-2 focus-visible:ring-[#FF4D57] rounded">Blog</Link>

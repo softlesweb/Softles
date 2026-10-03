@@ -1,3 +1,4 @@
+import WordReveal from "../../components/_components/WordReveal";
 import Image from "next/image";
 import Link from "next/link";
 import LeadForm from "./components/LeadForm";
@@ -151,7 +152,7 @@ export default function ShopifyLandingPage() {
       <section className="softles-section-primary">
         <div className="service-page-container">
           <Eyebrow center>Sound familiar?</Eyebrow>
-          <h2 className="service-section-heading text-center">Your store is costing you sales</h2>
+          <WordReveal as="h2" className="service-section-heading text-center">Your store is costing you sales</WordReveal>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-10 max-w-4xl mx-auto">
             {PAINS.map((p) => (
               <div key={p} className="softles-card p-5 flex items-start gap-3">
@@ -167,7 +168,7 @@ export default function ShopifyLandingPage() {
       <section className="bg-[#161C27] border-y border-[#2E3446] py-12 md:py-20">
         <div className="service-page-container">
           <Eyebrow center>What you get</Eyebrow>
-          <h2 className="service-section-heading text-center">A store built to convert &amp; scale</h2>
+          <WordReveal as="h2" className="service-section-heading text-center">A store built to convert &amp; scale</WordReveal>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-10">
             {GETS.map((g) => (
               <div key={g.title} className="softles-card p-6">
@@ -183,7 +184,7 @@ export default function ShopifyLandingPage() {
       <section className="softles-section-primary">
         <div className="service-page-container">
           <Eyebrow center>Recent work</Eyebrow>
-          <h2 className="service-section-heading text-center">Stores we&apos;ve shipped</h2>
+          <WordReveal as="h2" className="service-section-heading text-center">Stores we&apos;ve shipped</WordReveal>
           <p className="softles-section-copy mx-auto text-center">
             A few of the brands we&apos;ve designed, built, and launched.
           </p>
@@ -227,7 +228,7 @@ export default function ShopifyLandingPage() {
       <section className="softles-section-primary">
         <div className="service-page-container">
           <Eyebrow center>How we deliver in 21 days</Eyebrow>
-          <h2 className="service-section-heading text-center">A clear, fast process</h2>
+          <WordReveal as="h2" className="service-section-heading text-center">A clear, fast process</WordReveal>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-10">
             {TIMELINE.map((t, i) => (
               <div key={t.title} className="softles-card p-6 relative">
@@ -246,7 +247,7 @@ export default function ShopifyLandingPage() {
         <div className="service-page-container grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div>
             <Eyebrow>Our promise</Eyebrow>
-            <h2 className="service-section-heading">On-time, or we keep going</h2>
+            <WordReveal as="h2" className="service-section-heading">On-time, or we keep going</WordReveal>
             <div className="softles-card p-6 mt-6 border-[#FF4D57]/30">
               <p className="text-xl font-bold text-white">
                 Live in 21 days, or we keep working at no extra cost.
@@ -280,9 +281,9 @@ export default function ShopifyLandingPage() {
         <div className="service-page-container grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           <div>
             <Eyebrow>Let&apos;s build it</Eyebrow>
-            <h2 className="service-section-heading">
+            <WordReveal as="h2" className="service-section-heading">
               Ready for a store that actually converts?
-            </h2>
+            </WordReveal>
             <p className="softles-section-copy">
               Tell us about your store and goals. A Shopify expert will get back to
               you on WhatsApp within hours — with a clear plan and quote.
