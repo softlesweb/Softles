@@ -12,8 +12,8 @@ const UPDATED = "August 2026";
 function Section({ title, children }) {
   return (
     <section className="mt-8">
-      <h2 className="text-xl sm:text-2xl font-bold text-white mb-3">{title}</h2>
-      <div className="space-y-3 text-[#C7CCD6] text-sm sm:text-base leading-relaxed">
+      <h2 className="text-xl sm:text-2xl font-bold text-ink mb-3">{title}</h2>
+      <div className="space-y-3 text-mute text-sm sm:text-base leading-relaxed">
         {children}
       </div>
     </section>
@@ -29,13 +29,13 @@ export default function TermsOfService() {
             <span className="softles-eyebrow-line" />
             <span className="softles-eyebrow-text">Legal</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-ink tracking-tight">
             Terms of Service
           </h1>
-          <p className="text-[#C7CCD6]/70 text-sm mt-3">Last updated: {UPDATED}</p>
+          <p className="text-mute/70 text-sm mt-3">Last updated: {UPDATED}</p>
 
-          <p className="text-[#C7CCD6] text-sm sm:text-base leading-relaxed mt-6">
-            These terms apply when you use the <strong className="text-white">SoftLes</strong>{" "}
+          <p className="text-mute text-sm sm:text-base leading-relaxed mt-6">
+            These terms apply when you use the <strong className="text-ink">SoftLes</strong>{" "}
             website (softles.in) and when you engage us for design or development work. By using
             the site or working with us, you agree to them.
           </p>
@@ -43,8 +43,8 @@ export default function TermsOfService() {
           <Section title="1. Who we are">
             <p>
               SoftLes is a web design and development studio operated by{" "}
-              <span className="text-white">[Legal entity name]</span>, based in{" "}
-              <span className="text-white">[City, State], India</span>.
+              <span className="text-ink">[Legal entity name]</span>, based in{" "}
+              <span className="text-ink">[City, State], India</span>.
             </p>
           </Section>
 
@@ -124,7 +124,7 @@ export default function TermsOfService() {
           <Section title="11. Governing law">
             <p>
               These terms are governed by the laws of India, with courts in{" "}
-              <span className="text-white">[City, State]</span> having jurisdiction.
+              <span className="text-ink">[City, State]</span> having jurisdiction.
             </p>
           </Section>
 
@@ -132,11 +132,11 @@ export default function TermsOfService() {
             <p>
               We may update these terms; the &quot;last updated&quot; date reflects the current version.
               Questions? Email{" "}
-              <a href="mailto:info@softles.in" className="text-[#FF4D57] hover:underline">info@softles.in</a>.
+              <a href="mailto:info@softles.in" className="text-brand hover:underline">info@softles.in</a>.
             </p>
           </Section>
 
-          <p className="text-[#C7CCD6]/50 text-xs mt-10 border-t border-[#2E3446] pt-6">
+          <p className="text-mute/50 text-xs mt-10 border-t border-line pt-6">
             This page is a general template, not legal advice. Please have it reviewed and fill in
             the bracketed details before relying on it.
           </p>
