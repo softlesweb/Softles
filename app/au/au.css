@@ -1,0 +1,217 @@
+/* /au landing page. Tailwind does the layout; this file holds the AU brand kit
+   and the two drawn pieces: the dripping full stop and the pipe. */
+
+.au-root {
+  --au-ink: #0e1016;
+  --au-ink-2: #171a22;
+  --au-line: #2a2e3a;
+  --au-dim: #a9afbc;
+  --au-paper: #f3efe8;
+  --au-dim-paper: #545866;
+  --au-coral: #ff4d57;
+  --au-amber: #ffb020;
+  --au-green: #3dd68c;
+  min-height: 100vh;
+  background: var(--au-ink);
+  color: #fff;
+}
+
+body:has(.au-root) {
+  background: #0e1016;
+}
+
+.au-root .font-display {
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+}
+
+.au-mono {
+  font-family: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.au-serif {
+  font-family: var(--font-serif), Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.au-root :focus-visible {
+  outline: 2px solid var(--au-coral);
+  outline-offset: 3px;
+}
+
+.au-on-coral :focus-visible {
+  outline-color: var(--au-ink);
+}
+
+/* ---------- The full stop in "sales." drips toward the store URL input ---------- */
+
+.au-stop {
+  position: relative;
+  color: var(--au-coral);
+}
+
+.au-stop::after {
+  content: "";
+  position: absolute;
+  left: 0.06em;
+  top: 0.62em;
+  width: 0.13em;
+  height: 0.13em;
+  border-radius: 0 50% 50% 50%;
+  background: var(--au-coral);
+  rotate: 45deg;
+  opacity: 0;
+  animation: au-drip 2.6s cubic-bezier(0.55, 0, 0.9, 0.4) 0.9s 3;
+}
+
+@keyframes au-drip {
+  0% {
+    translate: 0 0;
+    scale: 0.4;
+    opacity: 0;
+  }
+  18% {
+    translate: 0 0.05em;
+    scale: 1;
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    translate: 0 1.6em;
+    scale: 0.9;
+    opacity: 0;
+  }
+}
+
+/* ---------- The pipe: leaking in "The leak", patched stage by stage in "How we fix it" ---------- */
+
+.au-pipe {
+  --pipe: var(--au-ink);
+  --gap-ring: var(--au-paper);
+  position: relative;
+  display: grid;
+  gap: 2.75rem;
+  padding-left: 3.25rem;
+  list-style: none;
+}
+
+.au-pipe::before {
+  content: "";
+  position: absolute;
+  left: 1rem;
+  top: 0.25rem;
+  bottom: 0;
+  width: 10px;
+  border-radius: 5px;
+  background: var(--pipe);
+}
+
+.au-pipe-node {
+  position: relative;
+}
+
+/* A collar on the pipe where the joint has failed. */
+.au-joint {
+  position: absolute;
+  left: calc(-3.25rem + 1rem - 6px);
+  top: 0.2rem;
+  width: 22px;
+  height: 26px;
+  border-radius: 4px;
+  background: var(--pipe);
+  box-shadow: 0 0 0 3px var(--gap-ring);
+}
+
+.au-drop {
+  position: absolute;
+  left: calc(-3.25rem + 1rem + 22px);
+  top: 1.65rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 0 50% 50% 50%;
+  background: var(--au-coral);
+  rotate: 45deg;
+}
+
+.au-drop::after {
+  content: "";
+  position: absolute;
+  left: 9px;
+  top: 16px;
+  width: 7px;
+  height: 7px;
+  border-radius: 0 50% 50% 50%;
+  background: var(--au-coral);
+  opacity: 0.6;
+}
+
+/* The patched pipe: each failed joint becomes a numbered stage. */
+.au-pipe--fixed {
+  --pipe: var(--au-line);
+  --gap-ring: var(--au-ink);
+}
+
+.au-stage {
+  position: absolute;
+  left: calc(-3.25rem + 1rem + 5px - 19px);
+  top: -0.1rem;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--au-paper);
+  color: var(--au-ink);
+  font-size: 0.8rem;
+  font-weight: 500;
+  box-shadow: 0 0 0 4px var(--gap-ring);
+}
+
+@media (min-width: 768px) {
+  .au-pipe {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 3rem;
+    padding-left: 0;
+    padding-top: 5.5rem;
+  }
+
+  .au-pipe::before {
+    left: 0;
+    right: 0;
+    top: 1.5rem;
+    bottom: auto;
+    width: auto;
+    height: 10px;
+  }
+
+  .au-joint {
+    left: 0;
+    top: calc(1.5rem + 5px - 15px - 5.5rem);
+    width: 16px;
+    height: 30px;
+  }
+
+  .au-drop {
+    left: 3px;
+    top: calc(1.5rem + 5px + 22px - 5.5rem);
+  }
+
+  .au-stage {
+    left: 0;
+    top: calc(1.5rem + 5px - 19px - 5.5rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .au-stop::after {
+    animation: none;
+  }
+  .au-root *,
+  .au-root *::before,
+  .au-root *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

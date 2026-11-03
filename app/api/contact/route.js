@@ -15,14 +15,28 @@ export async function POST(request) {
   const storeUrl = (body.storeUrl || "").trim();
   const goal = (body.goal || "").trim();
   const source = (body.source || "Website contact form").trim();
+  // Extra label → value pairs a form wants on the lead (scores, UTMs, intake answers).
+  const details = Object.entries(
+    body.details && typeof body.details === "object" ? body.details : {}
+  )
+    .filter(([, v]) => v !== null && v !== undefined && String(v).trim() !== "")
+    .slice(0, 25)
+    .map(([k, v]) => [String(k).slice(0, 60), String(v).slice(0, 500)]);
 
-  // Need a name and at least one way to reply.
-  if (!name || (!email && !phone)) {
+  // Honeypot: real visitors never see this field. Pretend success so bots move on.
+  if (body.company_website) {
+    return Response.json({ ok: true });
+  }
+
+  // Need a way to reply, and a name unless an email alone identifies the lead.
+  if ((!name && !email) || (!email && !phone)) {
     return Response.json(
       { error: "Name and an email or phone number are required." },
       { status: 400 }
     );
   }
+
+  await forwardToCrm({ name, email, phone, message, storeUrl, goal, source, details });
 
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
@@ -35,12 +49,13 @@ export async function POST(request) {
   const from = process.env.CONTACT_FROM_EMAIL || "SoftLes Website <onboarding@resend.dev>";
 
   const rows = [
-    ["Name", name],
+    ["Name", name || "—"],
     ["Email", email || "—"],
     ["Phone / WhatsApp", phone || "—"],
     goal ? ["Goal", goal] : null,
     storeUrl ? ["Store / site URL", storeUrl] : null,
     ["Source", source],
+    ...details,
   ].filter(Boolean);
 
   const html = `
@@ -60,7 +75,7 @@ export async function POST(request) {
     const payload = {
       from,
       to: [to],
-      subject: `New lead — ${source}: ${name}`,
+      subject: `New lead — ${source}: ${name || email}`,
       html,
     };
     if (email) payload.replyTo = email;
@@ -74,6 +89,28 @@ export async function POST(request) {
   } catch (e) {
     console.error("Resend exception:", e);
     return Response.json({ error: "Failed to send." }, { status: 500 });
+  }
+}
+
+// Optional: also POST the lead to the Softles CRM. Off until SOFTLES_CRM_WEBHOOK_URL is set.
+// Never blocks the email alert — a CRM outage only gets logged.
+async function forwardToCrm(lead) {
+  const url = process.env.SOFTLES_CRM_WEBHOOK_URL;
+  if (!url) return;
+  try {
+    const headers = { "Content-Type": "application/json" };
+    if (process.env.SOFTLES_CRM_WEBHOOK_SECRET) {
+      headers.Authorization = `Bearer ${process.env.SOFTLES_CRM_WEBHOOK_SECRET}`;
+    }
+    const res = await fetch(url, {
+      method: "POST",
+      headers,
+      body: JSON.stringify({ ...lead, details: Object.fromEntries(lead.details) }),
+      signal: AbortSignal.timeout(5000),
+    });
+    if (!res.ok) console.error("CRM webhook failed:", res.status);
+  } catch (e) {
+    console.error("CRM webhook error:", e);
   }
 }
 

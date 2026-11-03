@@ -7,6 +7,7 @@ export default function sitemap() {
     { path: "/", priority: 1.0, changeFrequency: "weekly" },
     { path: "/shopify-development", priority: 0.9, changeFrequency: "monthly" },
     { path: "/wordpress-development", priority: 0.9, changeFrequency: "monthly" },
+    { path: "/au", priority: 0.9, changeFrequency: "monthly" },
     { path: "/privacy", priority: 0.3, changeFrequency: "yearly" },
     { path: "/terms", priority: 0.3, changeFrequency: "yearly" },
   ];

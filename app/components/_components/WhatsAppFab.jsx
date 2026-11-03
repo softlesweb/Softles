@@ -2,6 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import { trackEvent } from "@/lib/gtag";
+import { isLandingRoute } from "@/lib/routes";
 
 const WHATSAPP_NUMBER = "918954000202";
 const PREFILL = "Hi SoftLes, I'd like to talk about my project.";
@@ -9,8 +10,8 @@ const PREFILL = "Hi SoftLes, I'd like to talk about my project.";
 // Floating WhatsApp launcher — fixed bottom-right, on-theme accent.
 export default function WhatsAppFab() {
   const pathname = usePathname();
-  // The ad landing page has its own WhatsApp CTA + sticky bar.
-  if (pathname?.startsWith("/lp")) return null;
+  // Landing pages have their own CTAs + sticky bar.
+  if (isLandingRoute(pathname)) return null;
 
   const href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(PREFILL)}`;
 

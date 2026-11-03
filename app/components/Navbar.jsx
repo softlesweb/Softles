@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { MobileSidebar } from "./_components/mobile-sidebar";
+import { isLandingRoute } from "@/lib/routes";
 import { useEffect, useState, useRef } from "react";
 
 export default function Navbar() {
@@ -38,8 +39,8 @@ export default function Navbar() {
         }
     };
 
-    // Ad landing pages (/lp/*) use their own minimal header — hide the global nav.
-    if (pathname?.startsWith("/lp")) return null;
+    // Landing pages (/lp/*, /au) use their own minimal header — hide the global nav.
+    if (isLandingRoute(pathname)) return null;
 
     return (
         <div className={`h-[60px] w-full z-50 fixed top-0 transition-all duration-300 ease-in-out bg-[#0E1219] text-[#FFFFFF] ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`}>
