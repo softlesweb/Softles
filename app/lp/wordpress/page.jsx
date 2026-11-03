@@ -1,3 +1,4 @@
+import WordReveal from "../../components/_components/WordReveal";
 import Image from "next/image";
 import Link from "next/link";
 import LeadForm from "./components/LeadForm";
@@ -72,11 +73,11 @@ function Eyebrow({ children, center }) {
 
 export default function WordPressLandingPage() {
   return (
-    <main className="bg-[#0E1219] text-white overflow-x-hidden pb-24 lg:pb-0">
+    <main className="bg-page text-ink overflow-x-hidden pb-24 lg:pb-0">
       <MetaPixel />
 
       {/* Minimal header */}
-      <header className="sticky top-0 z-40 bg-[#0E1219]/95 backdrop-blur border-b border-[#2E3446]">
+      <header className="sticky top-0 z-40 bg-page/95 backdrop-blur border-b border-line">
         <div className="service-page-container h-[60px] flex items-center justify-between">
           <Link href="/">
             <Image src="/SoftLes.png" alt="SoftLes" width={120} height={38} className="h-[34px] w-auto object-contain" />
@@ -100,9 +101,9 @@ export default function WordPressLandingPage() {
             <Eyebrow>WordPress Design &amp; Redesign</Eyebrow>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-black leading-tight tracking-tight">
               Get a faster, lead-generating WordPress website —{" "}
-              <span className="text-[#FF4D57]">in 21 days.</span>
+              <span className="text-brand">in 21 days.</span>
             </h1>
-            <p className="text-[#C7CCD6]/85 text-base md:text-lg leading-relaxed mt-5 max-w-xl">
+            <p className="text-mute/85 text-base md:text-lg leading-relaxed mt-5 max-w-xl">
               For businesses stuck with a slow, dated WordPress site. We redesign
               and rebuild it into a fast, secure, lead-focused site — no downtime,
               no lost rankings.
@@ -116,9 +117,9 @@ export default function WordPressLandingPage() {
             </div>
 
             {/* Trust strip */}
-            <div className="flex flex-wrap items-center gap-x-6 gap-y-2 mt-8 text-sm text-[#C7CCD6]">
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-2 mt-8 text-sm text-mute">
               <span className="flex items-center gap-1.5">
-                <span className="text-[#FF4D57]">★★★★★</span> 4.9 rating
+                <span className="text-brand">★★★★★</span> 4.9 rating
               </span>
               <span>40+ sites shipped</span>
               <span>Law · Consulting · Education</span>
@@ -133,9 +134,9 @@ export default function WordPressLandingPage() {
       </section>
 
       {/* Logo rail */}
-      <section className="border-y border-[#2E3446] bg-[#161C27] py-8">
+      <section className="border-y border-line bg-panel py-8">
         <div className="service-page-container">
-          <p className="text-center text-xs uppercase tracking-[0.2em] text-[#C7CCD6]/60 mb-6">
+          <p className="text-center text-xs uppercase tracking-[0.2em] text-mute/60 mb-6">
             Brands we&apos;ve built for
           </p>
           <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-6 opacity-80">
@@ -150,12 +151,12 @@ export default function WordPressLandingPage() {
       <section className="softles-section-primary">
         <div className="service-page-container">
           <Eyebrow center>Sound familiar?</Eyebrow>
-          <h2 className="service-section-heading text-center">Your site is costing you enquiries</h2>
+          <WordReveal as="h2" className="service-section-heading text-center">Your site is costing you enquiries</WordReveal>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-10 max-w-4xl mx-auto">
             {PAINS.map((p) => (
               <div key={p} className="softles-card p-5 flex items-start gap-3">
-                <span className="text-[#FF4D57] mt-0.5 shrink-0">✕</span>
-                <span className="text-[#E5E7EF]">{p}</span>
+                <span className="text-brand mt-0.5 shrink-0">✕</span>
+                <span className="text-soft">{p}</span>
               </div>
             ))}
           </div>
@@ -163,15 +164,15 @@ export default function WordPressLandingPage() {
       </section>
 
       {/* What you get */}
-      <section className="bg-[#161C27] border-y border-[#2E3446] py-12 md:py-20">
+      <section className="bg-panel border-y border-line py-12 md:py-20">
         <div className="service-page-container">
           <Eyebrow center>What you get</Eyebrow>
-          <h2 className="service-section-heading text-center">A site built to win you clients</h2>
+          <WordReveal as="h2" className="service-section-heading text-center">A site built to win you clients</WordReveal>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-10">
             {GETS.map((g) => (
               <div key={g.title} className="softles-card p-6">
-                <h3 className="text-lg font-bold text-white mb-2">{g.title}</h3>
-                <p className="text-[#C7CCD6]/80 text-sm leading-relaxed">{g.desc}</p>
+                <h3 className="text-lg font-bold text-ink mb-2">{g.title}</h3>
+                <p className="text-mute/80 text-sm leading-relaxed">{g.desc}</p>
               </div>
             ))}
           </div>
@@ -182,14 +183,14 @@ export default function WordPressLandingPage() {
       <section className="softles-section-primary">
         <div className="service-page-container">
           <Eyebrow center>Recent work</Eyebrow>
-          <h2 className="service-section-heading text-center">WordPress sites we&apos;ve shipped</h2>
+          <WordReveal as="h2" className="service-section-heading text-center">WordPress sites we&apos;ve shipped</WordReveal>
           <p className="softles-section-copy mx-auto text-center">
             A few of the businesses we&apos;ve designed, built, and launched.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-10">
             {PROOF_SITES.map((s) => (
               <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer" className="softles-card group overflow-hidden">
-                <div className="relative w-full h-48 sm:h-52 overflow-hidden bg-[#0f111a]">
+                <div className="relative w-full h-48 sm:h-52 overflow-hidden bg-deep">
                   <Image
                     src={s.img}
                     alt={s.name}
@@ -199,8 +200,8 @@ export default function WordPressLandingPage() {
                   />
                 </div>
                 <div className="p-5">
-                  <h3 className="text-white font-bold">{s.name}</h3>
-                  <p className="text-[#C7CCD6]/75 text-sm mt-1">{s.result}</p>
+                  <h3 className="text-ink font-bold">{s.name}</h3>
+                  <p className="text-mute/75 text-sm mt-1">{s.result}</p>
                 </div>
               </a>
             ))}
@@ -209,13 +210,13 @@ export default function WordPressLandingPage() {
       </section>
 
       {/* Results band */}
-      <section className="bg-[#FF4D57]/[0.06] border-y border-[#FF4D57]/20 py-12 md:py-16">
+      <section className="bg-brand/[0.06] border-y border-brand/20 py-12 md:py-16">
         <div className="service-page-container">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
             {RESULTS.map((r) => (
               <div key={r.label}>
-                <div className="text-3xl md:text-5xl font-black text-white">{r.stat}</div>
-                <div className="text-[#C7CCD6]/80 text-sm mt-2">{r.label}</div>
+                <div className="text-3xl md:text-5xl font-black text-ink">{r.stat}</div>
+                <div className="text-mute/80 text-sm mt-2">{r.label}</div>
               </div>
             ))}
           </div>
@@ -226,14 +227,14 @@ export default function WordPressLandingPage() {
       <section className="softles-section-primary">
         <div className="service-page-container">
           <Eyebrow center>How we deliver in 21 days</Eyebrow>
-          <h2 className="service-section-heading text-center">A clear, fast process</h2>
+          <WordReveal as="h2" className="service-section-heading text-center">A clear, fast process</WordReveal>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-10">
             {TIMELINE.map((t, i) => (
               <div key={t.title} className="softles-card p-6 relative">
-                <span className="text-[#FF4D57] text-xs font-bold uppercase tracking-widest">{t.days}</span>
-                <div className="text-2xl font-black text-white/15 absolute top-5 right-5">0{i + 1}</div>
-                <h3 className="text-lg font-bold text-white mt-2 mb-2">{t.title}</h3>
-                <p className="text-[#C7CCD6]/80 text-sm leading-relaxed">{t.desc}</p>
+                <span className="text-brand text-xs font-bold uppercase tracking-widest">{t.days}</span>
+                <div className="text-2xl font-black text-ink/15 absolute top-5 right-5">0{i + 1}</div>
+                <h3 className="text-lg font-bold text-ink mt-2 mb-2">{t.title}</h3>
+                <p className="text-mute/80 text-sm leading-relaxed">{t.desc}</p>
               </div>
             ))}
           </div>
@@ -241,16 +242,16 @@ export default function WordPressLandingPage() {
       </section>
 
       {/* Offer + guarantee + FAQ */}
-      <section className="bg-[#161C27] border-y border-[#2E3446] py-12 md:py-20">
+      <section className="bg-panel border-y border-line py-12 md:py-20">
         <div className="service-page-container grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div>
             <Eyebrow>Our promise</Eyebrow>
-            <h2 className="service-section-heading">On-time, or we keep going</h2>
-            <div className="softles-card p-6 mt-6 border-[#FF4D57]/30">
-              <p className="text-xl font-bold text-white">
+            <WordReveal as="h2" className="service-section-heading">On-time, or we keep going</WordReveal>
+            <div className="softles-card p-6 mt-6 border-brand/30">
+              <p className="text-xl font-bold text-ink">
                 Live in 21 days, or we keep working at no extra cost.
               </p>
-              <p className="text-[#C7CCD6]/80 text-sm mt-3 leading-relaxed">
+              <p className="text-mute/80 text-sm mt-3 leading-relaxed">
                 We commit to your timeline. If your site isn&apos;t live in 21 days,
                 we keep building until it is — you don&apos;t pay more.
               </p>
@@ -259,14 +260,14 @@ export default function WordPressLandingPage() {
 
           <div>
             <Eyebrow>FAQ</Eyebrow>
-            <div className="mt-2 divide-y divide-[#2E3446]">
+            <div className="mt-2 divide-y divide-line">
               {FAQS.map((f) => (
                 <details key={f.q} className="py-4 group">
-                  <summary className="cursor-pointer list-none flex items-center justify-between text-white font-semibold">
+                  <summary className="cursor-pointer list-none flex items-center justify-between text-ink font-semibold">
                     {f.q}
-                    <span className="text-[#FF4D57] group-open:rotate-45 transition-transform">+</span>
+                    <span className="text-brand group-open:rotate-45 transition-transform">+</span>
                   </summary>
-                  <p className="text-[#C7CCD6]/80 text-sm mt-2 leading-relaxed">{f.a}</p>
+                  <p className="text-mute/80 text-sm mt-2 leading-relaxed">{f.a}</p>
                 </details>
               ))}
             </div>
@@ -279,9 +280,9 @@ export default function WordPressLandingPage() {
         <div className="service-page-container grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           <div>
             <Eyebrow>Let&apos;s build it</Eyebrow>
-            <h2 className="service-section-heading">
+            <WordReveal as="h2" className="service-section-heading">
               Ready for a WordPress site that brings you leads?
-            </h2>
+            </WordReveal>
             <p className="softles-section-copy">
               Tell us about your site and goals. A WordPress expert will get back to
               you on WhatsApp within hours — with a clear plan and quote.
@@ -295,11 +296,11 @@ export default function WordPressLandingPage() {
       </section>
 
       {/* Minimal footer */}
-      <footer className="border-t border-[#2E3446] bg-[#161C27] py-8">
-        <div className="service-page-container flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-[#C7CCD6]/70">
+      <footer className="border-t border-line bg-panel py-8">
+        <div className="service-page-container flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-mute/70">
           <Image src="/SoftLes.png" alt="SoftLes" width={100} height={30} className="h-7 w-auto object-contain" />
           <span>© {new Date().getFullYear()} SoftLes. All rights reserved.</span>
-          <a href="mailto:info@softles.in" className="hover:text-[#FF4D57] transition">info@softles.in</a>
+          <a href="mailto:info@softles.in" className="hover:text-brand transition">info@softles.in</a>
         </div>
       </footer>
 
