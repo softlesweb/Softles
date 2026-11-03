@@ -1,22 +1,30 @@
-import { Space_Grotesk, Inter } from "next/font/google";
+import localFont from "next/font/local";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import WhatsAppFab from "./components/_components/WhatsAppFab";
 import RouteLoader from "./components/_components/RouteLoader";
+import MotionProvider from "./components/_components/MotionProvider";
+import OrganizationSchema from "./components/_components/OrganizationSchema";
 
 // GA4 measurement ID — overridable via env, with the live property as default.
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "G-X446Z72C6Z";
 
 // Modern type system: Space Grotesk for display/headings, Inter for body.
-const display = Space_Grotesk({
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
+// Both are self-hosted (the same latin-subset files the Google loader used), so
+// a build can never silently fall back to system fonts when the CDN is
+// unreachable — which is exactly how local drifted away from production before.
+const display = localFont({
+  src: "./fonts/SpaceGrotesk-latin.woff2",
+  weight: "300 700",
+  style: "normal",
   variable: "--font-display",
   display: "swap",
 });
-const body = Inter({
-  subsets: ["latin"],
+const body = localFont({
+  src: "./fonts/Inter-latin.woff2",
+  weight: "100 900",
+  style: "normal",
   variable: "--font-body",
   display: "swap",
 });
@@ -67,13 +75,29 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${display.variable} ${body.variable} antialiased`}
       >
+        {/* Applies the saved theme before first paint so there's no flash. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{if(localStorage.getItem('softles-theme')==='light')document.documentElement.dataset.theme='light';}catch(e){}",
+          }}
+        />
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-brand focus:px-5 focus:py-3 focus:text-sm focus:font-bold focus:text-white"
+        >
+          Skip to content
+        </a>
+        <OrganizationSchema />
         <RouteLoader />
         <Navbar/>
-        {children}
+        <div id="main-content">
+          <MotionProvider>{children}</MotionProvider>
+        </div>
         <WhatsAppFab />
       </body>
       {GA_ID ? <GoogleAnalytics gaId={GA_ID} /> : null}

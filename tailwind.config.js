@@ -30,7 +30,23 @@ module.exports = {
       },
       colors: {
         background: 'var(--background)',
-        foreground: 'var(--foreground)'
+        foreground: 'var(--foreground)',
+        // Semantic design tokens — values live in globals.css (:root +
+        // html[data-theme="light"]). RGB channels keep /opacity working.
+        page: 'rgb(var(--c-page) / <alpha-value>)',
+        deep: 'rgb(var(--c-deep) / <alpha-value>)',
+        panel: 'rgb(var(--c-panel) / <alpha-value>)',
+        raise: 'rgb(var(--c-raise) / <alpha-value>)',
+        line: 'rgb(var(--c-line) / <alpha-value>)',
+        'line-2': 'rgb(var(--c-line-2) / <alpha-value>)',
+        ink: 'rgb(var(--c-ink) / <alpha-value>)',
+        soft: 'rgb(var(--c-soft) / <alpha-value>)',
+        mute: 'rgb(var(--c-mute) / <alpha-value>)',
+        dim: 'rgb(var(--c-dim) / <alpha-value>)',
+        brand: 'rgb(var(--c-brand) / <alpha-value>)',
+        'brand-2': 'rgb(var(--c-brand-2) / <alpha-value>)',
+        'brand-soft': 'rgb(var(--c-brand-soft) / <alpha-value>)',
+        'brand-tint': 'rgb(var(--c-brand-tint) / <alpha-value>)'
       },
   	  borderRadius: {
   			lg: 'var(--radius)',

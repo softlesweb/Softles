@@ -1,18 +1,28 @@
 "use client";
 
+import WordReveal from "../../components/_components/WordReveal";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 export default function ShopifyCTA() {
   return (
-    // Unified dark base weight background with global structural padding metrics
     <section
       id="cta"
       className="softles-section-secondary"
     >
       <div className="service-page-container">
-        {/* Main Box - Clean layout geometry matching previous structural cards */}
-        <div className="relative overflow-hidden softles-card p-8 sm:p-12 lg:p-20 text-center shadow-2xl">
-          
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="relative overflow-hidden rounded-2xl border border-line bg-gradient-to-b from-panel to-deep p-8 sm:p-12 lg:p-20 text-center shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_20px_50px_rgba(0,0,0,0.35)]"
+        >
+          {/* Thin accent hairline along the top edge */}
+          <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand/60 to-transparent" />
+          {/* Soft light from above — no colour, just depth */}
+          <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-[radial-gradient(55%_100%_at_50%_0%,rgba(255,255,255,0.05),transparent_70%)]" />
+
           <div className="relative z-10">
             {/* Header Tag */}
             <div className="softles-eyebrow justify-center mb-2">
@@ -23,13 +33,13 @@ export default function ShopifyCTA() {
             </div>
 
             {/* Heading with explicit tracking & font weights */}
-            <h2 className="service-section-heading text-[#FFFFFF] mb-4">
+            <WordReveal as="h2" className="service-section-heading text-ink mb-4">
               Ready to Grow Your<br className="hidden sm:block" />{" "}
-              <span className="text-[#FF4D57]">Shopify Business?</span>
-            </h2>
+              Shopify Business?
+            </WordReveal>
 
             {/* Paragraph Content */}
-            <p className="text-[#C7CCD6]/80 max-w-xl mx-auto mb-8 lg:mb-10 text-sm sm:text-base leading-relaxed">
+            <p className="text-mute/80 max-w-xl mx-auto mb-8 lg:mb-10 text-sm sm:text-base leading-relaxed">
               Whether you&apos;re launching a new ecommerce brand or scaling an existing Shopify Plus store, SoftLes can help you build a faster, smarter, and more profitable ecommerce experience.
             </p>
 
@@ -83,7 +93,7 @@ export default function ShopifyCTA() {
             </div>
           </div>
 
-        </div>
+        </motion.div>
       </div>
     </section>
   );

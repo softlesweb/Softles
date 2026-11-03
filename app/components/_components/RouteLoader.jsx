@@ -2,28 +2,65 @@
 
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { EASE } from "./motion-presets";
+import BrandPreloader from "./BrandPreloader";
+import PagePreloader from "./PagePreloader";
+import { preloaderCopy } from "./preloaderCopy";
 
-// Full-screen branded loader that appears:
-//  - on first site load (brief splash), and
-//  - instantly when an internal route link is clicked (before the route resolves).
+// Loading feedback for both ways a page can arrive:
+//  - a preloader overlay the first time a page is visited in this tab — the
+//    wordmark wave for home, the page's own name everywhere else. On a click it
+//    starts immediately and holds at 100% until the new route has committed,
+//    so it always covers the swap;
+//  - a slim progress bar for every later visit, and for pages with no overlay.
+const SEEN_KEY = "softles:preloaded";
+
+function seenPaths() {
+  try {
+    return JSON.parse(sessionStorage.getItem(SEEN_KEY) || "[]");
+  } catch {
+    return [];
+  }
+}
+function markSeen(path) {
+  try {
+    const seen = seenPaths();
+    if (!seen.includes(path)) sessionStorage.setItem(SEEN_KEY, JSON.stringify([...seen, path]));
+  } catch {
+    // Private mode or blocked storage: the preloader simply plays again.
+  }
+}
+function hasOverlay(path) {
+  return path === "/" || Boolean(preloaderCopy(path));
+}
+
 export default function RouteLoader() {
   const pathname = usePathname();
-  const [visible, setVisible] = useState(true);
+  const [pending, setPending] = useState(false);
+  // { path, id } — the page whose preloader is showing; id remounts it per trip.
+  const [overlay, setOverlay] = useState(() => ({ path: pathname, id: 0 }));
   const safety = useRef(null);
 
-  // Hide once the initial load settles.
+  const ready = !overlay || pathname === overlay.path;
+
+  // First load: play the preloader once per tab. sessionStorage is not
+  // available during SSR, so the check runs after mount and drops the overlay
+  // before it has drawn a frame if this page was already visited.
   useEffect(() => {
-    const t = setTimeout(() => setVisible(false), 650);
-    return () => clearTimeout(t);
+    if (seenPaths().includes(pathname)) setOverlay(null);
+    else markSeen(pathname);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Route committed → hide.
+  // Route committed → finish the bar.
   useEffect(() => {
-    setVisible(false);
+    setPending(false);
     if (safety.current) clearTimeout(safety.current);
   }, [pathname]);
 
-  // Show immediately on internal navigation clicks.
+  // Intercept internal link clicks: show the destination's preloader, or the
+  // bar when it has none.
   useEffect(() => {
     const onClick = (e) => {
       if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
@@ -38,26 +75,47 @@ export default function RouteLoader() {
         return;
       }
       if (dest.pathname === window.location.pathname) return;
-      setVisible(true);
+      if (hasOverlay(dest.pathname) && !seenPaths().includes(dest.pathname)) {
+        markSeen(dest.pathname);
+        setOverlay({ path: dest.pathname, id: Date.now() });
+        return;
+      }
+      setPending(true);
       if (safety.current) clearTimeout(safety.current);
-      safety.current = setTimeout(() => setVisible(false), 5000);
+      safety.current = setTimeout(() => setPending(false), 8000);
     };
     document.addEventListener("click", onClick, true);
     return () => document.removeEventListener("click", onClick, true);
   }, []);
 
+  const clear = () => setOverlay(null);
+
   return (
-    <div
-      aria-hidden={!visible}
-      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center gap-5 bg-[#0E1219] transition-opacity duration-300 ${
-        visible ? "opacity-100" : "opacity-0 pointer-events-none"
-      }`}
-    >
-      <div className="relative h-14 w-14">
-        <div className="absolute inset-0 rounded-full border-[3px] border-[#2E3446]" />
-        <div className="absolute inset-0 animate-spin rounded-full border-[3px] border-transparent border-t-[#FF4D57]" />
-      </div>
-      <span className="text-sm tracking-[0.25em] uppercase text-[#C7CCD6]/70">SoftLes</span>
-    </div>
+    <>
+      <AnimatePresence>
+        {pending && !overlay && (
+          <motion.div
+            key="route-bar"
+            aria-hidden="true"
+            className="fixed inset-x-0 top-0 z-[110] h-[3px] origin-left bg-gradient-to-r from-brand to-brand-2 shadow-[0_0_14px_rgba(255,77,87,0.55)]"
+            initial={{ scaleX: 0, opacity: 1 }}
+            animate={{ scaleX: 0.92, transition: { duration: 2.6, ease: EASE } }}
+            exit={{ scaleX: 1, opacity: 0, transition: { duration: 0.4, ease: "easeOut" } }}
+          />
+        )}
+      </AnimatePresence>
+
+      {overlay &&
+        (overlay.path === "/" ? (
+          <BrandPreloader key={overlay.id} ready={ready} onDone={clear} />
+        ) : (
+          <LandingPreloader key={overlay.id} pathname={overlay.path} ready={ready} onDone={clear} />
+        ))}
+    </>
   );
+}
+
+function LandingPreloader({ pathname, ready, onDone }) {
+  const copy = preloaderCopy(pathname);
+  return copy ? <PagePreloader eyebrow={copy.eyebrow} title={copy.title} ready={ready} onDone={onDone} /> : null;
 }

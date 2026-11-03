@@ -12,8 +12,8 @@ const UPDATED = "August 2026";
 function Section({ title, children }) {
   return (
     <section className="mt-8">
-      <h2 className="text-xl sm:text-2xl font-bold text-white mb-3">{title}</h2>
-      <div className="space-y-3 text-[#C7CCD6] text-sm sm:text-base leading-relaxed">
+      <h2 className="text-xl sm:text-2xl font-bold text-ink mb-3">{title}</h2>
+      <div className="space-y-3 text-mute text-sm sm:text-base leading-relaxed">
         {children}
       </div>
     </section>
@@ -29,13 +29,13 @@ export default function PrivacyPolicy() {
             <span className="softles-eyebrow-line" />
             <span className="softles-eyebrow-text">Legal</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-ink tracking-tight">
             Privacy Policy
           </h1>
-          <p className="text-[#C7CCD6]/70 text-sm mt-3">Last updated: {UPDATED}</p>
+          <p className="text-mute/70 text-sm mt-3">Last updated: {UPDATED}</p>
 
-          <p className="text-[#C7CCD6] text-sm sm:text-base leading-relaxed mt-6">
-            This Privacy Policy explains how <strong className="text-white">SoftLes</strong>{" "}
+          <p className="text-mute text-sm sm:text-base leading-relaxed mt-6">
+            This Privacy Policy explains how <strong className="text-ink">SoftLes</strong>{" "}
             (&quot;SoftLes&quot;, &quot;we&quot;, &quot;us&quot;) handles information when you visit{" "}
             softles.in or use our services. We keep this short and plain-English on purpose.
           </p>
@@ -43,18 +43,18 @@ export default function PrivacyPolicy() {
           <Section title="Who we are">
             <p>
               SoftLes is a web design and development studio based in India, operated by{" "}
-              <span className="text-white">[Legal entity name]</span>,{" "}
-              <span className="text-white">[Registered address, City, State]</span>. For any
+              <span className="text-ink">[Legal entity name]</span>,{" "}
+              <span className="text-ink">[Registered address, City, State]</span>. For any
               privacy question, email{" "}
-              <a href="mailto:info@softles.in" className="text-[#FF4D57] hover:underline">info@softles.in</a>.
+              <a href="mailto:info@softles.in" className="text-brand hover:underline">info@softles.in</a>.
             </p>
           </Section>
 
           <Section title="Information we collect">
             <p>We only collect what we need to respond to you and run the site:</p>
             <ul className="list-disc pl-5 space-y-2">
-              <li><span className="text-white">Contact details you give us</span> — name, email, phone/WhatsApp number, site URL, and anything you type into our forms or send us on WhatsApp.</li>
-              <li><span className="text-white">Usage data</span> — pages viewed, approximate location, device/browser type, and referral source, collected via analytics cookies.</li>
+              <li><span className="text-ink">Contact details you give us</span> — name, email, phone/WhatsApp number, site URL, and anything you type into our forms or send us on WhatsApp.</li>
+              <li><span className="text-ink">Usage data</span> — pages viewed, approximate location, device/browser type, and referral source, collected via analytics cookies.</li>
             </ul>
             <p>We do not ask for sensitive personal data, and we do not knowingly collect information from children under 16.</p>
           </Section>
@@ -72,11 +72,11 @@ export default function PrivacyPolicy() {
           <Section title="Third-party services we use">
             <p>The site relies on a few trusted providers, each with their own privacy policy:</p>
             <ul className="list-disc pl-5 space-y-2">
-              <li><span className="text-white">Resend</span> — delivers form submissions to our inbox.</li>
-              <li><span className="text-white">Google Analytics</span> — website usage analytics.</li>
-              <li><span className="text-white">Meta Pixel</span> — measures and optimises our Facebook/Instagram ads.</li>
-              <li><span className="text-white">WhatsApp (Meta)</span> — when you choose to message us.</li>
-              <li><span className="text-white">Vercel</span> — hosting and delivery of this website.</li>
+              <li><span className="text-ink">Resend</span> — delivers form submissions to our inbox.</li>
+              <li><span className="text-ink">Google Analytics</span> — website usage analytics.</li>
+              <li><span className="text-ink">Meta Pixel</span> — measures and optimises our Facebook/Instagram ads.</li>
+              <li><span className="text-ink">WhatsApp (Meta)</span> — when you choose to message us.</li>
+              <li><span className="text-ink">Vercel</span> — hosting and delivery of this website.</li>
             </ul>
           </Section>
 
@@ -99,7 +99,7 @@ export default function PrivacyPolicy() {
             <p>
               You can ask to access, correct, or delete the personal information we hold about
               you, or opt out of marketing. Email{" "}
-              <a href="mailto:info@softles.in" className="text-[#FF4D57] hover:underline">info@softles.in</a>{" "}
+              <a href="mailto:info@softles.in" className="text-brand hover:underline">info@softles.in</a>{" "}
               and we&apos;ll action it within a reasonable time.
             </p>
           </Section>
@@ -122,12 +122,12 @@ export default function PrivacyPolicy() {
           <Section title="Contact">
             <p>
               Questions about your privacy? Email{" "}
-              <a href="mailto:info@softles.in" className="text-[#FF4D57] hover:underline">info@softles.in</a>{" "}
+              <a href="mailto:info@softles.in" className="text-brand hover:underline">info@softles.in</a>{" "}
               or call +91 89540 00202.
             </p>
           </Section>
 
-          <p className="text-[#C7CCD6]/50 text-xs mt-10 border-t border-[#2E3446] pt-6">
+          <p className="text-mute/50 text-xs mt-10 border-t border-line pt-6">
             This page is a general template, not legal advice. Please have it reviewed and fill in
             the bracketed details before relying on it.
           </p>
