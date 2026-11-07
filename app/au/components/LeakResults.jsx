@@ -111,6 +111,12 @@ export default function LeakResults({ result, placement, onReset }) {
               </li>
             ))}
           </ol>
+          <p className="mt-3 text-sm text-[#A9AFBC]">
+            Scripts like these often come from apps you pay for every month.{" "}
+            <a href="#apps" className="text-white underline underline-offset-4">
+              See what your apps cost you
+            </a>
+          </p>
         </div>
       ) : null}
 

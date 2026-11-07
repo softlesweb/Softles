@@ -215,3 +215,13 @@ body:has(.au-root) {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ---------- The app bill: a receipt with a torn bottom edge ---------- */
+
+.au-receipt {
+  --tooth: 14px;
+  -webkit-mask:
+    conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / var(--tooth) 100%;
+  mask:
+    conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / var(--tooth) 100%;
+}

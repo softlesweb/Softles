@@ -122,6 +122,53 @@ const OFFERS = [
   },
 ];
 
+// App bill offer. The receipt is a worked example, not a client's numbers, and says so.
+// Price and the money-back line need Shakti's sign-off before this goes live.
+const APP_AUDIT = {
+  name: "App Bill Audit",
+  price: "AUD 750",
+  time: "3 working days",
+  gets: [
+    "Every app, with what it costs and what your team uses it for",
+    "Keep, swap or cut for each one, with the saving per month",
+    "A 30-min walkthrough call",
+  ],
+  risk: "If the yearly saving we find is less than the fee, you don't pay.",
+};
+
+const APP_STEPS = [
+  {
+    name: "List every app",
+    detail: "What it costs, what it adds to your theme, and what your team actually uses it for.",
+  },
+  {
+    name: "Keep, swap or cut",
+    detail:
+      "Shopify now does some of the jobs you pay apps for. Some apps overlap. Some jobs can move to a tool you already pay for, connected directly.",
+  },
+  {
+    name: "Price the new stack",
+    detail: "The saving app by app, and the page weight each removal gives back.",
+  },
+  {
+    name: "Make the changes, if you want us to",
+    detail: "We swap and remove apps overnight, and clear out the code they leave behind in your theme.",
+  },
+];
+
+const APP_BILL = {
+  apps: 14,
+  monthly: 1000,
+  changes: [
+    { app: "Filters and search", cost: 79, note: "Swap for Shopify Search & Discovery (free)" },
+    { app: "Second upsell app", cost: 59, note: "Cut. Your other upsell app does the same job." },
+    { app: "Pop-ups and sign-up forms", cost: 39, note: "Swap for Shopify Forms (free)" },
+    { app: "Bundles", cost: 29, note: "Swap for Shopify Bundles (free)" },
+    { app: "Order tagging", cost: 25, note: "Swap for a Shopify Flow rule (free)" },
+    { app: "Back-in-stock alerts", cost: 19, note: "Cut. Klaviyo, which you already pay for, sends these." },
+  ],
+};
+
 const OVERNIGHT = [
   { when: "3:00 pm", where: "Sydney", what: "You brief us with a Loom, a Slack message or an email." },
   { when: "Overnight", where: "Noida, India", what: "Our team builds it during our working day." },
@@ -152,6 +199,10 @@ const FAQS = [
     a: "A collaborator account, which you approve in your Shopify admin. We never ask for your password, and you can remove our access at any time.",
   },
   {
+    q: "Will removing apps break anything?",
+    a: "We check what each app touches before it goes: theme code, checkout, emails and the way your team works. Changes are made on a copy of your theme first, and only go live once you've checked them.",
+  },
+  {
     q: "What if speed doesn't improve?",
     a: "Every Sprint has a speed target we agree with you before we start. If we don't hit it, we keep working until we do.",
   },
@@ -165,6 +216,66 @@ const FAQS = [
 // code (~13 KB) and breaks the PRD's 100 KB JS budget. The optimiser URL below is
 // the one next/image would write (64 and 128 are in its default imageSizes).
 const optimised = (src, width) => `/_next/image?url=${encodeURIComponent(src)}&w=${width}&q=75`;
+
+const dollars = (n) => `$${n.toLocaleString("en-AU")}`;
+
+// A torn-off monthly app bill, with the apps we'd change struck through.
+function AppBill() {
+  const saved = APP_BILL.changes.reduce((sum, line) => sum + line.cost, 0);
+  const kept = APP_BILL.apps - APP_BILL.changes.length;
+  const rule = "border-t border-dashed border-[#0E1016]/30";
+
+  return (
+    <figure>
+      <div className="au-receipt au-mono bg-[#F3EFE8] px-5 pb-10 pt-6 text-sm text-[#0E1016] sm:px-7">
+        <p className="flex justify-between gap-4 font-medium">
+          <span>Monthly app bill</span>
+          <span className="text-[#545866]">AUD</span>
+        </p>
+        <p className={`mt-4 flex justify-between gap-4 pt-4 ${rule}`}>
+          <span>{APP_BILL.apps} apps</span>
+          <span>{dollars(APP_BILL.monthly)}</span>
+        </p>
+
+        <ul className={`mt-4 grid gap-4 pt-4 ${rule}`}>
+          {APP_BILL.changes.map((line) => (
+            <li key={line.app}>
+              <p className="flex justify-between gap-4">
+                <span>{line.app}</span>
+                <span className="shrink-0">
+                  <span className="sr-only">saves </span>
+                  <s className="decoration-[#FF4D57] decoration-2">{dollars(line.cost)}</s>
+                </span>
+              </p>
+              <p className="mt-0.5 text-xs leading-relaxed text-[#545866]">{line.note}</p>
+            </li>
+          ))}
+        </ul>
+
+        <dl className={`mt-4 grid gap-1.5 pt-4 ${rule}`}>
+          <div className="flex justify-between gap-4">
+            <dt>New monthly bill, {kept} apps</dt>
+            <dd>{dollars(APP_BILL.monthly - saved)}</dd>
+          </div>
+          <div className="flex justify-between gap-4">
+            <dt>Saved each month</dt>
+            <dd>{dollars(saved)}</dd>
+          </div>
+          <div className="mt-3 flex items-baseline justify-between gap-4">
+            <dt className="font-medium">Saved each year</dt>
+            <dd className="font-display text-4xl font-bold tracking-[-0.03em] sm:text-5xl">
+              {dollars(saved * 12)}
+            </dd>
+          </div>
+        </dl>
+      </div>
+      <figcaption className="mt-4 text-sm text-[#A9AFBC]">
+        A worked example: {Math.round((saved / APP_BILL.monthly) * 100)}% off a {dollars(APP_BILL.monthly)}{" "}
+        monthly bill. Your saving depends on the apps you run.
+      </figcaption>
+    </figure>
+  );
+}
 
 function Portrait({ src }) {
   return (
@@ -364,6 +475,75 @@ export default function AuLandingPage() {
                 </article>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* The app bill: a smaller first job that pays for itself */}
+      <section id="apps" className="scroll-mt-4 bg-[#171A22] py-20 md:py-28">
+        <div className={`${WRAP} grid gap-12 md:grid-cols-12 md:gap-x-10 md:gap-y-14`}>
+          <div className="md:col-span-6">
+            <h2 className={H2}>
+              Cut your app bill by{" "}
+              <span className="au-serif whitespace-nowrap font-normal tracking-normal">a quarter.</span>
+            </h2>
+            <p className="mt-5 max-w-[36rem] text-lg leading-relaxed text-[#D6D9E0]">
+              Apps get added one problem at a time and rarely come out. Each one bills you every month,
+              and many load scripts on every page, which slows the store down. We go through the whole
+              stack and tell you what to keep, what to swap and what to cut.
+            </p>
+          </div>
+
+          <div className="md:col-span-5 md:col-start-8 md:row-span-2 md:row-start-1">
+            <div className="md:sticky md:top-8">
+              <AppBill />
+            </div>
+          </div>
+
+          <div className="md:col-span-6">
+            <ol className="grid gap-6">
+              {APP_STEPS.map((step, index) => (
+                <li key={step.name} className="grid grid-cols-[2rem_1fr] gap-x-3">
+                  <span aria-hidden="true" className="au-mono pt-0.5 text-[#FF4D57]">
+                    {index + 1}
+                  </span>
+                  <div>
+                    <h3 className="text-lg font-semibold text-white">{step.name}</h3>
+                    <p className="mt-1 leading-relaxed text-[#A9AFBC]">{step.detail}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+
+            <article className="mt-12 rounded-[18px] border border-[#2A2E3A] bg-[#0E1016] p-6 sm:p-8">
+              <h3 className="text-2xl font-bold">{APP_AUDIT.name}</h3>
+              <p className="mt-4 font-display text-[clamp(2.25rem,5vw,3rem)] font-bold leading-none tracking-[-0.03em]">
+                {APP_AUDIT.price}
+              </p>
+              <dl className="mt-6 grid gap-5 text-[#D6D9E0]">
+                <div>
+                  <dt className="au-mono text-xs uppercase tracking-[0.08em] text-[#A9AFBC]">Time</dt>
+                  <dd className="mt-1 text-lg">{APP_AUDIT.time}</dd>
+                </div>
+                <div>
+                  <dt className="au-mono text-xs uppercase tracking-[0.08em] text-[#A9AFBC]">You get</dt>
+                  <dd>
+                    <ul className="mt-1 grid gap-1.5">
+                      {APP_AUDIT.gets.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </dd>
+                </div>
+                <div>
+                  <dt className="au-mono text-xs uppercase tracking-[0.08em] text-[#A9AFBC]">Risk</dt>
+                  <dd className="mt-1">{APP_AUDIT.risk}</dd>
+                </div>
+              </dl>
+              <div className="mt-8">
+                <AuditCta audit="apps" />
+              </div>
+            </article>
           </div>
         </div>
       </section>
