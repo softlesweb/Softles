@@ -1,9 +1,13 @@
 import LeakCheck from "./components/LeakCheck";
 import BookCallLink from "./components/BookCallLink";
-import AuditCta from "./components/AuditCta";
-import AgencyForm from "./components/AgencyForm";
+import BookingEmbed from "./components/BookingEmbed";
+import RequestCta from "./components/RequestCta";
 import HeroGreeting from "./components/HeroGreeting";
 import StickyBar from "./components/StickyBar";
+
+// Shakti's Calendly or Cal.com link, set per environment in Vercel. Until it's set,
+// the booking section shows a short request form instead of the calendar.
+const BOOKING_URL = process.env.NEXT_PUBLIC_AU_BOOKING_URL;
 
 const TITLE = "Shopify Speed & Conversion Experts for Australian Brands | Softles";
 const DESCRIPTION =
@@ -28,12 +32,43 @@ export const metadata = {
   },
 };
 
-// Proof is held back until the client confirms the numbers and agrees to be named.
-// Fill this in (and the quote, word for word) to show the case study section.
-const CASE_STUDY = null;
-// Example shape:
-// { client: "…", summary: "…", before: [["Mobile score", "…"]], after: [["Mobile score", "…"]],
-//   quote: "…", quoteBy: "…, Founder" }
+// Already public on softles.in/work/brunswick-fur-food; the numbers are the ones shown there.
+const WORK = {
+  client: "Brunswick Fur Food",
+  where: "Melbourne, 2025",
+  site: "https://www.brunswickfurfood.com/",
+  caseStudy: "/work/brunswick-fur-food",
+  summary:
+    "Fresh, gently cooked dog food, delivered across Melbourne. The old store didn't show how good the food is, the subscription confused people, and mobile shoppers left before checkout.",
+  built: [
+    "A custom Shopify theme built to convert",
+    "A clearer trial and subscription flow",
+    "Product pages designed for phones first",
+  ],
+  numbers: [
+    { value: "2.5k+", label: "orders" },
+    { value: "30%", label: "repeat rate" },
+  ],
+};
+
+// Only real reviews, quoted word for word, from clients who agreed to be named.
+// Mark's ends before his last sentence, which is about WordPress.
+const REVIEWS = [
+  {
+    quote:
+      "The UX/UI design system Softles built for us streamlined our workflow and improved our product's usability. The team is responsive and talented.",
+    name: "Rahul Tyagi",
+    role: "Founder, Brunswick Fur Food",
+    img: "/C3.png",
+  },
+  {
+    quote:
+      "Worked into the early hours and turned around great work ahead of a large sales webinar. The team can receive a directional brief and with light touch supervision produce creative and professional work.",
+    name: "Mark Jeffery",
+    role: "Tennis coach",
+    img: "/C1.jpg",
+  },
+];
 
 const WRAP = "mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8";
 const H2 = "font-display text-[clamp(2rem,5vw,3.5rem)] font-bold leading-[1.04] tracking-[-0.025em]";
@@ -95,15 +130,32 @@ const STAGES = [
   },
 ];
 
+// The three ways to start, smallest first. `fit` finishes the sentence "Pick this if…".
+// Prices, times and risk lines are drafts until Shakti signs them off.
 const OFFERS = [
   {
-    id: "audit",
+    id: "apps",
+    name: "App Bill Audit",
+    price: "AUD 750",
+    time: "3 working days",
+    fit: "your app bill keeps growing and nobody's sure what half the apps do.",
+    gets: [
+      "Every app, with what it costs and what your team uses it for",
+      "Keep, swap or cut for each one, with the saving per month",
+      "A 30-min walkthrough call",
+    ],
+    risk: "If the yearly saving we find is less than the fee, you don't pay.",
+  },
+  {
+    id: "leak",
     name: "Revenue Leak Audit",
     price: "AUD 1,500",
     time: "5 working days",
+    fit: "people reach your store, but too few of them buy.",
     gets: [
       "Speed, UX and ops teardown of your store",
       "A prioritised fix list, with the dollar impact of each fix",
+      "Your apps reviewed too, the same way as the App Bill Audit",
       "A 30-min walkthrough call",
     ],
     risk: "100% of the fee is credited to the Sprint if you go ahead.",
@@ -111,30 +163,16 @@ const OFFERS = [
   {
     id: "sprint",
     name: "Conversion Sprint",
-    price: "From AUD 9,000",
+    from: true,
+    price: "AUD 9,000",
     time: "4–6 weeks",
-    gets: [
-      "The fixes, shipped to your live store",
-      "Measured before and after",
-      "A Loom update every week",
-    ],
+    fit: "you know what's broken and want it fixed, measured and shipped.",
+    gets: ["The fixes, shipped to your live store", "Measured before and after", "A Loom update every week"],
     risk: "Speed-target guarantee: we keep working until it's met.",
   },
 ];
 
-// App bill offer. The receipt is a worked example, not a client's numbers, and says so.
-// Price and the money-back line need Shakti's sign-off before this goes live.
-const APP_AUDIT = {
-  name: "App Bill Audit",
-  price: "AUD 750",
-  time: "3 working days",
-  gets: [
-    "Every app, with what it costs and what your team uses it for",
-    "Keep, swap or cut for each one, with the saving per month",
-    "A 30-min walkthrough call",
-  ],
-  risk: "If the yearly saving we find is less than the fee, you don't pay.",
-};
+const APP_AUDIT = OFFERS.find((offer) => offer.id === "apps");
 
 const APP_STEPS = [
   {
@@ -176,9 +214,9 @@ const OVERNIGHT = [
 ];
 
 const TEAM = [
-  { name: "Shakti Singh", role: "Strategy lead", img: "/Shakti_Singh.jpeg" },
-  { name: "Neeraj Kumar", role: "Shopify developer", img: "/neeraj_kumar.png" },
-  { name: "Shahad Hassan", role: "Full-stack developer", img: "/Shahad_Hassan.jpeg" },
+  { name: "Shakti Singh", role: "Founder", img: "/shakti_singh.jpg" },
+  { name: "Neeraj Kumar", role: "Shopify developer", img: "/neeraj_kumar.jpg" },
+  { name: "Shahad Hassan", role: "Full-stack developer", img: "/shahad_hassan.jpg" },
 ];
 
 const FAQS = [
@@ -192,7 +230,7 @@ const FAQS = [
   },
   {
     q: "How do payments work?",
-    a: "Everything is quoted and invoiced in AUD. The audit is paid upfront. A Sprint starts with a 50% deposit.",
+    a: "Everything is quoted and invoiced in AUD. Audits are paid upfront. A Sprint starts with a 50% deposit.",
   },
   {
     q: "What access do you need?",
@@ -214,8 +252,25 @@ const FAQS = [
 
 // This page avoids next/image and next/link: importing either ships their client
 // code (~13 KB) and breaks the PRD's 100 KB JS budget. The optimiser URL below is
-// the one next/image would write (64 and 128 are in its default imageSizes).
+// the one next/image would write. Widths must be in Next's default imageSizes or
+// deviceSizes (48, 96, 256, 384, 640, 828, 1080…), or the optimiser refuses them.
 const optimised = (src, width) => `/_next/image?url=${encodeURIComponent(src)}&w=${width}&q=75`;
+
+function Photo({ src, widths, sizes, width, height, alt = "", className }) {
+  return (
+    <img
+      src={optimised(src, widths[widths.length - 1])}
+      srcSet={widths.map((w) => `${optimised(src, w)} ${w}w`).join(", ")}
+      sizes={sizes}
+      alt={alt}
+      width={width}
+      height={height}
+      loading="lazy"
+      decoding="async"
+      className={className}
+    />
+  );
+}
 
 const dollars = (n) => `$${n.toLocaleString("en-AU")}`;
 
@@ -277,18 +332,34 @@ function AppBill() {
   );
 }
 
-function Portrait({ src }) {
+// The store as shoppers see it: desktop home page, with the phone version over its corner.
+function WorkShots() {
   return (
-    <img
-      src={optimised(src, 128)}
-      srcSet={`${optimised(src, 64)} 1x, ${optimised(src, 128)} 2x`}
-      alt=""
-      width={64}
-      height={64}
-      loading="lazy"
-      decoding="async"
-      className="h-16 w-16 rounded-full object-cover"
-    />
+    <figure className="relative pb-10 pr-6 sm:pr-10">
+      <div className="overflow-hidden rounded-[14px] border border-[#0E1016]/15 bg-white">
+        <p className="au-mono border-b border-[#0E1016]/10 px-4 py-2 text-xs text-[#545866]">brunswickfurfood.com</p>
+        <Photo
+          src="/work/brunswick-hero.jpg"
+          widths={[640, 828, 1080]}
+          sizes="(min-width: 1200px) 640px, (min-width: 768px) 55vw, 100vw"
+          width={1100}
+          height={652}
+          alt="Brunswick Fur Food home page on desktop"
+          className="block h-auto w-full"
+        />
+      </div>
+      <div className="absolute bottom-0 right-0 w-[34%] max-w-[200px] overflow-hidden rounded-[22px] border-[5px] border-[#0E1016] bg-[#0E1016] shadow-[0_24px_48px_-24px_rgba(14,16,22,0.55)]">
+        <Photo
+          src="/work/brunswick-p0-m-top.jpg"
+          widths={[256, 384]}
+          sizes="200px"
+          width={440}
+          height={880}
+          alt="The same page on a phone"
+          className="block h-auto w-full rounded-[17px]"
+        />
+      </div>
+    </figure>
   );
 }
 
@@ -416,66 +487,82 @@ export default function AuLandingPage() {
         </div>
       </section>
 
-      {/* The offer */}
-      <section id="offer" className="scroll-mt-4 bg-[#F3EFE8] py-20 text-[#0E1016] md:py-28">
+      {/* Proof: a store we rebuilt, and what clients say */}
+      <section id="work" className="scroll-mt-4 bg-[#F3EFE8] py-20 text-[#0E1016] md:py-28">
         <div className={WRAP}>
-          <h2 className={`${H2} max-w-[20ch]`}>Start with the audit. It&apos;s credited in full if you go ahead.</h2>
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
-            {OFFERS.map((offer) => {
-              const dark = offer.id === "audit";
-              return (
-                <article
-                  key={offer.id}
-                  className={`flex flex-col rounded-[18px] p-6 sm:p-8 ${
-                    dark ? "bg-[#0E1016] text-white" : "border-2 border-[#0E1016]"
-                  }`}
-                >
-                  <h3 className="text-2xl font-bold">{offer.name}</h3>
-                  <p className="mt-4 font-display text-[clamp(2.25rem,5vw,3rem)] font-bold leading-none tracking-[-0.03em]">
-                    {offer.price}
-                  </p>
-                  <dl className={`mt-6 grid gap-5 ${dark ? "text-[#D6D9E0]" : "text-[#2A2E3A]"}`}>
-                    <div>
-                      <dt className={`au-mono text-xs uppercase tracking-[0.08em] ${dark ? "text-[#A9AFBC]" : "text-[#545866]"}`}>
-                        Time
-                      </dt>
-                      <dd className="mt-1 text-lg">{offer.time}</dd>
-                    </div>
-                    <div>
-                      <dt className={`au-mono text-xs uppercase tracking-[0.08em] ${dark ? "text-[#A9AFBC]" : "text-[#545866]"}`}>
-                        You get
-                      </dt>
-                      <dd>
-                        <ul className="mt-1 grid gap-1.5">
-                          {offer.gets.map((item) => (
-                            <li key={item}>{item}</li>
-                          ))}
-                        </ul>
-                      </dd>
-                    </div>
-                    <div>
-                      <dt className={`au-mono text-xs uppercase tracking-[0.08em] ${dark ? "text-[#A9AFBC]" : "text-[#545866]"}`}>
-                        Risk
-                      </dt>
-                      <dd className="mt-1">{offer.risk}</dd>
-                    </div>
-                  </dl>
-                  <div className="mt-8 pt-2 md:mt-auto">
-                    {dark ? (
-                      <AuditCta />
-                    ) : (
-                      <BookCallLink
-                        placement="offer_sprint"
-                        className="inline-flex rounded-full bg-[#0E1016] px-6 py-3 font-semibold text-white transition-colors hover:bg-[#2A2E3A]"
-                      >
-                        Book a call
-                      </BookCallLink>
-                    )}
+          <h2 className={`${H2} max-w-[18ch]`}>
+            A Shopify store we rebuilt in <span className="au-serif font-normal tracking-normal">Melbourne.</span>
+          </h2>
+
+          <div className="mt-12 grid items-start gap-12 md:mt-16 md:grid-cols-12 md:gap-10">
+            <div className="md:col-span-7">
+              <WorkShots />
+            </div>
+            <div className="md:col-span-5">
+              <h3 className="text-2xl font-bold">{WORK.client}</h3>
+              <p className="mt-1 text-[#545866]">{WORK.where}</p>
+              <p className="mt-5 text-lg leading-relaxed">{WORK.summary}</p>
+              <ul className="mt-6 grid gap-2">
+                {WORK.built.map((item) => (
+                  <li key={item} className="flex gap-3 leading-relaxed">
+                    <span aria-hidden="true" className="mt-[0.6em] h-1.5 w-1.5 shrink-0 rounded-full bg-[#FF4D57]" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <dl className="mt-8 grid grid-cols-2 gap-6 border-t border-[#0E1016]/15 pt-6">
+                {WORK.numbers.map((n) => (
+                  <div key={n.label} className="flex flex-col-reverse">
+                    <dt className="text-[#545866]">{n.label}</dt>
+                    <dd className="font-display text-5xl font-bold tracking-[-0.03em]">{n.value}</dd>
                   </div>
-                </article>
-              );
-            })}
+                ))}
+              </dl>
+              <p className="mt-8 flex flex-wrap gap-x-6 gap-y-3 font-semibold">
+                <a
+                  href={WORK.site}
+                  target="_blank"
+                  rel="noopener"
+                  className="underline decoration-[#FF4D57] decoration-2 underline-offset-[6px]"
+                >
+                  Visit the live store
+                </a>
+                <a
+                  href={WORK.caseStudy}
+                  className="underline decoration-[#0E1016]/30 decoration-2 underline-offset-[6px] hover:decoration-[#0E1016]"
+                >
+                  Read the case study
+                </a>
+              </p>
+            </div>
           </div>
+
+          <h3 className="mt-20 text-2xl font-bold md:mt-28">What clients say</h3>
+          <ul className="mt-8 grid gap-12 md:grid-cols-2">
+            {REVIEWS.map((review) => (
+              <li key={review.name} className="border-t-2 border-[#0E1016] pt-6">
+                <figure>
+                  <blockquote className="au-serif text-[1.6rem] leading-[1.3] sm:text-[1.85rem]">
+                    “{review.quote}”
+                  </blockquote>
+                  <figcaption className="mt-6 flex items-center gap-4">
+                    <Photo
+                      src={review.img}
+                      widths={[48, 96]}
+                      sizes="48px"
+                      width={48}
+                      height={48}
+                      className="h-12 w-12 rounded-full object-cover"
+                    />
+                    <span>
+                      <span className="block font-semibold">{review.name}</span>
+                      <span className="block text-sm text-[#545866]">{review.role}</span>
+                    </span>
+                  </figcaption>
+                </figure>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
@@ -514,54 +601,94 @@ export default function AuLandingPage() {
                 </li>
               ))}
             </ol>
-
-            <article className="mt-12 rounded-[18px] border border-[#2A2E3A] bg-[#0E1016] p-6 sm:p-8">
-              <h3 className="text-2xl font-bold">{APP_AUDIT.name}</h3>
-              <p className="mt-4 font-display text-[clamp(2.25rem,5vw,3rem)] font-bold leading-none tracking-[-0.03em]">
-                {APP_AUDIT.price}
-              </p>
-              <dl className="mt-6 grid gap-5 text-[#D6D9E0]">
-                <div>
-                  <dt className="au-mono text-xs uppercase tracking-[0.08em] text-[#A9AFBC]">Time</dt>
-                  <dd className="mt-1 text-lg">{APP_AUDIT.time}</dd>
-                </div>
-                <div>
-                  <dt className="au-mono text-xs uppercase tracking-[0.08em] text-[#A9AFBC]">You get</dt>
-                  <dd>
-                    <ul className="mt-1 grid gap-1.5">
-                      {APP_AUDIT.gets.map((item) => (
-                        <li key={item}>{item}</li>
-                      ))}
-                    </ul>
-                  </dd>
-                </div>
-                <div>
-                  <dt className="au-mono text-xs uppercase tracking-[0.08em] text-[#A9AFBC]">Risk</dt>
-                  <dd className="mt-1">{APP_AUDIT.risk}</dd>
-                </div>
-              </dl>
-              <div className="mt-8">
-                <AuditCta audit="apps" />
-              </div>
-            </article>
+            <p className="mt-10 border-t border-[#2A2E3A] pt-6 text-lg text-[#D6D9E0]">
+              The {APP_AUDIT.name} is {APP_AUDIT.price} and takes {APP_AUDIT.time}.{" "}
+              <a
+                href="#offer"
+                className="font-semibold text-white underline decoration-[#FF4D57] decoration-2 underline-offset-[6px]"
+              >
+                Compare the three ways to start
+              </a>
+            </p>
           </div>
         </div>
       </section>
 
-      {CASE_STUDY ? (
-        <section className="py-20 md:py-28">
-          <div className={WRAP}>
-            <h2 className={H2}>{CASE_STUDY.client}</h2>
-            <p className="mt-5 max-w-[40rem] text-lg text-[#A9AFBC]">{CASE_STUDY.summary}</p>
-            {CASE_STUDY.quote ? (
-              <blockquote className="mt-10 max-w-[40rem]">
-                <p className="au-serif text-3xl leading-snug">“{CASE_STUDY.quote}”</p>
-                <footer className="mt-4 text-[#A9AFBC]">{CASE_STUDY.quoteBy}</footer>
-              </blockquote>
-            ) : null}
+      {/* Three ways to start */}
+      <section id="offer" className="scroll-mt-4 bg-[#F3EFE8] py-20 text-[#0E1016] md:py-28">
+        <div className={WRAP}>
+          <h2 className={H2}>
+            Three ways <span className="au-serif font-normal tracking-normal">to start.</span>
+          </h2>
+          <p className="mt-5 max-w-[40rem] text-lg leading-relaxed text-[#2A2E3A]">
+            Each one is a fixed price in AUD and stands on its own. Not sure which fits?{" "}
+            <BookCallLink
+              placement="offer_intro"
+              className="font-semibold text-[#0E1016] underline decoration-[#FF4D57] decoration-2 underline-offset-[5px]"
+            >
+              Book a call
+            </BookCallLink>{" "}
+            and Shakti will tell you, even if the answer is none of them.
+          </p>
+
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+            {OFFERS.map((offer) => {
+              const dark = offer.id === "leak";
+              const label = `au-mono text-xs uppercase tracking-[0.08em] ${dark ? "text-[#A9AFBC]" : "text-[#545866]"}`;
+              return (
+                <article
+                  key={offer.id}
+                  className={`flex flex-col rounded-[18px] p-6 sm:p-8 ${
+                    dark ? "bg-[#0E1016] text-white" : "border-2 border-[#0E1016]"
+                  }`}
+                >
+                  <h3 className="text-2xl font-bold">{offer.name}</h3>
+                  <p className={`mt-3 text-lg leading-snug ${dark ? "text-white" : "text-[#0E1016]"}`}>
+                    <span className={dark ? "text-[#A9AFBC]" : "text-[#545866]"}>Pick this if </span>
+                    {offer.fit}
+                  </p>
+                  <p className="mt-6 font-display text-[clamp(2.25rem,3.4vw,2.75rem)] font-bold leading-none tracking-[-0.03em]">
+                    {offer.from ? <span className="mr-2 text-lg font-semibold tracking-normal">From</span> : null}
+                    {offer.price}
+                  </p>
+                  <dl className={`mt-6 grid gap-5 ${dark ? "text-[#D6D9E0]" : "text-[#2A2E3A]"}`}>
+                    <div>
+                      <dt className={label}>Time</dt>
+                      <dd className="mt-1 text-lg">{offer.time}</dd>
+                    </div>
+                    <div>
+                      <dt className={label}>You get</dt>
+                      <dd>
+                        <ul className="mt-1 grid gap-1.5">
+                          {offer.gets.map((item) => (
+                            <li key={item}>{item}</li>
+                          ))}
+                        </ul>
+                      </dd>
+                    </div>
+                    <div>
+                      <dt className={label}>Risk</dt>
+                      <dd className="mt-1">{offer.risk}</dd>
+                    </div>
+                  </dl>
+                  <div className="mt-8 pt-2 lg:mt-auto">
+                    {offer.id === "sprint" ? (
+                      <BookCallLink
+                        placement="offer_sprint"
+                        className="inline-flex rounded-full bg-[#0E1016] px-6 py-3 font-semibold text-white transition-colors hover:bg-[#2A2E3A]"
+                      >
+                        Book a call
+                      </BookCallLink>
+                    ) : (
+                      <RequestCta kind={offer.id} tone={dark ? "ink" : "paper"} />
+                    )}
+                  </div>
+                </article>
+              );
+            })}
           </div>
-        </section>
-      ) : null}
+        </div>
+      </section>
 
       {/* How working with us runs */}
       <section className="py-20 md:py-28">
@@ -584,38 +711,29 @@ export default function AuLandingPage() {
             ))}
           </ol>
 
-          <div className="mt-14 grid gap-10 md:grid-cols-2">
-            <ul className="grid content-start gap-3 text-lg text-[#D6D9E0]">
+          <div className="mt-14 grid gap-10 md:grid-cols-12">
+            <ul className="grid content-start gap-3 text-lg text-[#D6D9E0] md:col-span-4">
               <li>A named project lead for your store</li>
               <li>A Loom update every week</li>
               <li>Slack or email, whichever your team already uses</li>
               <li>Calls 1–5 pm AEDT</li>
             </ul>
-            <ul className="grid gap-5">
+            <ul className="grid grid-cols-3 gap-3 sm:gap-5 md:col-span-8">
               {TEAM.map((person) => (
-                <li key={person.name} className="flex items-center gap-4">
-                  <Portrait src={person.img} />
-                  <div>
-                    <p className="font-semibold text-white">{person.name}</p>
-                    <p className="text-sm text-[#A9AFBC]">{person.role}</p>
-                  </div>
+                <li key={person.name}>
+                  <Photo
+                    src={person.img}
+                    widths={[256, 384]}
+                    sizes="(min-width: 1200px) 240px, (min-width: 768px) 20vw, 30vw"
+                    width={714}
+                    height={893}
+                    className="aspect-[4/5] h-auto w-full rounded-[14px] object-cover"
+                  />
+                  <p className="mt-3 font-semibold leading-snug text-white">{person.name}</p>
+                  <p className="text-sm text-[#A9AFBC]">{person.role}</p>
                 </li>
               ))}
             </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* For agencies */}
-      <section className="au-on-coral bg-[#FF4D57] py-14 text-[#0E1016] md:py-16">
-        <div className={`${WRAP} grid items-start gap-8 md:grid-cols-12`}>
-          <div className="md:col-span-7">
-            <h2 className="font-display text-[clamp(1.75rem,3.5vw,2.5rem)] font-bold leading-[1.1] tracking-[-0.02em]">
-              Australian Shopify agency? We&apos;re your overflow dev team, white-label at partner rates.
-            </h2>
-          </div>
-          <div className="md:col-span-5">
-            <AgencyForm />
           </div>
         </div>
       </section>
@@ -643,21 +761,56 @@ export default function AuLandingPage() {
         </div>
       </section>
 
-      {/* Final call to action */}
-      <section id="check" className="border-t border-[#2A2E3A] py-20 md:py-28">
-        <div className={`${WRAP} grid gap-10 md:grid-cols-12`}>
+      {/* Book a call with Shakti: the main call to action */}
+      <section id="book" className="scroll-mt-4 bg-[#171A22] py-20 md:py-28">
+        <div className={`${WRAP} grid gap-12 md:grid-cols-12 md:gap-10`}>
           <div className="md:col-span-5">
-            <h2 className={H2}>
-              Find out where your store <span className="au-serif font-normal tracking-normal">leaks.</span>
+            <div className="flex items-end gap-5">
+              <Photo
+                src="/shakti_singh.jpg"
+                widths={[256, 384]}
+                sizes="160px"
+                width={714}
+                height={893}
+                alt="Shakti Singh"
+                className="aspect-[4/5] h-auto w-32 rounded-[14px] object-cover sm:w-40"
+              />
+              <p className="pb-1">
+                <span className="block font-semibold text-white">Shakti Singh</span>
+                <span className="block text-sm text-[#A9AFBC]">Founder, Softles</span>
+              </p>
+            </div>
+            <h2 className={`${H2} mt-10`}>
+              Talk it through with <span className="au-serif font-normal tracking-normal">Shakti.</span>
             </h2>
-            <p className="mt-5 text-lg text-[#A9AFBC]">Free, about 30 seconds, no email needed.</p>
-            <BookCallLink
-              placement="final"
-              className="mt-6 inline-block font-semibold text-white underline decoration-[#FF4D57] decoration-2 underline-offset-[6px]"
-            />
+            <p className="mt-5 text-lg leading-relaxed text-[#D6D9E0]">
+              Twenty minutes on a video call. Bring your store and we&apos;ll look at it together. You&apos;ll
+              leave knowing where it leaks and which way to start, or hearing straight that we&apos;re not the
+              right fit.
+            </p>
+            <ul className="mt-6 grid gap-2 text-[#A9AFBC]">
+              <li>You talk to the founder, not a sales team</li>
+              <li>Calls 1–5 pm AEDT</li>
+              <li>
+                Rather look at the numbers first?{" "}
+                <a href="#hero" className="text-white underline underline-offset-4">
+                  Run the free store check
+                </a>
+              </li>
+            </ul>
           </div>
           <div className="md:col-span-7">
-            <LeakCheck id="store-url-final" placement="final" />
+            {BOOKING_URL ? (
+              <BookingEmbed url={BOOKING_URL} />
+            ) : (
+              <div className="rounded-[18px] border border-[#2A2E3A] bg-[#0E1016] p-6 sm:p-8">
+                <h3 className="text-2xl font-bold">Pick a time</h3>
+                <p className="mb-6 mt-2 text-[#A9AFBC]">
+                  Leave your details and Shakti will email you a few times to choose from.
+                </p>
+                <RequestCta kind="call" inline />
+              </div>
+            )}
           </div>
         </div>
       </section>

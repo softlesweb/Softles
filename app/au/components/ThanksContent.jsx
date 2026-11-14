@@ -100,7 +100,7 @@ export default function ThanksContent({ type }) {
           : "While you wait, see how your store scores on mobile."}
       </p>
       <a
-        href="/au#check"
+        href="/au#hero"
         className="mt-8 inline-flex rounded-full bg-[#FF4D57] px-6 py-3 font-semibold text-[#0E1016] transition-colors hover:bg-[#FF6A72]"
       >
         Run the leak check

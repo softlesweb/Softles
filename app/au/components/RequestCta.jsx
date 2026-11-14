@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { trackEvent } from "@/lib/gtag";
 import { trackPixel } from "@/lib/metaPixel";
 
@@ -21,8 +21,8 @@ const CONTACT_FIELDS = [
   },
 ];
 
-// One entry per paid audit on the page. Prices here must match the offer cards in page.jsx.
-const AUDITS = {
+// One entry per request button on the page. Prices here must match OFFERS in page.jsx.
+const REQUESTS = {
   leak: {
     // Stripe Payment Link for the AUD 1,500 audit. Its success URL should be
     // https://softles.in/au/thanks?type=audit, which shows the intake form.
@@ -57,15 +57,55 @@ const AUDITS = {
     submitLabel: "Request my app bill audit",
     sentText: "We'll email you an invoice in AUD and ask for collaborator access to your store.",
   },
+  call: {
+    // Stand-in for the booking calendar until NEXT_PUBLIC_AU_BOOKING_URL is set.
+    startEvent: "call_request_started",
+    sentEvent: "call_requested",
+    button: "Ask for a call time",
+    source: "AU Call request",
+    fields: [
+      ...CONTACT_FIELDS,
+      {
+        name: "callTime",
+        label: "Best time for you",
+        type: "select",
+        options: ["1–3 pm AEDT", "3–5 pm AEDT", "Either"],
+      },
+    ],
+    submitLabel: "Ask for a call",
+    sentText: "Shakti will email you a few times to pick from.",
+  },
 };
 
-const buttonClass =
-  "inline-flex rounded-full bg-[#FF4D57] px-6 py-3 font-semibold text-[#0E1016] transition-colors hover:bg-[#FF6A72]";
+const BUTTON = {
+  ink: "bg-[#FF4D57] text-[#0E1016] hover:bg-[#FF6A72]",
+  paper: "bg-[#0E1016] text-white hover:bg-[#2A2E3A]",
+};
+const INTRO = { ink: "text-[#A9AFBC]", paper: "text-[#545866]" };
 
-export default function AuditCta({ audit = "leak" }) {
-  const offer = AUDITS[audit];
-  const money = { value: offer.value, currency: "AUD" };
-  const [open, setOpen] = useState(false);
+// `tone` matches the card it sits on: "ink" for dark cards, "paper" for light ones.
+// `inline` shows the form without a click, loading it once it nears the screen.
+export default function RequestCta({ kind = "leak", tone = "ink", inline = false }) {
+  const buttonClass = `inline-flex rounded-full px-6 py-3 font-semibold transition-colors ${BUTTON[tone]}`;
+  const offer = REQUESTS[kind];
+  const money = offer.value ? { value: offer.value, currency: "AUD" } : {};
+  // null until shown; "click" moves focus into the form, "inline" leaves focus alone.
+  const [open, setOpen] = useState(null);
+  const spot = useRef(null);
+
+  useEffect(() => {
+    if (!inline || !spot.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        setOpen("inline");
+        observer.disconnect();
+      },
+      { rootMargin: "600px 0px" },
+    );
+    observer.observe(spot.current);
+    return () => observer.disconnect();
+  }, [inline]);
 
   if (offer.checkoutUrl) {
     return (
@@ -82,13 +122,15 @@ export default function AuditCta({ audit = "leak" }) {
     );
   }
 
+  if (!open && inline) return <div ref={spot} className="min-h-[28rem]" />;
+
   if (!open) {
     return (
       <button
         type="button"
         onClick={() => {
-          setOpen(true);
-          trackEvent(offer.startEvent, { ...money, method: "invoice_request" });
+          setOpen("click");
+          trackEvent(offer.startEvent, { ...money, method: offer.value ? "invoice_request" : "request_form" });
         }}
         className={buttonClass}
       >
@@ -99,9 +141,10 @@ export default function AuditCta({ audit = "leak" }) {
 
   return (
     <div className="mt-2">
-      <p className="mb-4 text-sm text-[#A9AFBC]">{offer.intro}</p>
+      {offer.intro ? <p className={`mb-4 text-sm ${INTRO[tone]}`}>{offer.intro}</p> : null}
       <LeadForm
-        autoFocus
+        autoFocus={open === "click"}
+        tone={tone}
         source={offer.source}
         event={offer.sentEvent}
         fields={offer.fields}
