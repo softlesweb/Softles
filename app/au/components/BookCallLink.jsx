@@ -8,7 +8,7 @@ export default function BookCallLink({
   placement,
   className,
   href = "#book",
-  children = "Book a 20-min call with Shakti",
+  children = "Book a 30-min call with Shakti",
 }) {
   return (
     <a href={href} onClick={() => trackEvent("book_call_click", { placement })} className={className}>

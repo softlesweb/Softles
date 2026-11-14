@@ -5,9 +5,12 @@ import RequestCta from "./components/RequestCta";
 import HeroGreeting from "./components/HeroGreeting";
 import StickyBar from "./components/StickyBar";
 
-// Shakti's Calendly or Cal.com link, set per environment in Vercel. Until it's set,
-// the booking section shows a short request form instead of the calendar.
-const BOOKING_URL = process.env.NEXT_PUBLIC_AU_BOOKING_URL;
+// Shakti's Google Calendar booking page (a public link, safe to keep in code).
+// NEXT_PUBLIC_AU_BOOKING_URL overrides it per environment; Calendly and Cal.com links work too.
+// If both are ever empty, the booking section falls back to a short request form.
+const BOOKING_URL =
+  process.env.NEXT_PUBLIC_AU_BOOKING_URL ||
+  "https://calendar.google.com/calendar/appointments/schedules/AcZssZ3sspYOc4N7rkVBDyfU9JD0RHO4Yr2JhvqGSpHtjFBg7hFUw4Uhi8Hi-6mw2IFaVbM0dqnKiv-A?gv=true";
 
 const TITLE = "Shopify Speed & Conversion Experts for Australian Brands | Softles";
 const DESCRIPTION =
@@ -784,7 +787,7 @@ export default function AuLandingPage() {
               Talk it through with <span className="au-serif font-normal tracking-normal">Shakti.</span>
             </h2>
             <p className="mt-5 text-lg leading-relaxed text-[#D6D9E0]">
-              Twenty minutes on a video call. Bring your store and we&apos;ll look at it together. You&apos;ll
+              Thirty minutes on a video call. Bring your store and we&apos;ll look at it together. You&apos;ll
               leave knowing where it leaks and which way to start, or hearing straight that we&apos;re not the
               right fit.
             </p>

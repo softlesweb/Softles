@@ -58,7 +58,7 @@ const REQUESTS = {
     sentText: "We'll email you an invoice in AUD and ask for collaborator access to your store.",
   },
   call: {
-    // Stand-in for the booking calendar until NEXT_PUBLIC_AU_BOOKING_URL is set.
+    // Stand-in for the booking calendar, used only if no booking URL is set (see page.jsx).
     startEvent: "call_request_started",
     sentEvent: "call_requested",
     button: "Ask for a call time",
