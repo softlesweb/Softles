@@ -1,3 +1,4 @@
+import WordReveal from "../../components/_components/WordReveal";
 import Image from "next/image";
 import Link from "next/link";
 import LeadForm from "./components/LeadForm";
@@ -73,11 +74,11 @@ function Eyebrow({ children, center }) {
 
 export default function ShopifyLandingPage() {
   return (
-    <main className="bg-[#0E1219] text-white overflow-x-hidden pb-24 lg:pb-0">
+    <main className="bg-page text-ink overflow-x-hidden pb-24 lg:pb-0">
       <MetaPixel />
 
       {/* Minimal header */}
-      <header className="sticky top-0 z-40 bg-[#0E1219]/95 backdrop-blur border-b border-[#2E3446]">
+      <header className="sticky top-0 z-40 bg-page/95 backdrop-blur border-b border-line">
         <div className="service-page-container h-[60px] flex items-center justify-between">
           <Link href="/">
             <Image src="/SoftLes.png" alt="SoftLes" width={120} height={38} className="h-[34px] w-auto object-contain" />
@@ -101,9 +102,9 @@ export default function ShopifyLandingPage() {
             <Eyebrow>Shopify Redesign &amp; Migration</Eyebrow>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-black leading-tight tracking-tight">
               Get a faster, higher-converting Shopify store —{" "}
-              <span className="text-[#FF4D57]">in 21 days.</span>
+              <span className="text-brand">in 21 days.</span>
             </h1>
-            <p className="text-[#C7CCD6]/85 text-base md:text-lg leading-relaxed mt-5 max-w-xl">
+            <p className="text-mute/85 text-base md:text-lg leading-relaxed mt-5 max-w-xl">
               For growing brands stuck with a slow, low-converting store. We redesign
               and migrate to a fast, conversion-focused Shopify build — no downtime,
               no SEO loss.
@@ -117,9 +118,9 @@ export default function ShopifyLandingPage() {
             </div>
 
             {/* Trust strip */}
-            <div className="flex flex-wrap items-center gap-x-6 gap-y-2 mt-8 text-sm text-[#C7CCD6]">
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-2 mt-8 text-sm text-mute">
               <span className="flex items-center gap-1.5">
-                <span className="text-[#FF4D57]">★★★★★</span> 4.9 rating
+                <span className="text-brand">★★★★★</span> 4.9 rating
               </span>
               <span>50+ stores shipped</span>
               <span>Avg. +32% conversion</span>
@@ -134,9 +135,9 @@ export default function ShopifyLandingPage() {
       </section>
 
       {/* Logo rail */}
-      <section className="border-y border-[#2E3446] bg-[#161C27] py-8">
+      <section className="border-y border-line bg-panel py-8">
         <div className="service-page-container">
-          <p className="text-center text-xs uppercase tracking-[0.2em] text-[#C7CCD6]/60 mb-6">
+          <p className="text-center text-xs uppercase tracking-[0.2em] text-mute/60 mb-6">
             Brands we&apos;ve built for
           </p>
           <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-6 opacity-80">
@@ -151,12 +152,12 @@ export default function ShopifyLandingPage() {
       <section className="softles-section-primary">
         <div className="service-page-container">
           <Eyebrow center>Sound familiar?</Eyebrow>
-          <h2 className="service-section-heading text-center">Your store is costing you sales</h2>
+          <WordReveal as="h2" className="service-section-heading text-center">Your store is costing you sales</WordReveal>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-10 max-w-4xl mx-auto">
             {PAINS.map((p) => (
               <div key={p} className="softles-card p-5 flex items-start gap-3">
-                <span className="text-[#FF4D57] mt-0.5 shrink-0">✕</span>
-                <span className="text-[#E5E7EF]">{p}</span>
+                <span className="text-brand mt-0.5 shrink-0">✕</span>
+                <span className="text-soft">{p}</span>
               </div>
             ))}
           </div>
@@ -164,15 +165,15 @@ export default function ShopifyLandingPage() {
       </section>
 
       {/* What you get */}
-      <section className="bg-[#161C27] border-y border-[#2E3446] py-12 md:py-20">
+      <section className="bg-panel border-y border-line py-12 md:py-20">
         <div className="service-page-container">
           <Eyebrow center>What you get</Eyebrow>
-          <h2 className="service-section-heading text-center">A store built to convert &amp; scale</h2>
+          <WordReveal as="h2" className="service-section-heading text-center">A store built to convert &amp; scale</WordReveal>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-10">
             {GETS.map((g) => (
               <div key={g.title} className="softles-card p-6">
-                <h3 className="text-lg font-bold text-white mb-2">{g.title}</h3>
-                <p className="text-[#C7CCD6]/80 text-sm leading-relaxed">{g.desc}</p>
+                <h3 className="text-lg font-bold text-ink mb-2">{g.title}</h3>
+                <p className="text-mute/80 text-sm leading-relaxed">{g.desc}</p>
               </div>
             ))}
           </div>
@@ -183,14 +184,14 @@ export default function ShopifyLandingPage() {
       <section className="softles-section-primary">
         <div className="service-page-container">
           <Eyebrow center>Recent work</Eyebrow>
-          <h2 className="service-section-heading text-center">Stores we&apos;ve shipped</h2>
+          <WordReveal as="h2" className="service-section-heading text-center">Stores we&apos;ve shipped</WordReveal>
           <p className="softles-section-copy mx-auto text-center">
             A few of the brands we&apos;ve designed, built, and launched.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-10">
             {PROOF_STORES.map((s) => (
               <div key={s.name} className="softles-card group overflow-hidden">
-                <div className="relative w-full h-56 sm:h-64 overflow-hidden bg-[#0f111a]">
+                <div className="relative w-full h-56 sm:h-64 overflow-hidden bg-deep">
                   <Image
                     src={s.img}
                     alt={s.name}
@@ -200,8 +201,8 @@ export default function ShopifyLandingPage() {
                   />
                 </div>
                 <div className="p-5">
-                  <h3 className="text-white font-bold">{s.name}</h3>
-                  <p className="text-[#C7CCD6]/75 text-sm mt-1">{s.result}</p>
+                  <h3 className="text-ink font-bold">{s.name}</h3>
+                  <p className="text-mute/75 text-sm mt-1">{s.result}</p>
                 </div>
               </div>
             ))}
@@ -210,13 +211,13 @@ export default function ShopifyLandingPage() {
       </section>
 
       {/* Results band */}
-      <section className="bg-[#FF4D57]/[0.06] border-y border-[#FF4D57]/20 py-12 md:py-16">
+      <section className="bg-brand/[0.06] border-y border-brand/20 py-12 md:py-16">
         <div className="service-page-container">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
             {RESULTS.map((r) => (
               <div key={r.label}>
-                <div className="text-3xl md:text-5xl font-black text-white">{r.stat}</div>
-                <div className="text-[#C7CCD6]/80 text-sm mt-2">{r.label}</div>
+                <div className="text-3xl md:text-5xl font-black text-ink">{r.stat}</div>
+                <div className="text-mute/80 text-sm mt-2">{r.label}</div>
               </div>
             ))}
           </div>
@@ -227,14 +228,14 @@ export default function ShopifyLandingPage() {
       <section className="softles-section-primary">
         <div className="service-page-container">
           <Eyebrow center>How we deliver in 21 days</Eyebrow>
-          <h2 className="service-section-heading text-center">A clear, fast process</h2>
+          <WordReveal as="h2" className="service-section-heading text-center">A clear, fast process</WordReveal>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-10">
             {TIMELINE.map((t, i) => (
               <div key={t.title} className="softles-card p-6 relative">
-                <span className="text-[#FF4D57] text-xs font-bold uppercase tracking-widest">{t.days}</span>
-                <div className="text-2xl font-black text-white/15 absolute top-5 right-5">0{i + 1}</div>
-                <h3 className="text-lg font-bold text-white mt-2 mb-2">{t.title}</h3>
-                <p className="text-[#C7CCD6]/80 text-sm leading-relaxed">{t.desc}</p>
+                <span className="text-brand text-xs font-bold uppercase tracking-widest">{t.days}</span>
+                <div className="text-2xl font-black text-ink/15 absolute top-5 right-5">0{i + 1}</div>
+                <h3 className="text-lg font-bold text-ink mt-2 mb-2">{t.title}</h3>
+                <p className="text-mute/80 text-sm leading-relaxed">{t.desc}</p>
               </div>
             ))}
           </div>
@@ -242,16 +243,16 @@ export default function ShopifyLandingPage() {
       </section>
 
       {/* Offer + guarantee + FAQ */}
-      <section className="bg-[#161C27] border-y border-[#2E3446] py-12 md:py-20">
+      <section className="bg-panel border-y border-line py-12 md:py-20">
         <div className="service-page-container grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div>
             <Eyebrow>Our promise</Eyebrow>
-            <h2 className="service-section-heading">On-time, or we keep going</h2>
-            <div className="softles-card p-6 mt-6 border-[#FF4D57]/30">
-              <p className="text-xl font-bold text-white">
+            <WordReveal as="h2" className="service-section-heading">On-time, or we keep going</WordReveal>
+            <div className="softles-card p-6 mt-6 border-brand/30">
+              <p className="text-xl font-bold text-ink">
                 Live in 21 days, or we keep working at no extra cost.
               </p>
-              <p className="text-[#C7CCD6]/80 text-sm mt-3 leading-relaxed">
+              <p className="text-mute/80 text-sm mt-3 leading-relaxed">
                 We commit to your timeline. If your store isn&apos;t live in 21 days,
                 we keep building until it is — you don&apos;t pay more.
               </p>
@@ -260,14 +261,14 @@ export default function ShopifyLandingPage() {
 
           <div>
             <Eyebrow>FAQ</Eyebrow>
-            <div className="mt-2 divide-y divide-[#2E3446]">
+            <div className="mt-2 divide-y divide-line">
               {FAQS.map((f) => (
                 <details key={f.q} className="py-4 group">
-                  <summary className="cursor-pointer list-none flex items-center justify-between text-white font-semibold">
+                  <summary className="cursor-pointer list-none flex items-center justify-between text-ink font-semibold">
                     {f.q}
-                    <span className="text-[#FF4D57] group-open:rotate-45 transition-transform">+</span>
+                    <span className="text-brand group-open:rotate-45 transition-transform">+</span>
                   </summary>
-                  <p className="text-[#C7CCD6]/80 text-sm mt-2 leading-relaxed">{f.a}</p>
+                  <p className="text-mute/80 text-sm mt-2 leading-relaxed">{f.a}</p>
                 </details>
               ))}
             </div>
@@ -280,9 +281,9 @@ export default function ShopifyLandingPage() {
         <div className="service-page-container grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           <div>
             <Eyebrow>Let&apos;s build it</Eyebrow>
-            <h2 className="service-section-heading">
+            <WordReveal as="h2" className="service-section-heading">
               Ready for a store that actually converts?
-            </h2>
+            </WordReveal>
             <p className="softles-section-copy">
               Tell us about your store and goals. A Shopify expert will get back to
               you on WhatsApp within hours — with a clear plan and quote.
@@ -296,11 +297,11 @@ export default function ShopifyLandingPage() {
       </section>
 
       {/* Minimal footer */}
-      <footer className="border-t border-[#2E3446] bg-[#161C27] py-8">
-        <div className="service-page-container flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-[#C7CCD6]/70">
+      <footer className="border-t border-line bg-panel py-8">
+        <div className="service-page-container flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-mute/70">
           <Image src="/SoftLes.png" alt="SoftLes" width={100} height={30} className="h-7 w-auto object-contain" />
           <span>© {new Date().getFullYear()} SoftLes. All rights reserved.</span>
-          <a href="mailto:info@softles.in" className="hover:text-[#FF4D57] transition">info@softles.in</a>
+          <a href="mailto:info@softles.in" className="hover:text-brand transition">info@softles.in</a>
         </div>
       </footer>
 

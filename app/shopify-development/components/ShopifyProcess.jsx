@@ -1,33 +1,36 @@
 "use client";
 
+import WordReveal from "../../components/_components/WordReveal";
 import ProcessSteps from "../../components/_components/ProcessSteps";
+import { motion } from "framer-motion";
+import { enter } from "@/app/components/_components/motion-presets";
 
 export default function ShopifyProcess() {
   const steps = [
     {
       num: "01",
       title: "Discovery & Strategy",
-      desc: "We align with your brand, audience, and growth goals before defining the right Shopify roadmap.",
+      desc: "We align on your brand, audience, and goals to define the right Shopify roadmap.",
     },
     {
       num: "02",
       title: "UX Planning",
-      desc: "Wireframes, user journeys, and conversion-focused layout planning set the foundation for better results.",
+      desc: "Wireframes and conversion-focused layouts set the foundation for results.",
     },
     {
       num: "03",
       title: "Store Design",
-      desc: "High-fidelity designs that reflect your brand and optimize every shopping interaction across devices.",
+      desc: "High-fidelity designs that reflect your brand and optimize every interaction.",
     },
     {
       num: "04",
-      title: "Development & Integration",
-      desc: "Clean Liquid, React, and API integrations deliver a fast, maintainable Shopify experience.",
+      title: "Build & Integration",
+      desc: "Clean Liquid, React, and API integrations for a fast, maintainable store.",
     },
     {
       num: "05",
-      title: "Launch & Optimization",
-      desc: "QA, performance tuning, and post-launch support ensure your store converts from day one.",
+      title: "Launch & Optimize",
+      desc: "QA, performance tuning, and support so your store converts from day one.",
     },
   ];
 
@@ -37,18 +40,18 @@ export default function ShopifyProcess() {
         
         {/* Section Header */}
         <div className="text-center mb-12">
-          <div className="softles-eyebrow justify-center mb-2">
+          <motion.div {...enter(0)} className="softles-eyebrow justify-center mb-2">
             <span className="softles-eyebrow-line" />
             <span className="softles-eyebrow-text">
               How We Work
             </span>
-          </div>
-          <h2 className="service-section-heading text-[#FFFFFF]">
+          </motion.div>
+          <WordReveal as="h2" className="service-section-heading text-ink">
             Our Shopify Development Process
-          </h2>
-          <p className="softles-section-copy mx-auto">
+          </WordReveal>
+          <motion.p {...enter(2)} className="softles-section-copy mx-auto">
             A structured workflow that delivers on time, on budget, and above expectations — every time.
-          </p>
+          </motion.p>
         </div>
 
         <ProcessSteps steps={steps} />

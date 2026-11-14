@@ -1,27 +1,62 @@
 "use client";
 
-import { SiWordpress } from "react-icons/si";
-import { FiSearch, FiLayers, FiEdit3 } from "react-icons/fi";
+import WordReveal from "../../components/_components/WordReveal";
+import { motion } from "framer-motion";
+
+const EASE = [0.22, 1, 0.36, 1];
+
+const iconProps = {
+  width: 20,
+  height: 20,
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 2,
+  strokeLinecap: "round",
+  strokeLinejoin: "round",
+};
 
 export default function WordPressTrust() {
   const advantages = [
     {
-      icon: <SiWordpress className="w-5 h-5 text-zinc-400 group-hover:text-white transition-colors duration-300" />,
+      icon: (
+        <svg {...iconProps}>
+          <rect x="3" y="3" width="7" height="9" rx="1" />
+          <rect x="14" y="3" width="7" height="5" rx="1" />
+          <rect x="14" y="12" width="7" height="9" rx="1" />
+          <rect x="3" y="16" width="7" height="5" rx="1" />
+        </svg>
+      ),
       title: "Flexible CMS",
       desc: "Manage any type of content — from blogs and portfolios to complex product catalogs — with a customisable admin interface your team can actually use.",
     },
     {
-      icon: <FiSearch className="w-5 h-5 text-zinc-400 group-hover:text-white transition-colors duration-300" />,
+      icon: (
+        <svg {...iconProps}>
+          <circle cx="11" cy="11" r="8" />
+          <path d="m21 21-4.3-4.3" />
+        </svg>
+      ),
       title: "SEO Friendly",
       desc: "Clean semantic markup, fast page speeds, schema support, and deep SEO plugin integrations make WordPress an ideal foundation for organic search growth.",
     },
     {
-      icon: <FiLayers className="w-5 h-5 text-zinc-400 group-hover:text-white transition-colors duration-300" />,
+      icon: (
+        <svg {...iconProps}>
+          <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
+          <polyline points="16 7 22 7 22 13" />
+        </svg>
+      ),
       title: "Scalable Architecture",
-      desc: "Start small and grow without rebuilding. WordPress scales from brochure sites to enterprise platforms with 100k+ products and millions of monthly visitors.",
+      desc: "Start small and grow without rebuilding. WordPress scales from brochure sites to enterprise platforms with millions of monthly visitors.",
     },
     {
-      icon: <FiEdit3 className="w-5 h-5 text-zinc-400 group-hover:text-white transition-colors duration-300" />,
+      icon: (
+        <svg {...iconProps}>
+          <path d="M12 20h9" />
+          <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+        </svg>
+      ),
       title: "Easy Content Management",
       desc: "Empower your marketing team to publish, edit, and update content without developer involvement — no coding knowledge required after launch.",
     },
@@ -30,37 +65,42 @@ export default function WordPressTrust() {
   return (
     <section className="softles-section-secondary" id="why-wordpress">
       <div className="service-page-container">
-        <div className="text-center mb-10">
-          <div className="softles-eyebrow justify-center mb-2">
+        <div className="mb-4">
+          <div className="softles-eyebrow mb-2">
             <span className="softles-eyebrow-line" />
             <span className="softles-eyebrow-text">Platform Advantages</span>
           </div>
-          <h2 className="service-section-heading text-[#FFFFFF]">
+          <WordReveal as="h2" className="service-section-heading text-ink">
             Why Businesses Choose WordPress
-          </h2>
-          <p className="softles-section-copy mx-auto">
+          </WordReveal>
+          <p className="softles-section-copy max-w-xl">
             WordPress powers over 43% of the web for good reason — it&apos;s flexible, scalable, and built for long-term growth.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {/* Stripe-style borderless feature grid */}
+        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-y-10 gap-x-16">
           {advantages.map((item, idx) => (
-            <div
-              key={idx}
-              className="group relative softles-card p-6 flex flex-col"
+            <motion.div
+              key={item.title}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: idx * 0.08, ease: EASE }}
+              className="group flex items-start gap-4"
             >
-              <div className="w-10 h-10 rounded-lg flex items-center justify-center mb-5 bg-[#0E1219] border border-[#2E3446] group-hover:bg-[#FF4D57]/10 group-hover:border-[#FF4D57]/30 transition-all duration-300">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-brand/30 bg-brand/10 text-brand transition-all duration-300 group-hover:border-brand/60 group-hover:bg-brand/15">
                 {item.icon}
+              </span>
+              <div>
+                <h3 className="text-base font-bold text-ink leading-snug mb-2">
+                  {item.title}
+                </h3>
+                <p className="text-mute/75 text-sm leading-relaxed">
+                  {item.desc}
+                </p>
               </div>
-
-              <h3 className="font-bold text-xl text-white mb-3 leading-tight group-hover:text-[#FF4D57] transition-colors duration-300">
-                {item.title}
-              </h3>
-
-              <p className="text-[#C7CCD6] text-sm leading-relaxed">
-                {item.desc}
-              </p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

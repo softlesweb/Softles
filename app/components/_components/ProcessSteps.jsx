@@ -1,101 +1,120 @@
 "use client";
 
+import Image from "next/image";
+import { motion } from "framer-motion";
+import Empathize from "@/public/Empathize.png";
+import Define from "@/public/Define.png";
+import Ideate from "@/public/Ideate.png";
+import Prototype from "@/public/Prototype.png";
+import Test from "@/public/Test.png";
+import useStepSequence from "./useStepSequence";
+
+const EASE = [0.22, 1, 0.36, 1];
+
+// Generic process icons, mapped to steps by position (same set as the
+// homepage "Our Approach" section).
+const stepIcons = [Empathize, Define, Ideate, Prototype, Test];
+
+// One card per step, each carrying its own ghost numeral. The sequence walks
+// itself: the active card lifts and runs a timer along its top edge, and that
+// timer finishing is what hands over to the next — so hovering, which pauses the
+// timer, pauses the whole run.
 export default function ProcessSteps({ steps }) {
+  const flow = useStepSequence(steps.length);
+
   return (
-    <>
-      {/* Mobile & tablet: vertical timeline */}
-      <div className="flex flex-col gap-0 lg:hidden">
-        {steps.map((step, idx) => (
-          <div key={step.num ?? idx} className="flex gap-4 sm:gap-5 group">
-            <div className="flex flex-col items-center">
-              <div className="w-10 h-10 shrink-0 rounded-xl bg-[#0E1219] border border-[#2E3446] flex items-center justify-center group-hover:bg-[#FF4D57]/10 group-hover:border-[#FF4D57]/30 transition-all duration-300">
-                <span className="font-bold text-[#C7CCD6]/80 text-xs sm:text-sm group-hover:text-[#FF4D57] transition-colors">
-                  {step.num}
-                </span>
-              </div>
-              {idx < steps.length - 1 && (
-                <div className="w-px flex-1 min-h-[32px] bg-[#2E3446]/60 my-2" />
-              )}
-            </div>
+    <div
+      ref={flow.ref}
+      onMouseLeave={() => flow.setHovered(null)}
+      className="flex w-full flex-col gap-3.5 sm:grid sm:grid-cols-2 xl:grid-cols-5"
+    >
+      {steps.map((step, idx) => {
+        const on = flow.activeIdx === idx;
+        const done = flow.played > idx;
+        return (
+          <motion.div
+            key={step.num ?? idx}
+            initial={{ opacity: 0, y: 32 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.55, delay: idx * 0.09, ease: EASE }}
+            onMouseEnter={() => flow.setHovered(idx)}
+            style={{ "--stack-top": `${76 + idx * 12}px` }}
+            className={`max-sm:sticky max-sm:top-[var(--stack-top)] relative overflow-hidden rounded-2xl border px-5 pb-6 pt-5 transition-[transform,border-color,background] duration-500 ${
+              on
+                ? "-translate-y-2 border-brand/45 bg-gradient-to-b from-brand-tint to-deep"
+                : `bg-gradient-to-b from-panel to-deep ${done ? "border-brand/20" : "border-line"}`
+            }`}
+          >
+            {/* Timer along the top edge — its end is the hand-off to the next step */}
+            {flow.playingIdx === idx && (
+              <span
+                key={`timer-${idx}-${flow.played}`}
+                aria-hidden="true"
+                onAnimationEnd={flow.advance}
+                className="step-timer absolute left-0 top-0 h-[2px] bg-gradient-to-r from-brand to-brand-2"
+                style={{
+                  animationDuration: `${flow.stepMs}ms`,
+                  animationPlayState: flow.paused ? "paused" : "running",
+                }}
+              />
+            )}
 
-            <div className="flex-1 pb-8">
-              <div className="softles-card p-5">
-                <h3 className="font-bold text-white text-base mb-2 transition-colors duration-300">
-                  {step.title}
-                </h3>
-                <p className="text-[#C7CCD6]/70 text-xs sm:text-sm leading-relaxed">
-                  {step.desc}
-                </p>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
+            <span
+              aria-hidden="true"
+              className={`pointer-events-none absolute -bottom-5 right-3 text-[96px] font-bold leading-none tracking-[-0.05em] transition-colors duration-500 ${
+                on ? "text-brand/[0.13]" : "text-ink/[0.035]"
+              }`}
+              style={{ fontFamily: "var(--font-display), var(--font-body), system-ui, sans-serif" }}
+            >
+              {step.num ?? String(idx + 1).padStart(2, "0")}
+            </span>
 
-      {/* Desktop: horizontal timeline */}
-      <div className="relative hidden lg:flex gap-0">
-        {/* Continuous Solid Structural Guide Line */}
-        <div className="absolute top-5 left-[10%] right-[10%] h-px bg-[#2E3446]/50 z-0" />
-
-        <div className="flex w-full gap-4 relative z-10">
-          {steps.map((step, idx) => (
-            <div key={step.num ?? idx} className="flex-1 flex flex-col items-center text-center group">
-              
-              {/* Number Container aligned with the grid language */}
+            <div className="relative">
               <div
-                className="
-                  w-10 h-10 rounded-xl 
-                  bg-[#0E1219] 
-                  border border-[#2E3446]
-                  flex items-center justify-center
-                  mb-6 relative z-10
-                  transition-all duration-300
-                  group-hover:border-[#FF4D57]/30
-                  group-hover:bg-[#FF4D57]/10
-                "
+                className={`flex h-11 w-11 items-center justify-center rounded-xl border transition-all duration-500 ${
+                  on
+                    ? "scale-105 border-brand/55 bg-brand/16"
+                    : "border-brand/25 bg-brand/[0.08]"
+                }`}
               >
-                <span
-                  className="
-                    font-bold text-[#C7CCD6]/80 text-sm
-                    transition-colors duration-300
-                    group-hover:text-[#FF4D57]
-                  "
-                >
-                  {step.num}
-                </span>
+                {/* The icons are portrait, not square, so the static import's
+                    own dimensions are kept and CSS sets the width — declaring a
+                    square box would reserve the wrong space for them. */}
+                <Image
+                  src={stepIcons[idx % stepIcons.length]}
+                  alt={`Process step icon for ${step.title}`}
+                  className="step-icon h-auto w-[26px]"
+                />
               </div>
 
-              {/* Card - Symmetrical hover response with prior sections */}
-              <div
-                className="
-                  softles-card
-                  p-5
-                  w-full
-                  flex-1
-                "
+              <span
+                className={`mt-4 block text-[10.5px] font-black uppercase tracking-[0.18em] transition-colors duration-500 ${
+                  on || done ? "text-brand" : "text-mute/40"
+                }`}
               >
-                <h3
-                  className="
-                    font-bold 
-                    text-white
-                    text-base
-                    mb-2.5
-                    transition-colors duration-300
-                    group-hover:text-[#FF4D57]
-                  "
-                >
-                  {step.title}
-                </h3>
+                Step {step.num ?? String(idx + 1).padStart(2, "0")}
+              </span>
 
-                <p className="text-[#C7CCD6]/70 text-xs sm:text-sm leading-relaxed">
-                  {step.desc}
-                </p>
-              </div>
+              <h3
+                className={`mt-1.5 text-[16.5px] font-bold leading-snug tracking-tight transition-colors duration-500 ${
+                  on ? "text-ink" : "text-soft"
+                }`}
+              >
+                {step.title}
+              </h3>
 
+              <p
+                className={`mt-2 text-[13px] leading-relaxed transition-colors duration-500 ${
+                  on ? "text-mute" : "text-dim"
+                }`}
+              >
+                {step.desc}
+              </p>
             </div>
-          ))}
-        </div>
-      </div>
-    </>
+          </motion.div>
+        );
+      })}
+    </div>
   );
 }

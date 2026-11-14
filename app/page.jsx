@@ -1,9 +1,10 @@
 import Footer from "./components/Footer";
 import Hero from "./components/Hero";
-import FeaturedCaseStudy from "./components/FeaturedCaseStudy";
+import WorkShowcase from "./components/WorkShowcase";
 import OurServicesSection from "./components/OurServicesSection";
 // import IndustriesSection from "./components/IndustriesSection";
 import OurApproachSection from "./components/OurApproachSection";
+import StatementSection from "./components/StatementSection";
 // import TestimonialsSection from "./components/TestimonialsSection";
 import ContactSection from "./components/ContactSection";
 import OurTeamSection from "./components/OurTeamSection";
@@ -14,10 +15,11 @@ export const metadata = {
 
 export default function Home() {
   return (
-    <main className="bg-[#0E1219] overflow-x-hidden sm:pt-[60px]">
+    <main className="bg-page overflow-x-clip">
       <Hero />
-      <FeaturedCaseStudy />
+      <WorkShowcase />
       <OurServicesSection />
+      <StatementSection />
       {/* <IndustriesSection /> */}
       <OurApproachSection />
       {/* <TestimonialsSection /> */}
