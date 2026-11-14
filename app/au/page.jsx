@@ -4,6 +4,8 @@ import BookingEmbed from "./components/BookingEmbed";
 import RequestCta from "./components/RequestCta";
 import HeroGreeting from "./components/HeroGreeting";
 import StickyBar from "./components/StickyBar";
+import Arrow from "./components/Arrow";
+import { AuFooter, AuHeader } from "./components/AuChrome";
 
 // Shakti's Google Calendar booking page (a public link, safe to keep in code).
 // NEXT_PUBLIC_AU_BOOKING_URL overrides it per environment; Calendly and Cal.com links work too.
@@ -73,11 +75,34 @@ const REVIEWS = [
   },
 ];
 
-const WRAP = "mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8";
-const H2 = "font-display text-[clamp(2rem,5vw,3.5rem)] font-bold leading-[1.04] tracking-[-0.025em]";
+// Icons for the three leaks, drawn like the main site's line icons.
+const ICONS = {
+  speed: (
+    <>
+      <path d="M12 14l4-4" />
+      <path d="M3.34 19a10 10 0 1 1 17.32 0" />
+    </>
+  ),
+  checkout: (
+    <>
+      <circle cx="9" cy="21" r="1" />
+      <circle cx="20" cy="21" r="1" />
+      <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+    </>
+  ),
+  ops: (
+    <>
+      <path d="M17 1l4 4-4 4" />
+      <path d="M3 11V9a4 4 0 0 1 4-4h14" />
+      <path d="M7 23l-4-4 4-4" />
+      <path d="M21 13v2a4 4 0 0 1-4 4H3" />
+    </>
+  ),
+};
 
 const LEAKS = [
   {
+    icon: "speed",
     where: "Product page",
     name: "Speed leak",
     line: "Every extra second on mobile costs you buyers you paid to bring in.",
@@ -85,6 +110,7 @@ const LEAKS = [
       "Heavy themes, full-size images and a stack of app scripts make the first screen wait. Someone tapping through from an ad won't.",
   },
   {
+    icon: "checkout",
     where: "Cart and checkout",
     name: "Checkout leak",
     line: "Shoppers want to buy. The cart makes it hard.",
@@ -92,6 +118,7 @@ const LEAKS = [
       "Shipping costs that appear too late, fiddly variant pickers and a mobile cart that fights the thumb.",
   },
   {
+    icon: "ops",
     where: "Back office",
     name: "Ops leak",
     line: "Your team copies orders between apps every Monday.",
@@ -99,6 +126,30 @@ const LEAKS = [
       "Hours of manual work that slow down fulfilment and let small mistakes reach customers.",
   },
 ];
+
+// The main site's section opener: red line + uppercase label, then the heading.
+function Eyebrow({ children }) {
+  return (
+    <p className="softles-eyebrow mb-2">
+      <span className="softles-eyebrow-line" aria-hidden="true" />
+      <span className="softles-eyebrow-text">{children}</span>
+    </p>
+  );
+}
+
+// The ◆ bullet from the main site's service cards.
+function Diamond() {
+  return (
+    <span aria-hidden="true" className="mt-[0.35em] shrink-0 text-xs leading-none text-brand">
+      ◆
+    </span>
+  );
+}
+
+const H2 = "service-section-heading mt-2";
+// softles-section-primary / -secondary, with one border between sections instead of two.
+const SECTION = "w-full scroll-mt-16 border-t border-line bg-page py-12 md:py-20";
+const SECTION_ALT = "w-full scroll-mt-16 border-t border-line bg-panel py-12 md:py-20";
 
 const STAGES = [
   {
@@ -277,20 +328,20 @@ function Photo({ src, widths, sizes, width, height, alt = "", className }) {
 
 const dollars = (n) => `$${n.toLocaleString("en-AU")}`;
 
-// A torn-off monthly app bill, with the apps we'd change struck through.
+// A monthly app bill, with the apps we'd change struck through.
 function AppBill() {
   const saved = APP_BILL.changes.reduce((sum, line) => sum + line.cost, 0);
   const kept = APP_BILL.apps - APP_BILL.changes.length;
-  const rule = "border-t border-dashed border-[#0E1016]/30";
+  const rule = "border-t border-dashed border-line-2";
 
   return (
     <figure>
-      <div className="au-receipt au-mono bg-[#F3EFE8] px-5 pb-10 pt-6 text-sm text-[#0E1016] sm:px-7">
-        <p className="flex justify-between gap-4 font-medium">
+      <div className="rounded-2xl border border-line bg-gradient-to-br from-raise to-panel p-5 text-sm tabular-nums text-ink shadow-[var(--shadow-card)] sm:p-7">
+        <p className="flex justify-between gap-4 font-bold">
           <span>Monthly app bill</span>
-          <span className="text-[#545866]">AUD</span>
+          <span className="font-normal text-dim">AUD</span>
         </p>
-        <p className={`mt-4 flex justify-between gap-4 pt-4 ${rule}`}>
+        <p className={`mt-4 flex justify-between gap-4 pt-4 text-mute ${rule}`}>
           <span>{APP_BILL.apps} apps</span>
           <span>{dollars(APP_BILL.monthly)}</span>
         </p>
@@ -299,18 +350,18 @@ function AppBill() {
           {APP_BILL.changes.map((line) => (
             <li key={line.app}>
               <p className="flex justify-between gap-4">
-                <span>{line.app}</span>
-                <span className="shrink-0">
+                <span className="font-semibold">{line.app}</span>
+                <span className="shrink-0 text-mute">
                   <span className="sr-only">saves </span>
-                  <s className="decoration-[#FF4D57] decoration-2">{dollars(line.cost)}</s>
+                  <s className="decoration-brand decoration-2">{dollars(line.cost)}</s>
                 </span>
               </p>
-              <p className="mt-0.5 text-xs leading-relaxed text-[#545866]">{line.note}</p>
+              <p className="mt-0.5 text-xs leading-relaxed text-mute/75">{line.note}</p>
             </li>
           ))}
         </ul>
 
-        <dl className={`mt-4 grid gap-1.5 pt-4 ${rule}`}>
+        <dl className={`mt-4 grid gap-1.5 pt-4 text-mute ${rule}`}>
           <div className="flex justify-between gap-4">
             <dt>New monthly bill, {kept} apps</dt>
             <dd>{dollars(APP_BILL.monthly - saved)}</dd>
@@ -319,15 +370,15 @@ function AppBill() {
             <dt>Saved each month</dt>
             <dd>{dollars(saved)}</dd>
           </div>
-          <div className="mt-3 flex items-baseline justify-between gap-4">
-            <dt className="font-medium">Saved each year</dt>
+          <div className="mt-3 flex items-baseline justify-between gap-4 text-ink">
+            <dt className="font-bold">Saved each year</dt>
             <dd className="font-display text-4xl font-bold tracking-[-0.03em] sm:text-5xl">
-              {dollars(saved * 12)}
+              <span className="softles-gradient-text">{dollars(saved * 12)}</span>
             </dd>
           </div>
         </dl>
       </div>
-      <figcaption className="mt-4 text-sm text-[#A9AFBC]">
+      <figcaption className="mt-4 text-sm text-mute/80">
         A worked example: {Math.round((saved / APP_BILL.monthly) * 100)}% off a {dollars(APP_BILL.monthly)}{" "}
         monthly bill. Your saving depends on the apps you run.
       </figcaption>
@@ -335,23 +386,50 @@ function AppBill() {
   );
 }
 
-// The store as shoppers see it: desktop home page, with the phone version over its corner.
+// The store as shoppers see it, in the same browser frame as the main site's hero:
+// desktop home page, with the phone version over its corner. The frame stays dark in both themes.
 function WorkShots() {
   return (
     <figure className="relative pb-10 pr-6 sm:pr-10">
-      <div className="overflow-hidden rounded-[14px] border border-[#0E1016]/15 bg-white">
-        <p className="au-mono border-b border-[#0E1016]/10 px-4 py-2 text-xs text-[#545866]">brunswickfurfood.com</p>
-        <Photo
-          src="/work/brunswick-hero.jpg"
-          widths={[640, 828, 1080]}
-          sizes="(min-width: 1200px) 640px, (min-width: 768px) 55vw, 100vw"
-          width={1100}
-          height={652}
-          alt="Brunswick Fur Food home page on desktop"
-          className="block h-auto w-full"
-        />
+      <div className="rounded-2xl border border-white/20 bg-[#0b0d12] p-2.5 shadow-[0_40px_90px_rgba(0,0,0,0.55)]">
+        <div className="flex items-center gap-2 px-1 pb-2">
+          <span className="flex shrink-0 gap-1.5" aria-hidden="true">
+            <span className="h-2.5 w-2.5 rounded-full bg-[#FF5F57]" />
+            <span className="h-2.5 w-2.5 rounded-full bg-[#FEBC2E]" />
+            <span className="h-2.5 w-2.5 rounded-full bg-[#28C840]" />
+          </span>
+          <span className="ml-1 flex min-w-0 flex-1 items-center gap-1.5 rounded-md border border-white/10 bg-[#161C27] px-2.5 py-1 text-[10px] font-medium text-[#7C8394]">
+            <svg
+              width="9"
+              height="9"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+              className="shrink-0"
+            >
+              <rect x="5" y="11" width="14" height="10" rx="2" />
+              <path d="M8 11V7a4 4 0 0 1 8 0v4" />
+            </svg>
+            <span className="truncate text-white/90">brunswickfurfood.com</span>
+          </span>
+        </div>
+        <div className="overflow-hidden rounded-xl bg-white">
+          <Photo
+            src="/work/brunswick-hero.jpg"
+            widths={[640, 828, 1080]}
+            sizes="(min-width: 1440px) 700px, (min-width: 1024px) 55vw, 100vw"
+            width={1100}
+            height={652}
+            alt="Brunswick Fur Food home page on desktop"
+            className="block h-auto w-full"
+          />
+        </div>
       </div>
-      <div className="absolute bottom-0 right-0 w-[34%] max-w-[200px] overflow-hidden rounded-[22px] border-[5px] border-[#0E1016] bg-[#0E1016] shadow-[0_24px_48px_-24px_rgba(14,16,22,0.55)]">
+      <div className="absolute bottom-0 right-0 w-[34%] max-w-[200px] overflow-hidden rounded-[22px] border-[5px] border-[#0b0d12] bg-[#0b0d12] shadow-[0_24px_48px_-20px_rgba(0,0,0,0.7)]">
         <Photo
           src="/work/brunswick-p0-m-top.jpg"
           widths={[256, 384]}
@@ -366,200 +444,204 @@ function WorkShots() {
   );
 }
 
+const LABEL = "text-xs font-bold uppercase tracking-[0.18em] text-dim";
+const TEXT_LINK = "font-semibold text-ink underline decoration-brand decoration-2 underline-offset-[5px]";
+
 export default function AuLandingPage() {
   return (
     <main className="overflow-x-clip pb-24 md:pb-0">
-      <header className="border-b border-[#2A2E3A]">
-        <div className={`${WRAP} flex h-16 items-center justify-between`}>
-          <a href="/" aria-label="Softles home">
-            <img src="/SoftLes.png" alt="Softles" width={101} height={40} className="h-8 w-auto" />
-          </a>
-          <BookCallLink
-            placement="header"
-            className="rounded-full border border-white/30 px-4 py-2 text-sm font-semibold text-white transition-colors hover:border-white"
-          >
-            Book a call
-          </BookCallLink>
+      <AuHeader overlay />
+
+      {/* Hero: copy on the left, the free check on the main site's colour canvas.
+          Top padding includes the 60/64px header that sits over it. */}
+      <section id="hero" className="relative scroll-mt-16 overflow-hidden bg-page pb-16 pt-[108px] md:pt-[124px] lg:pb-24 lg:pt-[144px]">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 top-0 h-[520px] bg-[linear-gradient(135deg,#FF4D57_0%,#FF6A3D_38%,#6D5EF6_100%)] opacity-[0.92] [clip-path:polygon(0_0,100%_0,100%_86%,0_100%)] lg:inset-y-0 lg:left-auto lg:right-0 lg:h-full lg:w-[62vw] lg:[clip-path:polygon(22%_0,100%_0,100%_78%,0_100%)]"
+        >
+          <span className="absolute inset-0 bg-[radial-gradient(60%_60%_at_30%_20%,rgba(255,255,255,0.32),transparent_60%)]" />
         </div>
-      </header>
+        {/* Veil so the copy keeps its contrast over the canvas */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 top-0 h-[520px] bg-[linear-gradient(180deg,rgb(var(--c-page)/0.2),rgb(var(--c-page))_92%)] [clip-path:polygon(0_0,100%_0,100%_86%,0_100%)] lg:inset-y-0 lg:left-auto lg:right-0 lg:h-full lg:w-[62vw] lg:bg-[linear-gradient(90deg,rgb(var(--c-page))_0%,rgb(var(--c-page)/0.55)_34%,transparent_62%)] lg:[clip-path:polygon(22%_0,100%_0,100%_78%,0_100%)]"
+        />
 
-      {/* Hero: the full stop in "sales." drips toward the check below it. */}
-      <section id="hero" className="pb-16 pt-10 md:pb-24 md:pt-16">
-        <div className={WRAP}>
-          <HeroGreeting>
-            <p className="au-mono min-h-[2.5rem] text-sm uppercase tracking-[0.08em] text-[#A9AFBC] sm:min-h-0">
-              Shopify specialists for Australian brands
-            </p>
-          </HeroGreeting>
-
-          <h1 className="mt-4 font-display text-[clamp(2.6rem,10vw,7.25rem)] font-bold leading-[0.95] tracking-[-0.035em]">
-            <span className="block">Your store is</span>
-            <span className="block">
-              leaking{" "}
-              <span className="au-serif tracking-normal">
-                sales<span className="au-stop">.</span>
-              </span>
-            </span>
-          </h1>
-
-          <div className="mt-8 grid gap-8 md:mt-12 md:grid-cols-12 md:gap-10">
-            <div className="md:col-span-5">
-              <p className="max-w-[34rem] text-lg leading-relaxed text-[#D6D9E0] md:text-xl">
+        <div className="service-page-container relative z-10">
+          <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
+            <div className="max-w-2xl">
+              <HeroGreeting>
+                <Eyebrow>Shopify for Australian brands</Eyebrow>
+              </HeroGreeting>
+              <h1 className="mt-4 text-[2.1rem] font-extrabold leading-[1.1] tracking-[-0.03em] text-ink sm:text-5xl sm:leading-[1.08] lg:text-[54px] lg:leading-[1.07] xl:text-[60px]">
+                Your store is <br className="hidden sm:block" />
+                <span className="softles-gradient-text">leaking sales.</span>
+              </h1>
+              <p className="mt-6 max-w-[50ch] text-base leading-relaxed text-mute lg:text-lg">
                 Slow pages, clunky mobile checkout and manual ops cost you the traffic you already paid
                 for. We find the leaks and fix them.
               </p>
-              <ul className="mt-6 grid gap-2 text-sm text-[#A9AFBC]">
-                <li>Shopify specialists, with a named project lead</li>
-                <li>Prices in AUD</li>
-                <li>Calls 1–5 pm AEDT</li>
+              <div className="mt-9 flex flex-col items-center gap-4 sm:flex-row sm:gap-5">
+                <BookCallLink placement="hero" className="softles-primary-button group w-full whitespace-nowrap sm:w-auto">
+                  <span>Book a call with Shakti</span>
+                  <Arrow />
+                </BookCallLink>
+                <a href="#work" className="softles-secondary-button w-full whitespace-nowrap sm:w-auto">
+                  See our work
+                </a>
+              </div>
+              <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-mute">
+                {["Shopify specialists, with a named project lead", "Prices in AUD", "Calls 1–5 pm AEDT"].map(
+                  (item) => (
+                    <li key={item} className="flex gap-2">
+                      <Diamond />
+                      {item}
+                    </li>
+                  ),
+                )}
               </ul>
-              <BookCallLink
-                placement="hero"
-                className="mt-6 hidden font-semibold text-white underline decoration-[#FF4D57] decoration-2 underline-offset-[6px] md:inline-block"
-              />
             </div>
-            <div className="md:col-span-7">
+            <div className="w-full lg:max-w-[560px] lg:justify-self-end">
               <LeakCheck id="store-url" placement="hero" prefillFromRef />
-              <BookCallLink
-                placement="hero"
-                className="mt-5 inline-block font-semibold text-white underline decoration-[#FF4D57] decoration-2 underline-offset-[6px] md:hidden"
-              />
             </div>
           </div>
         </div>
       </section>
 
       {/* The leak */}
-      <section className="bg-[#F3EFE8] py-20 text-[#0E1016] md:py-28">
-        <div className={WRAP}>
-          <h2 className={`${H2} max-w-[18ch]`}>Three places paid traffic drains out of a Shopify store</h2>
-          <div className="mt-14 md:mt-16">
-            <ol className="au-pipe">
-              {LEAKS.map((leak) => (
-                <li key={leak.name} className="au-pipe-node">
-                  <span className="au-joint" aria-hidden="true" />
-                  <span className="au-drop" aria-hidden="true" />
-                  <p className="au-mono text-xs uppercase tracking-[0.08em] text-[#545866]">{leak.where}</p>
-                  <h3 className="mt-2 text-2xl font-bold">{leak.name}</h3>
-                  <p className="mt-3 text-lg font-medium leading-snug">{leak.line}</p>
-                  <p className="mt-3 leading-relaxed text-[#545866]">{leak.detail}</p>
-                </li>
-              ))}
-            </ol>
-          </div>
+      <section className={SECTION_ALT}>
+        <div className="service-page-container">
+          <Eyebrow>Where sales go</Eyebrow>
+          <h2 className={`${H2} max-w-[22ch]`}>Three places paid traffic drains out of a Shopify store</h2>
+          <ul className="mt-10 grid gap-5 md:mt-12 md:grid-cols-3">
+            {LEAKS.map((leak) => (
+              <li key={leak.name} className="softles-card group flex flex-col p-6 xl:p-7">
+                <span className="softles-icon-box" aria-hidden="true">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    {ICONS[leak.icon]}
+                  </svg>
+                </span>
+                <p className={`mt-5 ${LABEL}`}>{leak.where}</p>
+                <h3 className="mt-2 text-lg font-bold leading-tight text-ink xl:text-xl">{leak.name}</h3>
+                <p className="mt-3 font-medium leading-snug text-soft">{leak.line}</p>
+                <p className="mt-2.5 text-sm leading-relaxed text-mute/75">{leak.detail}</p>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
-      {/* How we fix it: the same pipe, patched stage by stage */}
-      <section className="py-20 md:py-28">
-        <div className={WRAP}>
-          <h2 className={`${H2} max-w-[20ch]`}>
-            How we fix it: one sprint, <span className="au-serif font-normal tracking-normal">three stages</span>
+      {/* How we fix it: three stages of one sprint */}
+      <section className={SECTION}>
+        <div className="service-page-container">
+          <Eyebrow>How we fix it</Eyebrow>
+          <h2 className={H2}>
+            One sprint, <span className="softles-gradient-text">three stages.</span>
           </h2>
-          <p className="mt-5 max-w-[40rem] text-lg leading-relaxed text-[#A9AFBC]">
+          <p className="softles-section-copy">
             Speed, UX and automation aren&apos;t three separate products. They&apos;re three stages of the
             same job, done in this order.
           </p>
-          <div className="mt-14 md:mt-16">
-            <ol className="au-pipe au-pipe--fixed">
-              {STAGES.map((stage) => (
-                <li key={stage.n} className="au-pipe-node">
-                  <span className="au-stage au-mono" aria-hidden="true">
-                    {stage.n}
-                  </span>
-                  <h3 className="text-2xl font-bold">
-                    <span className="sr-only">Stage {stage.n}: </span>
-                    {stage.name}
-                  </h3>
-                  <ul className="mt-4 grid gap-3 text-[#D6D9E0]">
-                    {stage.does.map((item) => (
-                      <li key={item} className="flex gap-3 leading-relaxed">
-                        <span aria-hidden="true" className="mt-[0.6em] h-1.5 w-1.5 shrink-0 rounded-full bg-[#FF4D57]" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                  <p className="mt-5 border-t border-[#2A2E3A] pt-4 text-white">
-                    <span className="text-[#A9AFBC]">You notice: </span>
-                    {stage.notice}
-                  </p>
-                </li>
-              ))}
-            </ol>
-          </div>
+          <ol className="mt-10 grid gap-5 md:mt-12 md:grid-cols-3">
+            {STAGES.map((stage) => (
+              <li key={stage.n} className="softles-card flex flex-col p-6 xl:p-7">
+                <p aria-hidden="true" className="font-display text-4xl font-bold leading-none">
+                  <span className="softles-gradient-text">{stage.n}</span>
+                </p>
+                <h3 className="mt-4 text-lg font-bold leading-tight text-ink xl:text-xl">
+                  <span className="sr-only">Stage {stage.n}: </span>
+                  {stage.name}
+                </h3>
+                <ul className="mt-4 flex flex-col">
+                  {stage.does.map((item) => (
+                    <li key={item} className="flex gap-3 border-t border-line py-3 text-sm leading-relaxed text-mute">
+                      <Diamond />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-auto border-t border-line pt-4 text-sm leading-relaxed text-ink">
+                  <span className="text-dim">You notice: </span>
+                  {stage.notice}
+                </p>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
       {/* Proof: a store we rebuilt, and what clients say */}
-      <section id="work" className="scroll-mt-4 bg-[#F3EFE8] py-20 text-[#0E1016] md:py-28">
-        <div className={WRAP}>
-          <h2 className={`${H2} max-w-[18ch]`}>
-            A Shopify store we rebuilt in <span className="au-serif font-normal tracking-normal">Melbourne.</span>
+      <section id="work" className={SECTION_ALT}>
+        <div className="service-page-container">
+          <Eyebrow>Proof of work</Eyebrow>
+          <h2 className={`${H2} max-w-[20ch]`}>
+            A Shopify store we rebuilt in <span className="softles-gradient-text">Melbourne.</span>
           </h2>
 
-          <div className="mt-12 grid items-start gap-12 md:mt-16 md:grid-cols-12 md:gap-10">
-            <div className="md:col-span-7">
+          <div className="mt-10 grid items-start gap-12 md:mt-12 lg:grid-cols-12 lg:gap-10">
+            <div className="lg:col-span-7">
               <WorkShots />
             </div>
-            <div className="md:col-span-5">
-              <h3 className="text-2xl font-bold">{WORK.client}</h3>
-              <p className="mt-1 text-[#545866]">{WORK.where}</p>
-              <p className="mt-5 text-lg leading-relaxed">{WORK.summary}</p>
-              <ul className="mt-6 grid gap-2">
+            <div className="lg:col-span-5">
+              <h3 className="text-2xl font-bold text-ink">{WORK.client}</h3>
+              <p className="mt-1 text-sm font-semibold text-brand">{WORK.where}</p>
+              <p className="mt-5 leading-relaxed text-mute">{WORK.summary}</p>
+              <ul className="mt-6 flex flex-col">
                 {WORK.built.map((item) => (
-                  <li key={item} className="flex gap-3 leading-relaxed">
-                    <span aria-hidden="true" className="mt-[0.6em] h-1.5 w-1.5 shrink-0 rounded-full bg-[#FF4D57]" />
+                  <li key={item} className="flex gap-3 border-t border-line py-3 text-sm leading-relaxed text-mute">
+                    <Diamond />
                     {item}
                   </li>
                 ))}
               </ul>
-              <dl className="mt-8 grid grid-cols-2 gap-6 border-t border-[#0E1016]/15 pt-6">
+              <dl className="mt-4 grid grid-cols-2 gap-5">
                 {WORK.numbers.map((n) => (
-                  <div key={n.label} className="flex flex-col-reverse">
-                    <dt className="text-[#545866]">{n.label}</dt>
-                    <dd className="font-display text-5xl font-bold tracking-[-0.03em]">{n.value}</dd>
+                  <div key={n.label} className="flex flex-col-reverse rounded-2xl border border-line bg-page p-5">
+                    <dt className="mt-1 text-sm text-mute">{n.label}</dt>
+                    <dd className="font-display text-4xl font-bold tracking-[-0.03em] text-ink sm:text-5xl">{n.value}</dd>
                   </div>
                 ))}
               </dl>
-              <p className="mt-8 flex flex-wrap gap-x-6 gap-y-3 font-semibold">
-                <a
-                  href={WORK.site}
-                  target="_blank"
-                  rel="noopener"
-                  className="underline decoration-[#FF4D57] decoration-2 underline-offset-[6px]"
-                >
-                  Visit the live store
-                </a>
-                <a
-                  href={WORK.caseStudy}
-                  className="underline decoration-[#0E1016]/30 decoration-2 underline-offset-[6px] hover:decoration-[#0E1016]"
-                >
+              <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
+                <a href={WORK.caseStudy} className="softles-secondary-button whitespace-nowrap">
                   Read the case study
                 </a>
-              </p>
+                <a href={WORK.site} target="_blank" rel="noopener" className={TEXT_LINK}>
+                  Visit the live store
+                </a>
+              </div>
             </div>
           </div>
 
-          <h3 className="mt-20 text-2xl font-bold md:mt-28">What clients say</h3>
-          <ul className="mt-8 grid gap-12 md:grid-cols-2">
+          <h3 className="mt-16 text-2xl font-bold text-ink md:mt-20">What clients say</h3>
+          <ul className="mt-8 grid gap-5 md:grid-cols-2">
             {REVIEWS.map((review) => (
-              <li key={review.name} className="border-t-2 border-[#0E1016] pt-6">
-                <figure>
-                  <blockquote className="au-serif text-[1.6rem] leading-[1.3] sm:text-[1.85rem]">
-                    “{review.quote}”
+              <li key={review.name} className="softles-card p-6 md:p-8">
+                <figure className="flex h-full flex-col">
+                  <blockquote className="flex-1 text-base font-medium italic leading-relaxed text-soft md:text-lg">
+                    &ldquo;{review.quote}&rdquo;
                   </blockquote>
-                  <figcaption className="mt-6 flex items-center gap-4">
+                  <figcaption className="mt-6 flex items-center gap-4 border-t border-line pt-5">
                     <Photo
                       src={review.img}
-                      widths={[48, 96]}
-                      sizes="48px"
-                      width={48}
-                      height={48}
-                      className="h-12 w-12 rounded-full object-cover"
+                      widths={[64, 128]}
+                      sizes="56px"
+                      width={56}
+                      height={56}
+                      className="h-14 w-14 rounded-full border-4 border-page object-cover shadow-md"
                     />
                     <span>
-                      <span className="block font-semibold">{review.name}</span>
-                      <span className="block text-sm text-[#545866]">{review.role}</span>
+                      <span className="block font-semibold text-ink">{review.name}</span>
+                      <span className="block text-sm text-mute">{review.role}</span>
                     </span>
                   </figcaption>
                 </figure>
@@ -570,46 +652,47 @@ export default function AuLandingPage() {
       </section>
 
       {/* The app bill: a smaller first job that pays for itself */}
-      <section id="apps" className="scroll-mt-4 bg-[#171A22] py-20 md:py-28">
-        <div className={`${WRAP} grid gap-12 md:grid-cols-12 md:gap-x-10 md:gap-y-14`}>
-          <div className="md:col-span-6">
+      <section id="apps" className={SECTION}>
+        <div className="service-page-container grid gap-12 lg:grid-cols-12 lg:gap-x-10 lg:gap-y-12">
+          <div className="lg:col-span-6">
+            <Eyebrow>{APP_AUDIT.name}</Eyebrow>
             <h2 className={H2}>
-              Cut your app bill by{" "}
-              <span className="au-serif whitespace-nowrap font-normal tracking-normal">a quarter.</span>
+              Cut your app bill by <span className="softles-gradient-text whitespace-nowrap">a quarter.</span>
             </h2>
-            <p className="mt-5 max-w-[36rem] text-lg leading-relaxed text-[#D6D9E0]">
+            <p className="softles-section-copy">
               Apps get added one problem at a time and rarely come out. Each one bills you every month,
               and many load scripts on every page, which slows the store down. We go through the whole
               stack and tell you what to keep, what to swap and what to cut.
             </p>
           </div>
 
-          <div className="md:col-span-5 md:col-start-8 md:row-span-2 md:row-start-1">
-            <div className="md:sticky md:top-8">
+          <div className="lg:col-span-5 lg:col-start-8 lg:row-span-2 lg:row-start-1">
+            <div className="lg:sticky lg:top-24">
               <AppBill />
             </div>
           </div>
 
-          <div className="md:col-span-6">
-            <ol className="grid gap-6">
+          <div className="lg:col-span-6">
+            <ol className="flex flex-col">
               {APP_STEPS.map((step, index) => (
-                <li key={step.name} className="grid grid-cols-[2rem_1fr] gap-x-3">
-                  <span aria-hidden="true" className="au-mono pt-0.5 text-[#FF4D57]">
-                    {index + 1}
+                <li
+                  key={step.name}
+                  className="grid grid-cols-[2.5rem_1fr] gap-x-3 border-t border-line py-5 first:border-t-0 first:pt-0"
+                >
+                  <span aria-hidden="true" className="font-display text-xl font-bold leading-snug text-brand">
+                    {String(index + 1).padStart(2, "0")}
                   </span>
                   <div>
-                    <h3 className="text-lg font-semibold text-white">{step.name}</h3>
-                    <p className="mt-1 leading-relaxed text-[#A9AFBC]">{step.detail}</p>
+                    <h3 className="text-base font-bold text-ink sm:text-lg">{step.name}</h3>
+                    <p className="mt-1 text-sm leading-relaxed text-mute/80 sm:text-base">{step.detail}</p>
                   </div>
                 </li>
               ))}
             </ol>
-            <p className="mt-10 border-t border-[#2A2E3A] pt-6 text-lg text-[#D6D9E0]">
-              The {APP_AUDIT.name} is {APP_AUDIT.price} and takes {APP_AUDIT.time}.{" "}
-              <a
-                href="#offer"
-                className="font-semibold text-white underline decoration-[#FF4D57] decoration-2 underline-offset-[6px]"
-              >
+            <p className="mt-4 border-t border-line pt-6 text-mute">
+              The {APP_AUDIT.name} is <span className="font-semibold text-ink">{APP_AUDIT.price}</span> and
+              takes {APP_AUDIT.time}.{" "}
+              <a href="#offer" className={TEXT_LINK}>
                 Compare the three ways to start
               </a>
             </p>
@@ -618,72 +701,73 @@ export default function AuLandingPage() {
       </section>
 
       {/* Three ways to start */}
-      <section id="offer" className="scroll-mt-4 bg-[#F3EFE8] py-20 text-[#0E1016] md:py-28">
-        <div className={WRAP}>
+      <section id="offer" className={SECTION_ALT}>
+        <div className="service-page-container">
+          <Eyebrow>Ways to start</Eyebrow>
           <h2 className={H2}>
-            Three ways <span className="au-serif font-normal tracking-normal">to start.</span>
+            Three ways <span className="softles-gradient-text">to start.</span>
           </h2>
-          <p className="mt-5 max-w-[40rem] text-lg leading-relaxed text-[#2A2E3A]">
+          <p className="softles-section-copy">
             Each one is a fixed price in AUD and stands on its own. Not sure which fits?{" "}
-            <BookCallLink
-              placement="offer_intro"
-              className="font-semibold text-[#0E1016] underline decoration-[#FF4D57] decoration-2 underline-offset-[5px]"
-            >
+            <BookCallLink placement="offer_intro" className={TEXT_LINK}>
               Book a call
             </BookCallLink>{" "}
             and Shakti will tell you, even if the answer is none of them.
           </p>
 
-          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+          <div className="mt-10 grid gap-5 md:mt-12 lg:grid-cols-3">
             {OFFERS.map((offer) => {
-              const dark = offer.id === "leak";
-              const label = `au-mono text-xs uppercase tracking-[0.08em] ${dark ? "text-[#A9AFBC]" : "text-[#545866]"}`;
+              const featured = offer.id === "leak";
               return (
                 <article
                   key={offer.id}
-                  className={`flex flex-col rounded-[18px] p-6 sm:p-8 ${
-                    dark ? "bg-[#0E1016] text-white" : "border-2 border-[#0E1016]"
+                  className={`flex flex-col p-6 sm:p-8 ${
+                    featured
+                      ? "rounded-2xl border border-brand/50 bg-gradient-to-br from-brand-tint to-panel shadow-[var(--shadow-card-hover)]"
+                      : "softles-card"
                   }`}
                 >
-                  <h3 className="text-2xl font-bold">{offer.name}</h3>
-                  <p className={`mt-3 text-lg leading-snug ${dark ? "text-white" : "text-[#0E1016]"}`}>
-                    <span className={dark ? "text-[#A9AFBC]" : "text-[#545866]"}>Pick this if </span>
+                  <h3 className="text-xl font-bold text-ink sm:text-2xl">{offer.name}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-mute sm:text-base">
+                    <span className="text-dim">Pick this if </span>
                     {offer.fit}
                   </p>
-                  <p className="mt-6 font-display text-[clamp(2.25rem,3.4vw,2.75rem)] font-bold leading-none tracking-[-0.03em]">
-                    {offer.from ? <span className="mr-2 text-lg font-semibold tracking-normal">From</span> : null}
+                  <p className="mt-6 font-display text-[clamp(2.25rem,3.4vw,2.75rem)] font-bold leading-none tracking-[-0.03em] text-ink">
+                    {offer.from ? (
+                      <span className="mr-2 text-base font-semibold tracking-normal text-mute">From</span>
+                    ) : null}
                     {offer.price}
                   </p>
-                  <dl className={`mt-6 grid gap-5 ${dark ? "text-[#D6D9E0]" : "text-[#2A2E3A]"}`}>
+                  <dl className="mt-6 grid gap-5 text-sm text-mute sm:text-base">
                     <div>
-                      <dt className={label}>Time</dt>
-                      <dd className="mt-1 text-lg">{offer.time}</dd>
+                      <dt className={LABEL}>Time</dt>
+                      <dd className="mt-1.5 text-ink">{offer.time}</dd>
                     </div>
                     <div>
-                      <dt className={label}>You get</dt>
+                      <dt className={LABEL}>You get</dt>
                       <dd>
-                        <ul className="mt-1 grid gap-1.5">
+                        <ul className="mt-1.5 flex flex-col gap-2">
                           {offer.gets.map((item) => (
-                            <li key={item}>{item}</li>
+                            <li key={item} className="flex gap-3">
+                              <Diamond />
+                              {item}
+                            </li>
                           ))}
                         </ul>
                       </dd>
                     </div>
                     <div>
-                      <dt className={label}>Risk</dt>
-                      <dd className="mt-1">{offer.risk}</dd>
+                      <dt className={LABEL}>Risk</dt>
+                      <dd className="mt-1.5">{offer.risk}</dd>
                     </div>
                   </dl>
                   <div className="mt-8 pt-2 lg:mt-auto">
                     {offer.id === "sprint" ? (
-                      <BookCallLink
-                        placement="offer_sprint"
-                        className="inline-flex rounded-full bg-[#0E1016] px-6 py-3 font-semibold text-white transition-colors hover:bg-[#2A2E3A]"
-                      >
+                      <BookCallLink placement="offer_sprint" className="softles-secondary-button w-full">
                         Book a call
                       </BookCallLink>
                     ) : (
-                      <RequestCta kind={offer.id} tone={dark ? "ink" : "paper"} />
+                      <RequestCta kind={offer.id} variant={featured ? "primary" : "secondary"} />
                     )}
                   </div>
                 </article>
@@ -694,46 +778,62 @@ export default function AuLandingPage() {
       </section>
 
       {/* How working with us runs */}
-      <section className="py-20 md:py-28">
-        <div className={WRAP}>
-          <h2 className={`${H2} max-w-[16ch]`}>
-            We build while <span className="au-serif font-normal tracking-normal">Australia sleeps.</span>
+      <section className={SECTION}>
+        <div className="service-page-container">
+          <Eyebrow>How we work</Eyebrow>
+          <h2 className={`${H2} max-w-[18ch]`}>
+            We build while <span className="softles-gradient-text">Australia sleeps.</span>
           </h2>
-          <p className="mt-5 max-w-[40rem] text-lg leading-relaxed text-[#A9AFBC]">
+          <p className="softles-section-copy">
             We&apos;re in Noida, India, five and a half hours behind Sydney. Your afternoon brief becomes
             our working day.
           </p>
 
-          <ol className="mt-12 grid gap-px overflow-hidden rounded-[14px] border border-[#2A2E3A] bg-[#2A2E3A] md:grid-cols-3">
+          <ol className="mt-10 grid gap-5 md:mt-12 md:grid-cols-3">
             {OVERNIGHT.map((step) => (
-              <li key={step.when} className="bg-[#0E1016] p-6">
-                <p className="font-display text-3xl font-bold">{step.when}</p>
-                <p className="au-mono mt-1 text-sm text-[#A9AFBC]">{step.where}</p>
-                <p className="mt-4 leading-relaxed text-[#D6D9E0]">{step.what}</p>
+              <li key={step.when} className="softles-card p-6 xl:p-7">
+                <p className="font-display text-3xl font-bold text-ink">{step.when}</p>
+                <p className="mt-1 text-sm font-semibold text-brand">{step.where}</p>
+                <p className="mt-4 text-sm leading-relaxed text-mute sm:text-base">{step.what}</p>
               </li>
             ))}
           </ol>
 
-          <div className="mt-14 grid gap-10 md:grid-cols-12">
-            <ul className="grid content-start gap-3 text-lg text-[#D6D9E0] md:col-span-4">
-              <li>A named project lead for your store</li>
-              <li>A Loom update every week</li>
-              <li>Slack or email, whichever your team already uses</li>
-              <li>Calls 1–5 pm AEDT</li>
-            </ul>
-            <ul className="grid grid-cols-3 gap-3 sm:gap-5 md:col-span-8">
+          <div className="mt-14 grid items-center gap-10 lg:grid-cols-12">
+            <div className="lg:col-span-4">
+              <h3 className="text-sm font-bold uppercase tracking-[0.15em] text-mute">Working with us</h3>
+              <ul className="mt-4 flex flex-col">
+                {[
+                  "A named project lead for your store",
+                  "A Loom update every week",
+                  "Slack or email, whichever your team already uses",
+                  "Calls 1–5 pm AEDT",
+                ].map((item) => (
+                  <li key={item} className="flex gap-3 border-t border-line py-3 text-mute">
+                    <Diamond />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <ul className="grid grid-cols-3 gap-3 sm:gap-5 lg:col-span-8">
               {TEAM.map((person) => (
-                <li key={person.name}>
-                  <Photo
-                    src={person.img}
-                    widths={[256, 384]}
-                    sizes="(min-width: 1200px) 240px, (min-width: 768px) 20vw, 30vw"
-                    width={714}
-                    height={893}
-                    className="aspect-[4/5] h-auto w-full rounded-[14px] object-cover"
-                  />
-                  <p className="mt-3 font-semibold leading-snug text-white">{person.name}</p>
-                  <p className="text-sm text-[#A9AFBC]">{person.role}</p>
+                <li key={person.name} className="softles-card group overflow-hidden">
+                  <div className="relative aspect-[4/5] bg-gradient-to-br from-raise to-deep">
+                    <Photo
+                      src={person.img}
+                      widths={[256, 384]}
+                      sizes="(min-width: 1440px) 250px, (min-width: 1024px) 20vw, 30vw"
+                      width={714}
+                      height={893}
+                      alt={person.name}
+                      className="absolute inset-0 h-full w-full object-cover"
+                    />
+                  </div>
+                  <div className="p-3 text-center sm:p-4">
+                    <p className="text-sm font-bold leading-snug text-ink sm:text-base">{person.name}</p>
+                    <p className="mt-1 text-xs text-mute/80 sm:text-sm">{person.role}</p>
+                  </div>
                 </li>
               ))}
             </ul>
@@ -742,22 +842,25 @@ export default function AuLandingPage() {
       </section>
 
       {/* FAQ */}
-      <section className="py-20 md:py-28">
-        <div className={`${WRAP} grid gap-10 md:grid-cols-12`}>
-          <h2 className={`${H2} md:col-span-4`}>Questions</h2>
-          <div className="md:col-span-8">
+      <section className={SECTION_ALT}>
+        <div className="service-page-container grid gap-10 lg:grid-cols-12">
+          <div className="lg:col-span-4">
+            <Eyebrow>FAQ</Eyebrow>
+            <h2 className={H2}>Questions</h2>
+          </div>
+          <div className="divide-y divide-line border-y border-line lg:col-span-8">
             {FAQS.map((item) => (
-              <details key={item.q} className="group border-b border-[#2A2E3A] py-5 first:border-t">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-lg font-semibold [&::-webkit-details-marker]:hidden">
+              <details key={item.q} className="group py-5">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 font-semibold text-ink sm:text-lg [&::-webkit-details-marker]:hidden">
                   {item.q}
                   <span
                     aria-hidden="true"
-                    className="au-mono text-xl text-[#FF4D57] transition-transform group-open:rotate-45"
+                    className="text-2xl leading-none text-brand transition-transform group-open:rotate-45"
                   >
                     +
                   </span>
                 </summary>
-                <p className="mt-3 max-w-[40rem] leading-relaxed text-[#A9AFBC]">{item.a}</p>
+                <p className="mt-3 max-w-[40rem] text-sm leading-relaxed text-mute/80 sm:text-base">{item.a}</p>
               </details>
             ))}
           </div>
@@ -765,50 +868,78 @@ export default function AuLandingPage() {
       </section>
 
       {/* Book a call with Shakti: the main call to action */}
-      <section id="book" className="scroll-mt-4 bg-[#171A22] py-20 md:py-28">
-        <div className={`${WRAP} grid gap-12 md:grid-cols-12 md:gap-10`}>
-          <div className="md:col-span-5">
-            <div className="flex items-end gap-5">
-              <Photo
-                src="/shakti_singh.jpg"
-                widths={[256, 384]}
-                sizes="160px"
-                width={714}
-                height={893}
-                alt="Shakti Singh"
-                className="aspect-[4/5] h-auto w-32 rounded-[14px] object-cover sm:w-40"
-              />
-              <p className="pb-1">
-                <span className="block font-semibold text-white">Shakti Singh</span>
-                <span className="block text-sm text-[#A9AFBC]">Founder, Softles</span>
-              </p>
-            </div>
-            <h2 className={`${H2} mt-10`}>
-              Talk it through with <span className="au-serif font-normal tracking-normal">Shakti.</span>
+      <section id="book" className={SECTION}>
+        <div className="service-page-container grid gap-12 lg:grid-cols-12 lg:gap-10">
+          <div className="lg:col-span-5">
+            <Eyebrow>Book a call</Eyebrow>
+            <h2 className={H2}>
+              Talk it through with <span className="softles-gradient-text">Shakti.</span>
             </h2>
-            <p className="mt-5 text-lg leading-relaxed text-[#D6D9E0]">
+            <p className="softles-section-copy">
               Thirty minutes on a video call. Bring your store and we&apos;ll look at it together. You&apos;ll
               leave knowing where it leaks and which way to start, or hearing straight that we&apos;re not the
               right fit.
             </p>
-            <ul className="mt-6 grid gap-2 text-[#A9AFBC]">
-              <li>You talk to the founder, not a sales team</li>
-              <li>Calls 1–5 pm AEDT</li>
-              <li>
-                Rather look at the numbers first?{" "}
-                <a href="#hero" className="text-white underline underline-offset-4">
-                  Run the free store check
-                </a>
+            <ul className="mt-6 flex flex-col">
+              <li className="flex gap-3 border-t border-line py-3 text-mute">
+                <Diamond />
+                You talk to the founder, not a sales team
+              </li>
+              <li className="flex gap-3 border-t border-line py-3 text-mute">
+                <Diamond />
+                Calls 1–5 pm AEDT
+              </li>
+              <li className="flex gap-3 border-y border-line py-3 text-mute">
+                <Diamond />
+                <span>
+                  Rather look at the numbers first?{" "}
+                  <a href="#hero" className={TEXT_LINK}>
+                    Run the free store check
+                  </a>
+                </span>
               </li>
             </ul>
+
+            {/* Phones get a small portrait; wider screens the main site's photo card. */}
+            <div className="mt-8 flex items-center gap-4 lg:hidden">
+              <Photo
+                src="/shakti_singh.jpg"
+                widths={[128, 256]}
+                sizes="64px"
+                width={64}
+                height={64}
+                alt="Shakti Singh"
+                className="h-16 w-16 rounded-full border-4 border-panel object-cover object-top shadow-md"
+              />
+              <span>
+                <span className="block font-bold text-ink">Shakti Singh</span>
+                <span className="block text-sm text-mute">Founder, Softles</span>
+              </span>
+            </div>
+            <figure className="relative mt-10 hidden aspect-[4/5] w-full max-w-[280px] overflow-hidden rounded-2xl border border-line bg-gradient-to-br from-raise to-deep lg:block">
+              <Photo
+                src="/shakti_singh.jpg"
+                widths={[384, 640]}
+                sizes="280px"
+                width={714}
+                height={893}
+                alt="Shakti Singh"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+              <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-deep via-deep/60 to-transparent" />
+              <figcaption className="absolute inset-x-0 bottom-0 p-5">
+                <span className="block font-bold text-ink">Shakti Singh</span>
+                <span className="block text-sm text-mute">Founder, Softles</span>
+              </figcaption>
+            </figure>
           </div>
-          <div className="md:col-span-7">
+          <div className="lg:col-span-7">
             {BOOKING_URL ? (
               <BookingEmbed url={BOOKING_URL} />
             ) : (
-              <div className="rounded-[18px] border border-[#2A2E3A] bg-[#0E1016] p-6 sm:p-8">
-                <h3 className="text-2xl font-bold">Pick a time</h3>
-                <p className="mb-6 mt-2 text-[#A9AFBC]">
+              <div className="softles-card p-6 sm:p-8">
+                <h3 className="text-2xl font-bold text-ink">Pick a time</h3>
+                <p className="mb-6 mt-2 text-mute">
                   Leave your details and Shakti will email you a few times to choose from.
                 </p>
                 <RequestCta kind="call" inline />
@@ -818,22 +949,7 @@ export default function AuLandingPage() {
         </div>
       </section>
 
-      <footer className="border-t border-[#2A2E3A] py-8 text-sm text-[#A9AFBC]">
-        <div className={`${WRAP} flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between`}>
-          <p>© {new Date().getFullYear()} Softles · Noida, India</p>
-          <nav aria-label="Footer" className="flex flex-wrap gap-x-6 gap-y-2">
-            <a href="mailto:info@softles.in" className="hover:text-white">
-              info@softles.in
-            </a>
-            <a href="/privacy" className="hover:text-white">
-              Privacy
-            </a>
-            <a href="/terms" className="hover:text-white">
-              Terms
-            </a>
-          </nav>
-        </div>
-      </footer>
+      <AuFooter />
 
       <StickyBar />
     </main>

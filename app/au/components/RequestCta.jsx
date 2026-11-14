@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
 import { trackEvent } from "@/lib/gtag";
 import { trackPixel } from "@/lib/metaPixel";
+import Arrow from "./Arrow";
 
 // Shown only after a click, so the form code stays out of the first-load JS.
 const LeadForm = dynamic(() => import("./LeadForm"));
@@ -77,17 +78,19 @@ const REQUESTS = {
   },
 };
 
-const BUTTON = {
-  ink: "bg-[#FF4D57] text-[#0E1016] hover:bg-[#FF6A72]",
-  paper: "bg-[#0E1016] text-white hover:bg-[#2A2E3A]",
-};
-const INTRO = { ink: "text-[#A9AFBC]", paper: "text-[#545866]" };
+// The main site's two button styles. `variant` picks one; `inline` shows the form without a
+// click, loading it once it nears the screen.
+const BUTTON = { primary: "softles-primary-button", secondary: "softles-secondary-button" };
 
-// `tone` matches the card it sits on: "ink" for dark cards, "paper" for light ones.
-// `inline` shows the form without a click, loading it once it nears the screen.
-export default function RequestCta({ kind = "leak", tone = "ink", inline = false }) {
-  const buttonClass = `inline-flex rounded-full px-6 py-3 font-semibold transition-colors ${BUTTON[tone]}`;
+export default function RequestCta({ kind = "leak", variant = "primary", inline = false }) {
   const offer = REQUESTS[kind];
+  const buttonClass = `${BUTTON[variant]} group w-full`;
+  const label = (
+    <>
+      <span>{offer.button}</span>
+      {variant === "primary" ? <Arrow /> : null}
+    </>
+  );
   const money = offer.value ? { value: offer.value, currency: "AUD" } : {};
   // null until shown; "click" moves focus into the form, "inline" leaves focus alone.
   const [open, setOpen] = useState(null);
@@ -117,7 +120,7 @@ export default function RequestCta({ kind = "leak", tone = "ink", inline = false
         }}
         className={buttonClass}
       >
-        {offer.button}
+        {label}
       </a>
     );
   }
@@ -134,17 +137,16 @@ export default function RequestCta({ kind = "leak", tone = "ink", inline = false
         }}
         className={buttonClass}
       >
-        {offer.button}
+        {label}
       </button>
     );
   }
 
   return (
     <div className="mt-2">
-      {offer.intro ? <p className={`mb-4 text-sm ${INTRO[tone]}`}>{offer.intro}</p> : null}
+      {offer.intro ? <p className="mb-4 text-sm text-mute">{offer.intro}</p> : null}
       <LeadForm
         autoFocus={open === "click"}
-        tone={tone}
         source={offer.source}
         event={offer.sentEvent}
         fields={offer.fields}

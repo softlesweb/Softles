@@ -20,8 +20,8 @@ const size = (bytes) =>
 function Gauge({ score, band }) {
   const arc = Math.PI * 52;
   return (
-    <svg viewBox="0 0 120 70" className="w-36 shrink-0" role="img" aria-label={`Mobile score ${score} out of 100`}>
-      <path d="M8 62 A52 52 0 0 1 112 62" fill="none" stroke="#2A2E3A" strokeWidth="10" strokeLinecap="round" />
+    <svg viewBox="0 0 120 70" className="w-36 shrink-0 text-ink" role="img" aria-label={`Mobile score ${score} out of 100`}>
+      <path d="M8 62 A52 52 0 0 1 112 62" fill="none" stroke="rgb(var(--c-line))" strokeWidth="10" strokeLinecap="round" />
       <path
         d="M8 62 A52 52 0 0 1 112 62"
         fill="none"
@@ -30,7 +30,7 @@ function Gauge({ score, band }) {
         strokeLinecap="round"
         strokeDasharray={`${(score / 100) * arc} ${arc}`}
       />
-      <text x="60" y="58" textAnchor="middle" fill="#fff" fontSize="30" fontWeight="700" fontFamily="var(--font-display)">
+      <text x="60" y="58" textAnchor="middle" fill="currentColor" fontSize="30" fontWeight="700" fontFamily="var(--font-display)">
         {score}
       </text>
     </svg>
@@ -39,13 +39,13 @@ function Gauge({ score, band }) {
 
 function Metric({ label, value, band, note }) {
   return (
-    <div className="flex items-baseline justify-between gap-4 border-t border-[#2A2E3A] py-3">
-      <dt className="text-[#A9AFBC]">
+    <div className="flex items-baseline justify-between gap-4 border-t border-line py-3">
+      <dt className="text-mute">
         {label}
-        {note ? <span className="block text-xs text-[#A9AFBC]/80">{note}</span> : null}
+        {note ? <span className="block text-xs text-dim">{note}</span> : null}
       </dt>
-      <dd className="au-mono text-right">
-        <span className="text-white">{value}</span>
+      <dd className="text-right tabular-nums">
+        <span className="font-semibold text-ink">{value}</span>
         {band ? (
           <span className="ml-2 inline-flex items-center gap-1.5 text-xs" style={{ color: BAND_COLOUR[band] }}>
             <span aria-hidden="true" className="h-2 w-2 rounded-full" style={{ background: BAND_COLOUR[band] }} />
@@ -67,15 +67,15 @@ export default function LeakResults({ result, placement, onReset }) {
       <div className="flex flex-wrap items-center gap-5">
         <Gauge score={result.score} band={result.band} />
         <div className="min-w-[14rem] flex-1">
-          <p className="au-mono text-sm" style={{ color: BAND_COLOUR[result.band] }}>
+          <p className="text-sm font-semibold" style={{ color: BAND_COLOUR[result.band] }}>
             {SCORE_WORD[result.band]} · {result.host}
           </p>
-          <p className="mt-1 font-display text-xl font-semibold leading-snug text-white">{result.headline}</p>
+          <p className="mt-1 font-display text-xl font-bold leading-snug text-ink">{result.headline}</p>
         </div>
       </div>
 
       {!result.isShopify ? (
-        <p className="mt-4 rounded-[10px] border border-[#2A2E3A] px-4 py-3 text-sm text-[#A9AFBC]">
+        <p className="mt-4 rounded-lg border border-line px-4 py-3 text-sm text-mute">
           This doesn&apos;t look like a Shopify store. The numbers still stand, but our fixes are built for Shopify.
         </p>
       ) : null}
@@ -102,31 +102,31 @@ export default function LeakResults({ result, placement, onReset }) {
 
       {heaviest.length ? (
         <div className="mt-5">
-          <p className="text-sm text-[#A9AFBC]">Heaviest scripts on this page</p>
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-dim">Heaviest scripts on this page</p>
           <ol className="mt-2 grid gap-1.5 text-sm">
             {heaviest.map((script) => (
               <li key={script.name} className="flex justify-between gap-4">
-                <span className="truncate text-white">{script.name}</span>
-                <span className="au-mono text-[#A9AFBC]">{size(script.bytes)}</span>
+                <span className="truncate text-ink">{script.name}</span>
+                <span className="tabular-nums text-mute">{size(script.bytes)}</span>
               </li>
             ))}
           </ol>
-          <p className="mt-3 text-sm text-[#A9AFBC]">
+          <p className="mt-3 text-sm text-mute">
             Scripts like these often come from apps you pay for every month.{" "}
-            <a href="#apps" className="text-white underline underline-offset-4">
+            <a href="#apps" className="font-semibold text-ink underline decoration-brand decoration-2 underline-offset-[5px]">
               See what your apps cost you
             </a>
           </p>
         </div>
       ) : null}
 
-      <p className="mt-4 text-xs text-[#A9AFBC]">
+      <p className="mt-4 text-xs text-dim">
         Google PageSpeed Insights, mobile, one page. Scores move a few points between runs.
       </p>
 
-      <div className="mt-6 rounded-[12px] bg-[#0E1016] p-5">
-        <p className="font-display text-lg font-semibold text-white">Get the full report</p>
-        <p className="mt-1 mb-4 text-sm text-[#A9AFBC]">
+      <div className="mt-6 rounded-xl border border-line bg-page p-5">
+        <p className="font-display text-lg font-bold text-ink">Get the full report</p>
+        <p className="mb-4 mt-1 text-sm text-mute">
           We&apos;ll look at these results and email you a short report with the first fixes we&apos;d make.
         </p>
         <LeadForm
@@ -152,13 +152,16 @@ export default function LeakResults({ result, placement, onReset }) {
       </div>
 
       <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
-        <a href="#offer" className="rounded-full bg-[#FF4D57] px-6 py-3 font-semibold text-[#0E1016] hover:bg-[#FF6A72]">
-          Get a Revenue Leak Audit
+        <a href="#offer" className="softles-secondary-button group">
+          <span>Get a Revenue Leak Audit</span>
         </a>
-        <BookCallLink placement={`${placement}_results`} className="font-semibold text-white underline underline-offset-4" >
+        <BookCallLink
+          placement={`${placement}_results`}
+          className="font-semibold text-ink underline decoration-brand decoration-2 underline-offset-[5px]"
+        >
           Book a call
         </BookCallLink>
-        <button type="button" onClick={onReset} className="text-sm text-[#A9AFBC] underline underline-offset-4">
+        <button type="button" onClick={onReset} className="text-sm text-mute underline underline-offset-4 hover:text-ink">
           Check another page
         </button>
       </div>

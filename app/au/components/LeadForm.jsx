@@ -4,32 +4,17 @@ import { useId, useState } from "react";
 import { trackEvent } from "@/lib/gtag";
 import { trackPixel } from "@/lib/metaPixel";
 import { getAttribution } from "@/lib/auAttribution";
+import Arrow from "./Arrow";
 
 // Fields /api/contact reads by name; anything else travels as a labelled detail.
 const CORE_FIELDS = ["name", "email", "phone", "storeUrl", "message", "goal"];
 
-const TONES = {
-  ink: {
-    label: "text-white",
-    hint: "text-[#A9AFBC]",
-    input:
-      "bg-[#0E1016] border border-[#2A2E3A] text-white placeholder:text-[#A9AFBC]/60 focus:border-[#FF4D57]",
-    button: "bg-[#FF4D57] text-[#0E1016] hover:bg-[#FF6A72]",
-  },
-  paper: {
-    label: "text-[#0E1016]",
-    hint: "text-[#545866]",
-    input:
-      "bg-white border border-[#D8D2C6] text-[#0E1016] placeholder:text-[#545866]/60 focus:border-[#0E1016]",
-    button: "bg-[#0E1016] text-white hover:bg-[#2A2E3A]",
-  },
-  coral: {
-    label: "text-[#0E1016]",
-    hint: "text-[#0E1016]/80",
-    input:
-      "bg-[#0E1016] border border-transparent text-white placeholder:text-[#A9AFBC]/70 focus:border-white",
-    button: "bg-[#0E1016] text-white hover:bg-[#2A2E3A]",
-  },
+// The main site's form styles (ContactSection), so every AU form matches it.
+const STYLE = {
+  label: "text-ink",
+  hint: "text-mute/80",
+  input:
+    "bg-page border border-line hover:border-line-2 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/15 transition-colors duration-200 text-ink placeholder-dim",
 };
 
 // One form for every AU lead (report request, audit request, agency, intake).
@@ -43,13 +28,12 @@ export default function LeadForm({
   event,
   values = {},
   details = {},
-  tone = "ink",
   marketingConsent = true,
   autoFocus = false,
   onSent,
 }) {
   const uid = useId();
-  const t = TONES[tone];
+  const t = STYLE;
   const [status, setStatus] = useState("idle");
   const [error, setError] = useState("");
 
@@ -112,7 +96,7 @@ export default function LeadForm({
           autoComplete: field.autoComplete,
           placeholder: field.placeholder,
           "aria-describedby": hintId,
-          className: `w-full rounded-[10px] px-4 py-3 text-base outline-none transition-colors ${t.input}`,
+          className: `w-full rounded-lg px-4 py-3 text-base ${t.input}`,
         };
         return (
           <div key={field.name} className="grid gap-1.5">
@@ -157,7 +141,7 @@ export default function LeadForm({
 
       {marketingConsent ? (
         <label className={`flex items-start gap-3 text-sm ${t.hint}`}>
-          <input type="checkbox" name="marketing" className="mt-0.5 h-4 w-4 shrink-0 accent-[#FF4D57]" />
+          <input type="checkbox" name="marketing" className="mt-0.5 h-4 w-4 shrink-0 accent-brand" />
           <span>Send me occasional Shopify speed notes by email. Unsubscribe any time.</span>
         </label>
       ) : null}
@@ -165,18 +149,19 @@ export default function LeadForm({
       <button
         type="submit"
         disabled={status === "sending"}
-        className={`justify-self-start rounded-full px-6 py-3 font-semibold transition-colors disabled:opacity-60 ${t.button}`}
+        className="softles-primary-button group justify-self-start disabled:opacity-60"
       >
-        {status === "sending" ? "Sending…" : submitLabel}
+        <span>{status === "sending" ? "Sending…" : submitLabel}</span>
+        {status === "sending" ? null : <Arrow />}
       </button>
 
       {status === "error" ? (
-        <p role="alert" className={`text-sm font-medium ${tone === "paper" ? "text-[#B3261E]" : t.label}`}>
+        <p role="alert" className="text-sm font-medium text-brand-soft">
           {error}
         </p>
       ) : null}
 
-      <p className={`text-xs leading-relaxed ${t.hint}`}>
+      <p className="text-xs leading-relaxed text-dim">
         Softles uses these details only to reply to you and send what you asked for, in line with
         the Australian Privacy Principles. Read our{" "}
         <a href="/privacy" className="underline underline-offset-2">

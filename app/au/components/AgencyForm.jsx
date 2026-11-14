@@ -15,7 +15,7 @@ export default function AgencyForm() {
         type="button"
         onClick={() => setOpen(true)}
         aria-expanded="false"
-        className="rounded-full bg-[#0E1016] px-6 py-3 font-semibold text-white transition-colors hover:bg-[#2A2E3A]"
+        className="softles-primary-button"
       >
         Partner with us
       </button>
@@ -26,7 +26,6 @@ export default function AgencyForm() {
     <div className="w-full max-w-md">
       <LeadForm
         autoFocus
-        tone="coral"
         source="AU Agency partner"
         event="agency_form_sent"
         marketingConsent={false}

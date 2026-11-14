@@ -14,8 +14,11 @@ export default function HeroGreeting({ children }) {
 
   if (!brand) return children;
   return (
-    <p className="min-h-[2.5rem] font-display text-lg font-medium text-white sm:min-h-0 sm:text-xl">
-      Hi {brand}, here&apos;s where your store leaks.
+    <p className="softles-eyebrow mb-2">
+      <span className="softles-eyebrow-line shrink-0" aria-hidden="true" />
+      <span className="text-sm font-semibold text-ink sm:text-base">
+        Hi {brand}, here&apos;s where your store leaks.
+      </span>
     </p>
   );
 }

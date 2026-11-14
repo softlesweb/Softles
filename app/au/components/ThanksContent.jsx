@@ -5,6 +5,7 @@ import { trackEvent } from "@/lib/gtag";
 import { trackPixel } from "@/lib/metaPixel";
 import { loadRetargeting } from "./AuTrackers";
 import LeadForm from "./LeadForm";
+import Arrow from "./Arrow";
 
 const AUDIT = { value: 1500, currency: "AUD" };
 
@@ -44,14 +45,14 @@ export default function ThanksContent({ type }) {
   if (type === "audit") {
     return (
       <>
-        <h1 className="font-display text-[clamp(2.25rem,6vw,4rem)] font-bold leading-[1.02] tracking-[-0.03em]">
+        <h1 className="text-[2.1rem] font-extrabold leading-[1.1] tracking-[-0.03em] text-ink sm:text-5xl sm:leading-[1.08] lg:text-[54px] lg:leading-[1.07]">
           Payment received. Let&apos;s start your audit.
         </h1>
-        <p className="mt-5 max-w-[36rem] text-lg leading-relaxed text-[#A9AFBC]">
+        <p className="mt-6 max-w-[50ch] text-base leading-relaxed text-mute lg:text-lg">
           Your receipt is on its way from Stripe. Tell us about your store below and the 5 working days
           start once we have access.
         </p>
-        <div className="mt-10 max-w-xl rounded-[14px] border border-[#2A2E3A] bg-[#171A22] p-5 sm:p-6">
+        <div className="mt-10 max-w-xl rounded-2xl border border-line bg-gradient-to-br from-raise to-panel p-6 shadow-[var(--shadow-card)] sm:p-8">
           <LeadForm
             source="AU Audit intake"
             event="audit_intake_sent"
@@ -91,19 +92,20 @@ export default function ThanksContent({ type }) {
 
   return (
     <>
-      <h1 className="font-display text-[clamp(2.25rem,6vw,4rem)] font-bold leading-[1.02] tracking-[-0.03em]">
+      <h1 className="text-[2.1rem] font-extrabold leading-[1.1] tracking-[-0.03em] text-ink sm:text-5xl sm:leading-[1.08] lg:text-[54px] lg:leading-[1.07]">
         {type === "call" ? "Your call is booked." : "Thanks. We'll be in touch."}
       </h1>
-      <p className="mt-5 max-w-[36rem] text-lg leading-relaxed text-[#A9AFBC]">
+      <p className="mt-6 max-w-[50ch] text-base leading-relaxed text-mute lg:text-lg">
         {type === "call"
           ? "The calendar invite is in your inbox. If you'd like us to look at your store before we talk, run the free leak check and we'll have the results on the call."
           : "While you wait, see how your store scores on mobile."}
       </p>
       <a
         href="/au#hero"
-        className="mt-8 inline-flex rounded-full bg-[#FF4D57] px-6 py-3 font-semibold text-[#0E1016] transition-colors hover:bg-[#FF6A72]"
+        className="softles-primary-button group mt-9"
       >
-        Run the leak check
+        <span>Run the leak check</span>
+        <Arrow />
       </a>
     </>
   );

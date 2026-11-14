@@ -41,21 +41,21 @@ export default function StickyBar() {
   return (
     <div
       inert={visible ? undefined : ""}
-      className={`fixed inset-x-0 bottom-0 z-50 border-t border-[#2A2E3A] bg-[#0E1016]/95 px-4 pb-[calc(0.75rem+env(safe-area-inset-bottom))] pt-3 backdrop-blur transition-transform duration-300 md:hidden ${
+      className={`fixed inset-x-0 bottom-0 z-50 border-t border-line bg-page/90 px-4 pb-[calc(0.75rem+env(safe-area-inset-bottom))] pt-3 backdrop-blur-xl transition-transform duration-300 md:hidden ${
         visible ? "translate-y-0" : "translate-y-full"
       }`}
     >
       <div className="flex gap-3">
         <BookCallLink
           placement="sticky_bar"
-          className="flex-1 rounded-full bg-[#FF4D57] py-3 text-center font-semibold text-[#0E1016]"
+          className="flex-1 rounded-full bg-gradient-to-r from-brand to-brand-2 py-3 text-center text-sm font-bold uppercase tracking-wide text-white shadow-[0_8px_28px_rgba(255,77,87,0.38)]"
         >
           Book a call
         </BookCallLink>
         <button
           type="button"
           onClick={goToCheck}
-          className="flex-1 rounded-full border border-white/30 py-3 font-semibold text-white"
+          className="flex-1 rounded-full py-3 text-sm font-bold uppercase tracking-wide text-mute shadow-[inset_0_0_0_1px_var(--btn-ring)]"
         >
           Free store check
         </button>

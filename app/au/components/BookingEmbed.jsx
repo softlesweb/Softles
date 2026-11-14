@@ -29,7 +29,7 @@ function embedSrc(base) {
     tagged.searchParams.set("embed_domain", window.location.hostname);
     tagged.searchParams.set("embed_type", "Inline");
     tagged.searchParams.set("hide_gdpr_banner", "1");
-    tagged.searchParams.set("background_color", "0e1016");
+    tagged.searchParams.set("background_color", "0e1219");
     tagged.searchParams.set("text_color", "ffffff");
     tagged.searchParams.set("primary_color", "ff4d57");
   } else if (isCal(tagged.hostname)) {
@@ -95,8 +95,8 @@ export default function BookingEmbed({ url }) {
   return (
     <div>
       <div
-        className={`h-[720px] overflow-hidden rounded-[14px] border ${
-          google ? "border-transparent bg-white" : "border-[#2A2E3A] bg-[#0E1016]"
+        className={`h-[720px] overflow-hidden rounded-2xl border border-line shadow-[var(--shadow-card)] ${
+          google ? "bg-white" : "bg-page"
         }`}
       >
         {src ? (
@@ -109,9 +109,9 @@ export default function BookingEmbed({ url }) {
           />
         ) : null}
       </div>
-      <p className="mt-3 text-sm text-[#A9AFBC]">
+      <p className="mt-3 text-sm text-mute">
         Calendar not loading?{" "}
-        <a href={pageUrl(url)} target="_blank" rel="noopener" className="text-white underline underline-offset-4">
+        <a href={pageUrl(url)} target="_blank" rel="noopener" className="font-semibold text-ink underline decoration-brand decoration-2 underline-offset-[5px]">
           Open it in a new tab
         </a>
       </p>
